@@ -1,0 +1,15 @@
+﻿{
+    "id":  "toilet",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/toilet.png",
+    "inputSha256":  "6b5c3613efff582611cd1425d287e8bce97ed0d176757484fb22ded2e8c0f20a",
+    "meshSha256":  "ac55b471a8145dd5c84a3c2d30925a65198fff901e933ff16e56018e297aee5d",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T15:41:38.1336876-04:00"
+}

@@ -22,7 +22,7 @@ $env:PYTHONWARNINGS = 'ignore'
 
 $runDir = "$vt\props-service\raw\spar3d\_run"
 if (Test-Path $runDir) { Remove-Item -Recurse -Force $runDir }
-$inputs = $Ids | ForEach-Object { "$vt\props-service\raw\concepts\$_.png" }
+$inputs = @($Ids | ForEach-Object { "$vt\props-service\raw\concepts\$_.png" })   # @(): one id must stay a list
 
 $sw = [Diagnostics.Stopwatch]::StartNew()
 # cmd does the redirect: PowerShell 5.1 would turn Python's stderr warnings into terminating errors.
