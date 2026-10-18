@@ -1,0 +1,48 @@
+{
+  "id": "trash_can",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-18T02:26:52.924Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_22bfe54c-7ee9-4168-ba8e-1ef62d809d44",
+      "hash": "sha256:0d64b315e719ebbc7b141ed179b4ff8addfb9f18db9125ef9725acdf2655144a",
+      "status": "success",
+      "input": "raw/concepts/trash_can.png"
+    },
+    "generate": {
+      "taskId": "648fa4f8-e66a-4684-b9b1-e25e48eb509f",
+      "status": "success",
+      "request": {
+        "input": "file_22bfe54c-7ee9-4168-ba8e-1ef62d809d44",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "detailed"
+      },
+      "createdAt": "2026-10-18T02:26:53.971Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-18T02:26:52.924Z"
+      },
+      "credits": 60,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261018/648fa4f8-e66a-4684-b9b1-e25e48eb509f/tripo_pbr_model_648fa4f8-e66a-4684-b9b1-e25e48eb509f.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261018/648fa4f8-e66a-4684-b9b1-e25e48eb509f/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-18T02:28:21.814Z",
+      "fileHash": "sha256:4675aa3d6ab84c9712c4ef48f6b867306bb126f2bb49f8ecbf4b9256ce4604a2"
+    }
+  },
+  "totalCredits": 60
+}

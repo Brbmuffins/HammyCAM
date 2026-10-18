@@ -1,0 +1,15 @@
+﻿{
+    "id":  "jello_mold",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/jello_mold.png",
+    "inputSha256":  "767a1d3bdb63a702943d37a0d8b442dfd1ef58e92e7ad1dd355a6e7109defc54",
+    "meshSha256":  "b1f9a1bd7352159cd9b4d3de4440b0a1f409ab9cc2b2fb9ac1ee42319ebac95d",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T13:02:40.9842220-04:00"
+}

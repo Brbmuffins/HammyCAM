@@ -1,0 +1,131 @@
+[
+  {
+    "id": "splat_1",
+    "prompt": "a wet tomato splatting hard against a surface, juicy squelch, cartoon sound effect",
+    "seconds": 1.2
+  },
+  {
+    "id": "splat_2",
+    "prompt": "a ripe tomato bursting with a wet splat and dripping, comedic cartoon sound effect",
+    "seconds": 1.2
+  },
+  {
+    "id": "pie_splat",
+    "prompt": "a cream pie smashed into a face, big wet squishy splat, cartoon comedy sound effect",
+    "seconds": 1.5
+  },
+  {
+    "id": "cream_spray",
+    "prompt": "an aerosol whipped cream can spraying continuously, fizzy hissing spray",
+    "seconds": 3,
+    "loop": true
+  },
+  {
+    "id": "slime_splat",
+    "prompt": "thick gooey slime splattering onto glass, gross squelchy wet slap",
+    "seconds": 1.5
+  },
+  {
+    "id": "fire_ignite",
+    "prompt": "a small pile of paper catching fire with a soft whoosh",
+    "seconds": 1.5
+  },
+  {
+    "id": "fire_crackle",
+    "prompt": "a small paper and wood fire crackling and popping, close up",
+    "seconds": 6,
+    "loop": true
+  },
+  {
+    "id": "steam_hiss",
+    "prompt": "water hitting a small fire, steam hissing and sizzling out",
+    "seconds": 2.5
+  },
+  {
+    "id": "sprinklers",
+    "prompt": "indoor fire sprinklers spraying water onto a desk, steady rain patter",
+    "seconds": 6,
+    "loop": true
+  },
+  {
+    "id": "water_spill",
+    "prompt": "a pitcher of water tipping over and glugging, water splashing across a wooden table",
+    "seconds": 3
+  },
+  {
+    "id": "pan_bonk",
+    "prompt": "a cartoon frying pan bonk on a head, metallic clang with a comedic ring",
+    "seconds": 1.2
+  },
+  {
+    "id": "egg_crack",
+    "prompt": "an egg cracking open and splatting onto a table, wet crunch",
+    "seconds": 1.2
+  },
+  {
+    "id": "trash_clatter",
+    "prompt": "garbage tumbling onto a desk, crumpled paper and a tin can clattering",
+    "seconds": 1.5
+  },
+  {
+    "id": "plop",
+    "prompt": "a small wet slice of pepperoni plopping onto a wooden desk, soft comedic plop",
+    "seconds": 0.6
+  },
+  {
+    "id": "slam_thud",
+    "prompt": "a comedic face plant into a wooden desk, cartoon thwack and wobble",
+    "seconds": 1.2
+  },
+  {
+    "id": "bucket_plonk",
+    "prompt": "a plastic bucket of soapy water set down on a desk with a slosh",
+    "seconds": 1.2
+  },
+  {
+    "id": "scrub",
+    "prompt": "a sponge scrubbing a wooden table fast, squeaky soapy scrubbing",
+    "seconds": 4,
+    "loop": true
+  },
+  {
+    "id": "bubbles",
+    "prompt": "soap bubbles popping, several soft little pops",
+    "seconds": 2
+  },
+  {
+    "id": "squirt",
+    "prompt": "a ketchup bottle squirting with a wet splurt, comedic",
+    "seconds": 0.8
+  },
+  {
+    "id": "boing",
+    "prompt": "a rubbery cartoon boing wobble, like jelly flopping over",
+    "seconds": 1
+  },
+  {
+    "id": "fart_1",
+    "prompt": "a long cartoon fart sound effect, comedic",
+    "seconds": 1.5
+  },
+  {
+    "id": "fart_2",
+    "prompt": "a short squeaky cartoon fart, comedic",
+    "seconds": 0.8
+  },
+  {
+    "id": "sprinkle_rain",
+    "prompt": "sugar sprinkles pattering onto a table, tiny ticks",
+    "seconds": 1.5
+  },
+  {
+    "id": "ding",
+    "prompt": "a short comedic game show ding",
+    "seconds": 0.8
+  },
+  {
+    "id": "sneeze",
+    "prompt": "a big comedic wet sneeze, ah ah CHOO, cartoon sound effect",
+    "seconds": 1.6
+  }
+]

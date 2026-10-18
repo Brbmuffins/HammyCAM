@@ -1,0 +1,192 @@
+[
+  {
+    "id": "splat_1",
+    "prompt": "a rotten tomato smashing against a hard surface, juicy pulpy wet splatter, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2
+  },
+  {
+    "id": "splat_2",
+    "prompt": "an overripe tomato bursting on impact, wet seedy splat and dribble, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2
+  },
+  {
+    "id": "splat_3",
+    "prompt": "a soggy piece of fruit slapping wetly into a wall and sliding, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2
+  },
+  {
+    "id": "pie_splat",
+    "prompt": "a cream pie smashed into a face, thick wet squelch and slop dripping off, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.6
+  },
+  {
+    "id": "cream_spray",
+    "prompt": "an aerosol whipped cream can spraying in wet sputtering bursts, hissing and gurgling, realistic close-mic foley, no music, not cartoon",
+    "seconds": 3,
+    "loop": true
+  },
+  {
+    "id": "slime_splat",
+    "prompt": "thick wet snot splattering across glass and starting to run, gross mucus splat, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.5
+  },
+  {
+    "id": "sneeze",
+    "prompt": "a big wet gross human sneeze with spray, close up, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.6
+  },
+  {
+    "id": "fire_ignite",
+    "prompt": "a crumpled paper pile catching fire with a soft whoosh and crackle, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.5
+  },
+  {
+    "id": "fire_crackle",
+    "prompt": "a small pile of paper burning on a desk, crackling and popping, realistic close-mic foley, no music, not cartoon",
+    "seconds": 6,
+    "loop": true
+  },
+  {
+    "id": "steam_hiss",
+    "prompt": "water pouring onto burning paper, harsh sizzle and steamy hiss, realistic close-mic foley, no music, not cartoon",
+    "seconds": 2.5
+  },
+  {
+    "id": "sprinklers",
+    "prompt": "indoor sprinklers spraying water onto a cluttered wooden desk, heavy dripping and splashing, realistic close-mic foley, no music, not cartoon",
+    "seconds": 6,
+    "loop": true
+  },
+  {
+    "id": "water_spill",
+    "prompt": "a full jug of water knocked over, glugging and splashing across a table and dripping off the edge onto the floor, realistic close-mic foley, no music, not cartoon",
+    "seconds": 3
+  },
+  {
+    "id": "pan_bonk",
+    "prompt": "a heavy cast iron frying pan hitting something, dull metallic clonk, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2
+  },
+  {
+    "id": "egg_crack",
+    "prompt": "a raw egg cracking and the slimy yolk and white slopping onto a table, wet and gross, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.3
+  },
+  {
+    "id": "trash_clatter",
+    "prompt": "wet garbage spilling onto a desk, soggy paper and a sticky tin can rattling, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.5
+  },
+  {
+    "id": "plop_1",
+    "prompt": "a greasy slice of pepperoni slapping wetly onto a wooden desk, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.6
+  },
+  {
+    "id": "plop_2",
+    "prompt": "a small wet piece of meat dropping onto a table with a soft slap, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.6
+  },
+  {
+    "id": "slam_thud",
+    "prompt": "a face slamming into a wooden desk, heavy dull thud with a wet squish, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2
+  },
+  {
+    "id": "bucket_plonk",
+    "prompt": "a plastic bucket of soapy water set down hard on a desk, water sloshing, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2
+  },
+  {
+    "id": "scrub",
+    "prompt": "a wet sponge scrubbing a grimy wooden table, squelchy soapy scrubbing, realistic close-mic foley, no music, not cartoon",
+    "seconds": 4,
+    "loop": true
+  },
+  {
+    "id": "squirt",
+    "prompt": "a nearly empty ketchup bottle squeezed, wet sputtering splurt of sauce, gross, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.9
+  },
+  {
+    "id": "flop",
+    "prompt": "a wet hot dog sausage flopping over and slapping against a bun, rubbery wet slap, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.9
+  },
+  {
+    "id": "fart_1",
+    "prompt": "a wet gross fart, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.4
+  },
+  {
+    "id": "fart_2",
+    "prompt": "a long sputtering wet fart, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.8
+  },
+  {
+    "id": "sprinkle_rain",
+    "prompt": "sugar sprinkles scattering and pattering onto a wooden table, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.5
+  },
+  {
+    "id": "squelch_1",
+    "prompt": "a hand squishing through a sticky puddle of goo on a table, wet squelch, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.8
+  },
+  {
+    "id": "squelch_2",
+    "prompt": "fingers smearing thick sauce across a wooden desk, slick sticky squish, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.8
+  },
+  {
+    "id": "drip_1",
+    "prompt": "a few thick drops of sauce dripping onto a wooden table, wet plips, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.7
+  },
+  {
+    "id": "drip_2",
+    "prompt": "liquid dribbling off an edge and splattering in small wet drops, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.8
+  },
+  {
+    "id": "slosh",
+    "prompt": "juice sloshing over the rim of a full cup and splashing onto a table, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2
+  },
+  {
+    "id": "slop",
+    "prompt": "a meatball covered in sauce falling and slopping wetly onto a table, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1
+  },
+  {
+    "id": "pop",
+    "prompt": "a wet suction pop, like a plunger pulled off a surface, gross, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.6
+  },
+  {
+    "id": "vacuum_hum",
+    "prompt": "an old vacuum cleaner running steadily, motor whine and airflow, realistic close-mic foley, no music, not cartoon",
+    "seconds": 5,
+    "loop": true
+  },
+  {
+    "id": "slurp",
+    "prompt": "a vacuum hose slurping up wet mess and crumbs off a table, gross sucking gurgle, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1
+  },
+  {
+    "id": "toaster_pop",
+    "prompt": "a toaster popping up with a spring clunk and toast clattering out, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1
+  },
+  {
+    "id": "spore_puff",
+    "prompt": "a soft dusty puff of air, like squeezing a rotten mouldy sponge, gross, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.8
+  },
+  {
+    "id": "toilet_flush",
+    "prompt": "a toilet flushing, roaring water swirling and gurgling down, realistic close-mic foley, no music, not cartoon",
+    "seconds": 2.5
+  }
+]

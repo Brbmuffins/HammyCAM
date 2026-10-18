@@ -1,0 +1,15 @@
+﻿{
+    "id":  "moldy_bread",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/moldy_bread.png",
+    "inputSha256":  "334b37a0c0d2eaf04441931015ccefa0d5b468969832029eca26ca40fd237302",
+    "meshSha256":  "856963607bd075bca0008013e7b9809ac116014674adb4491f89f0484b33c79f",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T15:14:38.4204562-04:00"
+}

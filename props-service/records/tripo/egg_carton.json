@@ -1,0 +1,48 @@
+{
+  "id": "egg_carton",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-15T01:21:09.883Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_ca8f999b-5287-4d45-8a8f-09a555fad2ca",
+      "hash": "sha256:abb4a44aff274e26967c035cf8ee57246fc13ed82c644e5dd8cb8c2cf5fad96e",
+      "status": "success",
+      "input": "raw/concepts/egg_carton.png"
+    },
+    "generate": {
+      "taskId": "7a72028a-f86d-47df-abc4-eee241963ee7",
+      "status": "success",
+      "request": {
+        "input": "file_ca8f999b-5287-4d45-8a8f-09a555fad2ca",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "detailed"
+      },
+      "createdAt": "2026-10-15T01:21:11.391Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-15T01:21:09.883Z"
+      },
+      "credits": 60,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261015/7a72028a-f86d-47df-abc4-eee241963ee7/tripo_pbr_model_7a72028a-f86d-47df-abc4-eee241963ee7.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261015/7a72028a-f86d-47df-abc4-eee241963ee7/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-15T01:23:32.606Z",
+      "fileHash": "sha256:9327fba81b2cd049001a9911fa176c6718a4086b45cee464373b3abc5279c239"
+    }
+  },
+  "totalCredits": 60
+}

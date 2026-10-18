@@ -1,0 +1,43 @@
+{
+  "id": "demo-avatars-09",
+  "about": "Picked by the user 2026-10-18 from the brainstorm: taco, moldy bread loaf, toaster, ketchup bottle, coffee mug, and a toilet (talking sloshes the water out of the bowl). All modelled with SPAR3D (free, local) first; Tripo only if one comes out badly. Each has a mess, some driven by the face: the ketchup bottle squirts when you open your mouth, the toaster pops toast when you blink hard, the coffee mug sloshes and steams, the taco drops its fillings, the mouldy loaf puffs spore clouds. Same concept rules as demo-avatars-01..08: no brands or text, faceless (the app adds the face).",
+  "style": "Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours.",
+  "props": [
+    {
+      "id": "taco",
+      "slot": "object",
+      "model": "spar3d",
+      "subject": "a single crunchy hard-shell taco standing upright on its folded bottom edge, seen straight from the front and symmetrical: a big golden corn tortilla shell folded into a U, overflowing at the top opening with shredded green lettuce, diced red tomato, shredded orange cheese and seasoned ground beef spilling over the edges; the front of the shell is a wide plain smooth golden surface with nothing on it; flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base)"
+    },
+    {
+      "id": "moldy_bread",
+      "slot": "object",
+      "model": "spar3d",
+      "subject": "a tall loaf of white sandwich bread standing upright on one end, seen straight from the front and symmetrical: a chunky rounded loaf with a domed golden-brown crust top, stale and slightly squashed, badly gone off: big gross fuzzy patches of blue-green, grey and white mould spreading over the top crust, down the sides and creeping in from the edges of the front, a few dark spots; the middle of the front is still a wide plain smooth surface for a face; flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base)"
+    },
+    {
+      "id": "toaster",
+      "slot": "object",
+      "model": "spar3d",
+      "subject": "a chunky retro kitchen toaster standing upright, seen straight from the front and symmetrical: a rounded boxy body in pastel mint green with chrome trim, two slices of golden toast sticking halfway out of the two slots on top, a small lever on one side, four short stubby feet; the front panel is wide, plain and smooth with nothing on it (no logo, no dials, no text)"
+    },
+    {
+      "id": "ketchup_bottle",
+      "slot": "object",
+      "model": "spar3d",
+      "subject": "a classic plastic squeeze ketchup bottle standing upright, seen straight from the front and symmetrical: a chunky rounded glossy tomato-red bottle with a white flip-top cap and nozzle on top, a little dried ketchup crusted around the nozzle; the front of the bottle is plain and smooth with nothing on it (no label, no logo, no text); flat bottom, standing directly on nothing (no plate, no stand, no platform, no base)"
+    },
+    {
+      "id": "coffee_mug",
+      "slot": "object",
+      "model": "spar3d",
+      "subject": "a big chunky ceramic coffee mug standing upright, seen straight from the front and symmetrical: a wide rounded cream-white mug with a thick handle on the right side, filled to the brim with dark coffee (no steam, no vapour, nothing above the rim), a drip of coffee running down the side; the front of the mug is plain and smooth with nothing on it (no logo, no picture, no text); flat bottom, standing directly on nothing (no plate, no saucer, no stand, no platform, no base)"
+    },
+    {
+      "id": "toilet",
+      "slot": "object",
+      "model": "spar3d",
+      "subject": "a plain cartoon toilet object (not a character) standing upright, seen straight from the front and symmetrical: a chunky glossy white porcelain toilet with a tall rounded water tank at the back and a big round open bowl in front with a white seat but no lid at all, clear blue water filling the bowl; the front of the tank is a wide plain smooth surface with nothing on it (no handle on the front, no logo, no text); absolutely no arms, no hands, no legs, no feet, no face; flat base, standing directly on nothing (no floor, no tiles, no plate, no platform)"
+    }
+  ]
+}

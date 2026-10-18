@@ -1,0 +1,15 @@
+﻿{
+    "id":  "popcorn_bucket",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/popcorn_bucket.png",
+    "inputSha256":  "a0f6686fb0294ae0cbb4909aa624db1b83fbf4c3ba372d805411c349e80c88d6",
+    "meshSha256":  "8312fc818391db4489f569d0f7466fe4b68b459fafcdbbe04c49fbdb2cc9d7cf",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T12:57:24.0801466-04:00"
+}

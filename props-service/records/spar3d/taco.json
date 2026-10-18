@@ -1,0 +1,15 @@
+﻿{
+    "id":  "taco",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/taco.png",
+    "inputSha256":  "55d255407228586b31a5e6130f253cb8d8a90a4e48e3a9ac4c39086af67bc750",
+    "meshSha256":  "a4e50d46a40c04973b57cd025f59307b2ba47765b60d518cfedbf6ccf4aa3602",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T15:14:38.0694568-04:00"
+}

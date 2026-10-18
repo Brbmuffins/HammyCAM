@@ -1,0 +1,15 @@
+﻿{
+    "id":  "coffee_mug",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/coffee_mug.png",
+    "inputSha256":  "f7ab3ebdce720e0436a2671d8659ab75bea288e9a0be55ca7ad226b95f3f41c5",
+    "meshSha256":  "cfc56b9011d706f507f78ec26e43ce13676ab294415a24b7299919e92f9e10b6",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T15:14:38.6676119-04:00"
+}

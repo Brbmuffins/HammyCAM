@@ -1,0 +1,48 @@
+{
+  "id": "sprinkle_muffin",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-16T00:42:14.453Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_a27f9008-fbb7-4ddc-884d-209c51c93f6d",
+      "hash": "sha256:574ae81ea2e2af5bcb66f50a64ba871073749464ac1e5d0b7f148f1bf31cb238",
+      "status": "success",
+      "input": "raw/concepts/sprinkle_muffin.png"
+    },
+    "generate": {
+      "taskId": "d573e456-dc0e-46d0-b21e-493c74e4a73b",
+      "status": "success",
+      "request": {
+        "input": "file_a27f9008-fbb7-4ddc-884d-209c51c93f6d",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "detailed"
+      },
+      "createdAt": "2026-10-16T00:42:15.529Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-16T00:42:14.453Z"
+      },
+      "credits": 60,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261016/d573e456-dc0e-46d0-b21e-493c74e4a73b/tripo_pbr_model_d573e456-dc0e-46d0-b21e-493c74e4a73b.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261016/d573e456-dc0e-46d0-b21e-493c74e4a73b/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-16T00:43:51.943Z",
+      "fileHash": "sha256:33bba1414802bd265ea91e73c3f62c001bd9f032cef488ab73f0ce0b76d121f2"
+    }
+  },
+  "totalCredits": 60
+}

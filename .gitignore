@@ -1,0 +1,46 @@
+# Keys: never commit. Copy .ai-keys.example to .ai-keys.local and fill in your own.
+.ai-keys.local
+*.local
+.env
+.env.*
+ElevenLabsAPI.txt
+HuggingFaceToken.txt
+*[Tt]oken*.txt
+*API*.txt
+
+node_modules/
+
+# Asset workflow outputs: raw downloads and built GLBs (rebuilt by the tools; the finished avatars are copied
+# into MuffinVTuber/Assets, and props-service/records/ keeps what made them).
+props-service/raw/
+props-service/out/
+
+# Unity project
+MuffinVTuber/[Ll]ibrary/
+MuffinVTuber/[Tt]emp/
+MuffinVTuber/[Ll]ogs/
+MuffinVTuber/[Oo]bj/
+MuffinVTuber/[Bb]uilds/
+MuffinVTuber/[Uu]ser[Ss]ettings/
+MuffinVTuber/.vs/
+MuffinVTuber/*.csproj
+MuffinVTuber/*.sln
+
+# Downloaded third-party tools, Python environments and model weights: set up again from the READMEs.
+# Our own scripts in there are kept.
+third-party/*
+!third-party/spar3d/
+third-party/spar3d/*
+!third-party/spar3d/README.md
+!third-party/spar3d/run-spar3d.ps1
+!third-party/spar3d/*.patch
+!third-party/mediapipe/
+third-party/mediapipe/*
+!third-party/mediapipe/muffin_facetracker.spec
+
+# This PC only
+*.lnk
+*.zip
+.claude/launch.json
+.claude/settings.local.json
+HammyCAM/

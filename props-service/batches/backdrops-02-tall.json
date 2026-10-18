@@ -1,0 +1,50 @@
+[
+  {
+    "id": "backdrop_vacuum_showroom_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a retro 1960s vacuum cleaner sales floor: rows of shiny old-fashioned upright and canister vacuum cleaners standing on display podiums with blank price tags, a checkered floor, bright showroom lights and colourful bunting. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/vacuum_showroom_tall.png",
+    "aspect": "9:16"
+  },
+  {
+    "id": "backdrop_airport_terminal_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: an airport departure gate: rows of joined plastic seats, huge windows with a parked jet airliner outside on the tarmac, a blank departures screen, a rolling suitcase left all alone. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/airport_terminal_tall.png",
+    "aspect": "9:16"
+  },
+  {
+    "id": "backdrop_construction_site_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a busy construction site: scaffolding, orange traffic cones, a yellow excavator, piles of dirt and bricks, a half-built concrete wall and striped warning barriers. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/construction_site_tall.png",
+    "aspect": "9:16"
+  },
+  {
+    "id": "backdrop_laundromat_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a laundromat at night: a long row of front-loading washing machines with sudsy laundry spinning inside, flickering fluorescent lights, a plastic chair and laundry baskets. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/laundromat_tall.png",
+    "aspect": "9:16"
+  },
+  {
+    "id": "backdrop_dentist_waiting_room_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a dentist's waiting room: pale mint walls, a giant model tooth on a shelf, a potted plant, stacks of old magazines on a little table and a bubbling fish tank. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/dentist_waiting_room_tall.png",
+    "aspect": "9:16"
+  },
+  {
+    "id": "backdrop_bowling_alley_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a retro bowling alley: glossy wooden lanes with pins standing at the far end, glowing neon stripes on the walls, ball returns with colourful bowling balls. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/bowling_alley_tall.png",
+    "aspect": "9:16"
+  },
+  {
+    "id": "backdrop_throne_room_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a grand medieval castle throne room: stone arches, long red banners without symbols, a golden throne on steps, burning wall torches and a suit of armour. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/throne_room_tall.png",
+    "aspect": "9:16"
+  },
+  {
+    "id": "backdrop_car_wash_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: inside an automatic car wash tunnel: giant spinning blue and pink brushes, foam and bubbles everywhere, water jets spraying, coloured lights. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/car_wash_tall.png",
+    "aspect": "9:16"
+  }
+]

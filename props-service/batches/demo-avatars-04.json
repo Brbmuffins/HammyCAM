@@ -1,0 +1,16 @@
+{
+  "id": "demo-avatars-04",
+  "about": "Muffin avatar requested 2026-10-15, same jelly-ish style as the pizza slice: rooted paper liner, wobbly domed top. The app adds falling sugar sprinkles (particles) that pile up on the desk, so the model's own sprinkles are just texture. Same rules as demo-avatars-01..03: faceless (the app adds the face), no Tripo rig, no brands or text.",
+  "style": "Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours.",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "props": [
+    {
+      "id": "sprinkle_muffin",
+      "slot": "object",
+      "subject": "a single plump muffin standing upright like a little character: a pleated pastel-pink paper liner as the base at the bottom, a tall soft golden-brown muffin body, and a big puffy rounded dome top that overhangs the liner, the dome covered in a thin layer of white sugar glaze with lots of tiny colourful sugar sprinkles; a broad smooth area on the front of the muffin body just under the dome with no sprinkles (room for a face)"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "demo-avatars-01",
+  "about": "Object avatars for demoing the bend rig: the steak and cactus from the voice note, plus a rubber duck. No Tripo rig: the app's bend rig roots the base and bends the top toward the face. Faceless on purpose; the app adds the face.",
+  "style": "Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours.",
+  "generation": { "face_limit": 8000, "texture_quality": "detailed" },
+  "props": [
+    {
+      "id": "tbone_steak",
+      "slot": "object",
+      "subject": "a thick juicy T-bone steak standing upright on its narrow bottom edge like a little character, chunky cartoon grill marks, the T-shaped bone visible on one side, glossy and appetizing"
+    },
+    {
+      "id": "potted_cactus",
+      "slot": "object",
+      "subject": "a chubby rounded green cactus in a small terracotta pot, two short rounded side lobes curving upward, a little pink flower on top, soft cartoon spines drawn as tiny dots"
+    },
+    {
+      "id": "rubber_duck_avatar",
+      "slot": "object",
+      "subject": "a classic yellow rubber duck sitting upright facing the camera, rounded head on a rounded body, orange beak, no eyes"
+    }
+  ]
+}

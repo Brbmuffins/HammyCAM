@@ -1,0 +1,27 @@
+{
+  "id": "demo-avatars-02",
+  "about": "More object avatars requested for the demo: soda can, desk lamp, egg carton. Same rules as demo-avatars-01: faceless (the app adds the face), no Tripo rig (the app's bend rig roots the base). No brands or text on anything.",
+  "style": "Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours.",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "props": [
+    {
+      "id": "soda_can",
+      "slot": "object",
+      "subject": "a soda can standing upright, glossy lime-green aluminium covered in big orange polka dots, a purple band around the top, silver top with a pull tab, an original design that looks like no real brand, NO text, NO logos, NO letters, NO waves or ribbons",
+      "note": "Redrawn: the first version (red with a white wave) looked too much like a real cola brand."
+    },
+    {
+      "id": "desk_lamp",
+      "slot": "object",
+      "subject": "a cute retro desk lamp: a round heavy base, a short thick upright neck, and a rounded dome lampshade on top tilted slightly toward the camera so its smooth outer surface faces the viewer (bulb hidden), pastel teal and cream"
+    },
+    {
+      "id": "egg_carton",
+      "slot": "object",
+      "subject": "a cardboard half-dozen egg carton standing upright on its short end like a little tower, lid flipped open at the top with three round cartoon eggs peeking out, soft beige moulded-pulp cardboard"
+    }
+  ]
+}

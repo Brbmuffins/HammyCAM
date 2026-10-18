@@ -1,0 +1,11 @@
+{
+  "about": "Which Tripo plan generations are made under. Every Tripo task record copies this at the moment the task is created, as proof that library models were made with commercial rights. Update it whenever the plan changes; never edit it after the fact.",
+  "tripo": {
+    "plan": "paid",
+    "tier": null,
+    "declaredBy": "account owner",
+    "declaredAt": "2026-10-14",
+    "rights": "Paid plans: full rights to use, modify, distribute and commercially exploit generated models; outputs not used for training (Tripo help: how-to-use-tripo-models-commercially, Terms 5.2.2).",
+    "evidence": "Keep the Tripo subscription invoices covering every generation date in the private asset vault (not in git: invoices hold personal details)."
+  }
+}

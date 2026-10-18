@@ -1,0 +1,15 @@
+{
+  "name": "vtube-props-service",
+  "private": true,
+  "type": "module",
+  "description": "Generates avatar props (concept picture → Tripo model → Unity-ready GLB). Ported from Death Muffin's asset pipeline.",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "^4.4.1",
+    "@gltf-transform/extensions": "^4.4.1",
+    "@gltf-transform/functions": "^4.4.1",
+    "sharp": "^0.35.5"
+  }
+}

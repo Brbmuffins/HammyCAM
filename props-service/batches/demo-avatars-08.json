@@ -1,0 +1,19 @@
+{
+  "id": "demo-avatars-08",
+  "about": "First avatars modelled with SPAR3D (free, local; third-party/spar3d) instead of Tripo, 2026-10-18, as a real test of it. Popcorn bucket: popcorn keeps popping out of the top and piles up on the desk. Jello: the jiggliest avatar, it wobbles and flings jelly chunks and cream. Same concept rules as demo-avatars-01..07: no brands or text, faceless (the app adds the face). Models: third-party/spar3d/run-spar3d.ps1, not `batch.mjs models`.",
+  "style": "Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours.",
+  "props": [
+    {
+      "id": "popcorn_bucket",
+      "slot": "object",
+      "model": "spar3d",
+      "subject": "a tall paper popcorn bucket standing upright, seen straight from the front and symmetrical: bold vertical red and white stripes, slightly flared toward the top with a rolled rim, overflowing with a big fluffy heaped dome of buttery popcorn above the rim (puffy white and pale-yellow popped kernels with a few golden butter glints), two or three kernels perched on the rim; the front of the striped bucket is plain and smooth with nothing on it (no logo, no label, no text); flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base)"
+    },
+    {
+      "id": "jello_mold",
+      "slot": "object",
+      "model": "spar3d",
+      "subject": "a big wobbly gelatin dessert standing upright, seen straight from the front and symmetrical: a tall glossy bright lime-green jelly shaped like a classic retro jelly mould, a rounded tower slightly narrower at the top with gentle rounded vertical flutes around its sides and a wide smooth plain panel on the front where a face would go, shiny highlights; a big piped swirl of white whipped cream on its flat top with one glossy red cherry and its stem; flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base)"
+    }
+  ]
+}

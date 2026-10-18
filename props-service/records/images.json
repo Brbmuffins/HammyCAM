@@ -1,0 +1,195 @@
+{
+  "death_muffin_portrait_happy": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Redraw the character from the attached image as a VTuber stream portrait: head and shoulders only, cropped at mid-chest, facing the viewer with the head tilted slightly, arms relaxed down out of frame (NOT a T-pose). Keep the design exactly the same: dark chocolate muffin head with a soft domed muffin top and tiny skull sprinkles, the small tattered dark purple hood around it, bright purple eyes, the little bone skull charm at the collar. Default happy mood: friendly eyes and a small open-mouth smile, drawn simply in the same flat cartoon style as the eyes, like stickers on the muffin face. Polished stylized 3D game character render, soft purple rim light, plain dark purple gradient background, no text.",
+    "refs": [
+      "raw/concepts/death_muffin.png"
+    ],
+    "aspect": "1:1",
+    "out": "raw/previews/death_muffin_portrait_happy.png",
+    "hash": "sha256:3b71e1c95cdbd2f9ae1515e43982883cab4e47ff34d3f4dcd9b6b693757e9fe9",
+    "generatedAt": "2026-10-14T22:06:35.425Z"
+  },
+  "death_muffin_portrait_angry": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Redraw the character from the attached image as a VTuber stream portrait: head and shoulders only, cropped at mid-chest, facing the viewer, arms relaxed down out of frame (NOT a T-pose). Keep the design exactly the same: dark chocolate muffin head with a soft domed muffin top and tiny skull sprinkles, the small tattered dark purple hood around it, bright purple eyes, the little bone skull charm at the collar. Angry mood: narrowed glowing purple eyes and a small jagged frowning mouth, drawn simply in the same flat cartoon style, like stickers on the muffin face; flickering purple soul-fire licking up around the hood edges and a faint purple aura. Polished stylized 3D game character render, plain dark purple gradient background, no text.",
+    "refs": [
+      "raw/concepts/death_muffin.png"
+    ],
+    "aspect": "1:1",
+    "out": "raw/previews/death_muffin_portrait_angry.png",
+    "hash": "sha256:571534176bfd89419704b7c231811a4eb8aa3929348e88ac98f847fb779877dc",
+    "generatedAt": "2026-10-14T22:06:43.423Z"
+  },
+  "test_face_webcam": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "A realistic webcam-style photo of a fictional, AI-generated adult person (not a real or famous person) sitting at a desk, head and shoulders in frame, face centred and looking straight into the camera, eyes open, mouth slightly open as if mid-sentence, even soft indoor lighting from the front, plain light wall behind, natural colours, ordinary 720p webcam framing, no text, no watermark.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/previews/test_face_webcam.png",
+    "hash": "sha256:326a379b83314018b476e7ec47ae45344741825586b71858ae27a23194db400b",
+    "generatedAt": "2026-10-15T02:02:01.942Z"
+  },
+  "backdrop_vacuum_showroom": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a retro 1960s vacuum cleaner sales floor: rows of shiny old-fashioned upright and canister vacuum cleaners standing on display podiums with blank price tags, a checkered floor, bright showroom lights and colourful bunting. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/vacuum_showroom.png",
+    "hash": "sha256:39972e476d25372c4d6f78e0ecfc823f2beaac717ed72124a524370f4b2d0590",
+    "generatedAt": "2026-10-18T13:17:02.296Z"
+  },
+  "backdrop_airport_terminal": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: an airport departure gate: rows of joined plastic seats, huge windows with a parked jet airliner outside on the tarmac, a blank departures screen, a rolling suitcase left all alone. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/airport_terminal.png",
+    "hash": "sha256:3d8acc234d8338bfb6b77c8d6c346dd9a9876e78b4a83407ef56468960c48275",
+    "generatedAt": "2026-10-18T13:17:11.562Z"
+  },
+  "backdrop_construction_site": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a busy construction site: scaffolding, orange traffic cones, a yellow excavator, piles of dirt and bricks, a half-built concrete wall and striped warning barriers. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/construction_site.png",
+    "hash": "sha256:4bfd5d7d081fac6888a29d1d1f9c217accb31c19d5911b694a40e8e0ebcb9b3f",
+    "generatedAt": "2026-10-18T13:17:20.994Z"
+  },
+  "backdrop_laundromat": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a laundromat at night: a long row of front-loading washing machines with sudsy laundry spinning inside, flickering fluorescent lights, a plastic chair and laundry baskets. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/laundromat.png",
+    "hash": "sha256:3489056ee652929df2905ecda4f87d36621a8d0e45ad92cad68e693e49a27056",
+    "generatedAt": "2026-10-18T13:17:30.238Z"
+  },
+  "backdrop_dentist_waiting_room": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a dentist's waiting room: pale mint walls, a giant model tooth on a shelf, a potted plant, stacks of old magazines on a little table and a bubbling fish tank. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/dentist_waiting_room.png",
+    "hash": "sha256:73ce1704c2d20e47e53c4933603c147633c43d244f16bee1381801ba25929662",
+    "generatedAt": "2026-10-18T13:17:38.649Z"
+  },
+  "backdrop_bowling_alley": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a retro bowling alley: glossy wooden lanes with pins standing at the far end, glowing neon stripes on the walls, ball returns with colourful bowling balls. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/bowling_alley.png",
+    "hash": "sha256:d37e5b53a8228448d0e05b49ecbeee53d971a292a7db100c705410b1ab24203b",
+    "generatedAt": "2026-10-18T13:17:47.245Z"
+  },
+  "backdrop_throne_room": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a grand medieval castle throne room: stone arches, long red banners without symbols, a golden throne on steps, burning wall torches and a suit of armour. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/throne_room.png",
+    "hash": "sha256:a5eb1247f296d946cee0a7d9631355d2030551e278745324abc04f79d6958f86",
+    "generatedAt": "2026-10-18T13:17:56.133Z"
+  },
+  "backdrop_car_wash": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: inside an automatic car wash tunnel: giant spinning blue and pink brushes, foam and bubbles everywhere, water jets spraying, coloured lights. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/car_wash.png",
+    "hash": "sha256:afc244fa952c3391ebac8539adff1c6bea0dd68de8cd46c080fe29b61ee9afec",
+    "generatedAt": "2026-10-18T13:18:04.570Z"
+  },
+  "backdrop_vacuum_showroom_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a retro 1960s vacuum cleaner sales floor: rows of shiny old-fashioned upright and canister vacuum cleaners standing on display podiums with blank price tags, a checkered floor, bright showroom lights and colourful bunting. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/vacuum_showroom_tall.png",
+    "hash": "sha256:f149df223c18e09d4fcf4196863893699834eb1b4c32c05a79ed2f7195ea9e71",
+    "generatedAt": "2026-10-18T14:50:43.400Z"
+  },
+  "backdrop_airport_terminal_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: an airport departure gate: rows of joined plastic seats, huge windows with a parked jet airliner outside on the tarmac, a blank departures screen, a rolling suitcase left all alone. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/airport_terminal_tall.png",
+    "hash": "sha256:802407ef13c00fe17682f463b75c3ac648a1e878c67c6701f223e4e4ca891959",
+    "generatedAt": "2026-10-18T14:50:52.533Z"
+  },
+  "backdrop_construction_site_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a busy construction site: scaffolding, orange traffic cones, a yellow excavator, piles of dirt and bricks, a half-built concrete wall and striped warning barriers. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/construction_site_tall.png",
+    "hash": "sha256:7c273c6f6832b1f8999f311b04de50ddf0deaf6a3d4396b65d9e174ef7200970",
+    "generatedAt": "2026-10-18T14:51:02.042Z"
+  },
+  "backdrop_laundromat_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a laundromat at night: a long row of front-loading washing machines with sudsy laundry spinning inside, flickering fluorescent lights, a plastic chair and laundry baskets. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/laundromat_tall.png",
+    "hash": "sha256:f8aca999ccd33a1482a0565f1aa6636b415e425eb45479006ac07cbed51a7863",
+    "generatedAt": "2026-10-18T14:51:10.944Z"
+  },
+  "backdrop_dentist_waiting_room_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a dentist's waiting room: pale mint walls, a giant model tooth on a shelf, a potted plant, stacks of old magazines on a little table and a bubbling fish tank. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/dentist_waiting_room_tall.png",
+    "hash": "sha256:c59a5853858c4abae7f910cc72fe1ee11d53f058e7e1ea76b3bbcc754ea3ccbd",
+    "generatedAt": "2026-10-18T14:51:19.664Z"
+  },
+  "backdrop_bowling_alley_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a retro bowling alley: glossy wooden lanes with pins standing at the far end, glowing neon stripes on the walls, ball returns with colourful bowling balls. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/bowling_alley_tall.png",
+    "hash": "sha256:62922be14b31ce82dd4c8447d243ede5ae2f91ff692759f085af702dff54d69e",
+    "generatedAt": "2026-10-18T14:51:28.113Z"
+  },
+  "backdrop_throne_room_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a grand medieval castle throne room: stone arches, long red banners without symbols, a golden throne on steps, burning wall torches and a suit of armour. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/throne_room_tall.png",
+    "hash": "sha256:b53904fc33f1ff6f537129f31dfa50dd93e4ab39402c36109fdf995fec7c0f4b",
+    "generatedAt": "2026-10-18T14:51:36.519Z"
+  },
+  "backdrop_car_wash_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: inside an automatic car wash tunnel: giant spinning blue and pink brushes, foam and bubbles everywhere, water jets spraying, coloured lights. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/car_wash_tall.png",
+    "hash": "sha256:8ee988c75c9d4795cffe62650955a7aa6895da92f605b1e13299103f914d42f1",
+    "generatedAt": "2026-10-18T14:51:45.388Z"
+  },
+  "backdrop_dmv_office": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a drab government office waiting room like a DMV: rows of joined beige plastic chairs, a long service counter with numbered windows left blank, a ticket dispenser on a stand, a wall clock, fluorescent ceiling lights, a sad potted plant. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "16:9",
+    "out": "raw/backdrops/dmv_office.png",
+    "hash": "sha256:30485f58fbf9c39d60d808acc685cf3735613c5d1bf1be2221dcba3e08f4a65d",
+    "generatedAt": "2026-10-18T14:52:01.611Z"
+  },
+  "backdrop_dmv_office_tall": {
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a drab government office waiting room like a DMV: rows of joined beige plastic chairs, a long service counter with numbered windows left blank, a ticket dispenser on a stand, a wall clock, fluorescent ceiling lights, a sad potted plant. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "refs": [],
+    "aspect": "9:16",
+    "out": "raw/backdrops/dmv_office_tall.png",
+    "hash": "sha256:ec4a4fafe7f838cdfefbe0f6bdc557f7e179124ac569f1557d83ea00f84f24b6",
+    "generatedAt": "2026-10-18T14:52:09.885Z"
+  }
+}

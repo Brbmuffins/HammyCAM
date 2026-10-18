@@ -1,0 +1,8 @@
+[
+  {
+    "id": "test_face_webcam",
+    "out": "raw/previews/test_face_webcam.png",
+    "aspect": "16:9",
+    "prompt": "A realistic webcam-style photo of a fictional, AI-generated adult person (not a real or famous person) sitting at a desk, head and shoulders in frame, face centred and looking straight into the camera, eyes open, mouth slightly open as if mid-sentence, even soft indoor lighting from the front, plain light wall behind, natural colours, ordinary 720p webcam framing, no text, no watermark."
+  }
+]

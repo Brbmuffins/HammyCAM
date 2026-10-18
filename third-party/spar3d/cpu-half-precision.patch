@@ -1,0 +1,13 @@
+diff --git a/spar3d/models/image_estimator/clip_based_estimator.py b/spar3d/models/image_estimator/clip_based_estimator.py
+index c4e3caa..5fec2b7 100644
+--- a/spar3d/models/image_estimator/clip_based_estimator.py
++++ b/spar3d/models/image_estimator/clip_based_estimator.py
+@@ -121,7 +121,7 @@ class ClipBasedHeadEstimator(BaseModule):
+             mean=OPENAI_DATASET_MEAN,
+             std=OPENAI_DATASET_STD,
+         )(cond_image)
+-        if get_device() != "mps":
++        if get_device() not in ("mps", "cpu"):  # local patch: CLIP loads in float32 on CPU
+             mask = Normalize(0.5, 0.26)(mask).half()
+             image_features = self.model.visual(cond_image.half(), mask).float()
+         else:

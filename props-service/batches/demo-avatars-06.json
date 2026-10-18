@@ -1,0 +1,41 @@
+{
+  "id": "demo-avatars-06",
+  "about": "Mess-themed avatars requested 2026-10-17 to replace the duck, desk lamp and egg carton: an egg (the app cracks it and drops things on it), an overflowing trash can, a sloshing juice cup, and an old-school vacuum with a floppy hose (the vacuum-salesman character). Simple shapes with a broad smooth front for the app's face; the app adds the jelly bend, floppy tips and the mess effects. Faceless, no Tripo rig, no brands or text. Added the same day: a meatball sub and a spaghetti bowl (the app makes meatballs roll off and leave sauce trails).",
+  "style": "Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours.",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "props": [
+    {
+      "id": "big_egg",
+      "slot": "object",
+      "subject": "a single big cartoon chicken egg standing upright on its wider round end, smooth glossy warm-white shell with a few faint light-brown speckles, a plain simple egg shape and nothing else, standing directly on nothing (no cup, no plate, no stand)"
+    },
+    {
+      "id": "trash_can",
+      "slot": "object",
+      "subject": "a chunky cartoon metal kitchen trash can, slightly dented brushed grey metal, its round lid knocked half off and tilted on top, overflowing with garbage piled high over the rim: crumpled paper balls, a banana peel draped over the edge, a fish skeleton, a squashed soda can and a pizza crust; a broad plain smooth area on the front of the can for a face, standing directly on nothing"
+    },
+    {
+      "id": "juice_cup",
+      "slot": "object",
+      "subject": "a big cartoon takeaway juice cup: a tall tapered clear plastic cup filled to the brim with bright orange juice that is sloshing over the rim and running down the sides in drips, a domed clear lid tilted askew on top, a bendy red-and-white striped straw sticking up out of it; a broad plain smooth area on the front of the cup for a face, the bottom of the cup standing directly on nothing: no plate, no coaster, no saucer, no stand, no base"
+    },
+    {
+      "id": "retro_vacuum",
+      "slot": "object",
+      "subject": "a cartoon old-school 1950s canister vacuum cleaner standing upright: a big round chunky barrel body in retro cherry red with chrome bands, on little wheels, the barrel taking up the lower two thirds of the whole height; a short ribbed flexible grey hose rises out of the top of the barrel, only about half as tall as the barrel, and curls over at the top into a chrome nozzle; a broad plain smooth area on the front of the barrel for a face, standing directly on nothing"
+    },
+    {
+      "id": "meatball_sub",
+      "slot": "object",
+      "subject": "a cartoon meatball sub sandwich standing upright on one end like a little character: a tall soft golden toasted hoagie roll split down the front, stuffed with big round meatballs in glossy red tomato sauce with melted cheese oozing out of the split and dripping down; a broad plain smooth area of bread on the upper front for a face, the bottom end standing directly on nothing (no plate, no paper, no stand)"
+    },
+    {
+      "id": "spaghetti_bowl",
+      "slot": "object",
+      "subject": "a cartoon bowl of spaghetti and meatballs: a deep round white ceramic bowl with a broad plain smooth front for a face, piled very high with a tall tangled mound of spaghetti in red tomato sauce, three big round meatballs balanced on top of the mound, a sprinkle of parmesan, a fork stuck in the top; the bowl standing directly on nothing (no plate, no table)"
+    }
+  ]
+}

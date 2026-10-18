@@ -1,0 +1,15 @@
+﻿{
+    "id":  "cherry_cupcake",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/cherry_cupcake.png",
+    "inputSha256":  "55b71e62331b21728d14e3a0cd75e305bceb42b7a0040ba73f46f1de4833e53b",
+    "meshSha256":  "c37c9dd08df89abfae0d3b5b2a9a920467e91e74376e97e2af965be5c31bc068",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T12:36:39.1296758-04:00"
+}

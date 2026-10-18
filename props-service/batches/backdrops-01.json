@@ -1,0 +1,50 @@
+[
+  {
+    "id": "backdrop_vacuum_showroom",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a retro 1960s vacuum cleaner sales floor: rows of shiny old-fashioned upright and canister vacuum cleaners standing on display podiums with blank price tags, a checkered floor, bright showroom lights and colourful bunting. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/vacuum_showroom.png",
+    "aspect": "16:9"
+  },
+  {
+    "id": "backdrop_airport_terminal",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: an airport departure gate: rows of joined plastic seats, huge windows with a parked jet airliner outside on the tarmac, a blank departures screen, a rolling suitcase left all alone. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/airport_terminal.png",
+    "aspect": "16:9"
+  },
+  {
+    "id": "backdrop_construction_site",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a busy construction site: scaffolding, orange traffic cones, a yellow excavator, piles of dirt and bricks, a half-built concrete wall and striped warning barriers. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/construction_site.png",
+    "aspect": "16:9"
+  },
+  {
+    "id": "backdrop_laundromat",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a laundromat at night: a long row of front-loading washing machines with sudsy laundry spinning inside, flickering fluorescent lights, a plastic chair and laundry baskets. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/laundromat.png",
+    "aspect": "16:9"
+  },
+  {
+    "id": "backdrop_dentist_waiting_room",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a dentist's waiting room: pale mint walls, a giant model tooth on a shelf, a potted plant, stacks of old magazines on a little table and a bubbling fish tank. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/dentist_waiting_room.png",
+    "aspect": "16:9"
+  },
+  {
+    "id": "backdrop_bowling_alley",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a retro bowling alley: glossy wooden lanes with pins standing at the far end, glowing neon stripes on the walls, ball returns with colourful bowling balls. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/bowling_alley.png",
+    "aspect": "16:9"
+  },
+  {
+    "id": "backdrop_throne_room",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a grand medieval castle throne room: stone arches, long red banners without symbols, a golden throne on steps, burning wall torches and a suit of armour. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/throne_room.png",
+    "aspect": "16:9"
+  },
+  {
+    "id": "backdrop_car_wash",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: inside an automatic car wash tunnel: giant spinning blue and pink brushes, foam and bubbles everywhere, water jets spraying, coloured lights. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/car_wash.png",
+    "aspect": "16:9"
+  }
+]

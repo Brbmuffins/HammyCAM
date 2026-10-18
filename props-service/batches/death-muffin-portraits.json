@@ -1,0 +1,16 @@
+[
+  {
+    "id": "death_muffin_portrait_happy",
+    "out": "raw/previews/death_muffin_portrait_happy.png",
+    "refs": ["raw/concepts/death_muffin.png"],
+    "aspect": "1:1",
+    "prompt": "Redraw the character from the attached image as a VTuber stream portrait: head and shoulders only, cropped at mid-chest, facing the viewer with the head tilted slightly, arms relaxed down out of frame (NOT a T-pose). Keep the design exactly the same: dark chocolate muffin head with a soft domed muffin top and tiny skull sprinkles, the small tattered dark purple hood around it, bright purple eyes, the little bone skull charm at the collar. Default happy mood: friendly eyes and a small open-mouth smile, drawn simply in the same flat cartoon style as the eyes, like stickers on the muffin face. Polished stylized 3D game character render, soft purple rim light, plain dark purple gradient background, no text."
+  },
+  {
+    "id": "death_muffin_portrait_angry",
+    "out": "raw/previews/death_muffin_portrait_angry.png",
+    "refs": ["raw/concepts/death_muffin.png"],
+    "aspect": "1:1",
+    "prompt": "Redraw the character from the attached image as a VTuber stream portrait: head and shoulders only, cropped at mid-chest, facing the viewer, arms relaxed down out of frame (NOT a T-pose). Keep the design exactly the same: dark chocolate muffin head with a soft domed muffin top and tiny skull sprinkles, the small tattered dark purple hood around it, bright purple eyes, the little bone skull charm at the collar. Angry mood: narrowed glowing purple eyes and a small jagged frowning mouth, drawn simply in the same flat cartoon style, like stickers on the muffin face; flickering purple soul-fire licking up around the hood edges and a faint purple aura. Polished stylized 3D game character render, plain dark purple gradient background, no text."
+  }
+]

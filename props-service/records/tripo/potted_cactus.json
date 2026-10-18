@@ -1,0 +1,48 @@
+{
+  "id": "potted_cactus",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-15T01:14:48.937Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_fd369bf3-2144-40b2-a8d6-02bb40ace3bc",
+      "hash": "sha256:af7d20fa6e886060b11cdff23e45f2fa7ca2b5c8324f730dcd48c0265ed911f3",
+      "status": "success",
+      "input": "raw/concepts/potted_cactus.png"
+    },
+    "generate": {
+      "taskId": "6bb79106-f69d-4d95-9e4d-f263097e6af9",
+      "status": "success",
+      "request": {
+        "input": "file_fd369bf3-2144-40b2-a8d6-02bb40ace3bc",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "detailed"
+      },
+      "createdAt": "2026-10-15T01:14:50.397Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-15T01:14:48.937Z"
+      },
+      "credits": 60,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261015/6bb79106-f69d-4d95-9e4d-f263097e6af9/tripo_pbr_model_6bb79106-f69d-4d95-9e4d-f263097e6af9.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261015/6bb79106-f69d-4d95-9e4d-f263097e6af9/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-15T01:17:48.654Z",
+      "fileHash": "sha256:9747c3dd870e605a261c8c924e9c6e7b5a4416af64c164cd7afd3b6356a235b6"
+    }
+  },
+  "totalCredits": 60
+}

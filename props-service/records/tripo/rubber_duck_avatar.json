@@ -1,0 +1,48 @@
+{
+  "id": "rubber_duck_avatar",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-15T01:17:51.242Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_9044872d-1ae8-4df6-8900-e43729d38c4d",
+      "hash": "sha256:1647d14e5d52d8be52bf04a19fc471930690b133c0750f620e7270e33e23f16b",
+      "status": "success",
+      "input": "raw/concepts/rubber_duck_avatar.png"
+    },
+    "generate": {
+      "taskId": "7d7d53e4-64cf-4a36-8899-de45b034cbdd",
+      "status": "success",
+      "request": {
+        "input": "file_9044872d-1ae8-4df6-8900-e43729d38c4d",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "detailed"
+      },
+      "createdAt": "2026-10-15T01:17:52.531Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-15T01:17:51.242Z"
+      },
+      "credits": 60,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261015/7d7d53e4-64cf-4a36-8899-de45b034cbdd/tripo_pbr_model_7d7d53e4-64cf-4a36-8899-de45b034cbdd.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261015/7d7d53e4-64cf-4a36-8899-de45b034cbdd/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-15T01:21:03.250Z",
+      "fileHash": "sha256:4c11822e985c2b91734c594f18a66b27eb498050b837fc3f9d3ae6ce27f58603"
+    }
+  },
+  "totalCredits": 60
+}

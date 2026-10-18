@@ -1,0 +1,38 @@
+{
+  "id": "avatar-ideas-01",
+  "about": "Six avatar character ideas to pick from or mix. Drawn as T-pose construction drawings for Tripo; on stream the app frames them shoulders-up.",
+  "style": "Fun, charming mascot style like a polished stylized 3D game character: smooth chunky shapes, bold readable silhouette, appealing colours.",
+  "generation": { "face_limit": 12000, "texture_quality": "detailed" },
+  "props": [
+    {
+      "id": "death_muffin",
+      "slot": "avatar",
+      "subject": "the Death Muffin mascot, a chubby little necromancer whose head is a dark chocolate muffin with a soft domed muffin top, wearing a small tattered dark purple hooded cloak pushed back behind the muffin top, a paper cupcake-wrapper skirt over stubby legs, a tiny bone skull charm and a little bronze bell on its belt, small purple accents, bright purple eyes; cute and a bit spooky, never scary"
+    },
+    {
+      "id": "screen_bot",
+      "slot": "avatar",
+      "subject": "a cute boxy little robot whose head is an old rounded TV with a screen for a face (the eyes and mouth are drawn on the screen), chunky rounded body and limbs, a short antenna with a ball on top, teal and cream colours with orange details"
+    },
+    {
+      "id": "hoodie_frog",
+      "slot": "avatar",
+      "subject": "a chill green frog wearing an oversized orange hoodie with the hood down, baggy grey shorts and chunky sneakers"
+    },
+    {
+      "id": "fox_spirit",
+      "slot": "avatar",
+      "subject": "a playful fox spirit (kitsune) with fluffy orange fox ears and one big fluffy white-tipped tail, wearing a short white and red shrine-style jacket, dark shorts and sandals"
+    },
+    {
+      "id": "mushroom_wizard",
+      "slot": "avatar",
+      "subject": "a little mushroom wizard whose head is a big red mushroom cap with white spots, wearing a cozy blue robe with gold star patterns, a rope belt with a small pouch, and little boots"
+    },
+    {
+      "id": "cat_knight",
+      "slot": "avatar",
+      "subject": "a small cat knight in chunky shiny silver armour with a short red cape, an open-faced helmet with the cat ears poking out through it, grey tabby fur"
+    }
+  ]
+}

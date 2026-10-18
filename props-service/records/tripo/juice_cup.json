@@ -1,0 +1,48 @@
+{
+  "id": "juice_cup",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-18T02:28:24.544Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_50729fe2-1dce-4ab3-9ec9-130877349a03",
+      "hash": "sha256:87dfee0f82d7122181e8b5feea4c4d13a0e7f965e08b6f732f95863904bcb331",
+      "status": "success",
+      "input": "raw/concepts/juice_cup.png"
+    },
+    "generate": {
+      "taskId": "d55ccaca-f6e7-4afa-933b-270f6f6d370b",
+      "status": "success",
+      "request": {
+        "input": "file_50729fe2-1dce-4ab3-9ec9-130877349a03",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "detailed"
+      },
+      "createdAt": "2026-10-18T02:28:25.770Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-18T02:28:24.544Z"
+      },
+      "credits": 60,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261018/d55ccaca-f6e7-4afa-933b-270f6f6d370b/tripo_pbr_model_d55ccaca-f6e7-4afa-933b-270f6f6d370b.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261018/d55ccaca-f6e7-4afa-933b-270f6f6d370b/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-18T02:30:06.142Z",
+      "fileHash": "sha256:4e81b4209edbf91d46c24854965cec875f9667e2ba359f0fc534db6630db8a45"
+    }
+  },
+  "totalCredits": 60
+}

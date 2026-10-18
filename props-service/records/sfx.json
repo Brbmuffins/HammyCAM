@@ -1,0 +1,289 @@
+{
+  "splat_1": {
+    "prompt": "a rotten tomato smashing against a hard surface, juicy pulpy wet splatter, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2,
+    "loop": false,
+    "hash": "sha256:sha256:d1fac7d807fb642eb3fd5ba1ce7cc330e986ed34556c9b05a4e8b83ce8b7f545",
+    "generatedAt": "2026-10-18T16:00:00.610Z"
+  },
+  "splat_2": {
+    "prompt": "an overripe tomato bursting on impact, wet seedy splat and dribble, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2,
+    "loop": false,
+    "hash": "sha256:sha256:58c21f32115030ce1df6925124732d4bfcaa21fcf119993c0ad22eec504ccc7e",
+    "generatedAt": "2026-10-18T16:00:01.858Z"
+  },
+  "pie_splat": {
+    "prompt": "a cream pie smashed into a face, thick wet squelch and slop dripping off, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.6,
+    "loop": false,
+    "hash": "sha256:sha256:a55d7430880e3b798171f3b368880ece2286d4d2ba4728a395c8ba33f3f619ee",
+    "generatedAt": "2026-10-18T16:00:04.312Z"
+  },
+  "cream_spray": {
+    "prompt": "an aerosol whipped cream can spraying in wet sputtering bursts, hissing and gurgling, realistic close-mic foley, no music, not cartoon",
+    "seconds": 3,
+    "loop": true,
+    "hash": "sha256:sha256:a3608c1b5b698fe77cfefb0c72c3b8e6761fcb42355f13c0e0b497d89cf1b63c",
+    "generatedAt": "2026-10-18T16:00:06.759Z"
+  },
+  "slime_splat": {
+    "prompt": "thick wet snot splattering across glass and starting to run, gross mucus splat, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.5,
+    "loop": false,
+    "hash": "sha256:sha256:65834e844cf5cfc2667baedc1c0f4c1b9f0414b71f8eb2f6140debd3772ce3fb",
+    "generatedAt": "2026-10-18T16:00:08.018Z"
+  },
+  "fire_ignite": {
+    "prompt": "a crumpled paper pile catching fire with a soft whoosh and crackle, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.5,
+    "loop": false,
+    "hash": "sha256:sha256:8f7a93c9ea1b651cbf54014ca9ece4fe5080c4b3c98d041ea2cce35a2c402623",
+    "generatedAt": "2026-10-18T16:00:10.351Z"
+  },
+  "fire_crackle": {
+    "prompt": "a small pile of paper burning on a desk, crackling and popping, realistic close-mic foley, no music, not cartoon",
+    "seconds": 6,
+    "loop": true,
+    "hash": "sha256:sha256:09860a4dc848e31e8878c3bce6d11f449e050679c14b76492c25688d71d8684d",
+    "generatedAt": "2026-10-18T16:00:12.784Z"
+  },
+  "steam_hiss": {
+    "prompt": "water pouring onto burning paper, harsh sizzle and steamy hiss, realistic close-mic foley, no music, not cartoon",
+    "seconds": 2.5,
+    "loop": false,
+    "hash": "sha256:sha256:5b105b96f491594660c660fa38002cfde25669fbe82e5d72ce693ab7dde69f65",
+    "generatedAt": "2026-10-18T16:00:14.166Z"
+  },
+  "sprinklers": {
+    "prompt": "indoor sprinklers spraying water onto a cluttered wooden desk, heavy dripping and splashing, realistic close-mic foley, no music, not cartoon",
+    "seconds": 6,
+    "loop": true,
+    "hash": "sha256:sha256:429dc058b7593d8fa78ecab2b489c5a4f312fa56c1eb678ff35c70d326899131",
+    "generatedAt": "2026-10-18T16:00:16.710Z"
+  },
+  "water_spill": {
+    "prompt": "a full jug of water knocked over, glugging and splashing across a table and dripping off the edge onto the floor, realistic close-mic foley, no music, not cartoon",
+    "seconds": 3,
+    "loop": false,
+    "hash": "sha256:sha256:8e3c5354d7e7821f3d06e7226882547747ca4d0eb8f922109f1e2bb692593a8b",
+    "generatedAt": "2026-10-18T16:00:18.041Z"
+  },
+  "pan_bonk": {
+    "prompt": "a heavy cast iron frying pan hitting something, dull metallic clonk, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2,
+    "loop": false,
+    "hash": "sha256:sha256:8c22380cb3101feddf169624bc90b12b6d09eb89670561b2c8a4b821f400e6a2",
+    "generatedAt": "2026-10-18T16:00:19.299Z"
+  },
+  "egg_crack": {
+    "prompt": "a raw egg cracking and the slimy yolk and white slopping onto a table, wet and gross, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.3,
+    "loop": false,
+    "hash": "sha256:sha256:e046ff32542a660876fa5525d7ed33a8678657b6a548bb72032c59ec4ff7c994",
+    "generatedAt": "2026-10-18T16:00:20.537Z"
+  },
+  "trash_clatter": {
+    "prompt": "wet garbage spilling onto a desk, soggy paper and a sticky tin can rattling, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.5,
+    "loop": false,
+    "hash": "sha256:sha256:1ae2fb431527b520087a67dd95807bce24d5ca96797c103db5e1131257c5fe8d",
+    "generatedAt": "2026-10-18T16:00:21.667Z"
+  },
+  "plop": {
+    "prompt": "a small wet slice of pepperoni plopping onto a wooden desk, soft comedic plop",
+    "seconds": 0.6,
+    "loop": false,
+    "hash": "sha256:sha256:5904b881f807158a26818c46d08572fb9eaca6fc0ad9bd8084c17a4df2cb9af2",
+    "generatedAt": "2026-10-18T13:58:48.664Z"
+  },
+  "slam_thud": {
+    "prompt": "a face slamming into a wooden desk, heavy dull thud with a wet squish, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2,
+    "loop": false,
+    "hash": "sha256:sha256:746bca08100dbf2e420c531954fd1f6d791b16c1906f002f594ef9dca3f0fcb4",
+    "generatedAt": "2026-10-18T16:00:26.014Z"
+  },
+  "bucket_plonk": {
+    "prompt": "a plastic bucket of soapy water set down hard on a desk, water sloshing, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2,
+    "loop": false,
+    "hash": "sha256:sha256:a7fea22055b06a6e7196ae57d817105bea995f8cc87d1df31843f4d8935e1b67",
+    "generatedAt": "2026-10-18T16:00:27.141Z"
+  },
+  "scrub": {
+    "prompt": "a wet sponge scrubbing a grimy wooden table, squelchy soapy scrubbing, realistic close-mic foley, no music, not cartoon",
+    "seconds": 4,
+    "loop": true,
+    "hash": "sha256:sha256:528c08cb2d053be91c6c560fd9abac15388f1ea71ea686e67a47dcee1ca51e60",
+    "generatedAt": "2026-10-18T16:00:29.992Z"
+  },
+  "bubbles": {
+    "prompt": "soap bubbles popping, several soft little pops",
+    "seconds": 2,
+    "loop": false,
+    "hash": "sha256:sha256:ee5f0dccceb40de8e90377a3e505c5155725620636ba20863b78f8e108b101d8",
+    "generatedAt": "2026-10-18T13:58:54.572Z"
+  },
+  "squirt": {
+    "prompt": "a nearly empty ketchup bottle squeezed, wet sputtering splurt of sauce, gross, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.9,
+    "loop": false,
+    "hash": "sha256:sha256:235f44f5cbf4cb4c6256e759ab20eb7256873af633ff997c21c4b124bdd7049c",
+    "generatedAt": "2026-10-18T16:00:31.266Z"
+  },
+  "boing": {
+    "prompt": "a rubbery cartoon boing wobble, like jelly flopping over",
+    "seconds": 1,
+    "loop": false,
+    "hash": "sha256:sha256:abd8fa202bed9bf0594288707d60a2e7bc2eda53c6ebe3862bd30791dab2aa99",
+    "generatedAt": "2026-10-18T13:58:56.584Z"
+  },
+  "fart_1": {
+    "prompt": "a wet gross fart, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.4,
+    "loop": false,
+    "hash": "sha256:sha256:bad3083cf37340c1c5662fef02f9234682103ae55d2e7e9c3f2b1606966b4d99",
+    "generatedAt": "2026-10-18T16:00:34.130Z"
+  },
+  "fart_2": {
+    "prompt": "a long sputtering wet fart, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.8,
+    "loop": false,
+    "hash": "sha256:sha256:194d745a96b194e61cd1ff89b19150b04ae99390827f1a25e389d11adfdfd6f9",
+    "generatedAt": "2026-10-18T16:00:35.306Z"
+  },
+  "sprinkle_rain": {
+    "prompt": "sugar sprinkles scattering and pattering onto a wooden table, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.5,
+    "loop": false,
+    "hash": "sha256:sha256:e03af40ecb5f72b24a5f4afc191d6ffb4ece39e935c4ea7fa0b151a4cb866367",
+    "generatedAt": "2026-10-18T16:00:36.528Z"
+  },
+  "ding": {
+    "prompt": "a short comedic game show ding",
+    "seconds": 0.8,
+    "loop": false,
+    "hash": "sha256:sha256:f6b05b935c00297454e7af4de45a70d6221afcfe9b3b8e4945a3cf0475b5edc1",
+    "generatedAt": "2026-10-18T13:59:00.943Z"
+  },
+  "sneeze": {
+    "prompt": "a big wet gross human sneeze with spray, close up, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.6,
+    "loop": false,
+    "hash": "sha256:sha256:486c7a94739be9874d81197afba563fc35786c037479bb1440fb781d4b6cfed4",
+    "generatedAt": "2026-10-18T16:00:09.146Z"
+  },
+  "splat_3": {
+    "prompt": "a soggy piece of fruit slapping wetly into a wall and sliding, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2,
+    "loop": false,
+    "hash": "sha256:sha256:ed194a503854284e7bc42e4d20d00baa6a54c6f93bee8a43982d96e8cb225b6e",
+    "generatedAt": "2026-10-18T16:00:03.071Z"
+  },
+  "plop_1": {
+    "prompt": "a greasy slice of pepperoni slapping wetly onto a wooden desk, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.6,
+    "loop": false,
+    "hash": "sha256:sha256:fb4dfd9d227207ae02fa580e3572c9f34f866d83766c20d499b785b1da0a1cc9",
+    "generatedAt": "2026-10-18T16:00:23.243Z"
+  },
+  "plop_2": {
+    "prompt": "a small wet piece of meat dropping onto a table with a soft slap, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.6,
+    "loop": false,
+    "hash": "sha256:sha256:6b339732ade8559c1cb62df16dd2b8a4d7e017718151cd505586ec65b035f1aa",
+    "generatedAt": "2026-10-18T16:00:24.707Z"
+  },
+  "flop": {
+    "prompt": "a wet hot dog sausage flopping over and slapping against a bun, rubbery wet slap, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.9,
+    "loop": false,
+    "hash": "sha256:sha256:3588a289a79002c8465c28e633aac215e7e651e3a3593bac406920d4710e1f40",
+    "generatedAt": "2026-10-18T16:00:32.514Z"
+  },
+  "squelch_1": {
+    "prompt": "a hand squishing through a sticky puddle of goo on a table, wet squelch, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.8,
+    "loop": false,
+    "hash": "sha256:sha256:be38223ccd997287fd401f1e09f0b937b44826943112cd5fbccecab2bdc0894c",
+    "generatedAt": "2026-10-18T16:00:37.697Z"
+  },
+  "squelch_2": {
+    "prompt": "fingers smearing thick sauce across a wooden desk, slick sticky squish, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.8,
+    "loop": false,
+    "hash": "sha256:sha256:ba6ad494db287be54417b6da640e157b64f0f2c7d11760d6cda9ba400989ba57",
+    "generatedAt": "2026-10-18T16:00:38.944Z"
+  },
+  "drip_1": {
+    "prompt": "a few thick drops of sauce dripping onto a wooden table, wet plips, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.7,
+    "loop": false,
+    "hash": "sha256:sha256:74506503c712ed3dde1337e1e236f9d701500f39dce983dedb8f27ead65250f6",
+    "generatedAt": "2026-10-18T16:00:40.279Z"
+  },
+  "drip_2": {
+    "prompt": "liquid dribbling off an edge and splattering in small wet drops, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.8,
+    "loop": false,
+    "hash": "sha256:sha256:cf0fe1f6f060789ad832fce1becde1e0dc0558e2669a034c3229a05851747097",
+    "generatedAt": "2026-10-18T16:00:41.449Z"
+  },
+  "slosh": {
+    "prompt": "juice sloshing over the rim of a full cup and splashing onto a table, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1.2,
+    "loop": false,
+    "hash": "sha256:sha256:9ff6a6031b46f732642bda016111d050edd4bdea052ab01a3d9b4dad03fc7a8e",
+    "generatedAt": "2026-10-18T16:00:42.650Z"
+  },
+  "slop": {
+    "prompt": "a meatball covered in sauce falling and slopping wetly onto a table, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1,
+    "loop": false,
+    "hash": "sha256:sha256:1011cc9580d08a91201a6cd37b1961516db4990d3fb487c7725cfa068e9e3296",
+    "generatedAt": "2026-10-18T16:00:44.358Z"
+  },
+  "pop": {
+    "prompt": "a wet suction pop, like a plunger pulled off a surface, gross, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.6,
+    "loop": false,
+    "hash": "sha256:sha256:029f213f859d32cffa6b8c152ff229f1d672c20c542348094d31d2b0c6ab25fa",
+    "generatedAt": "2026-10-18T16:00:45.962Z"
+  },
+  "vacuum_hum": {
+    "prompt": "an old vacuum cleaner running steadily, motor whine and airflow, realistic close-mic foley, no music, not cartoon",
+    "seconds": 5,
+    "loop": true,
+    "hash": "sha256:sha256:851b9f0abb639cb90c449706ef0654b90b439064d62e0eee51841b2fca6fffc3",
+    "generatedAt": "2026-10-18T16:30:51.298Z"
+  },
+  "slurp": {
+    "prompt": "a vacuum hose slurping up wet mess and crumbs off a table, gross sucking gurgle, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1,
+    "loop": false,
+    "hash": "sha256:sha256:bf04e3176510beeca551164784a0fff4add8d83900b0daf288a96f1b41a51bb2",
+    "generatedAt": "2026-10-18T16:30:52.699Z"
+  },
+  "toaster_pop": {
+    "prompt": "a toaster popping up with a spring clunk and toast clattering out, realistic close-mic foley, no music, not cartoon",
+    "seconds": 1,
+    "loop": false,
+    "hash": "sha256:sha256:d3794a110fce7b52589a1a5cbf1c2a13aa430515e0b8c43b75f78e41641eb91b",
+    "generatedAt": "2026-10-18T18:44:55.845Z"
+  },
+  "spore_puff": {
+    "prompt": "a soft dusty puff of air, like squeezing a rotten mouldy sponge, gross, realistic close-mic foley, no music, not cartoon",
+    "seconds": 0.8,
+    "loop": false,
+    "hash": "sha256:sha256:ae4c805bb6f2fd732748ad2f385615ec2c291fe53e7942b0aa2bf1c5c7d8a8b8",
+    "generatedAt": "2026-10-18T18:44:57.219Z"
+  },
+  "toilet_flush": {
+    "prompt": "a toilet flushing, roaring water swirling and gurgling down, realistic close-mic foley, no music, not cartoon",
+    "seconds": 2.5,
+    "loop": false,
+    "hash": "sha256:sha256:ccc65bff5780ab5088a738fca61bfd739aa7282fe7df911d9279510a349f1244",
+    "generatedAt": "2026-10-18T18:56:05.779Z"
+  }
+}

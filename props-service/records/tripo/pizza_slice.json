@@ -1,0 +1,48 @@
+{
+  "id": "pizza_slice",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-15T23:02:25.364Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_0b5dcab5-3e32-436c-b8a0-9adf5bc6e44b",
+      "hash": "sha256:2aacc25d4accd358be4cbe79297fb9c03644db0ea475910ec019c2c51a41a5d4",
+      "status": "success",
+      "input": "raw/concepts/pizza_slice.png"
+    },
+    "generate": {
+      "taskId": "4d03aa61-0ffa-4314-ac65-130e3a119dc4",
+      "status": "success",
+      "request": {
+        "input": "file_0b5dcab5-3e32-436c-b8a0-9adf5bc6e44b",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "detailed"
+      },
+      "createdAt": "2026-10-15T23:02:27.102Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-15T23:02:25.364Z"
+      },
+      "credits": 60,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261015/4d03aa61-0ffa-4314-ac65-130e3a119dc4/tripo_pbr_model_4d03aa61-0ffa-4314-ac65-130e3a119dc4.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261015/4d03aa61-0ffa-4314-ac65-130e3a119dc4/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-15T23:03:51.457Z",
+      "fileHash": "sha256:3bdca1c052682578dba226e1e0b6f944bf8316723503af8742d51cb46cce3f7e"
+    }
+  },
+  "totalCredits": 60
+}

@@ -1,0 +1,17 @@
+# Copy this file to .ai-keys.local (gitignored) and fill in the keys you have. Never commit .ai-keys.local,
+# and never put a key into the Unity app (anyone can pull it out of a build). Environment variables of the
+# same name work too. The app itself needs none of these: they are only for making new assets.
+
+# Concept pictures (props-service: batch.mjs concepts). https://aistudio.google.com/apikey
+GEMINI_API_KEY=
+
+# Paid 3D models (props-service: batch.mjs models). https://platform.tripo3d.ai
+# Spends credits; see props-service/licensing.json for the plan rules.
+TRIPO_API_KEY=
+
+# Sound effects (props-service: src/sfx.mjs). https://elevenlabs.io/app/settings/api-keys
+ELEVENLABS_API_KEY=
+
+# Free local 3D models with SPAR3D (third-party/spar3d/run-spar3d.ps1). The model is gated: accept its terms at
+# https://huggingface.co/stabilityai/stable-point-aware-3d, then make a read token at https://huggingface.co/settings/tokens
+HF_TOKEN=

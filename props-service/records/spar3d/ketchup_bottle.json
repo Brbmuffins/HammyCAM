@@ -1,0 +1,15 @@
+﻿{
+    "id":  "ketchup_bottle",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/ketchup_bottle.png",
+    "inputSha256":  "ce7734be14f91e9581c1e5e26aba0633d5e3b6ca7b1c84b228ebdc95e6c84962",
+    "meshSha256":  "69547fc7844f76ccb6a8faf97c052aaaa4b5aee0d55e9881af7ca66f458aed7d",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T15:14:38.5841669-04:00"
+}

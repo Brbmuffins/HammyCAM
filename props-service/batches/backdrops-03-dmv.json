@@ -1,0 +1,14 @@
+[
+  {
+    "id": "backdrop_dmv_office",
+    "prompt": "Background plate for a cartoon VTuber stream, 16:9: a drab government office waiting room like a DMV: rows of joined beige plastic chairs, a long service counter with numbered windows left blank, a ticket dispenser on a stand, a wall clock, fluorescent ceiling lights, a sad potted plant. Seen straight on from a seated eye height, wide shot, with the lower middle of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/dmv_office.png",
+    "aspect": "16:9"
+  },
+  {
+    "id": "backdrop_dmv_office_tall",
+    "prompt": "Background plate for a vertical (portrait, 9:16) phone livestream of a cartoon VTuber: a drab government office waiting room like a DMV: rows of joined beige plastic chairs, a long service counter with numbered windows left blank, a ticket dispenser on a stand, a wall clock, fluorescent ceiling lights, a sad potted plant. Seen straight on from a seated eye height, composed for a tall frame, with the middle and lower part of the picture fairly plain and uncluttered because a desk and a character will be placed in front of it. Polished stylized 3D cartoon render like an animated film, appealing saturated colours, soft lighting, the far background slightly soft (gentle depth of field). No people, no characters, no animals, no text, no letters, no numbers, no logos, no signs with writing.",
+    "out": "raw/backdrops/dmv_office_tall.png",
+    "aspect": "9:16"
+  }
+]

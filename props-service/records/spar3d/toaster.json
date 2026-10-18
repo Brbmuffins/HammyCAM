@@ -1,0 +1,15 @@
+﻿{
+    "id":  "toaster",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/toaster.png",
+    "inputSha256":  "9bd531ca81cad32c0f1bbd458b42a3a3e7f323f7f0e6c59635efc628b409d6f3",
+    "meshSha256":  "71e2131a9946b602ea670fdce7e1efb942a3d5540623f352704ab948f06d5764",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T15:14:38.5073940-04:00"
+}

@@ -1,0 +1,71 @@
+{
+  "id": "prop-test-01",
+  "about": "First test: 6 things chat would ask for + 4 mood props the emotion system would bring in. Some are deliberately hard shapes (thin, hollow, fluffy) to learn what Tripo handles.",
+  "generation": { "face_limit": 3000, "texture_quality": "standard" },
+  "props": [
+    {
+      "id": "pirate_hat",
+      "slot": "head",
+      "tests": "the classic chat request; simple solid shape, should be easy",
+      "subject": "a pirate captain's tricorn hat, black felt with gold trim and a small white skull emblem on the front"
+    },
+    {
+      "id": "crown",
+      "slot": "head",
+      "tests": "hard edges, gems and shiny gold",
+      "subject": "a royal gold crown with red and blue gems"
+    },
+    {
+      "id": "cat_ears",
+      "slot": "head",
+      "tests": "thin headband with ears: will Tripo keep the band or melt it into a blob?",
+      "subject": "a headband with fluffy pink-and-white cat ears"
+    },
+    {
+      "id": "sunglasses",
+      "slot": "face",
+      "tests": "very thin frames and see-through lenses: the hardest shape in this batch",
+      "subject": "a pair of chunky black star-shaped party sunglasses"
+    },
+    {
+      "id": "sword",
+      "slot": "hand",
+      "tests": "long thin held item; checks hand placement",
+      "subject": "a cartoon fantasy sword with a blue gem in the hilt"
+    },
+    {
+      "id": "rubber_duck",
+      "slot": "shoulder",
+      "tests": "a little companion that rides on the shoulder",
+      "subject": "a classic yellow rubber duck with an orange beak"
+    },
+    {
+      "id": "devil_horns",
+      "slot": "head",
+      "mood": "angry",
+      "tests": "two separate pieces on one headband",
+      "subject": "a pair of curved red devil horns on a thin black headband"
+    },
+    {
+      "id": "rain_cloud",
+      "slot": "float",
+      "mood": "sad",
+      "tests": "soft fluffy shape with raindrops hanging under it",
+      "subject": "a small grey cartoon storm cloud with a few blue raindrops hanging beneath it"
+    },
+    {
+      "id": "heart",
+      "slot": "float",
+      "mood": "love",
+      "tests": "simple shape; checks whether it can glow nicely in Unity",
+      "subject": "a puffy glossy pink cartoon heart"
+    },
+    {
+      "id": "halo",
+      "slot": "float",
+      "mood": "wholesome",
+      "tests": "a thin ring with a hole in the middle",
+      "subject": "a golden angel halo ring"
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+{
+  "pirate_hat": {
+    "batch": "prop-test-01",
+    "slot": "head",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own (not worn), upright as it would sit on a head, three-quarter front view from slightly above, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a pirate captain's tricorn hat, black felt with gold trim and a small white skull emblem on the front.",
+    "hash": "sha256:27bb37e2dcf1d18d90f341cb1818526641ee85c9974d11f497e403dcf0232d5a",
+    "generatedAt": "2026-10-14T21:42:46.963Z"
+  },
+  "crown": {
+    "batch": "prop-test-01",
+    "slot": "head",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own (not worn), upright as it would sit on a head, three-quarter front view from slightly above, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a royal gold crown with red and blue gems.",
+    "hash": "sha256:2bf2e616748f1b29b01c769369a811db28344559951643ce892c383db4fd4a8b",
+    "generatedAt": "2026-10-14T21:42:55.007Z"
+  },
+  "cat_ears": {
+    "batch": "prop-test-01",
+    "slot": "head",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own (not worn), upright as it would sit on a head, three-quarter front view from slightly above, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a headband with fluffy pink-and-white cat ears.",
+    "hash": "sha256:5c8bfcb18efa9b9ec59d14424ec32960b04358f3cee63b6a4a37518bfd697eb7",
+    "generatedAt": "2026-10-14T21:43:03.352Z"
+  },
+  "sunglasses": {
+    "batch": "prop-test-01",
+    "slot": "face",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own (not worn), front three-quarter view at eye level, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a pair of chunky black star-shaped party sunglasses.",
+    "hash": "sha256:b76fe9a6447ddfcc54f9f218d1dc1bc530d2584aab388fcad9f89bed1fe55c0c",
+    "generatedAt": "2026-10-14T21:43:11.087Z"
+  },
+  "sword": {
+    "batch": "prop-test-01",
+    "slot": "hand",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own (not held), standing upright, three-quarter view, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a cartoon fantasy sword with a blue gem in the hilt.",
+    "hash": "sha256:2a187562ca94152987ffa17bd60a731e8fc95e7f8bae5e7ba79b8a0cf5879525",
+    "generatedAt": "2026-10-14T21:43:18.910Z"
+  },
+  "rubber_duck": {
+    "batch": "prop-test-01",
+    "slot": "shoulder",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own, three-quarter front view from slightly above, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a classic yellow rubber duck with an orange beak.",
+    "hash": "sha256:f15c0aef5d8887ca02aae699e81ce4afa977997ca3a15f0962a86b02c8af9bf6",
+    "generatedAt": "2026-10-14T21:43:26.329Z"
+  },
+  "devil_horns": {
+    "batch": "prop-test-01",
+    "slot": "head",
+    "mood": "angry",
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own (not worn), upright as it would sit on a head, three-quarter front view from slightly above, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a pair of curved red devil horns on a thin black headband.",
+    "hash": "sha256:7c1d46853ada9cf6acf9d2b57afad730376f07e89968f25e065135d52bcab6d9",
+    "generatedAt": "2026-10-14T21:43:33.418Z"
+  },
+  "rain_cloud": {
+    "batch": "prop-test-01",
+    "slot": "float",
+    "mood": "sad",
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own, three-quarter view from slightly above, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a small grey cartoon storm cloud with a few blue raindrops hanging beneath it.",
+    "hash": "sha256:fd43bb60f2a8335c3327dc9dadaa009cd51fb768c67a9eacda0e36c301d92b3c",
+    "generatedAt": "2026-10-14T21:43:40.578Z"
+  },
+  "heart": {
+    "batch": "prop-test-01",
+    "slot": "float",
+    "mood": "love",
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own, three-quarter view from slightly above, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a puffy glossy pink cartoon heart.",
+    "hash": "sha256:bfa9fadd89dac2cc2ea9823c60e055f486bf645f58e21a6498fdb491f18f069b",
+    "generatedAt": "2026-10-14T21:43:48.572Z"
+  },
+  "halo": {
+    "batch": "prop-test-01",
+    "slot": "float",
+    "mood": "wholesome",
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a single isolated accessory for a streamer's avatar, shown on its own, three-quarter view from slightly above, the whole object visible and centered, plain flat light grey background (#c8c8c8), even neutral studio lighting, no cast shadows, no ground plane, no text, no person, no mannequin, no other objects. Stylized, clean and colourful, smooth chunky shapes with a bold readable silhouette, looks good next to an anime-style VTuber model. Subject: a golden angel halo ring.",
+    "hash": "sha256:5f7f6198be5fb0c07d455bc5e6bb0363ba5b66b202c2e98377c475fc7e6e39c7",
+    "generatedAt": "2026-10-14T21:43:56.774Z"
+  },
+  "death_muffin": {
+    "batch": "avatar-ideas-01",
+    "slot": "avatar",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Character source for 3D modeling of a VTuber avatar. Single full-body character, FRONT VIEW, strict T-pose: arms straight out horizontally at shoulder height, EMPTY hands (no props, no weapons, no magic), legs straight and slightly apart. Entire body visible head to feet, centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other characters. Stylized cartoon proportions: slightly large head, clearly separated arms and legs. Simple flat cartoon face: two big simple eyes and a small mouth. Fun, charming mascot style like a polished stylized 3D game character: smooth chunky shapes, bold readable silhouette, appealing colours. Character: the Death Muffin mascot, a chubby little necromancer whose head is a dark chocolate muffin with a soft domed muffin top, wearing a small tattered dark purple hooded cloak pushed back behind the muffin top, a paper cupcake-wrapper skirt over stubby legs, a tiny bone skull charm and a little bronze bell on its belt, small purple accents, bright purple eyes; cute and a bit spooky, never scary.",
+    "hash": "sha256:a53c99dd894709e043843cb2a0886f5418460e30c158867c5951e3549ebdbf03",
+    "generatedAt": "2026-10-14T22:03:08.702Z"
+  },
+  "screen_bot": {
+    "batch": "avatar-ideas-01",
+    "slot": "avatar",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Character source for 3D modeling of a VTuber avatar. Single full-body character, FRONT VIEW, strict T-pose: arms straight out horizontally at shoulder height, EMPTY hands (no props, no weapons, no magic), legs straight and slightly apart. Entire body visible head to feet, centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other characters. Stylized cartoon proportions: slightly large head, clearly separated arms and legs. Simple flat cartoon face: two big simple eyes and a small mouth. Fun, charming mascot style like a polished stylized 3D game character: smooth chunky shapes, bold readable silhouette, appealing colours. Character: a cute boxy little robot whose head is an old rounded TV with a screen for a face (the eyes and mouth are drawn on the screen), chunky rounded body and limbs, a short antenna with a ball on top, teal and cream colours with orange details.",
+    "hash": "sha256:5eb1aa34dcb549d613b082bd16339066fb70b3b5ca83b2beb482606db3ca186a",
+    "generatedAt": "2026-10-14T22:03:16.361Z"
+  },
+  "hoodie_frog": {
+    "batch": "avatar-ideas-01",
+    "slot": "avatar",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Character source for 3D modeling of a VTuber avatar. Single full-body character, FRONT VIEW, strict T-pose: arms straight out horizontally at shoulder height, EMPTY hands (no props, no weapons, no magic), legs straight and slightly apart. Entire body visible head to feet, centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other characters. Stylized cartoon proportions: slightly large head, clearly separated arms and legs. Simple flat cartoon face: two big simple eyes and a small mouth. Fun, charming mascot style like a polished stylized 3D game character: smooth chunky shapes, bold readable silhouette, appealing colours. Character: a chill green frog wearing an oversized orange hoodie with the hood down, baggy grey shorts and chunky sneakers.",
+    "hash": "sha256:4a734a09d700910f9f5aede5e23072fa0724e1302bab7522b47ad61fc625e6eb",
+    "generatedAt": "2026-10-14T22:03:23.648Z"
+  },
+  "fox_spirit": {
+    "batch": "avatar-ideas-01",
+    "slot": "avatar",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Character source for 3D modeling of a VTuber avatar. Single full-body character, FRONT VIEW, strict T-pose: arms straight out horizontally at shoulder height, EMPTY hands (no props, no weapons, no magic), legs straight and slightly apart. Entire body visible head to feet, centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other characters. Stylized cartoon proportions: slightly large head, clearly separated arms and legs. Simple flat cartoon face: two big simple eyes and a small mouth. Fun, charming mascot style like a polished stylized 3D game character: smooth chunky shapes, bold readable silhouette, appealing colours. Character: a playful fox spirit (kitsune) with fluffy orange fox ears and one big fluffy white-tipped tail, wearing a short white and red shrine-style jacket, dark shorts and sandals.",
+    "hash": "sha256:8befd711c6dec8ba2b2c190d5b42af99a1c5506d16f9040b3f73ae897c881599",
+    "generatedAt": "2026-10-14T22:03:32.250Z"
+  },
+  "mushroom_wizard": {
+    "batch": "avatar-ideas-01",
+    "slot": "avatar",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Character source for 3D modeling of a VTuber avatar. Single full-body character, FRONT VIEW, strict T-pose: arms straight out horizontally at shoulder height, EMPTY hands (no props, no weapons, no magic), legs straight and slightly apart. Entire body visible head to feet, centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other characters. Stylized cartoon proportions: slightly large head, clearly separated arms and legs. Simple flat cartoon face: two big simple eyes and a small mouth. Fun, charming mascot style like a polished stylized 3D game character: smooth chunky shapes, bold readable silhouette, appealing colours. Character: a little mushroom wizard whose head is a big red mushroom cap with white spots, wearing a cozy blue robe with gold star patterns, a rope belt with a small pouch, and little boots.",
+    "hash": "sha256:c04ea9fd7bf2149208c1f0b9cedef8b3e34ca6d8f8aa039d95d66f8ab2854ea7",
+    "generatedAt": "2026-10-14T22:03:39.581Z"
+  },
+  "cat_knight": {
+    "batch": "avatar-ideas-01",
+    "slot": "avatar",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "Character source for 3D modeling of a VTuber avatar. Single full-body character, FRONT VIEW, strict T-pose: arms straight out horizontally at shoulder height, EMPTY hands (no props, no weapons, no magic), legs straight and slightly apart. Entire body visible head to feet, centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other characters. Stylized cartoon proportions: slightly large head, clearly separated arms and legs. Simple flat cartoon face: two big simple eyes and a small mouth. Fun, charming mascot style like a polished stylized 3D game character: smooth chunky shapes, bold readable silhouette, appealing colours. Character: a small cat knight in chunky shiny silver armour with a short red cape, an open-faced helmet with the cat ears poking out through it, grey tabby fur.",
+    "hash": "sha256:0ea0564ca18ea08c25a46e84fb3ab53e03c25a444449892b7f856078a3ee5c78",
+    "generatedAt": "2026-10-14T22:03:47.975Z"
+  },
+  "tbone_steak": {
+    "batch": "demo-avatars-01",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a thick juicy T-bone steak standing upright on its narrow bottom edge like a little character, chunky cartoon grill marks, the T-shaped bone visible on one side, glossy and appetizing.",
+    "hash": "sha256:80f64398b2104f1e2d416bc8f80186e0d9dc2a4af67e0fd2f299a2504f985363",
+    "generatedAt": "2026-10-15T01:11:45.497Z"
+  },
+  "potted_cactus": {
+    "batch": "demo-avatars-01",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a chubby rounded green cactus in a small terracotta pot, two short rounded side lobes curving upward, a little pink flower on top, soft cartoon spines drawn as tiny dots.",
+    "hash": "sha256:af7d20fa6e886060b11cdff23e45f2fa7ca2b5c8324f730dcd48c0265ed911f3",
+    "generatedAt": "2026-10-15T01:11:54.514Z"
+  },
+  "rubber_duck_avatar": {
+    "batch": "demo-avatars-01",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a classic yellow rubber duck sitting upright facing the camera, rounded head on a rounded body, orange beak, no eyes.",
+    "hash": "sha256:1647d14e5d52d8be52bf04a19fc471930690b133c0750f620e7270e33e23f16b",
+    "generatedAt": "2026-10-15T01:12:02.030Z"
+  },
+  "soda_can": {
+    "batch": "demo-avatars-02",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a soda can standing upright, glossy lime-green aluminium covered in big orange polka dots, a purple band around the top, silver top with a pull tab, an original design that looks like no real brand, NO text, NO logos, NO letters, NO waves or ribbons.",
+    "hash": "sha256:a0f4d6e4b812703764ad41e0425c0d73f4801d6f3f1542dd9dc49f4ba5d2779c",
+    "generatedAt": "2026-10-15T01:15:44.803Z"
+  },
+  "desk_lamp": {
+    "batch": "demo-avatars-02",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a cute retro desk lamp: a round heavy base, a short thick upright neck, and a rounded dome lampshade on top tilted slightly toward the camera so its smooth outer surface faces the viewer (bulb hidden), pastel teal and cream.",
+    "hash": "sha256:063af1947a096467769948219e72ab59f897b20e54924f83db87c2bc6212d702",
+    "generatedAt": "2026-10-15T01:15:08.626Z"
+  },
+  "egg_carton": {
+    "batch": "demo-avatars-02",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a cardboard half-dozen egg carton standing upright on its short end like a little tower, lid flipped open at the top with three round cartoon eggs peeking out, soft beige moulded-pulp cardboard.",
+    "hash": "sha256:abb4a44aff274e26967c035cf8ee57246fc13ed82c644e5dd8cb8c2cf5fad96e",
+    "generatedAt": "2026-10-15T01:15:17.363Z"
+  },
+  "pizza_slice": {
+    "batch": "demo-avatars-03",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a single thick triangular pizza slice standing upright on its crust like a little character: the puffy golden crust is the flat base at the bottom, the pointy tip points straight up, the slice is thick and soft with a smooth broad area of melted cheese in the middle of the front (room for a face), a few round pepperoni slices near the edges and tip, a little cheese drip on one side, the back is plain baked dough.",
+    "hash": "sha256:2aacc25d4accd358be4cbe79297fb9c03644db0ea475910ec019c2c51a41a5d4",
+    "generatedAt": "2026-10-15T22:47:29.312Z"
+  },
+  "sprinkle_muffin": {
+    "batch": "demo-avatars-04",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a single plump muffin standing upright like a little character: a pleated pastel-pink paper liner as the base at the bottom, a tall soft golden-brown muffin body, and a big puffy rounded dome top that overhangs the liner, the dome covered in a thin layer of white sugar glaze with lots of tiny colourful sugar sprinkles; a broad smooth area on the front of the muffin body just under the dome with no sprinkles (room for a face).",
+    "hash": "sha256:574ae81ea2e2af5bcb66f50a64ba871073749464ac1e5d0b7f148f1bf31cb238",
+    "generatedAt": "2026-10-16T00:29:40.676Z"
+  },
+  "cherry_cupcake": {
+    "batch": "demo-avatars-05",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a single plain cupcake standing upright: a pleated pastel-mint paper liner as the base, a soft golden vanilla cake just above the liner, a big tall swirl of fluffy white whipped-cream frosting piled on top in smooth rounded swirls, one shiny red cherry with a short green stem sitting on the very top of the swirl, lots of tiny colourful sugar sprinkles scattered over the frosting; plain and simple, no face, no decorations other than the sprinkles and the cherry, standing directly on nothing (no plate, no stand, no platform, no base under the liner).",
+    "hash": "sha256:55b71e62331b21728d14e3a0cd75e305bceb42b7a0040ba73f46f1de4833e53b",
+    "generatedAt": "2026-10-18T01:53:28.851Z"
+  },
+  "big_egg": {
+    "batch": "demo-avatars-06",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a single big cartoon chicken egg standing upright on its wider round end, smooth glossy warm-white shell with a few faint light-brown speckles, a plain simple egg shape and nothing else, standing directly on nothing (no cup, no plate, no stand).",
+    "hash": "sha256:2478d3985987129c5b26bb8bb0532d99fa1b0edef0c4adfdb50c882e31fd1597",
+    "generatedAt": "2026-10-18T02:23:04.668Z"
+  },
+  "trash_can": {
+    "batch": "demo-avatars-06",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a chunky cartoon metal kitchen trash can, slightly dented brushed grey metal, its round lid knocked half off and tilted on top, overflowing with garbage piled high over the rim: crumpled paper balls, a banana peel draped over the edge, a fish skeleton, a squashed soda can and a pizza crust; a broad plain smooth area on the front of the can for a face, standing directly on nothing.",
+    "hash": "sha256:0d64b315e719ebbc7b141ed179b4ff8addfb9f18db9125ef9725acdf2655144a",
+    "generatedAt": "2026-10-18T02:23:12.177Z"
+  },
+  "juice_cup": {
+    "batch": "demo-avatars-06",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a big cartoon takeaway juice cup: a tall tapered clear plastic cup filled to the brim with bright orange juice that is sloshing over the rim and running down the sides in drips, a domed clear lid tilted askew on top, a bendy red-and-white striped straw sticking up out of it; a broad plain smooth area on the front of the cup for a face, the bottom of the cup standing directly on nothing: no plate, no coaster, no saucer, no stand, no base.",
+    "hash": "sha256:87dfee0f82d7122181e8b5feea4c4d13a0e7f965e08b6f732f95863904bcb331",
+    "generatedAt": "2026-10-18T02:23:58.467Z"
+  },
+  "retro_vacuum": {
+    "batch": "demo-avatars-06",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a cartoon old-school 1950s canister vacuum cleaner standing upright: a big round chunky barrel body in retro cherry red with chrome bands, on little wheels, the barrel taking up the lower two thirds of the whole height; a short ribbed flexible grey hose rises out of the top of the barrel, only about half as tall as the barrel, and curls over at the top into a chrome nozzle; a broad plain smooth area on the front of the barrel for a face, standing directly on nothing.",
+    "hash": "sha256:6a5d9e447ffc38f35ba8149faf96133f19f221844306a9b5e56e530c3533653d",
+    "generatedAt": "2026-10-18T02:24:06.475Z"
+  },
+  "meatball_sub": {
+    "batch": "demo-avatars-06",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a cartoon meatball sub sandwich standing upright on one end like a little character: a tall soft golden toasted hoagie roll split down the front, stuffed with big round meatballs in glossy red tomato sauce with melted cheese oozing out of the split and dripping down; a broad plain smooth area of bread on the upper front for a face, the bottom end standing directly on nothing (no plate, no paper, no stand).",
+    "hash": "sha256:4db5024cbd3b0a2902b0758f5866a5e82eaa1daa4bf0e98c2c6122ee49376ff4",
+    "generatedAt": "2026-10-18T02:24:31.428Z"
+  },
+  "spaghetti_bowl": {
+    "batch": "demo-avatars-06",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a cartoon bowl of spaghetti and meatballs: a deep round white ceramic bowl with a broad plain smooth front for a face, piled very high with a tall tangled mound of spaghetti in red tomato sauce, three big round meatballs balanced on top of the mound, a sprinkle of parmesan, a fork stuck in the top; the bowl standing directly on nothing (no plate, no table).",
+    "hash": "sha256:a63cdb8b9399545be01e87c3e4fcc9915837d4dd86deb498a3c579af71edec8e",
+    "generatedAt": "2026-10-18T02:24:39.872Z"
+  },
+  "hot_dog": {
+    "batch": "demo-avatars-07",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a hot dog standing upright on one end, seen straight from the front and symmetrical: a plump juicy red-brown sausage runs straight up the middle, hugged on the left and right by the two soft golden-brown halves of the bun; the sausage is much longer than the bun and sticks well out of the top (about a third of its length) with a rounded end; a thick wavy yellow mustard zigzag and a red ketchup squiggle sit only on the part of the sausage above the bun and drip a little over the top edges of the bun, with a few chunky green relish bits up there; the middle and lower front of the sausage between the bun halves is plain and smooth with nothing on it; flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base under the bun).",
+    "hash": "sha256:6295d62adab826ffe4fa5a2be737c8b36b41bee7dd22aee0290d3819287096c4",
+    "generatedAt": "2026-10-18T12:12:31.434Z"
+  },
+  "popcorn_bucket": {
+    "batch": "demo-avatars-08",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a tall paper popcorn bucket standing upright, seen straight from the front and symmetrical: bold vertical red and white stripes, slightly flared toward the top with a rolled rim, overflowing with a big fluffy heaped dome of buttery popcorn above the rim (puffy white and pale-yellow popped kernels with a few golden butter glints), two or three kernels perched on the rim; the front of the striped bucket is plain and smooth with nothing on it (no logo, no label, no text); flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:a0f6686fb0294ae0cbb4909aa624db1b83fbf4c3ba372d805411c349e80c88d6",
+    "generatedAt": "2026-10-18T16:50:15.297Z"
+  },
+  "jello_mold": {
+    "batch": "demo-avatars-08",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a big wobbly gelatin dessert standing upright, seen straight from the front and symmetrical: a tall glossy bright lime-green jelly shaped like a classic retro jelly mould, a rounded tower slightly narrower at the top with gentle rounded vertical flutes around its sides and a wide smooth plain panel on the front where a face would go, shiny highlights; a big piped swirl of white whipped cream on its flat top with one glossy red cherry and its stem; flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:767a1d3bdb63a702943d37a0d8b442dfd1ef58e92e7ad1dd355a6e7109defc54",
+    "generatedAt": "2026-10-18T16:50:22.906Z"
+  },
+  "taco": {
+    "batch": "demo-avatars-09",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a single crunchy hard-shell taco standing upright on its folded bottom edge, seen straight from the front and symmetrical: a big golden corn tortilla shell folded into a U, overflowing at the top opening with shredded green lettuce, diced red tomato, shredded orange cheese and seasoned ground beef spilling over the edges; the front of the shell is a wide plain smooth golden surface with nothing on it; flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:55d255407228586b31a5e6130f253cb8d8a90a4e48e3a9ac4c39086af67bc750",
+    "generatedAt": "2026-10-18T18:40:22.528Z"
+  },
+  "moldy_bread": {
+    "batch": "demo-avatars-09",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a tall loaf of white sandwich bread standing upright on one end, seen straight from the front and symmetrical: a chunky rounded loaf with a domed golden-brown crust top, stale and slightly squashed, badly gone off: big gross fuzzy patches of blue-green, grey and white mould spreading over the top crust, down the sides and creeping in from the edges of the front, a few dark spots; the middle of the front is still a wide plain smooth surface for a face; flat bottom, no feet, no legs, standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:334b37a0c0d2eaf04441931015ccefa0d5b468969832029eca26ca40fd237302",
+    "generatedAt": "2026-10-18T18:41:27.616Z"
+  },
+  "toaster": {
+    "batch": "demo-avatars-09",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a chunky retro kitchen toaster standing upright, seen straight from the front and symmetrical: a rounded boxy body in pastel mint green with chrome trim, two slices of golden toast sticking halfway out of the two slots on top, a small lever on one side, four short stubby feet; the front panel is wide, plain and smooth with nothing on it (no logo, no dials, no text).",
+    "hash": "sha256:9bd531ca81cad32c0f1bbd458b42a3a3e7f323f7f0e6c59635efc628b409d6f3",
+    "generatedAt": "2026-10-18T18:40:38.776Z"
+  },
+  "ketchup_bottle": {
+    "batch": "demo-avatars-09",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a classic plastic squeeze ketchup bottle standing upright, seen straight from the front and symmetrical: a chunky rounded glossy tomato-red bottle with a white flip-top cap and nozzle on top, a little dried ketchup crusted around the nozzle; the front of the bottle is plain and smooth with nothing on it (no label, no logo, no text); flat bottom, standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:ce7734be14f91e9581c1e5e26aba0633d5e3b6ca7b1c84b228ebdc95e6c84962",
+    "generatedAt": "2026-10-18T18:40:47.280Z"
+  },
+  "coffee_mug": {
+    "batch": "demo-avatars-09",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a big chunky ceramic coffee mug standing upright, seen straight from the front and symmetrical: a wide rounded cream-white mug with a thick handle on the right side, filled to the brim with dark coffee (no steam, no vapour, nothing above the rim), a drip of coffee running down the side; the front of the mug is plain and smooth with nothing on it (no logo, no picture, no text); flat bottom, standing directly on nothing (no plate, no saucer, no stand, no platform, no base).",
+    "hash": "sha256:f7ab3ebdce720e0436a2671d8659ab75bea288e9a0be55ca7ad226b95f3f41c5",
+    "generatedAt": "2026-10-18T18:41:35.872Z"
+  },
+  "toilet": {
+    "batch": "demo-avatars-09",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a plain cartoon toilet object (not a character) standing upright, seen straight from the front and symmetrical: a chunky glossy white porcelain toilet with a tall rounded water tank at the back and a big round open bowl in front with a white seat but no lid at all, clear blue water filling the bowl; the front of the tank is a wide plain smooth surface with nothing on it (no handle on the front, no logo, no text); absolutely no arms, no hands, no legs, no feet, no face; flat base, standing directly on nothing (no floor, no tiles, no plate, no platform).",
+    "hash": "sha256:6b5c3613efff582611cd1425d287e8bce97ed0d176757484fb22ded2e8c0f20a",
+    "generatedAt": "2026-10-18T18:55:15.830Z"
+  }
+}

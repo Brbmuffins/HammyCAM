@@ -1,0 +1,16 @@
+{
+  "id": "demo-avatars-03",
+  "about": "Pizza slice avatar requested 2026-10-15: the pointy tip should flop around when the streamer moves (the app's bend rig adds a floppy tip zone above the face). Same rules as demo-avatars-01/02: faceless (the app adds the face), no Tripo rig, no brands or text.",
+  "style": "Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours.",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "props": [
+    {
+      "id": "pizza_slice",
+      "slot": "object",
+      "subject": "a single thick triangular pizza slice standing upright on its crust like a little character: the puffy golden crust is the flat base at the bottom, the pointy tip points straight up, the slice is thick and soft with a smooth broad area of melted cheese in the middle of the front (room for a face), a few round pepperoni slices near the edges and tip, a little cheese drip on one side, the back is plain baked dough"
+    }
+  ]
+}

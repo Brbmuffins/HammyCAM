@@ -1,0 +1,15 @@
+﻿{
+    "id":  "pizza_slice",
+    "model":  "stabilityai/stable-point-aware-3d",
+    "code":  "github.com/Stability-AI/stable-point-aware-3d@fdc311b (+ local CPU patch)",
+    "settings":  {
+                     "remesh":  "none",
+                     "textureResolution":  1024,
+                     "device":  "cpu"
+                 },
+    "input":  "raw/concepts/pizza_slice.png",
+    "inputSha256":  "2aacc25d4accd358be4cbe79297fb9c03644db0ea475910ec019c2c51a41a5d4",
+    "meshSha256":  "bd2a1973d8de84ade92fdf3eb61ef31dcfd52e61c07004289e0fa14b57a6827f",
+    "license":  "Stability AI Community License: free under US $1M annual revenue; outputs owned by us; register at stability.ai/community-license before commercial use",
+    "generatedAt":  "2026-10-18T12:42:36.2291454-04:00"
+}
