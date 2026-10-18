@@ -119,7 +119,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &40481914
+--- !u!1 &151412078
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,63 +127,87 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 40481915}
-  - component: {fileID: 40481918}
-  - component: {fileID: 40481917}
-  - component: {fileID: 40481916}
+  - component: {fileID: 151412079}
+  - component: {fileID: 151412083}
+  - component: {fileID: 151412082}
+  - component: {fileID: 151412081}
+  - component: {fileID: 151412080}
   m_Layer: 0
-  m_Name: Soda can
+  m_Name: Pizza slice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &40481915
+--- !u!4 &151412079
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40481914}
+  m_GameObject: {fileID: 151412078}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 480162474}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &40481916
+--- !u!114 &151412080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40481914}
+  m_GameObject: {fileID: 151412078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e77c9357f01a3b64faf9344a85629205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.Toppings
+  pepperoni: {fileID: 2100000, guid: f498d4475fdfc834393ad32703007e0b, type: 2}
+  spots:
+  - {x: -0.45, y: 0.18}
+  - {x: 0.5, y: 0.2}
+  - {x: -0.35, y: 0.64}
+  - {x: 0.3, y: 0.7}
+  - {x: 0, y: 0.82}
+  diameter: 0.11
+  thickness: 0.008
+  shakeToFall: 14
+  fallsEvery: {x: 18, y: 45}
+--- !u!114 &151412081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 151412078}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Soda can
-  mesh: {fileID: 4300000, guid: 66a4a7cb037d0ae47adbcf7bccc57266, type: 2}
+  displayName: Pizza slice
+  mesh: {fileID: 4300000, guid: e348ce9f99359ed4ca6b71f979fb27c1, type: 2}
   materials:
-  - {fileID: 8311531874258022120, guid: adbd89ebed15b73429f456746aba51ea, type: 3}
-  rootFraction: 0.06
-  headFraction: 0.48
-  tipFraction: 1
-  faceFraction: 0.6
-  faceSize: 1
+  - {fileID: 1683190339834838179, guid: b79c32f3017eaee4d9dc4d2425716755, type: 3}
+  rootFraction: 0.1
+  headFraction: 0.38
+  tipFraction: 0.6
+  faceFraction: 0.42
+  faceSize: 0.9
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &40481917
+--- !u!114 &151412082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40481914}
+  m_GameObject: {fileID: 151412078}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -199,190 +223,13 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &40481918
+--- !u!114 &151412083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 40481914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 35
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0.012
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 0
-  rollRadius: 0.2
-  rollFrequency: 2.2
-  rollDamping: 0.25
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &85174130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 85174131}
-  - component: {fileID: 85174136}
-  - component: {fileID: 85174135}
-  - component: {fileID: 85174134}
-  - component: {fileID: 85174133}
-  - component: {fileID: 85174132}
-  m_Layer: 0
-  m_Name: Vacuum
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &85174131
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85174130}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &85174132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85174130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f0cfae6401bb2044a8862794298e6aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.VacuumHose
-  hoseMaterial: {fileID: 2100000, guid: be6df87f2601f4248b227858b58dd6f2, type: 2}
-  nozzleMaterial: {fileID: 2100000, guid: 31f5705acb825f44e85e6dd9acd9a5ff, type: 2}
-  socketHeight: 0.749
-  length: 1.4
-  radius: 0.032
-  points: 28
-  gravity: 9.8
-  huntSpeed: 0.4
-  idleAfter: 3
---- !u!114 &85174133
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85174130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 4
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.16121039
-  topHeight: 0.138
-  topLift: 0.854
-  bowl: {x: 0, y: 0, z: 0}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &85174134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85174130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Vacuum
-  mesh: {fileID: 4300000, guid: 51bfcdebd97591f4c8b7fea21f8d1e10, type: 2}
-  materials:
-  - {fileID: 1149906460245554295, guid: 55e8f3035401f3a4cb8db70d99eac2aa, type: 3}
-  rootFraction: 0.08
-  headFraction: 0.24
-  tipFraction: 1
-  faceFraction: 0.36
-  faceSize: 0.8
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &85174135
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85174130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &85174136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85174130}
+  m_GameObject: {fileID: 151412078}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -429,7 +276,7 @@ MonoBehaviour:
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &191124459
+--- !u!1 &165430431
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -437,1912 +284,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 191124465}
-  - component: {fileID: 191124464}
-  - component: {fileID: 191124463}
-  - component: {fileID: 191124462}
-  - component: {fileID: 191124461}
-  - component: {fileID: 191124460}
-  m_Layer: 0
-  m_Name: HUD
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &191124460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191124459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80b88f1c7a9484f4499cd2373196907d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.ControlPanel
-  library: {fileID: 480162473}
-  webcam: {fileID: 1154687730}
-  hud: {fileID: 191124464}
-  desk: {fileID: 642294752}
-  debris: {fileID: 642294751}
-  chaos: {fileID: 1134782157}
-  diagnostics: {fileID: 191124463}
---- !u!114 &191124461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191124459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd17d89c9ef38314b92f4c629482342b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.SelfTest
-  library: {fileID: 480162473}
-  scripted: {fileID: 1154687732}
-  synthetic: {fileID: 1154687731}
-  chaos: {fileID: 1134782157}
-  hud: {fileID: 191124464}
-  desk: {fileID: 642294752}
---- !u!114 &191124462
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191124459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5868b62b373351547b192e20142bff2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.Backdrop
-  cam: {fileID: 1203788201}
-  material: {fileID: 2100000, guid: f8a29c2b0489a2143831e7b8e2f30588, type: 2}
-  pictures:
-  - {fileID: 2800000, guid: 42ab96d2fd0e55a4ab3e53629ea3a578, type: 3}
-  - {fileID: 2800000, guid: cded7c5291a109248a7085bb8e6e9fbd, type: 3}
-  - {fileID: 2800000, guid: f8088b846d6c7e348919149673fd4152, type: 3}
-  - {fileID: 2800000, guid: 96574e989c09e2f47b2cb7f0afff29dd, type: 3}
-  - {fileID: 2800000, guid: f4b14faf14bd1b5408ab6f4eba36a273, type: 3}
-  - {fileID: 2800000, guid: 3de93a69b84678f488bc87b85e2e6126, type: 3}
-  - {fileID: 2800000, guid: 7f7857da1cea9914793a27c5cf31f891, type: 3}
-  - {fileID: 2800000, guid: 7cf7854bf3e915b4d8c9dccbf9d7ce7b, type: 3}
-  tallPictures:
-  - {fileID: 2800000, guid: 5a873ed0fd39ee944952bd4a3e4fceeb, type: 3}
-  - {fileID: 2800000, guid: 8e2dcc7d9fef7dd4ca1de67d3ea8dfa7, type: 3}
-  - {fileID: 2800000, guid: 8142582e4562d2e43a818f3df5ed4b82, type: 3}
-  - {fileID: 2800000, guid: 232c5b0b9b8f51c449285f50728c46ee, type: 3}
-  - {fileID: 2800000, guid: 43287b628911319499f68021ea6ef01c, type: 3}
-  - {fileID: 2800000, guid: ede6487d6baac97448caccd93968318d, type: 3}
-  - {fileID: 2800000, guid: 6aea716daf17b5d4ab7580d5a4a25335, type: 3}
-  - {fileID: 2800000, guid: 86abd303f76c7404fa726287948ec830, type: 3}
-  names:
-  - Vacuum sales floor
-  - Airport gate
-  - Construction site
-  - Laundromat
-  - Dentist's waiting room
-  - Bowling alley
-  - Castle throne room
-  - DMV waiting room
-  tint: {r: 0.88, g: 0.88, b: 0.88, a: 1}
-  distance: 30
---- !u!114 &191124463
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191124459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91b34e584408fde4e87354252ecf17f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.Diagnostics
-  library: {fileID: 480162473}
---- !u!114 &191124464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191124459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16df1acfb3371aa4fbe808a58ee49cb7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.PerfHud
-  library: {fileID: 480162473}
-  desk: {fileID: 642294752}
-  diagnostics: {fileID: 191124463}
-  webcam: {fileID: 1154687730}
-  mouse: {fileID: 1154687733}
-  cam: {fileID: 1203788201}
-  backdrop: {fileID: 191124462}
-  background: {r: 0.1, g: 0.07, b: 0.16, a: 1}
---- !u!4 &191124465
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 191124459}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &212257094
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 212257095}
-  - component: {fileID: 212257098}
-  - component: {fileID: 212257097}
-  - component: {fileID: 212257096}
-  m_Layer: 0
-  m_Name: Sunflower
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &212257095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212257094}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &212257096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212257094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4edeea30d034e9f4e8b6f3dddf456609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.SunflowerAvatar
-  pot: {fileID: 2100000, guid: cad7d2612faf9964aaf2468293947bca, type: 2}
-  soil: {fileID: 2100000, guid: 59664d10d2ae42c44b5a812731b65a08, type: 2}
-  stem: {fileID: 2100000, guid: f77c9f2a40550fe4d9ed6438c84f10b2, type: 2}
-  petals: {fileID: 2100000, guid: edd23f8713b93734bb9ae6af25931e14, type: 2}
-  centre: {fileID: 2100000, guid: 416bbaf0c94bcfe4abac225e29e151fd, type: 2}
---- !u!114 &212257097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212257094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &212257098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212257094}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 70
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0.012
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 0
-  rollRadius: 0.2
-  rollFrequency: 2.2
-  rollDamping: 0.25
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &337114208
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 337114209}
-  - component: {fileID: 337114212}
-  - component: {fileID: 337114211}
-  - component: {fileID: 337114210}
-  m_Layer: 0
-  m_Name: Potted cactus
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &337114209
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337114208}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &337114210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337114208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Potted cactus
-  mesh: {fileID: 4300000, guid: 42237231ac886be499086331e9302120, type: 2}
-  materials:
-  - {fileID: 1919290805422205843, guid: b70ce72b0437f0845ad6ebfd8235f6eb, type: 3}
-  rootFraction: 0.3
-  headFraction: 0.48
-  tipFraction: 1
-  faceFraction: 0.62
-  faceSize: 0.9
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &337114211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337114208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &337114212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 337114208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 30
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0.012
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 0
-  rollRadius: 0.2
-  rollFrequency: 2.2
-  rollDamping: 0.25
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &440152087
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 440152088}
-  - component: {fileID: 440152092}
-  - component: {fileID: 440152091}
-  - component: {fileID: 440152090}
-  - component: {fileID: 440152089}
-  m_Layer: 0
-  m_Name: Ketchup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &440152088
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440152087}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &440152089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440152087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 11
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.16989672
-  topHeight: 0.138
-  topLift: 0.73899996
-  bowl: {x: 0, y: 0, z: 0}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &440152090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440152087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Ketchup
-  mesh: {fileID: 4300000, guid: 5caf97b4d8083dd49bbe2ea565a22fcc, type: 2}
-  materials:
-  - {fileID: 3263931781923126087, guid: 3918fe48c92f87a4b8026f4c73ba2e42, type: 3}
-  rootFraction: 0.05
-  headFraction: 0.34
-  tipFraction: 1
-  faceFraction: 0.44
-  faceSize: 0.8
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &440152091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440152087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &440152092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440152087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 35
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 12
-  rollRadius: 0.21520251
-  rollFrequency: 2.2
-  rollDamping: 0.35
-  rollTurn: 0.7
-  rollJiggle: 0.45
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &451200046
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 451200051}
-  - component: {fileID: 451200047}
-  - component: {fileID: 451200050}
-  - component: {fileID: 451200049}
-  - component: {fileID: 451200048}
-  m_Layer: 0
-  m_Name: Jello
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &451200047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451200046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 35
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 9
-  rollRadius: 0.31704408
-  rollFrequency: 2.8
-  rollDamping: 0.3
-  rollTurn: 0.7
-  rollJiggle: 0.5
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!114 &451200048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451200046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 7
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.25029796
-  topHeight: 0.138
-  topLift: 0.67
-  bowl: {x: 0, y: 0, z: 0}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &451200049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451200046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Jello
-  mesh: {fileID: 4300000, guid: 65f1d8b6c90e1ff438d9395b20c51529, type: 2}
-  materials:
-  - {fileID: 3263931781923126087, guid: 195b12a08c1b5554dbbdf81c28720df7, type: 3}
-  rootFraction: 0.04
-  headFraction: 0.4
-  tipFraction: 1
-  faceFraction: 0.42
-  faceSize: 0.85
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &451200050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451200046}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!4 &451200051
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 451200046}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &452754679
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 452754680}
-  - component: {fileID: 452754684}
-  - component: {fileID: 452754683}
-  - component: {fileID: 452754682}
-  - component: {fileID: 452754681}
-  m_Layer: 0
-  m_Name: Juice cup
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &452754680
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452754679}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &452754681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452754679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 2
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.2337676
-  topHeight: 0.138
-  topLift: 0
-  bowl: {x: 0, y: 0, z: 0}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &452754682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452754679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Juice cup
-  mesh: {fileID: 4300000, guid: b5172d473e3121a4d81318958f4a3115, type: 2}
-  materials:
-  - {fileID: -2574193789087918247, guid: 7e9b56d831d33e641809e13e9f25e525, type: 3}
-  rootFraction: 0.08
-  headFraction: 0.33
-  tipFraction: 0.74
-  faceFraction: 0.45
-  faceSize: 0.75
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &452754683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452754679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &452754684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452754679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 30
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0.012
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2.5
-  flopDamping: 0.16
-  flopGravity: 0.4
-  flopDroop: 8
-  maxFlopDegrees: 50
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 0
-  rollRadius: 0.2
-  rollFrequency: 2.2
-  rollDamping: 0.25
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &464947497
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 464947498}
-  - component: {fileID: 464947502}
-  - component: {fileID: 464947501}
-  - component: {fileID: 464947500}
-  - component: {fileID: 464947499}
-  m_Layer: 0
-  m_Name: Meatball sub
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &464947498
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464947497}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &464947499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464947497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 3
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.2253445
-  topHeight: 0.138
-  topLift: 0.647
-  bowl: {x: 0, y: 0, z: 0}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &464947500
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464947497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Meatball sub
-  mesh: {fileID: 4300000, guid: 45cceafa28d84cf45a29f0c4f960585d, type: 2}
-  materials:
-  - {fileID: 1006818598304017056, guid: 98fa37c8b200ade4285ca408816a629d, type: 3}
-  rootFraction: 0.08
-  headFraction: 0.42
-  tipFraction: 1
-  faceFraction: 0.62
-  faceSize: 0.75
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &464947501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464947497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &464947502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464947497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 18
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0.012
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 0
-  rollRadius: 0.2
-  rollFrequency: 2.2
-  rollDamping: 0.25
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &480162472
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 480162474}
-  - component: {fileID: 480162473}
-  m_Layer: 0
-  m_Name: Avatars
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &480162473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480162472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a75318094c62db54c9ec7ae97f9c958d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.AvatarLibrary
-  avatars:
-  - {fileID: 212257098}
-  - {fileID: 749486803}
-  - {fileID: 337114212}
-  - {fileID: 40481918}
-  - {fileID: 2064348205}
-  - {fileID: 1664841487}
-  - {fileID: 1282097268}
-  - {fileID: 452754684}
-  - {fileID: 85174136}
-  - {fileID: 464947502}
-  - {fileID: 2004100782}
-  - {fileID: 1495849761}
-  - {fileID: 1212862016}
-  - {fileID: 1150617446}
-  - {fileID: 1062347801}
-  - {fileID: 2051897302}
-  - {fileID: 642077391}
-  - {fileID: 440152092}
-  - {fileID: 862897823}
-  - {fileID: 855491883}
-  - {fileID: 451200047}
-  source: {fileID: 1154687730}
---- !u!4 &480162474
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 480162472}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 212257095}
-  - {fileID: 749486800}
-  - {fileID: 337114209}
-  - {fileID: 40481915}
-  - {fileID: 2064348201}
-  - {fileID: 1664841483}
-  - {fileID: 1282097264}
-  - {fileID: 452754680}
-  - {fileID: 85174131}
-  - {fileID: 464947498}
-  - {fileID: 2004100778}
-  - {fileID: 1495849757}
-  - {fileID: 1212862012}
-  - {fileID: 1150617442}
-  - {fileID: 1062347797}
-  - {fileID: 2051897298}
-  - {fileID: 642077387}
-  - {fileID: 440152088}
-  - {fileID: 862897819}
-  - {fileID: 855491879}
-  - {fileID: 451200051}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &642077386
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 642077387}
-  - component: {fileID: 642077391}
-  - component: {fileID: 642077390}
-  - component: {fileID: 642077389}
-  - component: {fileID: 642077388}
-  m_Layer: 0
-  m_Name: Toaster
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &642077387
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642077386}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &642077388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642077386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 10
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.4042434
-  topHeight: 0.138
-  topLift: 0.78499997
-  bowl: {x: 0, y: 0, z: 0}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &642077389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642077386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Toaster
-  mesh: {fileID: 4300000, guid: 7fa3dce91407df244827a3182b65a022, type: 2}
-  materials:
-  - {fileID: 3263931781923126087, guid: 5df7aff6b4f4e0746849338f00f43eff, type: 3}
-  rootFraction: 0.08
-  headFraction: 0.3
-  tipFraction: 1
-  faceFraction: 0.4
-  faceSize: 0.75
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &642077390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642077386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &642077391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642077386}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 35
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 8
-  rollRadius: 0.5120416
-  rollFrequency: 2.2
-  rollDamping: 0.5
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &642294750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 642294754}
-  - component: {fileID: 642294753}
-  - component: {fileID: 642294752}
-  - component: {fileID: 642294751}
-  m_Layer: 0
-  m_Name: Desk Scene
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &642294751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642294750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6346a74202de0c44daa2bc95a9cd3600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DeskDebris
-  desk: {fileID: 642294752}
-  library: {fileID: 480162473}
-  sprinkleMaterials:
-  - {fileID: 2100000, guid: 848545d0151cfcd428fbc7ebe69f9560, type: 2}
-  - {fileID: 2100000, guid: a4fe1bd5049b697429dc329bd9c823dd, type: 2}
-  - {fileID: 2100000, guid: 80ba50f93dfd2e84ea45cfd6eb4d0aa1, type: 2}
-  - {fileID: 2100000, guid: 25d6cd27bee168040b38915d3863e32a, type: 2}
-  - {fileID: 2100000, guid: 644a4fec893804c4988667e3e8daaacf, type: 2}
-  - {fileID: 2100000, guid: 7564160dd904f9747811193fd25cded2, type: 2}
-  maxSprinkles: 6000
-  sprinkleSize: {x: 0.008, y: 0.012, z: 0.008}
-  gravity: 14
---- !u!114 &642294752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642294750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 872ca17ca8fc7fa42844f373e3482e81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DeskScene
-  wood: {fileID: 2100000, guid: 4f9015652c7d43d499f25ec11e5fd512, type: 2}
-  keyboardBody: {fileID: 2100000, guid: dae2d501ee071ff43a66f4864cb6c39f, type: 2}
-  keycaps: {fileID: 2100000, guid: b462e0377870bea429383c0c6686b25b, type: 2}
-  pad: {fileID: 2100000, guid: 409b328a568e445409ee209e63185457, type: 2}
-  mouseBody: {fileID: 2100000, guid: 9f1f92b1adef13f4796396f035661b72, type: 2}
-  hands: {fileID: 2100000, guid: bd403f79b80eca34a8a5b2c905995eaf, type: 2}
-  mouseScale: 0.00022
---- !u!114 &642294753
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642294750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a5ae01dd8b023494dab84cd372685984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DeskInput
-  simulate: 0
---- !u!4 &642294754
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642294750}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &749486799
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 749486800}
-  - component: {fileID: 749486803}
-  - component: {fileID: 749486802}
-  - component: {fileID: 749486801}
-  m_Layer: 0
-  m_Name: T-bone steak
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &749486800
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749486799}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &749486801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749486799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: T-bone steak
-  mesh: {fileID: 4300000, guid: 2ad38ac7c4c18d54aaf8c4ac9d289905, type: 2}
-  materials:
-  - {fileID: 1052137864446956414, guid: 5362a75a1f352634485ca2175124dc78, type: 3}
-  rootFraction: 0.1
-  headFraction: 0.46
-  tipFraction: 1
-  faceFraction: 0.6
-  faceSize: 1
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &749486802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749486799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &749486803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749486799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 35
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0.012
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 0
-  rollRadius: 0.2
-  rollFrequency: 2.2
-  rollDamping: 0.25
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &774026550
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 774026552}
-  - component: {fileID: 774026551}
-  m_Layer: 0
-  m_Name: Key Light
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!108 &774026551
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774026550}
-  m_Enabled: 1
-  serializedVersion: 13
-  m_Type: 1
-  m_Color: {r: 1, g: 0.96, b: 0.9, a: 1}
-  m_Intensity: 1.05
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize2D: {x: 0.5, y: 0.5}
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 0.75
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 4
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
-  m_ShapeRadius: 0.025
-  m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
---- !u!4 &774026552
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774026550}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.32619038, y: -0.28257105, z: 0.102847435, w: 0.89620084}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &855491878
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 855491879}
-  - component: {fileID: 855491883}
-  - component: {fileID: 855491882}
-  - component: {fileID: 855491881}
-  - component: {fileID: 855491880}
-  m_Layer: 0
-  m_Name: Coffee mug
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &855491879
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855491878}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &855491880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855491878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 12
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.44248533
-  topHeight: 0.138
-  topLift: 0.762
-  bowl: {x: 0, y: 0, z: 0}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &855491881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855491878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Coffee mug
-  mesh: {fileID: 4300000, guid: 7637330719a489d4984040e4c9e20cce, type: 2}
-  materials:
-  - {fileID: 3263931781923126087, guid: a4aa019d16badfe40a277030b7cff203, type: 3}
-  rootFraction: 0.05
-  headFraction: 0.32
-  tipFraction: 1
-  faceFraction: 0.42
-  faceSize: 0.7
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &855491882
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855491878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &855491883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 855491878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 35
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 8
-  rollRadius: 0.56048137
-  rollFrequency: 2.2
-  rollDamping: 0.5
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &862897818
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 862897819}
-  - component: {fileID: 862897823}
-  - component: {fileID: 862897822}
-  - component: {fileID: 862897821}
-  - component: {fileID: 862897820}
-  m_Layer: 0
-  m_Name: Toilet
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &862897819
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862897818}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &862897820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862897818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 13
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.21153846
-  topHeight: 0.138
-  topLift: 0.49749997
-  bowl: {x: 0, y: 0.48299998, z: -0.18948483}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &862897821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862897818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Toilet
-  mesh: {fileID: 4300000, guid: a1c76e661db81004fb11764b6d66be6e, type: 2}
-  materials:
-  - {fileID: 3263931781923126087, guid: ae7426d141fd8c54b9ab5e72c92022bb, type: 3}
-  rootFraction: 0.05
-  headFraction: 0.55
-  tipFraction: 1
-  faceFraction: 0.68
-  faceSize: 0.75
-  faceHasMouth: 1
-  faceGap: 0.004
-  faceShiftX: 0
---- !u!114 &862897822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862897818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
-  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
-  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
-  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
-  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
-  autoBlink: 1
-  talkBounce: 1
-  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
-  realEyeWidth: 0.09
-  realMouthWidth: 0.12
-  surfaceGap: 0.006
---- !u!114 &862897823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862897818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
-  source: {fileID: 0}
-  filterInput: 1
-  minCutoff: 0.8
-  beta: 1.5
-  rotationMinCutoff: 0.8
-  rotationBeta: 1.5
-  chainBones: 10
-  maxBendDegrees: 35
-  stretchAmount: 0.35
-  headTurn: 1.1
-  breathing: 0
-  bodyTwist: 0.7
-  glanceLean: 0.35
-  lookBend: 0.9
-  headNod: 0.5
-  bodyFrequency: 3.8
-  bodyDamping: 0.55
-  tipFrequency: 7
-  baseFrequency: 3.2
-  damping: 0.45
-  stretchFrequency: 3.5
-  stretchDamping: 0.3
-  turnFrequency: 8
-  turnDamping: 0.8
-  flopFrequency: 2
-  flopDamping: 0.16
-  flopGravity: 0.7
-  flopDroop: 8
-  maxFlopDegrees: 140
-  flopBones: 6
-  turnWhip: 1.6
-  flopSideways: 0
-  slamDegrees: 86
-  rollDegrees: 7
-  rollRadius: 0.26794872
-  rollFrequency: 2.2
-  rollDamping: 0.5
-  rollTurn: 0.7
-  rollJiggle: 0
-  jiggleFrequency: 3.5
-  jiggleDamping: 0.12
---- !u!1 &1062347796
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1062347797}
-  - component: {fileID: 1062347801}
-  - component: {fileID: 1062347800}
-  - component: {fileID: 1062347799}
-  - component: {fileID: 1062347798}
+  - component: {fileID: 165430432}
+  - component: {fileID: 165430436}
+  - component: {fileID: 165430435}
+  - component: {fileID: 165430434}
+  - component: {fileID: 165430433}
   m_Layer: 0
   m_Name: Taco
   m_TagString: Untagged
@@ -2350,28 +296,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1062347797
+--- !u!4 &165430432
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062347796}
+  m_GameObject: {fileID: 165430431}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 480162474}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1062347798
+--- !u!114 &165430433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062347796}
+  m_GameObject: {fileID: 165430431}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
@@ -2386,13 +332,13 @@ MonoBehaviour:
   bowl: {x: 0, y: 0, z: 0}
   shakeThreshold: 6
   idleEvery: {x: 20, y: 45}
---- !u!114 &1062347799
+--- !u!114 &165430434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062347796}
+  m_GameObject: {fileID: 165430431}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
@@ -2410,13 +356,13 @@ MonoBehaviour:
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &1062347800
+--- !u!114 &165430435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062347796}
+  m_GameObject: {fileID: 165430431}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -2432,13 +378,13 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &1062347801
+--- !u!114 &165430436
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1062347796}
+  m_GameObject: {fileID: 165430431}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -2485,7 +431,7 @@ MonoBehaviour:
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &1134782156
+--- !u!1 &283689114
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2493,208 +439,63 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1134782159}
-  - component: {fileID: 1134782157}
-  - component: {fileID: 1134782158}
+  - component: {fileID: 283689115}
+  - component: {fileID: 283689118}
+  - component: {fileID: 283689117}
+  - component: {fileID: 283689116}
   m_Layer: 0
-  m_Name: Chaos
+  m_Name: Potted cactus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1134782157
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134782156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46daeb755b1240b43920035ee44b2fd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.ChaosDirector
-  library: {fileID: 480162473}
-  desk: {fileID: 642294752}
-  debris: {fileID: 642294751}
-  mess: {fileID: 1748778541}
-  hud: {fileID: 191124464}
-  cam: {fileID: 1203788201}
-  flame: {fileID: 2100000, guid: 2245c857e0bbb4a40a92b3636109b2e1, type: 2}
-  flameYellow: {fileID: 2100000, guid: 76d80394260ffa640938ae64d0ca62ac, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  bubble: {fileID: 2100000, guid: 716d835283261b1419b0dbb59d1c362e, type: 2}
-  rain: {fileID: 2100000, guid: c164ca8a6f667334fb2d2e0fc1b8c8b2, type: 2}
-  glass: {fileID: 2100000, guid: e793c8bc62802934cb332b09cc90320b, type: 2}
-  water: {fileID: 2100000, guid: 459eef45b42f3044e9aa48d3e7ab7c77, type: 2}
-  pieTin: {fileID: 2100000, guid: 57ee16ee2fe867142ba0ef33603cc2e4, type: 2}
-  cream: {fileID: 2100000, guid: d85d0dd203d5cfd4fa7d3c4f4b2e1c37, type: 2}
-  tomato: {fileID: 2100000, guid: 278b13097bae9fd4590c29d25a0f2672, type: 2}
-  leaf: {fileID: 2100000, guid: 1143d1fdeb09e5c42951b547b8ac188a, type: 2}
-  slime: {fileID: 2100000, guid: 2729013ec20a026499ee9532a0f647fa, type: 2}
-  canBody: {fileID: 2100000, guid: a0e3727e803e16e4187510666618a280, type: 2}
-  scorch: {fileID: 0}
-  chaosOn: 1
-  gap: 5
-  perViewer: 30
-  showCaptions: 1
-  maxAtOnce: 3
-  channel: 
---- !u!114 &1134782158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134782156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0aed12736b82c99429e9bff4d6210940, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.SoundBank
-  clips:
-  - {fileID: 8300000, guid: 7c08fecbd3b11c040a505a0271129baf, type: 3}
-  - {fileID: 8300000, guid: 1092b17d2727ac2478c2a950b1a258af, type: 3}
-  - {fileID: 8300000, guid: 50d268814e571b34ab8530a29b82d6af, type: 3}
-  - {fileID: 8300000, guid: dc98d9e6c962eb948bae2d2ec4ad5b5c, type: 3}
-  - {fileID: 8300000, guid: 0de1eea0081646949b530a973fb50b06, type: 3}
-  - {fileID: 8300000, guid: 389767f8a073f6a4c834f0d210787946, type: 3}
-  - {fileID: 8300000, guid: b9039e0ab5506bc478288934ddf302e3, type: 3}
-  - {fileID: 8300000, guid: 4b69a1595f6793c459132284c747d315, type: 3}
-  - {fileID: 8300000, guid: a76696d385954f84fb3158dedd29f3e6, type: 3}
-  - {fileID: 8300000, guid: 2400592f51b49124aa24db801a0810e7, type: 3}
-  - {fileID: 8300000, guid: c94fc6315675bba45a04e90104a6e804, type: 3}
-  - {fileID: 8300000, guid: eade34e6e3c399f4b8051d27e7f76d76, type: 3}
-  - {fileID: 8300000, guid: 908d89d4a9693c449b9f5bbd64cf65dc, type: 3}
-  - {fileID: 8300000, guid: f698691ccdcf76041b56ad7a7aaa8113, type: 3}
-  - {fileID: 8300000, guid: e5ae8736898636846a644cae996a552f, type: 3}
-  - {fileID: 8300000, guid: 0ed75d496ec70204894e9037e77f6fb8, type: 3}
-  - {fileID: 8300000, guid: 3ebb20b02bfef1b4daaadb6dccfc1eb7, type: 3}
-  - {fileID: 8300000, guid: 996325b3bd1e9bf45b42b6afb9eabcdb, type: 3}
-  - {fileID: 8300000, guid: e4d056b6726fc4f49ac3b1438da9d516, type: 3}
-  - {fileID: 8300000, guid: dbc7843678c08ce4890a127e4ec38d37, type: 3}
-  - {fileID: 8300000, guid: 0ba88e1d54839cc44bc682f629fd6cac, type: 3}
-  - {fileID: 8300000, guid: 92957eceed7902e48acc7c1150f6eaaf, type: 3}
-  - {fileID: 8300000, guid: b85d46733e41dab4d86fcdb74d9d38d2, type: 3}
-  - {fileID: 8300000, guid: 1b3fce6d4afe20646a420b0b034a9e24, type: 3}
-  - {fileID: 8300000, guid: 7e751560115bef94b9a01d5e78c14ce7, type: 3}
-  - {fileID: 8300000, guid: de791caff36182046b8164ae045ee2a2, type: 3}
-  - {fileID: 8300000, guid: c3fc8ab8b48fec644bbb4eb6f37ad3c2, type: 3}
-  - {fileID: 8300000, guid: 2b10094a2a175ab4580de453d2da1029, type: 3}
-  - {fileID: 8300000, guid: 4d2d125f9d36b394fa6d4e4c0591cca0, type: 3}
-  - {fileID: 8300000, guid: 0ab12220eec02b242bae1e092af27446, type: 3}
-  - {fileID: 8300000, guid: 93fefa79548087e44b4a7f4eebf1f891, type: 3}
-  - {fileID: 8300000, guid: 254b829ea3b67d44380fb44bada789ec, type: 3}
-  - {fileID: 8300000, guid: a02b3dda99144a14482a7911835fe621, type: 3}
-  - {fileID: 8300000, guid: 1ea9be9409d61eb45bea2269979e26d4, type: 3}
-  - {fileID: 8300000, guid: e124f41f36953cf4595dae3c61922bb4, type: 3}
-  - {fileID: 8300000, guid: 4782cf8ccdcee9b4b8852ad250974b71, type: 3}
-  - {fileID: 8300000, guid: a60fef3a0675d7a41905eb2a632e5a99, type: 3}
-  - {fileID: 8300000, guid: c03f4dc755c1ae04d953d62b656beb88, type: 3}
-  minGap: 0.06
---- !u!4 &1134782159
+--- !u!4 &283689115
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1134782156}
+  m_GameObject: {fileID: 283689114}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1150617441
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1150617442}
-  - component: {fileID: 1150617446}
-  - component: {fileID: 1150617445}
-  - component: {fileID: 1150617444}
-  - component: {fileID: 1150617443}
-  m_Layer: 0
-  m_Name: Popcorn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1150617442
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150617441}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1150617443
+--- !u!114 &283689116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150617441}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 6
-  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
-  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.31952536
-  topHeight: 0.138
-  topLift: 0.73899996
-  bowl: {x: 0, y: 0, z: 0}
-  shakeThreshold: 6
-  idleEvery: {x: 20, y: 45}
---- !u!114 &1150617444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150617441}
+  m_GameObject: {fileID: 283689114}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Popcorn
-  mesh: {fileID: 4300000, guid: ae0060f1e9b0eea409b920c34433d844, type: 2}
+  displayName: Potted cactus
+  mesh: {fileID: 4300000, guid: 42237231ac886be499086331e9302120, type: 2}
   materials:
-  - {fileID: 3263931781923126087, guid: 016b8bd4ceadd4b41bbedaa3cb3ac10a, type: 3}
-  rootFraction: 0.06
-  headFraction: 0.34
+  - {fileID: 1919290805422205843, guid: b70ce72b0437f0845ad6ebfd8235f6eb, type: 3}
+  rootFraction: 0.3
+  headFraction: 0.48
   tipFraction: 1
-  faceFraction: 0.4
-  faceSize: 0.8
+  faceFraction: 0.62
+  faceSize: 0.9
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &1150617445
+--- !u!114 &283689117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150617441}
+  m_GameObject: {fileID: 283689114}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -2710,13 +511,168 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &1150617446
+--- !u!114 &283689118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150617441}
+  m_GameObject: {fileID: 283689114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 30
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0.012
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 0
+  rollRadius: 0.2
+  rollFrequency: 2.2
+  rollDamping: 0.25
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &353172710
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 353172711}
+  - component: {fileID: 353172715}
+  - component: {fileID: 353172714}
+  - component: {fileID: 353172713}
+  - component: {fileID: 353172712}
+  m_Layer: 0
+  m_Name: Toaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &353172711
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353172710}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &353172712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353172710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 10
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.4042434
+  topHeight: 0.138
+  topLift: 0.78499997
+  bowl: {x: 0, y: 0, z: 0}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &353172713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353172710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Toaster
+  mesh: {fileID: 4300000, guid: 7fa3dce91407df244827a3182b65a022, type: 2}
+  materials:
+  - {fileID: 3263931781923126087, guid: 5df7aff6b4f4e0746849338f00f43eff, type: 3}
+  rootFraction: 0.08
+  headFraction: 0.3
+  tipFraction: 1
+  faceFraction: 0.4
+  faceSize: 0.75
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &353172714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353172710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &353172715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353172710}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -2756,14 +712,14 @@ MonoBehaviour:
   flopSideways: 0
   slamDegrees: 86
   rollDegrees: 8
-  rollRadius: 0.40473214
-  rollFrequency: 2.5
+  rollRadius: 0.5120416
+  rollFrequency: 2.2
   rollDamping: 0.5
   rollTurn: 0.7
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &1154687729
+--- !u!1 &353580304
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2771,368 +727,85 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1154687736}
-  - component: {fileID: 1154687735}
-  - component: {fileID: 1154687734}
-  - component: {fileID: 1154687730}
-  - component: {fileID: 1154687733}
-  - component: {fileID: 1154687732}
-  - component: {fileID: 1154687731}
+  - component: {fileID: 353580305}
+  - component: {fileID: 353580309}
+  - component: {fileID: 353580308}
+  - component: {fileID: 353580307}
+  - component: {fileID: 353580306}
   m_Layer: 0
-  m_Name: Input
+  m_Name: Mouldy bread
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1154687730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154687729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33e9d9133404e4b4fb325b6fc4826d2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.WebcamHeadPoseSource
-  tracker: 0
-  mediaPipeExe: TrackerMP/muffin_facetracker.exe
-  mediaPipeModel: TrackerMP/face_landmarker.task
-  mediaPipePort: 11574
-  trackerExe: Tracker/Binary/facetracker.exe
-  cameraIndex: 0
-  model: 3
-  trackerThreads: 4
-  control: 0
-  tiltForFullLean: 24
-  headTurnSway: 0.5
-  leanRange: 1.1
-  heightRange: 0.7
-  depthRange: 0.35
-  mediaPipeRotationGain: 1.25
-  yawGain: 150
-  pitchGain: 140
-  maxTurn: 70
-  maxNod: 45
-  maxTilt: 30
-  mouthGain: 2
-  expressionGain: 1.3
-  invertSmile: 1
-  invertBrows: 0
-  mirror: 1
-  sensitivity: 1
-  maxFaces: 3
---- !u!114 &1154687731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154687729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8736960302fa23249b28c60bbec028fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.SyntheticTrackerSource
-  rate: 22
-  noiseDegrees: 1.5
-  noiseLean: 0.02
-  stepDegrees: 30
-  stepLean: 0.6
-  stepAt: 2.5
-  usePoseFilter: 1
---- !u!114 &1154687732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154687729}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d1f9d43298b4864da93c722226a3dbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.ScriptedHeadPoseSource
-  startDelay: 0
-  headTurnsOnly: 0
---- !u!114 &1154687733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154687729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ad7115b652a8ad4287cb0d34d275ff9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MouseHeadPoseSource
-  simulateWebcam: 1
-  trackerRate: 30
-  jitter: 0.04
---- !u!114 &1154687734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154687729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba40013dafa65fc4885c394e247d936b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.CameraFeed
-  trackWidth: 1280
-  trackHeight: 720
-  requestWidth: 1920
-  requestHeight: 1080
-  requestFps: 30
---- !u!114 &1154687735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154687729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fb6219dfe28d154988aa0be808c7681, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::OpenSee.OpenSee
-  listenAddress: 127.0.0.1
-  listenPort: 11573
-  receivedPackets: 0
-  trackingData: []
-  maxFit3DError: 100
---- !u!4 &1154687736
+--- !u!4 &353580305
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154687729}
+  m_GameObject: {fileID: 353580304}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1203788200
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1203788204}
-  - component: {fileID: 1203788201}
-  - component: {fileID: 1203788203}
-  - component: {fileID: 1203788202}
-  m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!20 &1203788201
-Camera:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203788200}
-  m_Enabled: 1
-  serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.1, g: 0.07, b: 0.16, a: 1}
-  m_projectionMatrixMode: 1
-  m_GateFitMode: 2
-  m_FOVAxisMode: 0
-  m_Iso: 200
-  m_ShutterSpeed: 0.005
-  m_Aperture: 16
-  m_FocusDistance: 10
-  m_FocalLength: 50
-  m_BladeCount: 5
-  m_Curvature: {x: 2, y: 11}
-  m_BarrelClipping: 0.25
-  m_Anamorphism: 0
-  m_SensorSize: {x: 36, y: 24}
-  m_LensShift: {x: 0, y: 0}
-  m_NormalizedViewPortRect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 26
-  orthographic: 0
-  orthographic size: 5
-  m_Depth: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
-  m_TargetEye: 3
-  m_HDR: 1
-  m_AllowMSAA: 1
-  m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
-  m_OcclusionCulling: 1
-  m_StereoConvergence: 10
-  m_StereoSeparation: 0.022
---- !u!114 &1203788202
+--- !u!114 &353580306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203788200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6f3ec621379e54458f98fd0010a1bf6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.StageCamera
-  library: {fileID: 480162473}
-  desk: {fileID: 642294752}
-  deskPosition: {x: 0, y: 1.1, z: -3.1}
-  deskBox:
-    m_Center: {x: 0, y: 0.69, z: -0.2}
-    m_Extent: {x: 0.72, y: 0.73, z: 0.38}
-  soloPosition: {x: 0, y: 0.78, z: -3.4}
-  soloBox:
-    m_Center: {x: 0, y: 0.72, z: 0}
-    m_Extent: {x: 0.6, y: 0.73, z: 0.25}
-  tallDeskBox:
-    m_Center: {x: 0.03, y: 0.7, z: -0.2}
-    m_Extent: {x: 0.46, y: 0.75, z: 0.38}
-  tallSoloBox:
-    m_Center: {x: 0, y: 0.72, z: 0}
-    m_Extent: {x: 0.4, y: 0.73, z: 0.25}
-  margin: 0.03
-  punchHalfHeight: 0.34
-  punchFrequency: 3.2
-  punchDamping: 0.5
---- !u!81 &1203788203
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203788200}
-  m_Enabled: 1
---- !u!4 &1203788204
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203788200}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.009373765, y: 0, z: 0, w: 0.9999561}
-  m_LocalPosition: {x: 0, y: 0.68, z: -3.2}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1212862011
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1212862012}
-  - component: {fileID: 1212862016}
-  - component: {fileID: 1212862015}
-  - component: {fileID: 1212862014}
-  - component: {fileID: 1212862013}
-  m_Layer: 0
-  m_Name: Hot dog
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1212862012
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212862011}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 480162474}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1212862013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212862011}
+  m_GameObject: {fileID: 353580304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 5
+  kind: 9
   lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
   smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.1899016
+  topRadius: 0.30936497
   topHeight: 0.138
-  topLift: 0
+  topLift: 0.71599996
   bowl: {x: 0, y: 0, z: 0}
   shakeThreshold: 6
   idleEvery: {x: 20, y: 45}
---- !u!114 &1212862014
+--- !u!114 &353580307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212862011}
+  m_GameObject: {fileID: 353580304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Hot dog
-  mesh: {fileID: 4300000, guid: ed7e1f2c4442da34f860f2ab8a674232, type: 2}
+  displayName: Mouldy bread
+  mesh: {fileID: 4300000, guid: b0987e6ae31c6264bbf1f128488e46f1, type: 2}
   materials:
-  - {fileID: -5380272192918610089, guid: 6fb00e4b7f26cca42b1a31b0b04b7979, type: 3}
-  rootFraction: 0.06
-  headFraction: 0.3
-  tipFraction: 0.68
-  faceFraction: 0.42
-  faceSize: 0.6
+  - {fileID: 3263931781923126087, guid: 265c009e607683944b25c7a965980cbc, type: 3}
+  rootFraction: 0.05
+  headFraction: 0.36
+  tipFraction: 1
+  faceFraction: 0.46
+  faceSize: 0.8
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &1212862015
+--- !u!114 &353580308
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212862011}
+  m_GameObject: {fileID: 353580304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -3148,13 +821,13 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &1212862016
+--- !u!114 &353580309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212862011}
+  m_GameObject: {fileID: 353580304}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -3167,7 +840,140 @@ MonoBehaviour:
   rotationMinCutoff: 0.8
   rotationBeta: 1.5
   chainBones: 10
-  maxBendDegrees: 32
+  maxBendDegrees: 35
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 10
+  rollRadius: 0.39186227
+  rollFrequency: 2.2
+  rollDamping: 0.35
+  rollTurn: 0.7
+  rollJiggle: 0.25
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &381835656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 381835657}
+  - component: {fileID: 381835660}
+  - component: {fileID: 381835659}
+  - component: {fileID: 381835658}
+  m_Layer: 0
+  m_Name: Soda can
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &381835657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381835656}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &381835658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381835656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Soda can
+  mesh: {fileID: 4300000, guid: 66a4a7cb037d0ae47adbcf7bccc57266, type: 2}
+  materials:
+  - {fileID: 8311531874258022120, guid: adbd89ebed15b73429f456746aba51ea, type: 3}
+  rootFraction: 0.06
+  headFraction: 0.48
+  tipFraction: 1
+  faceFraction: 0.6
+  faceSize: 1
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &381835659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381835656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &381835660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 381835656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 35
   stretchAmount: 0.35
   headTurn: 1.1
   breathing: 0.012
@@ -3184,11 +990,11 @@ MonoBehaviour:
   stretchDamping: 0.3
   turnFrequency: 8
   turnDamping: 0.8
-  flopFrequency: 2.2
+  flopFrequency: 2
   flopDamping: 0.16
-  flopGravity: 0.6
+  flopGravity: 0.7
   flopDroop: 8
-  maxFlopDegrees: 80
+  maxFlopDegrees: 140
   flopBones: 6
   turnWhip: 1.6
   flopSideways: 0
@@ -3201,7 +1007,7 @@ MonoBehaviour:
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &1282097263
+--- !u!1 &408150013
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3209,11 +1015,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1282097264}
-  - component: {fileID: 1282097268}
-  - component: {fileID: 1282097267}
-  - component: {fileID: 1282097266}
-  - component: {fileID: 1282097265}
+  - component: {fileID: 408150014}
+  - component: {fileID: 408150018}
+  - component: {fileID: 408150017}
+  - component: {fileID: 408150016}
+  - component: {fileID: 408150015}
   m_Layer: 0
   m_Name: Trash can
   m_TagString: Untagged
@@ -3221,28 +1027,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1282097264
+--- !u!4 &408150014
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282097263}
+  m_GameObject: {fileID: 408150013}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 480162474}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1282097265
+--- !u!114 &408150015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282097263}
+  m_GameObject: {fileID: 408150013}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
@@ -3257,13 +1063,13 @@ MonoBehaviour:
   bowl: {x: 0, y: 0, z: 0}
   shakeThreshold: 6
   idleEvery: {x: 20, y: 45}
---- !u!114 &1282097266
+--- !u!114 &408150016
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282097263}
+  m_GameObject: {fileID: 408150013}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
@@ -3281,13 +1087,13 @@ MonoBehaviour:
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &1282097267
+--- !u!114 &408150017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282097263}
+  m_GameObject: {fileID: 408150013}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -3303,13 +1109,13 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &1282097268
+--- !u!114 &408150018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1282097263}
+  m_GameObject: {fileID: 408150013}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -3356,7 +1162,7 @@ MonoBehaviour:
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &1293396249
+--- !u!1 &639064221
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3364,8 +1170,561 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1293396251}
-  - component: {fileID: 1293396250}
+  - component: {fileID: 639064222}
+  - component: {fileID: 639064226}
+  - component: {fileID: 639064225}
+  - component: {fileID: 639064224}
+  - component: {fileID: 639064223}
+  m_Layer: 0
+  m_Name: Toilet
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &639064222
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639064221}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &639064223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639064221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 13
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.21153846
+  topHeight: 0.138
+  topLift: 0.49749997
+  bowl: {x: 0, y: 0.48299998, z: -0.18948483}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &639064224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639064221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Toilet
+  mesh: {fileID: 4300000, guid: a1c76e661db81004fb11764b6d66be6e, type: 2}
+  materials:
+  - {fileID: 3263931781923126087, guid: ae7426d141fd8c54b9ab5e72c92022bb, type: 3}
+  rootFraction: 0.05
+  headFraction: 0.55
+  tipFraction: 1
+  faceFraction: 0.68
+  faceSize: 0.75
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &639064225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639064221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &639064226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639064221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 35
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 7
+  rollRadius: 0.26794872
+  rollFrequency: 2.2
+  rollDamping: 0.5
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &653958698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 653958703}
+  - component: {fileID: 653958699}
+  - component: {fileID: 653958702}
+  - component: {fileID: 653958701}
+  - component: {fileID: 653958700}
+  m_Layer: 0
+  m_Name: Jello
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &653958699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653958698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 35
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 9
+  rollRadius: 0.31704408
+  rollFrequency: 2.8
+  rollDamping: 0.3
+  rollTurn: 0.7
+  rollJiggle: 0.5
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!114 &653958700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653958698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 7
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.25029796
+  topHeight: 0.138
+  topLift: 0.67
+  bowl: {x: 0, y: 0, z: 0}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &653958701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653958698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Jello
+  mesh: {fileID: 4300000, guid: 65f1d8b6c90e1ff438d9395b20c51529, type: 2}
+  materials:
+  - {fileID: 3263931781923126087, guid: 195b12a08c1b5554dbbdf81c28720df7, type: 3}
+  rootFraction: 0.04
+  headFraction: 0.4
+  tipFraction: 1
+  faceFraction: 0.42
+  faceSize: 0.85
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &653958702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653958698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!4 &653958703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653958698}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &805118766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 805118767}
+  - component: {fileID: 805118771}
+  - component: {fileID: 805118770}
+  - component: {fileID: 805118769}
+  - component: {fileID: 805118768}
+  m_Layer: 0
+  m_Name: Egg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &805118767
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805118766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &805118768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805118766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 0
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.32659286
+  topHeight: 0.138
+  topLift: 0.7275
+  bowl: {x: 0, y: 0, z: 0}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &805118769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805118766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Egg
+  mesh: {fileID: 4300000, guid: bd1f8660b8dc6544fae36d475a2218f6, type: 2}
+  materials:
+  - {fileID: 7306152029072331619, guid: 7b4ae4f1b65366e47873726ad2085354, type: 3}
+  rootFraction: 0.12
+  headFraction: 0.35
+  tipFraction: 1
+  faceFraction: 0.5
+  faceSize: 0.75
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &805118770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805118766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &805118771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805118766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 35
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 26
+  rollRadius: 0.41368428
+  rollFrequency: 2.2
+  rollDamping: 0.25
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &849566918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849566920}
+  - component: {fileID: 849566919}
+  m_Layer: 0
+  m_Name: Avatars
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &849566919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849566918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a75318094c62db54c9ec7ae97f9c958d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.AvatarLibrary
+  avatars:
+  - {fileID: 1838985060}
+  - {fileID: 1456104958}
+  - {fileID: 283689118}
+  - {fileID: 381835660}
+  - {fileID: 151412083}
+  - {fileID: 805118771}
+  - {fileID: 408150018}
+  - {fileID: 1731137165}
+  - {fileID: 1764355743}
+  - {fileID: 1399627460}
+  - {fileID: 1383448291}
+  - {fileID: 971439558}
+  - {fileID: 894563795}
+  - {fileID: 1204345378}
+  - {fileID: 165430436}
+  - {fileID: 353580309}
+  - {fileID: 353172715}
+  - {fileID: 1735734769}
+  - {fileID: 639064226}
+  - {fileID: 2063551496}
+  - {fileID: 653958699}
+  source: {fileID: 1849906022}
+--- !u!4 &849566920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849566918}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1838985057}
+  - {fileID: 1456104955}
+  - {fileID: 283689115}
+  - {fileID: 381835657}
+  - {fileID: 151412079}
+  - {fileID: 805118767}
+  - {fileID: 408150014}
+  - {fileID: 1731137161}
+  - {fileID: 1764355738}
+  - {fileID: 1399627456}
+  - {fileID: 1383448287}
+  - {fileID: 971439554}
+  - {fileID: 894563791}
+  - {fileID: 1204345374}
+  - {fileID: 165430432}
+  - {fileID: 353580305}
+  - {fileID: 353172711}
+  - {fileID: 1735734765}
+  - {fileID: 639064222}
+  - {fileID: 2063551492}
+  - {fileID: 653958703}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &865419715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865419717}
+  - component: {fileID: 865419716}
   m_Layer: 0
   m_Name: Rim Light
   m_TagString: Untagged
@@ -3373,13 +1732,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!108 &1293396250
+--- !u!108 &865419716
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293396249}
+  m_GameObject: {fileID: 865419715}
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 1
@@ -3438,13 +1797,13 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
---- !u!4 &1293396251
+--- !u!4 &865419717
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1293396249}
+  m_GameObject: {fileID: 865419715}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0301537, y: 0.9698463, z: -0.17101008, w: 0.17101012}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -3453,7 +1812,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1495849756
+--- !u!1 &894563790
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3461,11 +1820,166 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1495849757}
-  - component: {fileID: 1495849761}
-  - component: {fileID: 1495849760}
-  - component: {fileID: 1495849759}
-  - component: {fileID: 1495849758}
+  - component: {fileID: 894563791}
+  - component: {fileID: 894563795}
+  - component: {fileID: 894563794}
+  - component: {fileID: 894563793}
+  - component: {fileID: 894563792}
+  m_Layer: 0
+  m_Name: Hot dog
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &894563791
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894563790}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &894563792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894563790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 5
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.1899016
+  topHeight: 0.138
+  topLift: 0
+  bowl: {x: 0, y: 0, z: 0}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &894563793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894563790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Hot dog
+  mesh: {fileID: 4300000, guid: ed7e1f2c4442da34f860f2ab8a674232, type: 2}
+  materials:
+  - {fileID: -5380272192918610089, guid: 6fb00e4b7f26cca42b1a31b0b04b7979, type: 3}
+  rootFraction: 0.06
+  headFraction: 0.3
+  tipFraction: 0.68
+  faceFraction: 0.42
+  faceSize: 0.6
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &894563794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894563790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &894563795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894563790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 32
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0.012
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2.2
+  flopDamping: 0.16
+  flopGravity: 0.6
+  flopDroop: 8
+  maxFlopDegrees: 80
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 0
+  rollRadius: 0.2
+  rollFrequency: 2.2
+  rollDamping: 0.25
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &971439553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 971439554}
+  - component: {fileID: 971439558}
+  - component: {fileID: 971439557}
+  - component: {fileID: 971439556}
+  - component: {fileID: 971439555}
   m_Layer: 0
   m_Name: Cherry cupcake
   m_TagString: Untagged
@@ -3473,28 +1987,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1495849757
+--- !u!4 &971439554
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495849756}
+  m_GameObject: {fileID: 971439553}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 480162474}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1495849758
+--- !u!114 &971439555
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495849756}
+  m_GameObject: {fileID: 971439553}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bdb63b12d169de46b1845d9bc0338e3, type: 3}
@@ -3506,13 +2020,13 @@ MonoBehaviour:
   perShake: 5
   topRadius: 0.2655806
   topHeight: 0.1725
---- !u!114 &1495849759
+--- !u!114 &971439556
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495849756}
+  m_GameObject: {fileID: 971439553}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
@@ -3530,13 +2044,13 @@ MonoBehaviour:
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &1495849760
+--- !u!114 &971439557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495849756}
+  m_GameObject: {fileID: 971439553}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -3552,13 +2066,13 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &1495849761
+--- !u!114 &971439558
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1495849756}
+  m_GameObject: {fileID: 971439553}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -3605,7 +2119,7 @@ MonoBehaviour:
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &1664841482
+--- !u!1 &978064192
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3613,85 +2127,520 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1664841483}
-  - component: {fileID: 1664841487}
-  - component: {fileID: 1664841486}
-  - component: {fileID: 1664841485}
-  - component: {fileID: 1664841484}
+  - component: {fileID: 978064196}
+  - component: {fileID: 978064195}
+  - component: {fileID: 978064194}
+  - component: {fileID: 978064193}
   m_Layer: 0
-  m_Name: Egg
+  m_Name: Desk Scene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1664841483
+--- !u!114 &978064193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978064192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6346a74202de0c44daa2bc95a9cd3600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DeskDebris
+  desk: {fileID: 978064194}
+  library: {fileID: 849566919}
+  sprinkleMaterials:
+  - {fileID: 2100000, guid: 848545d0151cfcd428fbc7ebe69f9560, type: 2}
+  - {fileID: 2100000, guid: a4fe1bd5049b697429dc329bd9c823dd, type: 2}
+  - {fileID: 2100000, guid: 80ba50f93dfd2e84ea45cfd6eb4d0aa1, type: 2}
+  - {fileID: 2100000, guid: 25d6cd27bee168040b38915d3863e32a, type: 2}
+  - {fileID: 2100000, guid: 644a4fec893804c4988667e3e8daaacf, type: 2}
+  - {fileID: 2100000, guid: 7564160dd904f9747811193fd25cded2, type: 2}
+  maxSprinkles: 6000
+  sprinkleSize: {x: 0.008, y: 0.012, z: 0.008}
+  gravity: 14
+--- !u!114 &978064194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978064192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872ca17ca8fc7fa42844f373e3482e81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DeskScene
+  wood: {fileID: 2100000, guid: 4f9015652c7d43d499f25ec11e5fd512, type: 2}
+  keyboardBody: {fileID: 2100000, guid: dae2d501ee071ff43a66f4864cb6c39f, type: 2}
+  keycaps: {fileID: 2100000, guid: b462e0377870bea429383c0c6686b25b, type: 2}
+  pad: {fileID: 2100000, guid: 409b328a568e445409ee209e63185457, type: 2}
+  mouseBody: {fileID: 2100000, guid: 9f1f92b1adef13f4796396f035661b72, type: 2}
+  hands: {fileID: 2100000, guid: bd403f79b80eca34a8a5b2c905995eaf, type: 2}
+  mouseScale: 0.00022
+--- !u!114 &978064195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 978064192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5ae01dd8b023494dab84cd372685984, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DeskInput
+  simulate: 0
+--- !u!4 &978064196
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664841482}
+  m_GameObject: {fileID: 978064192}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 480162474}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1664841484
+--- !u!1 &1068254458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068254460}
+  - component: {fileID: 1068254459}
+  m_Layer: 0
+  m_Name: Mess
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1068254459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664841482}
+  m_GameObject: {fileID: 1068254458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e99f52471c1d37b43b815d051a222409, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.Mess
+  desk: {fileID: 978064194}
+  stainMaterial: {fileID: 2100000, guid: e003b343471713b4fbaa9fe59e6e7f16, type: 2}
+  blobMaterial: {fileID: 2100000, guid: 2a6b1f1f9395af94b8247bbbf2810e82, type: 2}
+  maxStains: 500
+  gravity: 14
+  flingShake: 5
+--- !u!4 &1068254460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068254458}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1098163819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1098163823}
+  - component: {fileID: 1098163820}
+  - component: {fileID: 1098163822}
+  - component: {fileID: 1098163821}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!20 &1098163820
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098163819}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.1, g: 0.07, b: 0.16, a: 1}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_Iso: 200
+  m_ShutterSpeed: 0.005
+  m_Aperture: 16
+  m_FocusDistance: 10
+  m_FocalLength: 50
+  m_BladeCount: 5
+  m_Curvature: {x: 2, y: 11}
+  m_BarrelClipping: 0.25
+  m_Anamorphism: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 26
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!114 &1098163821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098163819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6f3ec621379e54458f98fd0010a1bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.StageCamera
+  library: {fileID: 849566919}
+  desk: {fileID: 978064194}
+  deskPosition: {x: 0, y: 1.1, z: -3.1}
+  deskBox:
+    m_Center: {x: 0, y: 0.69, z: -0.2}
+    m_Extent: {x: 0.72, y: 0.73, z: 0.38}
+  soloPosition: {x: 0, y: 0.78, z: -3.4}
+  soloBox:
+    m_Center: {x: 0, y: 0.72, z: 0}
+    m_Extent: {x: 0.6, y: 0.73, z: 0.25}
+  tallDeskBox:
+    m_Center: {x: 0.03, y: 0.7, z: -0.2}
+    m_Extent: {x: 0.46, y: 0.75, z: 0.38}
+  tallSoloBox:
+    m_Center: {x: 0, y: 0.72, z: 0}
+    m_Extent: {x: 0.4, y: 0.73, z: 0.25}
+  margin: 0.03
+  punchHalfHeight: 0.34
+  punchFrequency: 3.2
+  punchDamping: 0.5
+--- !u!81 &1098163822
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098163819}
+  m_Enabled: 1
+--- !u!4 &1098163823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1098163819}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.009373765, y: 0, z: 0, w: 0.9999561}
+  m_LocalPosition: {x: 0, y: 0.68, z: -3.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1160811113
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1160811120}
+  - component: {fileID: 1160811119}
+  - component: {fileID: 1160811118}
+  - component: {fileID: 1160811117}
+  - component: {fileID: 1160811116}
+  - component: {fileID: 1160811115}
+  - component: {fileID: 1160811114}
+  m_Layer: 0
+  m_Name: HUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1160811114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160811113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883a5b4dcbc1bb44488563cee52b0375, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.RemoteControl
+  library: {fileID: 849566919}
+  webcam: {fileID: 1849906022}
+  hud: {fileID: 1160811119}
+  desk: {fileID: 978064194}
+  debris: {fileID: 978064193}
+  chaos: {fileID: 1771480387}
+  panel: {fileID: 1160811115}
+  port: 8642
+--- !u!114 &1160811115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160811113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b88f1c7a9484f4499cd2373196907d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.ControlPanel
+  library: {fileID: 849566919}
+  webcam: {fileID: 1849906022}
+  hud: {fileID: 1160811119}
+  desk: {fileID: 978064194}
+  debris: {fileID: 978064193}
+  chaos: {fileID: 1771480387}
+  diagnostics: {fileID: 1160811118}
+--- !u!114 &1160811116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160811113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd17d89c9ef38314b92f4c629482342b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.SelfTest
+  library: {fileID: 849566919}
+  scripted: {fileID: 1849906024}
+  synthetic: {fileID: 1849906023}
+  chaos: {fileID: 1771480387}
+  hud: {fileID: 1160811119}
+  desk: {fileID: 978064194}
+--- !u!114 &1160811117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160811113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5868b62b373351547b192e20142bff2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.Backdrop
+  cam: {fileID: 1098163820}
+  material: {fileID: 2100000, guid: f8a29c2b0489a2143831e7b8e2f30588, type: 2}
+  pictures:
+  - {fileID: 2800000, guid: 42ab96d2fd0e55a4ab3e53629ea3a578, type: 3}
+  - {fileID: 2800000, guid: cded7c5291a109248a7085bb8e6e9fbd, type: 3}
+  - {fileID: 2800000, guid: f8088b846d6c7e348919149673fd4152, type: 3}
+  - {fileID: 2800000, guid: 96574e989c09e2f47b2cb7f0afff29dd, type: 3}
+  - {fileID: 2800000, guid: f4b14faf14bd1b5408ab6f4eba36a273, type: 3}
+  - {fileID: 2800000, guid: 3de93a69b84678f488bc87b85e2e6126, type: 3}
+  - {fileID: 2800000, guid: 7f7857da1cea9914793a27c5cf31f891, type: 3}
+  - {fileID: 2800000, guid: 7cf7854bf3e915b4d8c9dccbf9d7ce7b, type: 3}
+  tallPictures:
+  - {fileID: 2800000, guid: 5a873ed0fd39ee944952bd4a3e4fceeb, type: 3}
+  - {fileID: 2800000, guid: 8e2dcc7d9fef7dd4ca1de67d3ea8dfa7, type: 3}
+  - {fileID: 2800000, guid: 8142582e4562d2e43a818f3df5ed4b82, type: 3}
+  - {fileID: 2800000, guid: 232c5b0b9b8f51c449285f50728c46ee, type: 3}
+  - {fileID: 2800000, guid: 43287b628911319499f68021ea6ef01c, type: 3}
+  - {fileID: 2800000, guid: ede6487d6baac97448caccd93968318d, type: 3}
+  - {fileID: 2800000, guid: 6aea716daf17b5d4ab7580d5a4a25335, type: 3}
+  - {fileID: 2800000, guid: 86abd303f76c7404fa726287948ec830, type: 3}
+  names:
+  - Vacuum sales floor
+  - Airport gate
+  - Construction site
+  - Laundromat
+  - Dentist's waiting room
+  - Bowling alley
+  - Castle throne room
+  - DMV waiting room
+  tint: {r: 0.88, g: 0.88, b: 0.88, a: 1}
+  distance: 30
+--- !u!114 &1160811118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160811113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b34e584408fde4e87354252ecf17f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.Diagnostics
+  library: {fileID: 849566919}
+--- !u!114 &1160811119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160811113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16df1acfb3371aa4fbe808a58ee49cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.PerfHud
+  library: {fileID: 849566919}
+  desk: {fileID: 978064194}
+  diagnostics: {fileID: 1160811118}
+  webcam: {fileID: 1849906022}
+  mouse: {fileID: 1849906025}
+  cam: {fileID: 1098163820}
+  backdrop: {fileID: 1160811117}
+  background: {r: 0.1, g: 0.07, b: 0.16, a: 1}
+--- !u!4 &1160811120
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160811113}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1204345373
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1204345374}
+  - component: {fileID: 1204345378}
+  - component: {fileID: 1204345377}
+  - component: {fileID: 1204345376}
+  - component: {fileID: 1204345375}
+  m_Layer: 0
+  m_Name: Popcorn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1204345374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204345373}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1204345375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204345373}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 0
+  kind: 6
   lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
   smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.32659286
+  topRadius: 0.31952536
   topHeight: 0.138
-  topLift: 0.7275
+  topLift: 0.73899996
   bowl: {x: 0, y: 0, z: 0}
   shakeThreshold: 6
   idleEvery: {x: 20, y: 45}
---- !u!114 &1664841485
+--- !u!114 &1204345376
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664841482}
+  m_GameObject: {fileID: 1204345373}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Egg
-  mesh: {fileID: 4300000, guid: bd1f8660b8dc6544fae36d475a2218f6, type: 2}
+  displayName: Popcorn
+  mesh: {fileID: 4300000, guid: ae0060f1e9b0eea409b920c34433d844, type: 2}
   materials:
-  - {fileID: 7306152029072331619, guid: 7b4ae4f1b65366e47873726ad2085354, type: 3}
-  rootFraction: 0.12
-  headFraction: 0.35
+  - {fileID: 3263931781923126087, guid: 016b8bd4ceadd4b41bbedaa3cb3ac10a, type: 3}
+  rootFraction: 0.06
+  headFraction: 0.34
   tipFraction: 1
-  faceFraction: 0.5
-  faceSize: 0.75
+  faceFraction: 0.4
+  faceSize: 0.8
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &1664841486
+--- !u!114 &1204345377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664841482}
+  m_GameObject: {fileID: 1204345373}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -3707,13 +2656,13 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &1664841487
+--- !u!114 &1204345378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664841482}
+  m_GameObject: {fileID: 1204345373}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -3752,15 +2701,15 @@ MonoBehaviour:
   turnWhip: 1.6
   flopSideways: 0
   slamDegrees: 86
-  rollDegrees: 26
-  rollRadius: 0.41368428
-  rollFrequency: 2.2
-  rollDamping: 0.25
+  rollDegrees: 8
+  rollRadius: 0.40473214
+  rollFrequency: 2.5
+  rollDamping: 0.5
   rollTurn: 0.7
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &1748778540
+--- !u!1 &1383448286
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3768,61 +2717,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1748778542}
-  - component: {fileID: 1748778541}
-  m_Layer: 0
-  m_Name: Mess
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1748778541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748778540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99f52471c1d37b43b815d051a222409, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.Mess
-  desk: {fileID: 642294752}
-  stainMaterial: {fileID: 2100000, guid: e003b343471713b4fbaa9fe59e6e7f16, type: 2}
-  blobMaterial: {fileID: 2100000, guid: 2a6b1f1f9395af94b8247bbbf2810e82, type: 2}
-  maxStains: 500
-  gravity: 14
-  flingShake: 5
---- !u!4 &1748778542
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1748778540}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2004100777
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2004100778}
-  - component: {fileID: 2004100782}
-  - component: {fileID: 2004100781}
-  - component: {fileID: 2004100780}
-  - component: {fileID: 2004100779}
+  - component: {fileID: 1383448287}
+  - component: {fileID: 1383448291}
+  - component: {fileID: 1383448290}
+  - component: {fileID: 1383448289}
+  - component: {fileID: 1383448288}
   m_Layer: 0
   m_Name: Spaghetti
   m_TagString: Untagged
@@ -3830,28 +2729,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2004100778
+--- !u!4 &1383448287
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004100777}
+  m_GameObject: {fileID: 1383448286}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 480162474}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2004100779
+--- !u!114 &1383448288
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004100777}
+  m_GameObject: {fileID: 1383448286}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
@@ -3866,13 +2765,13 @@ MonoBehaviour:
   bowl: {x: 0, y: 0, z: 0}
   shakeThreshold: 6
   idleEvery: {x: 20, y: 45}
---- !u!114 &2004100780
+--- !u!114 &1383448289
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004100777}
+  m_GameObject: {fileID: 1383448286}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
@@ -3890,13 +2789,13 @@ MonoBehaviour:
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &2004100781
+--- !u!114 &1383448290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004100777}
+  m_GameObject: {fileID: 1383448286}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -3912,13 +2811,13 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &2004100782
+--- !u!114 &1383448291
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2004100777}
+  m_GameObject: {fileID: 1383448286}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -3965,7 +2864,7 @@ MonoBehaviour:
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &2051897297
+--- !u!1 &1399627455
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3973,85 +2872,85 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2051897298}
-  - component: {fileID: 2051897302}
-  - component: {fileID: 2051897301}
-  - component: {fileID: 2051897300}
-  - component: {fileID: 2051897299}
+  - component: {fileID: 1399627456}
+  - component: {fileID: 1399627460}
+  - component: {fileID: 1399627459}
+  - component: {fileID: 1399627458}
+  - component: {fileID: 1399627457}
   m_Layer: 0
-  m_Name: Mouldy bread
+  m_Name: Meatball sub
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2051897298
+--- !u!4 &1399627456
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051897297}
+  m_GameObject: {fileID: 1399627455}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 480162474}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2051897299
+--- !u!114 &1399627457
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051897297}
+  m_GameObject: {fileID: 1399627455}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
-  kind: 9
+  kind: 3
   lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
   smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
-  topRadius: 0.30936497
+  topRadius: 0.2253445
   topHeight: 0.138
-  topLift: 0.71599996
+  topLift: 0.647
   bowl: {x: 0, y: 0, z: 0}
   shakeThreshold: 6
   idleEvery: {x: 20, y: 45}
---- !u!114 &2051897300
+--- !u!114 &1399627458
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051897297}
+  m_GameObject: {fileID: 1399627455}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Mouldy bread
-  mesh: {fileID: 4300000, guid: b0987e6ae31c6264bbf1f128488e46f1, type: 2}
+  displayName: Meatball sub
+  mesh: {fileID: 4300000, guid: 45cceafa28d84cf45a29f0c4f960585d, type: 2}
   materials:
-  - {fileID: 3263931781923126087, guid: 265c009e607683944b25c7a965980cbc, type: 3}
-  rootFraction: 0.05
-  headFraction: 0.36
+  - {fileID: 1006818598304017056, guid: 98fa37c8b200ade4285ca408816a629d, type: 3}
+  rootFraction: 0.08
+  headFraction: 0.42
   tipFraction: 1
-  faceFraction: 0.46
-  faceSize: 0.8
+  faceFraction: 0.62
+  faceSize: 0.75
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &2051897301
+--- !u!114 &1399627459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051897297}
+  m_GameObject: {fileID: 1399627455}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -4067,13 +2966,456 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &2051897302
+--- !u!114 &1399627460
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051897297}
+  m_GameObject: {fileID: 1399627455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 18
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0.012
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 0
+  rollRadius: 0.2
+  rollFrequency: 2.2
+  rollDamping: 0.25
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &1456104954
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1456104955}
+  - component: {fileID: 1456104958}
+  - component: {fileID: 1456104957}
+  - component: {fileID: 1456104956}
+  m_Layer: 0
+  m_Name: T-bone steak
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1456104955
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456104954}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1456104956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456104954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: T-bone steak
+  mesh: {fileID: 4300000, guid: 2ad38ac7c4c18d54aaf8c4ac9d289905, type: 2}
+  materials:
+  - {fileID: 1052137864446956414, guid: 5362a75a1f352634485ca2175124dc78, type: 3}
+  rootFraction: 0.1
+  headFraction: 0.46
+  tipFraction: 1
+  faceFraction: 0.6
+  faceSize: 1
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &1456104957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456104954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &1456104958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1456104954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 35
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0.012
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 0
+  rollRadius: 0.2
+  rollFrequency: 2.2
+  rollDamping: 0.25
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &1731137160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1731137161}
+  - component: {fileID: 1731137165}
+  - component: {fileID: 1731137164}
+  - component: {fileID: 1731137163}
+  - component: {fileID: 1731137162}
+  m_Layer: 0
+  m_Name: Juice cup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1731137161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731137160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1731137162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731137160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 2
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.2337676
+  topHeight: 0.138
+  topLift: 0
+  bowl: {x: 0, y: 0, z: 0}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &1731137163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731137160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Juice cup
+  mesh: {fileID: 4300000, guid: b5172d473e3121a4d81318958f4a3115, type: 2}
+  materials:
+  - {fileID: -2574193789087918247, guid: 7e9b56d831d33e641809e13e9f25e525, type: 3}
+  rootFraction: 0.08
+  headFraction: 0.33
+  tipFraction: 0.74
+  faceFraction: 0.45
+  faceSize: 0.75
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &1731137164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731137160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &1731137165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1731137160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 30
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0.012
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2.5
+  flopDamping: 0.16
+  flopGravity: 0.4
+  flopDroop: 8
+  maxFlopDegrees: 50
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 0
+  rollRadius: 0.2
+  rollFrequency: 2.2
+  rollDamping: 0.25
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &1735734764
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1735734765}
+  - component: {fileID: 1735734769}
+  - component: {fileID: 1735734768}
+  - component: {fileID: 1735734767}
+  - component: {fileID: 1735734766}
+  m_Layer: 0
+  m_Name: Ketchup
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1735734765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735734764}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1735734766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735734764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 11
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.16989672
+  topHeight: 0.138
+  topLift: 0.73899996
+  bowl: {x: 0, y: 0, z: 0}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &1735734767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735734764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Ketchup
+  mesh: {fileID: 4300000, guid: 5caf97b4d8083dd49bbe2ea565a22fcc, type: 2}
+  materials:
+  - {fileID: 3263931781923126087, guid: 3918fe48c92f87a4b8026f4c73ba2e42, type: 3}
+  rootFraction: 0.05
+  headFraction: 0.34
+  tipFraction: 1
+  faceFraction: 0.44
+  faceSize: 0.8
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &1735734768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735734764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &1735734769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1735734764}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -4112,15 +3454,15 @@ MonoBehaviour:
   turnWhip: 1.6
   flopSideways: 0
   slamDegrees: 86
-  rollDegrees: 10
-  rollRadius: 0.39186227
+  rollDegrees: 12
+  rollRadius: 0.21520251
   rollFrequency: 2.2
   rollDamping: 0.35
   rollTurn: 0.7
-  rollJiggle: 0.25
+  rollJiggle: 0.45
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
---- !u!1 &2064348200
+--- !u!1 &1763279586
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4128,87 +3470,204 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2064348201}
-  - component: {fileID: 2064348205}
-  - component: {fileID: 2064348204}
-  - component: {fileID: 2064348203}
-  - component: {fileID: 2064348202}
+  - component: {fileID: 1763279588}
+  - component: {fileID: 1763279587}
   m_Layer: 0
-  m_Name: Pizza slice
+  m_Name: Key Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2064348201
+--- !u!108 &1763279587
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1763279586}
+  m_Enabled: 1
+  serializedVersion: 13
+  m_Type: 1
+  m_Color: {r: 1, g: 0.96, b: 0.9, a: 1}
+  m_Intensity: 1.05
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize2D: {x: 0.5, y: 0.5}
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 0.75
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ForceVisible: 0
+  m_ShapeRadius: 0.025
+  m_ShadowAngle: 0
+  m_LightUnit: 1
+  m_LuxAtDistance: 1
+  m_EnableSpotReflector: 1
+--- !u!4 &1763279588
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064348200}
+  m_GameObject: {fileID: 1763279586}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.32619038, y: -0.28257105, z: 0.102847435, w: 0.89620084}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1764355737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1764355738}
+  - component: {fileID: 1764355743}
+  - component: {fileID: 1764355742}
+  - component: {fileID: 1764355741}
+  - component: {fileID: 1764355740}
+  - component: {fileID: 1764355739}
+  m_Layer: 0
+  m_Name: Vacuum
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1764355738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764355737}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 480162474}
+  m_Father: {fileID: 849566920}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2064348202
+--- !u!114 &1764355739
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064348200}
+  m_GameObject: {fileID: 1764355737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77c9357f01a3b64faf9344a85629205, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f0cfae6401bb2044a8862794298e6aa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Muffin.Toppings
-  pepperoni: {fileID: 2100000, guid: f498d4475fdfc834393ad32703007e0b, type: 2}
-  spots:
-  - {x: -0.45, y: 0.18}
-  - {x: 0.5, y: 0.2}
-  - {x: -0.35, y: 0.64}
-  - {x: 0.3, y: 0.7}
-  - {x: 0, y: 0.82}
-  diameter: 0.11
-  thickness: 0.008
-  shakeToFall: 14
-  fallsEvery: {x: 18, y: 45}
---- !u!114 &2064348203
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.VacuumHose
+  hoseMaterial: {fileID: 2100000, guid: be6df87f2601f4248b227858b58dd6f2, type: 2}
+  nozzleMaterial: {fileID: 2100000, guid: 31f5705acb825f44e85e6dd9acd9a5ff, type: 2}
+  socketHeight: 0.749
+  length: 1.4
+  radius: 0.032
+  points: 28
+  gravity: 9.8
+  huntSpeed: 0.4
+  idleAfter: 3
+--- !u!114 &1764355740
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064348200}
+  m_GameObject: {fileID: 1764355737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 4
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.16121039
+  topHeight: 0.138
+  topLift: 0.854
+  bowl: {x: 0, y: 0, z: 0}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &1764355741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764355737}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
-  displayName: Pizza slice
-  mesh: {fileID: 4300000, guid: e348ce9f99359ed4ca6b71f979fb27c1, type: 2}
+  displayName: Vacuum
+  mesh: {fileID: 4300000, guid: 51bfcdebd97591f4c8b7fea21f8d1e10, type: 2}
   materials:
-  - {fileID: 1683190339834838179, guid: b79c32f3017eaee4d9dc4d2425716755, type: 3}
-  rootFraction: 0.1
-  headFraction: 0.38
-  tipFraction: 0.6
-  faceFraction: 0.42
-  faceSize: 0.9
+  - {fileID: 1149906460245554295, guid: 55e8f3035401f3a4cb8db70d99eac2aa, type: 3}
+  rootFraction: 0.08
+  headFraction: 0.24
+  tipFraction: 1
+  faceFraction: 0.36
+  faceSize: 0.8
   faceHasMouth: 1
   faceGap: 0.004
   faceShiftX: 0
---- !u!114 &2064348204
+--- !u!114 &1764355742
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064348200}
+  m_GameObject: {fileID: 1764355737}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
@@ -4224,13 +3683,13 @@ MonoBehaviour:
   realEyeWidth: 0.09
   realMouthWidth: 0.12
   surfaceGap: 0.006
---- !u!114 &2064348205
+--- !u!114 &1764355743
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2064348200}
+  m_GameObject: {fileID: 1764355737}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
@@ -4277,16 +3736,578 @@ MonoBehaviour:
   rollJiggle: 0
   jiggleFrequency: 3.5
   jiggleDamping: 0.12
+--- !u!1 &1771480386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1771480389}
+  - component: {fileID: 1771480387}
+  - component: {fileID: 1771480388}
+  m_Layer: 0
+  m_Name: Chaos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1771480387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771480386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46daeb755b1240b43920035ee44b2fd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.ChaosDirector
+  library: {fileID: 849566919}
+  desk: {fileID: 978064194}
+  debris: {fileID: 978064193}
+  mess: {fileID: 1068254459}
+  hud: {fileID: 1160811119}
+  cam: {fileID: 1098163820}
+  flame: {fileID: 2100000, guid: 2245c857e0bbb4a40a92b3636109b2e1, type: 2}
+  flameYellow: {fileID: 2100000, guid: 76d80394260ffa640938ae64d0ca62ac, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  bubble: {fileID: 2100000, guid: 716d835283261b1419b0dbb59d1c362e, type: 2}
+  rain: {fileID: 2100000, guid: c164ca8a6f667334fb2d2e0fc1b8c8b2, type: 2}
+  glass: {fileID: 2100000, guid: e793c8bc62802934cb332b09cc90320b, type: 2}
+  water: {fileID: 2100000, guid: 459eef45b42f3044e9aa48d3e7ab7c77, type: 2}
+  pieTin: {fileID: 2100000, guid: 57ee16ee2fe867142ba0ef33603cc2e4, type: 2}
+  cream: {fileID: 2100000, guid: d85d0dd203d5cfd4fa7d3c4f4b2e1c37, type: 2}
+  tomato: {fileID: 2100000, guid: 278b13097bae9fd4590c29d25a0f2672, type: 2}
+  leaf: {fileID: 2100000, guid: 1143d1fdeb09e5c42951b547b8ac188a, type: 2}
+  slime: {fileID: 2100000, guid: 2729013ec20a026499ee9532a0f647fa, type: 2}
+  canBody: {fileID: 2100000, guid: a0e3727e803e16e4187510666618a280, type: 2}
+  scorch: {fileID: 0}
+  chaosOn: 1
+  gap: 5
+  perViewer: 30
+  showCaptions: 1
+  maxAtOnce: 3
+  channel: 
+--- !u!114 &1771480388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771480386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0aed12736b82c99429e9bff4d6210940, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.SoundBank
+  clips:
+  - {fileID: 8300000, guid: 7c08fecbd3b11c040a505a0271129baf, type: 3}
+  - {fileID: 8300000, guid: 1092b17d2727ac2478c2a950b1a258af, type: 3}
+  - {fileID: 8300000, guid: 50d268814e571b34ab8530a29b82d6af, type: 3}
+  - {fileID: 8300000, guid: dc98d9e6c962eb948bae2d2ec4ad5b5c, type: 3}
+  - {fileID: 8300000, guid: 0de1eea0081646949b530a973fb50b06, type: 3}
+  - {fileID: 8300000, guid: 389767f8a073f6a4c834f0d210787946, type: 3}
+  - {fileID: 8300000, guid: b9039e0ab5506bc478288934ddf302e3, type: 3}
+  - {fileID: 8300000, guid: 4b69a1595f6793c459132284c747d315, type: 3}
+  - {fileID: 8300000, guid: a76696d385954f84fb3158dedd29f3e6, type: 3}
+  - {fileID: 8300000, guid: 2400592f51b49124aa24db801a0810e7, type: 3}
+  - {fileID: 8300000, guid: c94fc6315675bba45a04e90104a6e804, type: 3}
+  - {fileID: 8300000, guid: eade34e6e3c399f4b8051d27e7f76d76, type: 3}
+  - {fileID: 8300000, guid: 908d89d4a9693c449b9f5bbd64cf65dc, type: 3}
+  - {fileID: 8300000, guid: f698691ccdcf76041b56ad7a7aaa8113, type: 3}
+  - {fileID: 8300000, guid: e5ae8736898636846a644cae996a552f, type: 3}
+  - {fileID: 8300000, guid: 0ed75d496ec70204894e9037e77f6fb8, type: 3}
+  - {fileID: 8300000, guid: 3ebb20b02bfef1b4daaadb6dccfc1eb7, type: 3}
+  - {fileID: 8300000, guid: 996325b3bd1e9bf45b42b6afb9eabcdb, type: 3}
+  - {fileID: 8300000, guid: e4d056b6726fc4f49ac3b1438da9d516, type: 3}
+  - {fileID: 8300000, guid: dbc7843678c08ce4890a127e4ec38d37, type: 3}
+  - {fileID: 8300000, guid: 0ba88e1d54839cc44bc682f629fd6cac, type: 3}
+  - {fileID: 8300000, guid: 92957eceed7902e48acc7c1150f6eaaf, type: 3}
+  - {fileID: 8300000, guid: b85d46733e41dab4d86fcdb74d9d38d2, type: 3}
+  - {fileID: 8300000, guid: 1b3fce6d4afe20646a420b0b034a9e24, type: 3}
+  - {fileID: 8300000, guid: 7e751560115bef94b9a01d5e78c14ce7, type: 3}
+  - {fileID: 8300000, guid: de791caff36182046b8164ae045ee2a2, type: 3}
+  - {fileID: 8300000, guid: c3fc8ab8b48fec644bbb4eb6f37ad3c2, type: 3}
+  - {fileID: 8300000, guid: 2b10094a2a175ab4580de453d2da1029, type: 3}
+  - {fileID: 8300000, guid: 4d2d125f9d36b394fa6d4e4c0591cca0, type: 3}
+  - {fileID: 8300000, guid: 0ab12220eec02b242bae1e092af27446, type: 3}
+  - {fileID: 8300000, guid: 93fefa79548087e44b4a7f4eebf1f891, type: 3}
+  - {fileID: 8300000, guid: 254b829ea3b67d44380fb44bada789ec, type: 3}
+  - {fileID: 8300000, guid: a02b3dda99144a14482a7911835fe621, type: 3}
+  - {fileID: 8300000, guid: 1ea9be9409d61eb45bea2269979e26d4, type: 3}
+  - {fileID: 8300000, guid: e124f41f36953cf4595dae3c61922bb4, type: 3}
+  - {fileID: 8300000, guid: 4782cf8ccdcee9b4b8852ad250974b71, type: 3}
+  - {fileID: 8300000, guid: a60fef3a0675d7a41905eb2a632e5a99, type: 3}
+  - {fileID: 8300000, guid: c03f4dc755c1ae04d953d62b656beb88, type: 3}
+  minGap: 0.06
+--- !u!4 &1771480389
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1771480386}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1838985056
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1838985057}
+  - component: {fileID: 1838985060}
+  - component: {fileID: 1838985059}
+  - component: {fileID: 1838985058}
+  m_Layer: 0
+  m_Name: Sunflower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1838985057
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838985056}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1838985058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838985056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4edeea30d034e9f4e8b6f3dddf456609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.SunflowerAvatar
+  pot: {fileID: 2100000, guid: cad7d2612faf9964aaf2468293947bca, type: 2}
+  soil: {fileID: 2100000, guid: 59664d10d2ae42c44b5a812731b65a08, type: 2}
+  stem: {fileID: 2100000, guid: f77c9f2a40550fe4d9ed6438c84f10b2, type: 2}
+  petals: {fileID: 2100000, guid: edd23f8713b93734bb9ae6af25931e14, type: 2}
+  centre: {fileID: 2100000, guid: 416bbaf0c94bcfe4abac225e29e151fd, type: 2}
+--- !u!114 &1838985059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838985056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &1838985060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838985056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 70
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0.012
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 0
+  rollRadius: 0.2
+  rollFrequency: 2.2
+  rollDamping: 0.25
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
+--- !u!1 &1849906021
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1849906028}
+  - component: {fileID: 1849906027}
+  - component: {fileID: 1849906026}
+  - component: {fileID: 1849906022}
+  - component: {fileID: 1849906025}
+  - component: {fileID: 1849906024}
+  - component: {fileID: 1849906023}
+  m_Layer: 0
+  m_Name: Input
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1849906022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849906021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33e9d9133404e4b4fb325b6fc4826d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.WebcamHeadPoseSource
+  tracker: 0
+  mediaPipeExe: TrackerMP/muffin_facetracker.exe
+  mediaPipeModel: TrackerMP/face_landmarker.task
+  mediaPipePort: 11574
+  trackerExe: Tracker/Binary/facetracker.exe
+  cameraIndex: 0
+  model: 3
+  trackerThreads: 4
+  control: 0
+  tiltForFullLean: 24
+  headTurnSway: 0.5
+  leanRange: 1.1
+  heightRange: 0.7
+  depthRange: 0.35
+  mediaPipeRotationGain: 1.25
+  yawGain: 150
+  pitchGain: 140
+  maxTurn: 70
+  maxNod: 45
+  maxTilt: 30
+  mouthGain: 2
+  expressionGain: 1.3
+  invertSmile: 1
+  invertBrows: 0
+  mirror: 1
+  sensitivity: 1
+  maxFaces: 3
+--- !u!114 &1849906023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849906021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8736960302fa23249b28c60bbec028fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.SyntheticTrackerSource
+  rate: 22
+  noiseDegrees: 1.5
+  noiseLean: 0.02
+  stepDegrees: 30
+  stepLean: 0.6
+  stepAt: 2.5
+  usePoseFilter: 1
+--- !u!114 &1849906024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849906021}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d1f9d43298b4864da93c722226a3dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.ScriptedHeadPoseSource
+  startDelay: 0
+  headTurnsOnly: 0
+--- !u!114 &1849906025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849906021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ad7115b652a8ad4287cb0d34d275ff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MouseHeadPoseSource
+  simulateWebcam: 1
+  trackerRate: 30
+  jitter: 0.04
+--- !u!114 &1849906026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849906021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba40013dafa65fc4885c394e247d936b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.CameraFeed
+  trackWidth: 1280
+  trackHeight: 720
+  requestWidth: 1920
+  requestHeight: 1080
+  requestFps: 30
+--- !u!114 &1849906027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849906021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fb6219dfe28d154988aa0be808c7681, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::OpenSee.OpenSee
+  listenAddress: 127.0.0.1
+  listenPort: 11573
+  receivedPackets: 0
+  trackingData: []
+  maxFit3DError: 100
+--- !u!4 &1849906028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849906021}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2063551491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2063551492}
+  - component: {fileID: 2063551496}
+  - component: {fileID: 2063551495}
+  - component: {fileID: 2063551494}
+  - component: {fileID: 2063551493}
+  m_Layer: 0
+  m_Name: Coffee mug
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2063551492
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063551491}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 849566920}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2063551493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063551491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3c5ff9d0435f04684397a423452daa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MessMaker
+  kind: 12
+  lit: {fileID: 2100000, guid: 9217a94085242ab4f8034ba3230058af, type: 2}
+  smoke: {fileID: 2100000, guid: 9267bddcfb7f14b43aba6056c4802ca5, type: 2}
+  topRadius: 0.44248533
+  topHeight: 0.138
+  topLift: 0.762
+  bowl: {x: 0, y: 0, z: 0}
+  shakeThreshold: 6
+  idleEvery: {x: 20, y: 45}
+--- !u!114 &2063551494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063551491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a368c7cc7c4fb42a0dfb5f9c622cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.MeshAvatar
+  displayName: Coffee mug
+  mesh: {fileID: 4300000, guid: 7637330719a489d4984040e4c9e20cce, type: 2}
+  materials:
+  - {fileID: 3263931781923126087, guid: a4aa019d16badfe40a277030b7cff203, type: 3}
+  rootFraction: 0.05
+  headFraction: 0.32
+  tipFraction: 1
+  faceFraction: 0.42
+  faceSize: 0.7
+  faceHasMouth: 1
+  faceGap: 0.004
+  faceShiftX: 0
+--- !u!114 &2063551495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063551491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc6b041682356744fa1ed910fe081511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.DigitalFace
+  ink: {fileID: 2100000, guid: f33620795a6d56c47908597bba863d8c, type: 2}
+  shine: {fileID: 2100000, guid: 9bd65f3b5f412894fbf78077bad237b1, type: 2}
+  mouthInside: {fileID: 2100000, guid: ff2b8eb30ea1b9943b23fc9c579dde07, type: 2}
+  blush: {fileID: 2100000, guid: cf79e6de6ab415e4aba068689accabf8, type: 2}
+  autoBlink: 1
+  talkBounce: 1
+  cutout: {fileID: 2100000, guid: 7ab1e5807a051974f833ac41e97f6a75, type: 2}
+  realEyeWidth: 0.09
+  realMouthWidth: 0.12
+  surfaceGap: 0.006
+--- !u!114 &2063551496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063551491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fab1f45fa49b921419837cbe4e00d21c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Muffin.BendRig
+  source: {fileID: 0}
+  filterInput: 1
+  minCutoff: 0.8
+  beta: 1.5
+  rotationMinCutoff: 0.8
+  rotationBeta: 1.5
+  chainBones: 10
+  maxBendDegrees: 35
+  stretchAmount: 0.35
+  headTurn: 1.1
+  breathing: 0
+  bodyTwist: 0.7
+  glanceLean: 0.35
+  lookBend: 0.9
+  headNod: 0.5
+  bodyFrequency: 3.8
+  bodyDamping: 0.55
+  tipFrequency: 7
+  baseFrequency: 3.2
+  damping: 0.45
+  stretchFrequency: 3.5
+  stretchDamping: 0.3
+  turnFrequency: 8
+  turnDamping: 0.8
+  flopFrequency: 2
+  flopDamping: 0.16
+  flopGravity: 0.7
+  flopDroop: 8
+  maxFlopDegrees: 140
+  flopBones: 6
+  turnWhip: 1.6
+  flopSideways: 0
+  slamDegrees: 86
+  rollDegrees: 8
+  rollRadius: 0.56048137
+  rollFrequency: 2.2
+  rollDamping: 0.5
+  rollTurn: 0.7
+  rollJiggle: 0
+  jiggleFrequency: 3.5
+  jiggleDamping: 0.12
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1203788204}
-  - {fileID: 774026552}
-  - {fileID: 1293396251}
-  - {fileID: 1154687736}
-  - {fileID: 480162474}
-  - {fileID: 642294754}
-  - {fileID: 1748778542}
-  - {fileID: 1134782159}
-  - {fileID: 191124465}
+  - {fileID: 1098163823}
+  - {fileID: 1763279588}
+  - {fileID: 865419717}
+  - {fileID: 1849906028}
+  - {fileID: 849566920}
+  - {fileID: 978064196}
+  - {fileID: 1068254460}
+  - {fileID: 1771480389}
+  - {fileID: 1160811120}

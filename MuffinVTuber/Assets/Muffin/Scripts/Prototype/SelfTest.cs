@@ -27,7 +27,7 @@ namespace Muffin
         float cornerAlpha = -1f, avatarAlpha = -1f;
         bool? testFaceTracked;
         string pepperoni = "not run";
-        string chatTest = "not run", chaosTest = "not run", hoseTest = "not run";
+        string chatTest = "not run", chaosTest = "not run", hoseTest = "not run", remoteTest = "not run";
         string flopReport = "not run", headTurnMess = "not run";
         int rooms = -1;
         string vertical = "not run";
@@ -370,6 +370,7 @@ namespace Muffin
             }
             // The chaos set: chat commands and cooldowns, every event, each avatar's own mess, the scrub.
             if (chaos) yield return ChaosTest(outDir);
+            yield return RemoteTest();
 
             // Feel: lag and shake through the real avatar, old settings against new (feel.txt).
             if (synthetic) yield return FeelTest(Path.Combine(outDir, "feel.txt"));
@@ -560,6 +561,60 @@ namespace Muffin
             chaosTest = $"fired {fired} events, {stains} stains after them, {shaken} avatars shaken, " +
                         $"after the scrub: {(Mess.Instance ? Mess.Instance.StainCount : -1)} stains, " +
                         $"{(DeskDebris.Instance ? DeskDebris.Instance.SprinkleCount : -1)} sprinkles, {(DeskDebris.Instance ? DeskDebris.Instance.PieceCount : -1)} bits";
+        }
+
+        /// <summary>
+        /// The phone remote, over this PC (the self-test serves it on 127.0.0.1 only): the page loads, a wrong PIN is
+        /// turned away, the state comes back with the PIN, and an avatar switch sent from the "phone" happens.
+        /// </summary>
+        IEnumerator RemoteTest()
+        {
+            RemoteControl remote = RemoteControl.Instance;
+            if (!remote || !remote.Running || !library)
+            {
+                remoteTest = remote ? $"not running ({remote.Status})" : "no remote";
+                yield break;
+            }
+            string page = Http(remote.Port, "GET", "/", null, null, out int pageCode);
+            Http(remote.Port, "GET", "/api/state", "wrong", null, out int wrongCode);
+            string json = Http(remote.Port, "GET", "/api/state", remote.Pin, null, out int stateCode);
+            int before = library.ActiveIndex, target = (before + 1) % library.avatars.Count;
+            Http(remote.Port, "POST", "/api/do", remote.Pin, $"action=avatar&value={target}", out int doCode);
+            yield return null;
+            yield return null;
+            bool switched = library.ActiveIndex == target;
+            library.Activate(before);
+            remoteTest = $"page {pageCode} ({page.Length} chars), wrong PIN {wrongCode}, state {stateCode} " +
+                         $"({(json.Contains("\\\"avatars\\\"") || json.Contains("\"avatars\"") ? "has the avatars" : "NO avatars")}), " +
+                         $"avatar switch {doCode}: {(switched ? "switched" : "NOT switched")}";
+        }
+
+        /// <summary>One HTTP request to this PC (blocking; the remote's server runs on its own thread).</summary>
+        static string Http(int port, string method, string path, string pin, string body, out int code)
+        {
+            code = 0;
+            try
+            {
+                using var client = new System.Net.Sockets.TcpClient("127.0.0.1", port);
+                client.ReceiveTimeout = 3000;
+                var stream = client.GetStream();
+                byte[] content = body != null ? System.Text.Encoding.UTF8.GetBytes(body) : new byte[0];
+                string head = $"{method} {path} HTTP/1.1\r\nHost: 127.0.0.1\r\n" + (pin != null ? $"X-Muffin-Pin: {pin}\r\n" : "") +
+                              (body != null ? $"Content-Type: application/x-www-form-urlencoded\r\nContent-Length: {content.Length}\r\n" : "") + "Connection: close\r\n\r\n";
+                byte[] headBytes = System.Text.Encoding.ASCII.GetBytes(head);
+                stream.Write(headBytes, 0, headBytes.Length);
+                stream.Write(content, 0, content.Length);
+                using var reader = new StreamReader(stream, System.Text.Encoding.UTF8);
+                string all = reader.ReadToEnd();
+                int space = all.IndexOf(' ');
+                if (space > 0 && all.Length >= space + 4) int.TryParse(all.Substring(space + 1, 3), out code);
+                int at = all.IndexOf("\r\n\r\n", System.StringComparison.Ordinal);
+                return at >= 0 ? all.Substring(at + 4) : "";
+            }
+            catch (System.Exception e)
+            {
+                return "error: " + e.Message;
+            }
         }
 
         /// <summary>
@@ -787,6 +842,7 @@ namespace Muffin
                    $"  \"chat\": \"{chatTest}\",\n" +
                    $"  \"chaos\": \"{chaosTest}\",\n" +
                    $"  \"hoseAutoClean\": \"{hoseTest}\",\n" +
+                   $"  \"remote\": \"{remoteTest}\",\n" +
                    $"  \"errors\": {errors},\n" +
                    $"  \"firstError\": {error}\n" +
                    "}\n";

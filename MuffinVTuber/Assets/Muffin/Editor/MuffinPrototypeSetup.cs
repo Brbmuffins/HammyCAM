@@ -332,6 +332,14 @@ namespace Muffin.EditorTools
             panel.debris = debris;
             panel.chaos = chaos;
             panel.diagnostics = diagnostics;
+            var remote = hudObject.AddComponent<Muffin.RemoteControl>();
+            remote.library = library;
+            remote.webcam = webcam;
+            remote.hud = hud;
+            remote.desk = desk;
+            remote.debris = debris;
+            remote.chaos = chaos;
+            remote.panel = panel;
 
             EditorSceneManager.SaveScene(scene, ScenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) };

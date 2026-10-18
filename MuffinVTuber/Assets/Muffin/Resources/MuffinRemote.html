@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16131c">
+<title>HammyCAM remote</title>
+<style>
+  :root {
+    --bg: #16131c; --panel: #211c2a; --raised: #2b2436; --line: #382f45; --text: #f3eefa; --dim: #a99dba;
+    --accent: #ff7a3d; --accent-ink: #1d0f07; --on: #35c46a; --bad: #ff5d5d; --fire: #3b2231; --fire-line: #5c3146;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.35 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { position: sticky; top: 0; z-index: 5; background: rgba(22, 19, 28, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); padding: 10px 16px 0; padding-top: max(10px, env(safe-area-inset-top)); }
+  .top { display: flex; align-items: center; gap: 10px; max-width: 720px; margin: 0 auto; }
+  h1 { font-size: 18px; margin: 0; flex: 1; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--bad); flex: none; }
+  .dot.ok { background: var(--on); }
+  #status { color: var(--dim); font-size: 13px; }
+  nav { display: flex; gap: 6px; overflow-x: auto; padding: 10px 0; scrollbar-width: none; max-width: 720px; margin: 0 auto; }
+  nav::-webkit-scrollbar { display: none; }
+  nav a { flex: none; color: var(--dim); text-decoration: none; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); font-size: 14px; }
+  main { padding: 4px 16px 48px; max-width: 720px; margin: 0 auto; }
+  section { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin: 14px 0; scroll-margin-top: 112px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--dim); margin: 0 0 10px; }
+  h3 { font-size: 14px; color: var(--dim); margin: 16px 0 8px; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(92px, 1fr)); gap: 6px; }
+  #avatars button { font-size: 14px; min-height: 44px; padding: 6px; line-height: 1.15; }
+  .grid.wide { grid-template-columns: repeat(auto-fill, minmax(148px, 1fr)); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .row > button { flex: 1 1 0; }
+  button { appearance: none; border: 1px solid var(--line); background: var(--raised); color: var(--text); font: inherit; font-size: 15px; padding: 10px; border-radius: 12px; min-height: 48px; cursor: pointer; touch-action: manipulation; }
+  button:active { transform: scale(0.97); }
+  button.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+  button.big { min-height: 64px; font-size: 17px; font-weight: 700; }
+  button.fire { background: var(--fire); border-color: var(--fire-line); text-align: left; }
+  button.fire small { display: block; color: var(--dim); font-size: 12px; font-weight: 400; margin-top: 2px; }
+  .switch { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .switch:first-child { border-top: 0; }
+  .switch span { flex: 1; }
+  .toggle { width: 58px; min-height: 34px; padding: 0; border-radius: 999px; position: relative; background: #3a3346; flex: none; }
+  .toggle::after { content: ""; position: absolute; top: 3px; left: 3px; width: 26px; height: 26px; border-radius: 50%; background: #d9d0e6; transition: left 0.15s; }
+  .toggle.on { background: var(--on); border-color: var(--on); }
+  .toggle.on::after { left: 27px; background: #fff; }
+  label.slider { display: flex; justify-content: space-between; margin: 14px 0 0; color: var(--dim); font-size: 14px; }
+  input[type=range] { width: 100%; height: 36px; accent-color: var(--accent); }
+  .note { color: var(--dim); font-size: 13px; margin: 10px 0 0; }
+  #hold { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+  #hold.on { background: var(--accent); color: var(--accent-ink); }
+  #pin { position: fixed; inset: 0; background: var(--bg); display: none; align-items: center; justify-content: center; padding: 24px; z-index: 10; }
+  #pin.show { display: flex; }
+  #pin form { width: 100%; max-width: 340px; text-align: center; }
+  #pin p { color: var(--dim); }
+  #pinbox { width: 100%; font-size: 34px; letter-spacing: 0.4em; text-align: center; padding: 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--panel); color: var(--text); margin: 14px 0; }
+  #pinerr { color: var(--bad); min-height: 1.4em; }
+</style>
+</head>
+<body>
+<div id="pin">
+  <form>
+    <h1>HammyCAM remote</h1>
+    <p>Type the PIN from the app: menu (M) → Stream → Phone remote.</p>
+    <input id="pinbox" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" aria-label="PIN">
+    <button class="big on" style="width:100%">Connect</button>
+    <p id="pinerr"></p>
+  </form>
+</div>
+<header>
+  <div class="top"><span class="dot" id="dot"></span><h1>HammyCAM</h1><span id="status">connecting…</span></div>
+  <nav><a href="#avatar">Avatar</a><a href="#chaos">Chaos</a><a href="#mess">Mess</a><a href="#face">Face</a><a href="#stream">Stream</a></nav>
+</header>
+<main>
+  <section id="avatar">
+    <h2>Avatar</h2>
+    <div class="grid" id="avatars"></div>
+    <h3>Emotion</h3>
+    <div class="row" id="emotions"></div>
+  </section>
+
+  <section id="chaos">
+    <h2>Chaos</h2>
+    <div class="switch"><span>Viewers can trigger chaos from chat</span><button class="toggle" id="chaosOn" aria-label="Viewers can trigger chaos"></button></div>
+    <h3>Fire it now</h3>
+    <div class="grid wide" id="events"></div>
+  </section>
+
+  <section id="mess">
+    <h2>Mess</h2>
+    <div class="row"><button class="big" data-do="shake">Shake it</button><button class="big" data-do="slam">Face slam</button></div>
+    <div class="row" style="margin-top:8px"><button data-do="scrub">Scrub it clean</button><button data-do="clean">Clean instantly</button></div>
+    <p class="note" id="messCount"></p>
+    <div id="hose">
+      <h3>Vacuum hose</h3>
+      <div class="switch"><span>Cleans up the desk by itself</span><button class="toggle" id="hoseAuto" aria-label="Hose cleans by itself"></button></div>
+      <div class="switch"><span>Your mouse steers it</span><button class="toggle" id="hoseMouse" aria-label="Mouse steers the hose"></button></div>
+    </div>
+  </section>
+
+  <section id="face">
+    <h2>Face</h2>
+    <div class="row"><button id="faceCartoon" data-do="face" data-value="cartoon">Cartoon</button><button id="faceReal" data-do="face" data-value="real">Your real eyes &amp; mouth</button></div>
+    <label class="slider" for="eyes">Eyes <b id="eyesVal"></b></label><input type="range" id="eyes" step="0.05">
+    <label class="slider" for="mouth">Mouth <b id="mouthVal"></b></label><input type="range" id="mouth" step="0.05">
+    <button class="big" id="hold" style="width:100%;margin-top:14px">Hold for the dramatic zoom</button>
+    <div class="row" style="margin-top:8px"><button data-do="recentre">Re-centre tracking</button></div>
+  </section>
+
+  <section id="stream">
+    <h2>Stream</h2>
+    <h3>Behind the set</h3>
+    <div class="row" id="backgrounds"></div>
+    <div class="grid wide" id="rooms" style="margin-top:8px"></div>
+    <h3>Window</h3>
+    <div class="row"><button id="wide" data-do="window" data-value="wide">Wide 16:9</button><button id="vertical" data-do="window" data-value="vertical">Vertical 9:16</button></div>
+    <h3>Sound</h3>
+    <div class="switch"><span>Sound on</span><button class="toggle" id="sound" aria-label="Sound"></button></div>
+    <label class="slider" for="volume">Volume <b id="volumeVal"></b></label><input type="range" id="volume" min="0" max="1" step="0.01">
+    <h3>On screen</h3>
+    <div class="switch"><span>Menu (M)</span><button class="toggle" id="menu" aria-label="Menu on screen"></button></div>
+    <div class="switch"><span>Readout, top left</span><button class="toggle" id="readout" aria-label="Readout on screen"></button></div>
+    <div class="switch"><span>Desk</span><button class="toggle" id="desk" aria-label="Desk shown"></button></div>
+  </section>
+</main>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const BACKGROUNDS = [['Preview', 'Preview'], ['GreenScreen', 'Green screen'], ['Transparent', 'Transparent']];
+  const EMOTIONS = ['Neutral', 'Happy', 'Sad', 'Angry', 'Surprised'];
+  let pin = '';
+  try { pin = localStorage.getItem('muffin.pin') || ''; } catch (e) {}
+  let state = null, sliding = null;
+
+  function askPin(message) {
+    $('pin').classList.add('show');
+    $('pinerr').textContent = message || '';
+    $('pinbox').value = '';
+    setTimeout(() => $('pinbox').focus(), 50);
+  }
+  $('pin').querySelector('form').addEventListener('submit', ev => {
+    ev.preventDefault();
+    pin = $('pinbox').value.trim();
+    try { localStorage.setItem('muffin.pin', pin); } catch (e) {}
+    $('pin').classList.remove('show');
+    poll();
+  });
+
+  function online(ok, text) {
+    $('dot').classList.toggle('ok', ok);
+    $('status').textContent = text || (ok ? (state && state.fps ? Math.round(state.fps) + ' fps' : 'connected') : "can't reach the app");
+  }
+
+  async function send(action, value) {
+    try {
+      const r = await fetch('/api/do', {
+        method: 'POST',
+        headers: { 'X-Muffin-Pin': pin, 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: 'action=' + encodeURIComponent(action) + '&value=' + encodeURIComponent(value == null ? '' : value),
+      });
+      if (r.status === 401) return askPin("That PIN didn't work.");
+      setTimeout(poll, 150);
+    } catch (e) { online(false); }
+  }
+
+  async function poll() {
+    if (!pin) return askPin();
+    try {
+      const r = await fetch('/api/state', { headers: { 'X-Muffin-Pin': pin }, cache: 'no-store' });
+      if (r.status === 401) return askPin("That PIN didn't work. Check the app's menu (M → Stream).");
+      if (r.status === 429) return online(false, 'too many wrong PINs: wait a minute');
+      state = await r.json();
+      online(true);
+      render();
+    } catch (e) { online(false); }
+  }
+
+  // A set of buttons, built once (rebuilt only if the list changes); `on` says which are lit.
+  function buttons(box, items, on, tap) {
+    const sig = JSON.stringify(items.map(i => i.label));
+    if (box.dataset.sig !== sig) {
+      box.innerHTML = '';
+      items.forEach((item, i) => {
+        const b = document.createElement('button');
+        b.innerHTML = item.html || esc(item.label);
+        if (item.cls) b.className = item.cls;
+        b.addEventListener('click', () => tap(i));
+        box.appendChild(b);
+      });
+      box.dataset.sig = sig;
+    }
+    [...box.children].forEach((b, i) => b.classList.toggle('on', !!on(i)));
+  }
+
+  function toggle(id, value, action) {
+    const b = $(id);
+    b.classList.toggle('on', !!value);
+    b.setAttribute('aria-pressed', value ? 'true' : 'false');
+    if (b.dataset.bound) return;
+    b.dataset.bound = '1';
+    b.addEventListener('click', () => {
+      const next = !b.classList.contains('on');
+      b.classList.toggle('on', next);
+      send(action, next ? '1' : '0');
+    });
+  }
+
+  function slider(id, value, min, max, action, show) {
+    const el = $(id);
+    if (min != null) { el.min = min; el.max = max; }
+    if (sliding !== id) el.value = value;
+    $(id + 'Val').textContent = show(+el.value);
+    if (el.dataset.bound) return;
+    el.dataset.bound = '1';
+    let last = 0;
+    el.addEventListener('pointerdown', () => { sliding = id; });
+    el.addEventListener('input', () => {
+      sliding = id;
+      $(id + 'Val').textContent = show(+el.value);
+      const now = Date.now();
+      if (now - last > 150) { last = now; send(action, el.value); }
+    });
+    el.addEventListener('change', () => { sliding = null; send(action, el.value); });
+  }
+
+  function render() {
+    const s = state;
+    if (s.avatars) {
+      buttons($('avatars'), s.avatars.map(n => ({ label: n })), i => i === state.avatar, i => { state.avatar = i; send('avatar', i); render(); });
+      buttons($('emotions'), EMOTIONS.map(e => ({ label: e })), i => EMOTIONS[i] === state.emotion, i => { state.emotion = EMOTIONS[i]; send('emotion', EMOTIONS[i]); render(); });
+    }
+    if (s.events) {
+      toggle('chaosOn', s.chaosOn, 'chaosOn');
+      buttons($('events'), s.events.map(e => ({ label: e.label, html: esc(e.label) + '<small></small>', cls: 'fire' })), () => false, i => send('chaos', state.events[i].id));
+      [...$('events').children].forEach((b, i) => {
+        const e = s.events[i];
+        b.querySelector('small').textContent = !e.enabled ? 'off for viewers' : e.left > 0 ? 'viewers wait ' + Math.ceil(e.left) + ' s' : 'ready';
+      });
+    }
+    $('messCount').textContent = 'On the desk: ' + (s.sprinkles || 0) + ' sprinkles, ' + (s.bits || 0) + ' bits, ' + (s.stains || 0) + ' splats';
+    $('hose').style.display = s.hasHose ? '' : 'none';
+    toggle('hoseAuto', s.hoseAuto, 'hoseAuto');
+    toggle('hoseMouse', s.hoseMouse, 'hoseMouse');
+    $('faceCartoon').classList.toggle('on', s.face === 'cartoon');
+    $('faceReal').classList.toggle('on', s.face === 'real');
+    slider('eyes', s.eyes, s.sizeMin, s.sizeMax, 'eyes', v => '×' + v.toFixed(2));
+    slider('mouth', s.mouth, s.sizeMin, s.sizeMax, 'mouth', v => '×' + v.toFixed(2));
+    if (s.rooms) {
+      buttons($('backgrounds'), BACKGROUNDS.map(b => ({ label: b[1] })), i => state.background === BACKGROUNDS[i][0],
+        i => { state.background = BACKGROUNDS[i][0]; send('background', BACKGROUNDS[i][0]); render(); });
+      buttons($('rooms'), s.rooms.map(n => ({ label: n })), i => state.background === 'Room' && state.room === i,
+        i => { state.background = 'Room'; state.room = i; send('room', i); render(); });
+    }
+    $('wide').classList.toggle('on', !s.vertical);
+    $('vertical').classList.toggle('on', !!s.vertical);
+    toggle('sound', s.sound, 'sound');
+    slider('volume', s.volume, 0, 1, 'volume', v => Math.round(v * 100) + '%');
+    toggle('menu', s.menu, 'menu');
+    toggle('readout', s.readout, 'readout');
+    toggle('desk', s.desk, 'desk');
+  }
+
+  document.querySelectorAll('[data-do]').forEach(b => b.addEventListener('click', () => send(b.dataset.do, b.dataset.value || '')));
+
+  // Hold for the dramatic zoom: on while a finger is down (the app lets go by itself after 8 s).
+  const hold = $('hold');
+  const press = down => { hold.classList.toggle('on', down); send('zoom', down ? '1' : '0'); };
+  hold.addEventListener('pointerdown', ev => { ev.preventDefault(); press(true); });
+  ['pointerup', 'pointercancel', 'pointerleave'].forEach(n => hold.addEventListener(n, () => { if (hold.classList.contains('on')) press(false); }));
+  hold.addEventListener('contextmenu', ev => ev.preventDefault());
+
+  setInterval(() => { if (!document.hidden) poll(); }, 1000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) poll(); });
+  poll();
+})();
+</script>
+</body>
+</html>

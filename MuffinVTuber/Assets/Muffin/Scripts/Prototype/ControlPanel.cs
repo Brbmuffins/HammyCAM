@@ -38,8 +38,15 @@ namespace Muffin
         {
             if (Keys.Pressed(MuffinKey.M) || Keys.Pressed(MuffinKey.F6)) Open = !Open; // M for menu (F6 still works)
             Keys.Suppressed = Open && GUIUtility.keyboardControl != 0;
-            if (!Open) StageCamera.HoldZoom = false;
+            if (!Open && holdingZoom)
+            {
+                // Lets go of its own zoom button when closed (the phone remote can hold the zoom too).
+                holdingZoom = false;
+                StageCamera.HoldZoom = false;
+            }
         }
+
+        bool holdingZoom;
 
         void OnGUI()
         {
@@ -151,7 +158,12 @@ namespace Muffin
             if (Mathf.Abs(b - DigitalFace.CutBrightness) > 0.004f || Mathf.Abs(c - DigitalFace.CutContrast) > 0.004f || Mathf.Abs(s - DigitalFace.CutSaturation) > 0.004f)
                 library.SetCutoutLook(Mathf.Round(b * 100f) / 100f, Mathf.Round(c * 100f) / 100f, Mathf.Round(s * 100f) / 100f);
             Heading("Dramatic zoom (hold X)");
-            StageCamera.HoldZoom = GUILayout.RepeatButton("Hold here for the dramatic zoom");
+            bool hold = GUILayout.RepeatButton("Hold here for the dramatic zoom");
+            if (hold != holdingZoom)
+            {
+                holdingZoom = hold;
+                StageCamera.HoldZoom = hold;
+            }
         }
 
         void TrackingTab()
@@ -310,6 +322,23 @@ namespace Muffin
         void StreamTab()
         {
             if (!hud) return;
+            RemoteControl remote = RemoteControl.Instance;
+            if (remote)
+            {
+                Heading("Phone remote: run the show without this menu on stream");
+                bool on = GUILayout.Toggle(RemoteControl.On, RemoteControl.On ? "Phone remote on" : "Phone remote off", GUI.skin.button);
+                if (on != RemoteControl.On) remote.SetOn(on);
+                if (remote.Running)
+                {
+                    GUILayout.Label($"On a phone on the same Wi-Fi, open <b>{string.Join("</b> or <b>", remote.Addresses)}</b> and type the PIN <b>{remote.Pin}</b>.", wrap);
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label(remote.Status, small);
+                    if (GUILayout.Button("New PIN", GUILayout.Width(90f))) remote.NewPin();
+                    GUILayout.EndHorizontal();
+                    GUILayout.Label("If the phone can't connect: allow this app through Windows Firewall on private networks.", small);
+                }
+                else GUILayout.Label(remote.Status, small);
+            }
             Heading("Background (G)");
             int current = hud.Background == BackgroundMode.Room ? -1 : (int)hud.Background;
             int bg = GUILayout.Toolbar(current, new[] { "Preview", "Green screen", "Transparent" });
@@ -355,7 +384,7 @@ namespace Muffin
         }
 
         /// <summary>Resize the window: 16:9, or 9:16 as tall as the screen allows (vertical, for TikTok).</summary>
-        static void SetWindow(bool vertical)
+        public static void SetWindow(bool vertical)
         {
             int screenH = Display.main.systemHeight > 0 ? Display.main.systemHeight : 1080;
             if (vertical)

@@ -170,6 +170,10 @@ namespace Muffin
             if (fellBack) notes += "\n<color=#ffd080>No camera or tracker: driving with the mouse (M → Tracking)</color>";
             double hz = Screen.currentResolution.refreshRateRatio.value;
             if (Fps > 0f && Fps < hz * 0.9f) notes += $"\n<color=#ff8080>{Fps:0} fps (monitor {hz:0} Hz)</color>";
+            // Where the phone remote is, for the first minute or until a phone connects (the PIN stays in the menu).
+            RemoteControl remote = RemoteControl.Instance;
+            if (remote && remote.Running && !remote.EverConnected && Time.realtimeSinceStartup < 60f && remote.Addresses.Count > 0)
+                notes += $"\n<color=#a0d0ff>Phone remote: {remote.Addresses[0]} (PIN: M → Stream)</color>";
             var content = new GUIContent(
                 $"<b>Muffin Dynamic VTuber</b> · <b>M: menu</b> · H: hide\n" +
                 $"{(library ? library.ActiveName : "")} · {input}{notes}\n" +
