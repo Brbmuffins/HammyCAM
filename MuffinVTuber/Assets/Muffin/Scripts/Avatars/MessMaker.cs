@@ -185,15 +185,15 @@ namespace Muffin
                     LongBlinkPopsToast(dt);
                     break;
                 case MessKind.Ketchup:
-                    owed += speed * 0.8f * dt;                          // the odd dribble off the nozzle
+                    owed += (speed * 1.5f + over * 0.2f) * dt;          // gobs flicked off the nozzle
                     MouthSquirts(dt);
                     break;
                 case MessKind.Toilet:
-                    owed += (speed * 3f + over * 0.4f) * dt;            // slops as it moves
+                    owed += (speed * 1.3f + over * 0.25f) * dt;         // waves slop over the rim as it moves
                     MouthSloshes(dt);
                     break;
                 case MessKind.Coffee:
-                    owed += (speed * 6f + Mathf.Max(0f, meter.Shake - 5f) * 1.5f) * dt; // sloshes
+                    owed += (speed * 1.6f + Mathf.Max(0f, meter.Shake - 4f) * 0.4f) * dt; // slops over the rim
                     steamOwed += dt * 2.6f;                                              // always steaming
                     for (int g = 0; steamOwed >= 1f && g < 3; g++)
                     {
@@ -284,12 +284,15 @@ namespace Muffin
                     for (int i = 0; i < 6; i++) CrumbBit();
                     break;
                 case MessKind.Toaster: PopToast(2); break;
-                case MessKind.Ketchup: Squirt(30); break;
-                case MessKind.Toilet: Slosh(30); break;
-                case MessKind.Coffee:
-                    Spill(30);
-                    RunDown(Coffee, 0.03f);
+                case MessKind.Ketchup:
+                    Squirt(30);
+                    StartCoroutine(After(0.85f, () => Squirt(24)));
                     break;
+                case MessKind.Toilet:
+                    Heave(1.8f, true);
+                    StartCoroutine(Geyser(0.7f));
+                    break;
+                case MessKind.Coffee: CoffeeHeave(); break;
                 default: Spill(2); break;
             }
         }
@@ -331,9 +334,12 @@ namespace Muffin
                     Squirt(24);
                     if (Mess.Instance) Mess.Instance.DeskStain(transform.position + new Vector3(0f, 0f, -topRadius - 0.1f), 0.08f, Ketchup, 150f, 0.1f, false, new Vector2(0f, -1.6f));
                     break;
-                case MessKind.Coffee: Spill(40); break;
+                case MessKind.Coffee:
+                    CoffeeHeave();
+                    if (Mess.Instance) Mess.Instance.DeskStain(transform.position + new Vector3(0f, 0f, -topRadius - 0.12f), 0.09f, Coffee, 150f, 0.15f, true, new Vector2(0f, -1.2f));
+                    break;
                 case MessKind.Toilet:
-                    Slosh(30);
+                    Heave(1.6f, true);
                     if (Mess.Instance) Mess.Instance.DeskStain(transform.position + new Vector3(0f, 0f, -topRadius - 0.12f), 0.12f, ToiletWater, 120f, 0.2f, true);
                     break;
                 case MessKind.Jello:
@@ -361,9 +367,9 @@ namespace Muffin
                     case MessKind.Taco: TacoBit(); break;
                     case MessKind.Mold: SporeOrCrumb(); break;
                     case MessKind.Toaster: CrumbBit(); break;
-                    case MessKind.Ketchup: Splash(Ketchup, 0.011f, 0.028f); break;
-                    case MessKind.Coffee: CoffeeSlosh(); break;
-                    case MessKind.Toilet: SloshDrop(1f); break;
+                    case MessKind.Ketchup: Splash(Ketchup, Random.Range(0.014f, 0.02f), 0.03f); break;
+                    case MessKind.Coffee: CoffeeSlop(1f); break;
+                    case MessKind.Toilet: Heave(0.4f, false); break;
                 }
             }
         }
@@ -692,99 +698,249 @@ namespace Muffin
             for (int i = 0; i < 4; i++) CrumbBit();
         }
 
-        /// <summary>The ketchup bottle's mouth: opening yours squirts it, and it keeps dribbling while it stays open.</summary>
+        IEnumerator After(float seconds, System.Action then)
+        {
+            yield return new WaitForSeconds(seconds);
+            then();
+        }
+
+        /// <summary>
+        /// A stream (a squirt of ketchup, a gush of water): drops in quick succession along one aim with a slow wobble,
+        /// so they read as one rope of liquid arcing through the air and land in a line of splats that run together.
+        /// Strongest at the start, tailing off. aim is asked every frame (it can follow the avatar, or spray about).
+        /// </summary>
+        IEnumerator Stream(System.Func<Vector3> from, System.Func<Vector3> aim, Color colour, float seconds, float perSecond,
+            Vector2 speed, Vector2 size, float puddle)
+        {
+            float owedDrops = 0f, t = 0f, seed = Random.value * 10f;
+            while (t < seconds && Mess.Instance)
+            {
+                t += Time.deltaTime;
+                owedDrops += perSecond * Time.deltaTime;
+                float pace = Mathf.Lerp(speed.y, speed.x, t / seconds);
+                Vector3 wobble = new Vector3(Mathf.PerlinNoise(seed, t * 3f) - 0.5f, Mathf.PerlinNoise(seed + 3f, t * 3f) - 0.5f, 0f) * 0.2f;
+                Vector3 direction = (aim() + wobble).normalized;
+                for (; owedDrops >= 1f; owedDrops -= 1f)
+                    Mess.Instance.Drop(from() + Random.insideUnitSphere * 0.006f, direction * pace * Random.Range(0.95f, 1.05f) + meter.Velocity * 0.5f,
+                        colour, Random.Range(size.x, size.y), puddle);
+                yield return null;
+            }
+        }
+
+        /// <summary>
+        /// Which way something leaves over the rim: the way the avatar's moving, else out to a side and a bit toward
+        /// the camera (straight at the camera it's foreshortened and hardly reads).
+        /// </summary>
+        Vector3 SpillDirection(float still = 0.04f)
+        {
+            Vector3 flat = new Vector3(meter.Velocity.x, 0f, meter.Velocity.z);
+            Vector3 dir = flat.sqrMagnitude > still ? flat.normalized : new Vector3(Random.value < 0.5f ? -1f : 1f, 0f, -Random.Range(0.3f, 0.9f)).normalized;
+            if (dir.z > 0.2f) dir.z = -dir.z; // onto the desk in view
+            return dir.normalized;
+        }
+
+        /// <summary>A drip runs down the avatar's front from `up` (share of its height), `across` (-1..1) from its middle.</summary>
+        void RunDownAt(float up, float across, Color colour, float size)
+        {
+            if (Chaos && Chaos.library && Chaos.library.ActiveRig == rig)
+                Chaos.DripDown(up, Mathf.Clamp(across, -0.7f, 0.7f), colour, size, Random.Range(0.08f, 0.12f));
+        }
+
+        float squeezeOwed, squeezeSince;
+
+        Vector3 Nozzle => TopPoint + Top.up * 0.03f;
+        /// <summary>Out to a side (side -1..1) so the arc shows in profile, a little toward the camera.</summary>
+        Vector3 KetchupAim(float side) => (Top.up * 0.5f + Vector3.right * side * 0.8f + Vector3.back * 0.4f).normalized;
+
+        /// <summary>
+        /// The ketchup bottle's mouth: opening yours squirts it; while it stays open it keeps squeezing out a thick
+        /// stream that sweeps about (turn your head to draw it across the desk); closing it ends in a sputter.
+        /// </summary>
         void MouthSquirts(float dt)
         {
             float open = rig.Current.MouthOpen;
             bool isOpen = open > 0.45f;
-            if (isOpen && !mouthWasOpen) Squirt(Random.Range(9, 14));
-            else if (isOpen)
+            if (isOpen && !mouthWasOpen)
             {
-                owed += open * 5f * dt;
+                Squirt(14);
+                squeezeSince = Time.time;
+            }
+            else if (isOpen && Time.time - squeezeSince > 0.45f && Mess.Instance)
+            {
+                squeezeOwed += open * 40f * dt;
+                Vector3 aim = KetchupAim(Mathf.Sin(Time.time * 1.2f)); // sweeps side to side: turn your head to steer it
+                for (; squeezeOwed >= 1f; squeezeOwed -= 1f)
+                    Mess.Instance.Drop(Nozzle + Random.insideUnitSphere * 0.005f, aim * Random.Range(1.4f, 2.1f) * Mathf.Lerp(0.85f, 1.15f, open) + meter.Velocity * 0.5f,
+                        Ketchup, Random.Range(0.013f, 0.02f), 0.028f);
                 if (Time.time >= nextSqueezeSound)
                 {
                     nextSqueezeSound = Time.time + Random.Range(0.5f, 0.9f);
                     Sfx.Play("squirt", 0.45f, 0.15f);
                 }
             }
+            if (!isOpen && mouthWasOpen && Time.time - squeezeSince > 0.8f) Sputter();
             mouthWasOpen = isOpen;
         }
 
-        /// <summary>SPLURT: a jet of ketchup out of the nozzle, arcing onto the desk; the bottle squashes as it squeezes.</summary>
-        void Squirt(int drops)
+        /// <summary>SPLURT: a thick rope of ketchup out of the nozzle, arcing onto the desk in a line; the bottle squashes as it's squeezed, and it ends in a sputter.</summary>
+        void Squirt(int strength)
         {
             if (!Mess.Instance) return;
             Sfx.Play("squirt", 0.9f, 0.1f);
-            rig.Bonk(0.18f);
-            Vector3 nozzle = TopPoint + Top.up * 0.03f;
-            Vector3 aim = (Top.up * 0.6f + Vector3.back * 0.9f + new Vector3(Random.Range(-0.35f, 0.35f), 0f, 0f)).normalized;
-            for (int i = 0; i < drops; i++)
-                Mess.Instance.Drop(nozzle + Random.insideUnitSphere * 0.01f, aim * Random.Range(1.6f, 2.6f) + Random.insideUnitSphere * 0.25f + meter.Velocity * 0.5f,
-                    Ketchup, Random.Range(0.012f, 0.02f), Random.Range(0.025f, 0.045f));
+            rig.Bonk(0.25f);
+            float seconds = Mathf.Lerp(0.25f, 0.6f, Mathf.InverseLerp(8f, 30f, strength));
+            float side = (Random.value < 0.5f ? -1f : 1f) * Random.Range(0.7f, 1f);
+            StartCoroutine(Stream(() => Nozzle, () => KetchupAim(side), Ketchup, seconds, 75f, new Vector2(1.5f, 2.5f), new Vector2(0.018f, 0.028f), 0.032f));
+            StartCoroutine(After(seconds + 0.05f, Sputter));
         }
 
-        /// <summary>The toilet's mouth: opening yours sloshes the bowl, and it keeps splashing while it stays open.</summary>
+        /// <summary>The bottle runs dry for a moment: a wet fart of a sputter, a spray of little specks, and a drool from the nozzle.</summary>
+        void Sputter()
+        {
+            if (!Mess.Instance) return;
+            Sfx.Play("fart", 0.4f, 0.2f);
+            rig.Bonk(0.1f);
+            for (int i = 0; i < 10; i++)
+                Mess.Instance.Drop(Nozzle, (KetchupAim(Random.Range(-0.6f, 0.6f)) + Random.insideUnitSphere * 0.5f).normalized * Random.Range(0.6f, 1.6f),
+                    Ketchup, Random.Range(0.006f, 0.011f), 0.014f);
+            if (Random.value < 0.5f) RunDownAt(Random.Range(0.9f, 0.96f), Random.Range(-0.3f, 0.3f), Ketchup, 0.024f);
+        }
+
+        float gushOwed;
+
+        /// <summary>
+        /// The toilet's mouth: opening yours heaves a wave of water up out of the bowl; while it stays open the bowl
+        /// gushes up like a fountain and splashes all over the desk.
+        /// </summary>
         void MouthSloshes(float dt)
         {
             float open = rig.Current.MouthOpen;
             bool isOpen = open > 0.4f;
-            if (isOpen && !mouthWasOpen) Slosh(Random.Range(10, 15));
-            else if (isOpen)
+            if (isOpen && !mouthWasOpen)
             {
-                owed += open * 6f * dt;
+                Heave(1f, Random.value < 0.35f);
+                squeezeSince = Time.time;
+            }
+            else if (isOpen && Time.time - squeezeSince > 0.3f && Mess.Instance)
+            {
+                gushOwed += open * 38f * dt;
+                Vector3 aim = (Vector3.up * 0.85f + Vector3.back * 0.25f + new Vector3(Mathf.Sin(Time.time * 1.6f) * 0.7f, 0f, 0f)).normalized;
+                for (; gushOwed >= 1f; gushOwed -= 1f)
+                    Mess.Instance.Drop(BowlPoint + Random.insideUnitSphere * topRadius * 0.15f,
+                        aim * Random.Range(1.5f, 2.3f) * Mathf.Lerp(0.85f, 1.15f, open) + Random.insideUnitSphere * 0.25f + meter.Velocity * 0.6f,
+                        ToiletWater, Random.Range(0.013f, 0.022f), Random.Range(0.035f, 0.05f));
                 if (Time.time >= nextSqueezeSound)
                 {
-                    nextSqueezeSound = Time.time + Random.Range(0.5f, 0.9f);
-                    Sfx.Play("slosh", 0.45f, 0.15f);
+                    nextSqueezeSound = Time.time + Random.Range(0.6f, 1f);
+                    Sfx.Play("slosh", 0.5f, 0.15f);
                 }
             }
             mouthWasOpen = isOpen;
         }
 
-        /// <summary>A slosh: water heaves up out of the bowl and splashes over the rim onto the desk.</summary>
-        void Slosh(int drops)
-        {
-            Sfx.Play("slosh", 0.9f, 0.1f);
-            rig.Bonk(0.08f);
-            for (int i = 0; i < drops; i++) SloshDrop(1.6f);
-        }
-
-        void SloshDrop(float strength)
+        /// <summary>
+        /// A wave of water heaves up out of the bowl and comes down over the rim in a sheet, splashing across the desk
+        /// the way the toilet's moving (with a soggy wad of toilet paper, sometimes).
+        /// </summary>
+        void Heave(float strength, bool paper)
         {
             if (!Mess.Instance) return;
-            Vector2 around = Random.insideUnitCircle.normalized;
-            if (around.y > 0.2f) around.y = -around.y; // mostly forward and to the sides, onto the desk in view
-            var outward = new Vector3(around.x, 0f, around.y);
-            Vector3 at = BowlPoint + outward * topRadius * 0.35f;
-            Mess.Instance.Drop(at, meter.Velocity * 0.8f + outward * Random.Range(0.3f, 0.9f) * strength + Vector3.up * Random.Range(0.4f, 1.2f) * strength,
-                ToiletWater, Random.Range(0.012f, 0.02f), Random.Range(0.03f, 0.05f));
+            if (strength > 0.7f || Time.time >= nextSqueezeSound)
+            {
+                nextSqueezeSound = Time.time + 0.5f;
+                Sfx.Play(strength > 0.7f ? "water_spill" : "slosh", Mathf.Clamp(0.35f + strength * 0.35f, 0.3f, 0.95f), 0.1f);
+            }
+            rig.Bonk(0.06f * strength);
+            Vector3 dir = SpillDirection();
+            float push = Mathf.Sqrt(strength);
+            int drops = Mathf.RoundToInt(24 * strength);
+            for (int i = 0; i < drops; i++)
+            {
+                Vector3 d = Quaternion.Euler(0f, Random.Range(-40f, 40f), 0f) * dir;
+                Mess.Instance.Drop(BowlPoint + d * topRadius * Random.Range(0.2f, 0.5f),
+                    d * Random.Range(0.35f, 0.9f) * push + Vector3.up * Random.Range(0.6f, 1.4f) * push + meter.Velocity * 0.7f,
+                    ToiletWater, Random.Range(0.013f, 0.022f), Random.Range(0.035f, 0.055f));
+            }
+            if (paper) SoggyPaper(dir);
         }
 
-        /// <summary>It flushes on its own: a roar of water, the toilet shudders, and a splash comes over the rim.</summary>
+        /// <summary>A soggy wad of toilet paper flops out onto the desk and rolls, leaving a wet trail.</summary>
+        void SoggyPaper(Vector3 dir)
+        {
+            Transform wad = Junk(JunkMeshes.CrumpledPaper, new Color(0.9f, 0.9f, 0.86f), Vector3.one * Random.Range(0.045f, 0.06f));
+            wad.position = BowlPoint + Vector3.up * 0.02f;
+            Vector3 v = dir * Random.Range(0.5f, 0.9f) + Vector3.up * Random.Range(1f, 1.6f) + meter.Velocity * 0.6f;
+            DeskDebris.Instance.AddPiece(wad, v, 0.026f, 0.022f, disposable: true, ball: true, trail: ToiletWater);
+            Sfx.Play("plop", 0.5f, 0.15f);
+        }
+
+        /// <summary>The bowl erupts: a column of water straight up that rains down all round.</summary>
+        IEnumerator Geyser(float seconds)
+        {
+            rig.Bonk(0.12f);
+            Sfx.Play("water_spill", 0.8f, 0.08f);
+            yield return Stream(() => BowlPoint, () => (Vector3.up + new Vector3(Random.Range(-0.3f, 0.3f), 0f, Random.Range(-0.45f, 0f))).normalized,
+                ToiletWater, seconds, 60f, new Vector2(1.8f, 3f), new Vector2(0.014f, 0.024f), 0.05f);
+        }
+
+        /// <summary>It flushes on its own: the roar, a shudder, then a geyser out of the bowl, and a gurgle as it drains.</summary>
         IEnumerator Flush()
         {
-            Sfx.Play("toilet_flush", 0.8f, 0.04f);
-            for (int i = 0; i < 6; i++)
+            Sfx.Play("toilet_flush", 0.85f, 0.04f);
+            for (int i = 0; i < 4; i++)
             {
                 rig.Bonk(0.05f);
-                SloshDrop(1.2f);
-                yield return new WaitForSeconds(0.18f);
+                yield return new WaitForSeconds(0.15f);
             }
+            if (Random.value < 0.6f) SoggyPaper(new Vector3(Random.Range(-0.6f, 0.6f), 0f, -1f).normalized);
+            yield return Geyser(0.9f);
+            Sfx.Play("slurp", 0.5f, 0.1f);
         }
 
         float nextCoffeeSlosh;
 
-        /// <summary>Coffee slops over the rim (with a slosh now and then).</summary>
-        void CoffeeSlosh()
+        /// <summary>
+        /// Coffee slops over the rim the way the mug's moving: a sheet of it over one side that pours down the outside
+        /// (running down the front when it's the side facing the camera) and puddles round the foot of the mug.
+        /// </summary>
+        void CoffeeSlop(float strength)
         {
             if (!Mess.Instance) return;
             if (Time.time >= nextCoffeeSlosh)
             {
-                nextCoffeeSlosh = Time.time + Random.Range(0.6f, 1.2f);
-                Sfx.Play("slosh", 0.5f, 0.12f);
+                nextCoffeeSlosh = Time.time + Random.Range(0.5f, 1f);
+                Sfx.Play("slosh", 0.55f, 0.12f);
             }
-            Vector3 at = RimPoint(out Vector3 outward);
-            Mess.Instance.Drop(at, meter.Velocity * 0.8f + outward * Random.Range(0.3f, 0.8f) + Vector3.up * Random.Range(0.1f, 0.5f), Coffee, 0.016f, 0.04f);
+            Vector3 dir = SpillDirection(0.01f);
+            int n = Mathf.RoundToInt(Random.Range(5, 8) * strength);
+            for (int i = 0; i < n; i++)
+            {
+                Vector3 d = Quaternion.Euler(0f, Random.Range(-35f, 35f), 0f) * dir;
+                Mess.Instance.Drop(TopPoint + d * topRadius * 0.95f,
+                    d * Random.Range(0.12f, 0.45f) * strength + Vector3.up * Random.Range(0f, 0.3f) * strength + meter.Velocity * 0.6f,
+                    Coffee, Random.Range(0.014f, 0.022f), Random.Range(0.035f, 0.05f));
+            }
+            if (dir.z < -0.2f && Random.value < 0.45f * strength) RunDownAt(Random.Range(0.86f, 0.94f), dir.x, Coffee, 0.026f);
+        }
+
+        /// <summary>A big jolt: the coffee heaves up out of the mug and comes down all round, runs down the sides and spreads into a steaming puddle.</summary>
+        void CoffeeHeave()
+        {
+            if (!Mess.Instance) return;
+            Sfx.Play("water_spill", 0.7f, 0.1f);
+            Sfx.Play("steam_hiss", 0.35f, 0.1f);
+            rig.Bonk(0.12f);
+            for (int i = 0; i < 34; i++)
+            {
+                Vector2 around = Random.insideUnitCircle;
+                if (around.y > 0.3f) around.y = -around.y;
+                Mess.Instance.Drop(TopPoint + new Vector3(around.x, 0f, around.y) * topRadius * 0.6f,
+                    new Vector3(around.x * Random.Range(0.3f, 0.9f), Random.Range(0.8f, 1.6f), around.y * Random.Range(0.3f, 0.9f)) + meter.Velocity * 0.5f,
+                    Coffee, Random.Range(0.015f, 0.024f), Random.Range(0.04f, 0.06f));
+            }
+            for (int i = 0; i < 3; i++) RunDownAt(Random.Range(0.86f, 0.94f), (i - 1) * 0.5f + Random.Range(-0.15f, 0.15f), Coffee, 0.028f);
+            StartCoroutine(Cloud(TopPoint, 6, Steam, 0.16f, 2f, new Vector3(0f, 0.25f, 0f), 0.06f));
+            Mess.Instance.DeskStain(transform.position + new Vector3(Random.Range(-0.05f, 0.05f), 0f, -topRadius - 0.04f), 0.07f, Coffee, 150f, 0.6f, true);
         }
 
         /// <summary>

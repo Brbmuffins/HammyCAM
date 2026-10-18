@@ -223,6 +223,34 @@ namespace Muffin
             return swallowed;
         }
 
+        /// <summary>
+        /// The nearest sprinkle or bit lying still (seen from above) that passes the test, if any: what the vacuum's
+        /// hose goes after when nobody steers it.
+        /// </summary>
+        public bool NearestResting(Vector3 from, System.Func<Vector3, bool> allowed, out Vector3 at)
+        {
+            at = default;
+            float best = float.MaxValue;
+            foreach (Sprinkle s in sprinkles)
+            {
+                if (!s.Resting) continue;
+                float d = new Vector2(s.Position.x - from.x, s.Position.z - from.z).sqrMagnitude;
+                if (d >= best || !allowed(s.Position)) continue;
+                best = d;
+                at = s.Position;
+            }
+            foreach (Piece p in pieces)
+            {
+                if (!p.Transform || !p.Resting) continue;
+                Vector3 q = p.Transform.position;
+                float d = new Vector2(q.x - from.x, q.z - from.z).sqrMagnitude;
+                if (d >= best || !allowed(q)) continue;
+                best = d;
+                at = q;
+            }
+            return best < float.MaxValue;
+        }
+
         /// <summary>The sponge passes over (x, z): sprinkles and bits there are wiped away (toppings go home).</summary>
         public void CleanArea(Vector3 centre, float radius)
         {

@@ -292,6 +292,27 @@ namespace Muffin
             Sfx.Play("squelch", 0.45f, 0.15f);
         }
 
+        /// <summary>
+        /// The nearest stain or lump on the desk (seen from above) that passes the test and isn't already going, if any:
+        /// what the vacuum's hose goes after when nobody steers it.
+        /// </summary>
+        public bool NearestOnDesk(Vector3 from, System.Func<Vector3, bool> allowed, out Vector3 at)
+        {
+            at = default;
+            float best = float.MaxValue;
+            foreach (Stain s in stains)
+            {
+                if (!s.Transform || s.Transform.parent != root) continue;   // only things on the desk
+                if (s.Life - (Time.time - s.Born) < 0.6f) continue;           // already being cleaned up, or drying out
+                Vector3 p = s.Transform.position;
+                float d = new Vector2(p.x - from.x, p.z - from.z).sqrMagnitude;
+                if (d >= best || !allowed(p)) continue;
+                best = d;
+                at = p;
+            }
+            return best < float.MaxValue;
+        }
+
         /// <summary>The sponge passes over (x, z): stains on the desk there shrink away fast.</summary>
         public void CleanArea(Vector3 centre, float radius)
         {

@@ -218,8 +218,11 @@ namespace Muffin
                 if (GUILayout.Button("Face slam (R)")) chaos.Fire(ChaosEvent.Slam);
             }
             Heading("The vacuum's hose");
+            bool auto = GUILayout.Toggle(VacuumHose.AutoClean, VacuumHose.AutoClean
+                ? "Cleans up the desk by itself" : "Doesn't clean by itself", GUI.skin.button);
+            if (auto != VacuumHose.AutoClean) VacuumHose.AutoClean = auto;
             bool follow = GUILayout.Toggle(VacuumHose.FollowMouse, VacuumHose.FollowMouse
-                ? "The nozzle follows your mouse (or click the hose)" : "The nozzle stays put (click the hose to steer it)", GUI.skin.button);
+                ? "Your mouse steers it while you move it (or click the hose)" : "Mouse steering off (click the hose to turn it on)", GUI.skin.button);
             if (follow != VacuumHose.FollowMouse) VacuumHose.FollowMouse = follow;
             Heading("Clean up");
             GUILayout.BeginHorizontal();

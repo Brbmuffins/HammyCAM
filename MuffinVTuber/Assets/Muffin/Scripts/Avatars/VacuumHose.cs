@@ -7,10 +7,12 @@ namespace Muffin
 {
     /// <summary>
     /// The vacuum's hose: a long ribbed tube from the socket on top of the vacuum to a floor nozzle, simulated as
-    /// a heavy rope (it hangs, drapes over the desk and drags along), not part of the model. Its nozzle follows the
-    /// streamer's mouse over the desk (the same desktop cursor the mini mouse follows) and sucks up whatever it
-    /// passes over: sprinkles and bits fly into it, puddles and splats are slurped away. Click the hose in the
-    /// app (or use the menu) to switch the mouse steering off and on; off, the nozzle just lies where it was.
+    /// a heavy rope (it hangs, drapes over the desk and drags along), not part of the model. Left alone, it cleans
+    /// up by itself: the nozzle goes after the nearest mess on the desk within reach, sweeping over it, and sucks
+    /// up whatever it passes over (sprinkles and bits fly into it, puddles and splats are slurped away), then
+    /// lies still once the desk is clean. Mouse steering is optional (the menu, or a click on the hose): the nozzle
+    /// then follows the desktop cursor while the mouse moves, and goes back to cleaning once it's been still a few
+    /// seconds. It's off by default: the streamer's mouse is busy with everything else on their PC.
     /// </summary>
     [RequireComponent(typeof(BendRig))]
     public sealed class VacuumHose : MonoBehaviour
@@ -21,13 +23,30 @@ namespace Muffin
         public float length = 1.4f, radius = 0.032f;
         [Range(8, 48)] public int points = 28;
         public float gravity = 9.8f;
+        [Header("Cleaning by itself")]
+        [Tooltip("How fast the nozzle moves when it cleans by itself (m/s).")]
+        public float huntSpeed = 0.4f;
+        [Tooltip("With mouse steering on: seconds of a still mouse before it goes back to cleaning by itself.")]
+        public float idleAfter = 3f;
 
-        /// <summary>The nozzle follows the mouse (remembered; the menu and a click on the hose switch it).</summary>
+        /// <summary>The nozzle follows the mouse while it moves (remembered; the menu and a click on the hose switch it).</summary>
         public static bool FollowMouse
         {
-            get => PlayerPrefs.GetInt("muffin.hose.mouse", 1) == 1;
-            set => PlayerPrefs.SetInt("muffin.hose.mouse", value ? 1 : 0);
+            get => PlayerPrefs.GetInt("muffin.hose.mouse.v2", 0) == 1;
+            set => PlayerPrefs.SetInt("muffin.hose.mouse.v2", value ? 1 : 0);
         }
+
+        /// <summary>With nobody steering it, the nozzle goes round the desk sucking up the mess (remembered; the menu switches it).</summary>
+        public static bool AutoClean
+        {
+            get => PlayerPrefs.GetInt("muffin.hose.auto", 1) == 1;
+            set => PlayerPrefs.SetInt("muffin.hose.auto", value ? 1 : 0);
+        }
+
+        /// <summary>Sprinkles and bits it has swallowed (the self-test reads it).</summary>
+        public int Eaten { get; private set; }
+        /// <summary>Cleaning by itself right now.</summary>
+        public bool Hunting { get; private set; }
 
         BendRig rig;
         Transform socket, nozzle, tubeObject;
@@ -37,6 +56,13 @@ namespace Muffin
         int[] triangles;
         float segment, nextSlurp;
         bool primed;
+        Vector2 lastCursor;
+        float lastCursorMove = -999f;
+        // Cleaning by itself: where the nozzle is being led, the mess it's after, and mess it gave up on.
+        Vector3 huntPoint, huntTarget;
+        bool hasTarget;
+        float nextLook, sweep, targetSince;
+        readonly System.Collections.Generic.List<(Vector3 at, float until)> skipped = new System.Collections.Generic.List<(Vector3, float)>();
         SoundLoop hum;
         const int Sides = 10, Sub = 2; // ring corners, rings per segment (alternate rings are ribs)
 
@@ -109,6 +135,75 @@ namespace Muffin
             return new Vector3(x, (float.IsNegativeInfinity(ground) ? 0f : ground) + 0.035f, z);
         }
 
+        /// <summary>
+        /// Cleaning by itself: the nozzle is led to the nearest mess within reach at a steady pace, sweeping from side
+        /// to side over it like someone working a vacuum over a spill, then on to the next. False once the desk is
+        /// clean (the nozzle then just lies where it is).
+        /// </summary>
+        bool Hunt(float dt, bool wasHunting, out Vector3 target)
+        {
+            target = default;
+            if (!wasHunting)
+            {
+                huntPoint = p[points - 1]; // carries on from wherever the nozzle is
+                hasTarget = false;
+            }
+            if (!hasTarget || Time.time >= nextLook)
+            {
+                nextLook = Time.time + 0.4f;
+                Vector3 before = huntTarget;
+                hasTarget = FindMess(huntPoint, out huntTarget);
+                if (!hasTarget || (huntTarget - before).sqrMagnitude > 0.05f * 0.05f) targetSince = Time.time;
+                // Still after the same thing after a while (out of reach, or it won't come up): give up on it for now.
+                if (hasTarget && Time.time - targetSince > 6f)
+                {
+                    skipped.Add((huntTarget, Time.time + 20f));
+                    hasTarget = FindMess(huntPoint, out huntTarget);
+                    targetSince = Time.time;
+                }
+            }
+            if (!hasTarget) return false;
+
+            // The mouth sits in front of the hose's end: lead the end so the mouth lands on the mess.
+            Vector3 facing = nozzle ? Vector3.ProjectOnPlane(nozzle.forward, Vector3.up).normalized : Vector3.back;
+            Vector3 goal = huntTarget - facing * 0.11f;
+            Vector3 toGoal = new Vector3(goal.x - huntPoint.x, 0f, goal.z - huntPoint.z);
+            huntPoint += Vector3.ClampMagnitude(toGoal, huntSpeed * dt);
+            sweep += dt;
+            Vector3 heading = toGoal.sqrMagnitude > 1e-4f ? toGoal.normalized : facing;
+            Vector3 across = new Vector3(-heading.z, 0f, heading.x);
+            target = huntPoint + across * (Mathf.Sin(sweep * 6f) * 0.035f);
+            float ground = DeskScene.SurfaceHeight(target.x, target.z);
+            target.y = (float.IsNegativeInfinity(ground) ? 0f : ground) + 0.035f;
+            return true;
+        }
+
+        /// <summary>The nearest sprinkle, bit, splat or lump on the desk the hose can reach.</summary>
+        bool FindMess(Vector3 from, out Vector3 at)
+        {
+            skipped.RemoveAll(s => Time.time > s.until);
+            Vector3 piece = default, stain = default;
+            bool bit = DeskDebris.Instance && DeskDebris.Instance.NearestResting(from, Reachable, out piece);
+            bool splat = Mess.Instance && Mess.Instance.NearestOnDesk(from, Reachable, out stain);
+            at = bit && (!splat || FlatDistance(piece, from) <= FlatDistance(stain, from)) ? piece : stain;
+            return bit || splat;
+        }
+
+        static float FlatDistance(Vector3 a, Vector3 b) => new Vector2(a.x - b.x, a.z - b.z).magnitude;
+
+        /// <summary>On the desk, in front of or beside the vacuum (in view), round its body and within the hose's reach.</summary>
+        bool Reachable(Vector3 q)
+        {
+            Vector3 c = transform.position;
+            float r = FlatDistance(q, c);
+            if (r < 0.3f || r > 1.05f || q.z - c.z > 0.15f) return false;
+            float ground = DeskScene.SurfaceHeight(q.x, q.z);
+            if (float.IsNegativeInfinity(ground) || q.y > ground + 0.12f) return false;
+            foreach (var s in skipped)
+                if (FlatDistance(q, s.at) < 0.08f) return false;
+            return true;
+        }
+
         void LateUpdate()
         {
             if (p == null) return;
@@ -127,8 +222,19 @@ namespace Muffin
             }
 
             ClickToToggle();
-            bool steering = FollowMouse && enabled;
-            Vector3 target = MouseTarget();
+            // The mouse steers while it's being moved (with steering on); left alone, the hose cleans up by itself.
+            Vector2 cursor = DeskInput.Instance ? DeskInput.Instance.Cursor01 : lastCursor;
+            if ((cursor - lastCursor).sqrMagnitude > 1e-6f)
+            {
+                lastCursor = cursor;
+                lastCursorMove = Time.time;
+            }
+            bool byMouse = FollowMouse && Time.time - lastCursorMove < idleAfter;
+            Vector3 target = default;
+            bool wasHunting = Hunting;
+            Hunting = !byMouse && AutoClean && Hunt(dt, wasHunting, out target);
+            if (byMouse) target = MouseTarget();
+            bool steering = byMouse || Hunting;
 
             // A heavy rope: carry on moving, a bit of drag, gravity.
             for (int i = 2; i < points; i++)
@@ -143,10 +249,11 @@ namespace Muffin
             {
                 p[0] = start;
                 p[1] = start + up * segment;
-                // The nozzle is drawn to the mouse's spot on the desk (softly, so it lags and swings a little).
+                // The nozzle is drawn to the mouse's spot on the desk, or the mess it's after (softly, so it lags
+                // and swings a little).
                 if (steering) p[points - 1] = Vector3.Lerp(p[points - 1], target, 0.18f);
                 // Every length of hose keeps its length (the first one is held in the socket; a steered nozzle
-                // is held at the mouse, so the hose follows it rather than pulling it back).
+                // is held at its target, so the hose follows it rather than pulling it back).
                 for (int i = 2; i < points; i++)
                 {
                     Vector3 d = p[i] - p[i - 1];
@@ -228,7 +335,7 @@ namespace Muffin
 
         /// <summary>
         /// The nozzle eats what's under it: sprinkles and bits fly into it, splats and puddles shrink away. It hums
-        /// while it's being moved, and slurps when it gets something.
+        /// while it's working (steered or cleaning by itself), and slurps when it gets something.
         /// </summary>
         void Suck(bool steering)
         {
@@ -238,6 +345,7 @@ namespace Muffin
             if (down)
             {
                 int swallowed = DeskDebris.Instance ? DeskDebris.Instance.Suck(mouth, 0.16f, 3f) : 0;
+                Eaten += swallowed;
                 if (Mess.Instance) Mess.Instance.CleanArea(mouth, 0.06f);
                 if (swallowed > 0 && Time.time >= nextSlurp)
                 {

@@ -27,7 +27,7 @@ namespace Muffin
         float cornerAlpha = -1f, avatarAlpha = -1f;
         bool? testFaceTracked;
         string pepperoni = "not run";
-        string chatTest = "not run", chaosTest = "not run";
+        string chatTest = "not run", chaosTest = "not run", hoseTest = "not run";
         string flopReport = "not run", headTurnMess = "not run";
         int rooms = -1;
         string vertical = "not run";
@@ -515,6 +515,39 @@ namespace Muffin
                 yield return new WaitForSecondsRealtime(1f);
             }
 
+            // The vacuum's hose, left alone on the messy desk, cleans up by itself.
+            for (int i = 0; i < library.avatars.Count; i++)
+            {
+                var hose = library.avatars[i].GetComponent<VacuumHose>();
+                if (!hose) continue;
+                bool follow = VacuumHose.FollowMouse, auto = VacuumHose.AutoClean;
+                VacuumHose.FollowMouse = false;
+                VacuumHose.AutoClean = true;
+                library.Activate(i);
+                int eatenFrom = hose.Eaten, stainsFrom = Mess.Instance ? Mess.Instance.StainCount : -1;
+                int bitsFrom = DeskDebris.Instance ? DeskDebris.Instance.SprinkleCount + DeskDebris.Instance.PieceCount : -1;
+                int hunting = 0, frames = 0;
+                float from = Time.realtimeSinceStartup;
+                bool shot = false;
+                while (Time.realtimeSinceStartup - from < 12f)
+                {
+                    frames++;
+                    if (hose.Hunting) hunting++;
+                    if (!shot && Time.realtimeSinceStartup - from > 5f)
+                    {
+                        shot = true;
+                        yield return Shot(outDir, "16-hose-cleaning.png");
+                    }
+                    yield return null;
+                }
+                hoseTest = $"in 12 s left alone it swallowed {hose.Eaten - eatenFrom} sprinkles and bits (desk {bitsFrom} -> " +
+                           $"{(DeskDebris.Instance ? DeskDebris.Instance.SprinkleCount + DeskDebris.Instance.PieceCount : -1)}), " +
+                           $"stains {stainsFrom} -> {(Mess.Instance ? Mess.Instance.StainCount : -1)}, cleaning {100 * hunting / Mathf.Max(1, frames)}% of the time";
+                VacuumHose.FollowMouse = follow;
+                VacuumHose.AutoClean = auto;
+                break;
+            }
+
             // The bucket and sponge.
             chaos.ScrubClean();
             yield return new WaitForSecondsRealtime(1.6f);
@@ -753,6 +786,7 @@ namespace Muffin
                    $"  \"messSmearedByHands\": {(Mess.Instance ? Mess.Instance.Smeared : -1)},\n" +
                    $"  \"chat\": \"{chatTest}\",\n" +
                    $"  \"chaos\": \"{chaosTest}\",\n" +
+                   $"  \"hoseAutoClean\": \"{hoseTest}\",\n" +
                    $"  \"errors\": {errors},\n" +
                    $"  \"firstError\": {error}\n" +
                    "}\n";
