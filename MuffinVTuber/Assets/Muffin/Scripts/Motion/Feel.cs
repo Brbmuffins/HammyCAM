@@ -73,8 +73,8 @@ namespace Muffin
         bool primed;
 
         /// <summary>
-        /// Face Object Stream's adaptive smoothing instead (for MediaPipe, whose points barely jitter): follow at
-        /// 30 a second for small moves, up to 72 for big ones (beyond 0.22 rad), frame-rate independent.
+        /// Adaptive MediaPipe smoothing: settle tiny movements at 6 a second, opening up to 72 for deliberate
+        /// moves (0.14 rad of error), frame-rate independent and scaled by the selected Feel level.
         /// </summary>
         public bool Adaptive { get; set; }
 
@@ -101,7 +101,9 @@ namespace Muffin
                 Vector3 d = degrees - smoothAngles;
                 float movement = Mathf.Max(Mathf.Abs(d.x), Mathf.Abs(d.y), Mathf.Abs(d.z)) * Mathf.Deg2Rad;
                 movement = Mathf.Max(movement, (leanOffset - smoothOffset).magnitude * 0.3f);
-                float rate = Mathf.Lerp(30f, 72f, Mathf.Clamp01(movement / 0.22f)) * Feel.AdaptiveScale;
+                // Suppress sub-degree tremor, but open quickly for intentional turns and leans.
+                float activity = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.008f, 0.14f, movement));
+                float rate = Mathf.Lerp(6f, 72f, activity) * Feel.AdaptiveScale;
                 float blend = 1f - Mathf.Exp(-rate * dt);
                 smoothAngles += d * blend;
                 smoothOffset += (leanOffset - smoothOffset) * blend;

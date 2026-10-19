@@ -49,6 +49,7 @@ namespace Muffin
         const int HistoryFrames = 8;
         readonly RenderTexture[] history = new RenderTexture[HistoryFrames];
         readonly int[] historyIds = new int[HistoryFrames];
+        readonly double[] historyTimes = new double[HistoryFrames];
         int nextId = 1;
         RenderTexture testFrame;
         bool moveTest;
@@ -61,6 +62,16 @@ namespace Muffin
             for (int i = 0; i < HistoryFrames; i++)
                 if (historyIds[i] == id && history[i]) return history[i];
             return null;
+        }
+
+        // Time since Unity received this picture, including readback, pipe waiting and inference.
+        // This excludes exposure/driver buffering before WebCamTexture delivers the picture.
+        public double FrameAgeMs(int id)
+        {
+            if (id <= 0) return -1;
+            int slot = id % HistoryFrames;
+            return historyIds[slot] == id
+                ? (Time.realtimeSinceStartupAsDouble - historyTimes[slot]) * 1000.0 : -1;
         }
 
         WebCamTexture webcam;
@@ -189,6 +200,7 @@ namespace Muffin
             }
             Graphics.Blit(source, rt);
             historyIds[slot] = id;
+            historyTimes[slot] = Time.realtimeSinceStartupAsDouble;
         }
 
         void OnReadback(AsyncGPUReadbackRequest request, int id)

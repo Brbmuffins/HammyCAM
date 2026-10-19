@@ -357,6 +357,7 @@ namespace Muffin
             return sum / indices.Length;
         }
 
+
         void Outline(Window w, Vector2[] p, int[] indices, bool eye, FaceLayout l, float eyeWidth, float angle, Vector2 size,
             float upSign, System.Func<Vector2, Vector2> up, float zoom)
         {
@@ -366,6 +367,15 @@ namespace Muffin
             Vector2 middle = Vector2.zero;
             for (int k = 0; k < count; k++) middle += up(p[indices[k]]);
             middle /= count;
+            if (eye)
+            {
+                // Both tracker outlines start at a corner and reach the opposite corner halfway round.
+                // Lids move when blinking/squinting, so use the corners for the centre. Keep the shared
+                // face angle passed in: the far eye's short, foreshortened corner line is too noisy to
+                // drive its own crop rotation during a sideways look.
+                Vector2 first = up(p[indices[0]]), opposite = up(p[indices[count / 2]]);
+                middle = (first + opposite) * 0.5f;
+            }
             for (int k = 0; k < count; k++)
             {
                 Vector2 q = Rotate(up(p[indices[k]]) - middle, -angle);
@@ -380,6 +390,8 @@ namespace Muffin
                     else q.y -= upSign * eyeWidth * l.LowerLidPad * taper;
                 }
                 else q *= l.MouthExpand;
+                // The mask must describe the very same frame as the camera pixels. Filtering the contour
+                // separately made it trail blinks and speech, briefly exposing skin or cutting off the feature.
                 corners[k] = q * zoom;
             }
 
@@ -405,6 +417,14 @@ namespace Muffin
             Vector2 half = (max - min) * 0.5f * 1.06f;
             half.y = Mathf.Max(half.y, half.x * 0.22f);
             Vector2 mid = (min + max) * 0.5f;
+            if (eye)
+            {
+                // Keep a full-height eye canvas centred on the corners, even during blinks. The live lid
+                // contour closes inside it instead of rescaling a thin strip of camera pixels to fill an eye.
+                mid = Vector2.zero;
+                half.x = Mathf.Max(Mathf.Abs(min.x), Mathf.Abs(max.x)) * 1.06f;
+                half.y = Mathf.Max(Mathf.Max(Mathf.Abs(min.y), Mathf.Abs(max.y)) * 1.06f, half.x / 1.71f);
+            }
             Vector2 centre = middle + Rotate(mid, angle);
 
             w.Centre = new Vector2(centre.x / size.x, centre.y / size.y);
@@ -418,8 +438,10 @@ namespace Muffin
                 w.Poly[k / 2] = new Vector4(a.x, a.y, b.x, b.y);
             }
 
-            // Window units, x times the aspect, so the shader measures edges in window heights.
-            Vector2 Window01(Vector2 q) => new Vector2((q.x - mid.x) / (half.x * 2f) * w.Aspect, (q.y - mid.y) / (half.y * 2f));
+            // The shader's mask is in upright quad coordinates. A vertically mirrored camera uses a negative
+            // crop height to flip the image; flip the contour too so lids and lips still cover the same pixels.
+            Vector2 Window01(Vector2 q) => new Vector2((q.x - mid.x) / (half.x * 2f) * w.Aspect,
+                (q.y - mid.y) / (half.y * 2f) * upSign);
         }
 
         /// <summary>
@@ -800,6 +822,8 @@ namespace Muffin
             Vector2 centre, size;
             float angle;
             bool primed;
+            float stableHeight, heightAt;
+            bool heightPrimed;
 
             public Cutout(string name, Transform parent, Vector3 position, Material template, float width)
             {
@@ -824,7 +848,7 @@ namespace Muffin
             public void SetVisible(bool visible)
             {
                 if (transform.gameObject.activeSelf != visible) transform.gameObject.SetActive(visible);
-                if (!visible) primed = false; // jump straight to the face when it reappears
+                if (!visible) { primed = false; heightPrimed = false; } // jump straight to the face when it reappears
             }
 
             /// <summary>
@@ -862,7 +886,14 @@ namespace Muffin
                 float h0 = baseAspect > 0f
                     ? w0 / baseAspect * Mathf.Clamp(baseAspect / cropAspect, 0.48f, 1.12f)
                     : w0 / cropAspect;
-                baseScale = new Vector3(w0, h0 * stretchY, 1f) * Size;
+                float targetHeight = h0 * stretchY;
+                float heightDt = Mathf.Clamp(Time.unscaledTime - heightAt, 0.001f, 0.1f);
+                float relativeChange = Mathf.Abs(targetHeight - stableHeight) / Mathf.Max(0.001f, stableHeight);
+                float heightHz = Mathf.Lerp(1.5f, 24f, Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.02f, 0.2f, relativeChange)));
+                stableHeight = heightPrimed ? Mathf.Lerp(stableHeight, targetHeight, 1f - Mathf.Exp(-2f * Mathf.PI * heightHz * heightDt)) : targetHeight;
+                heightPrimed = true;
+                heightAt = Time.unscaledTime;
+                baseScale = new Vector3(w0, stableHeight, 1f) * Size;
                 transform.localScale = baseScale;
                 lastImage = image;
                 lastImageSize = imageSize;

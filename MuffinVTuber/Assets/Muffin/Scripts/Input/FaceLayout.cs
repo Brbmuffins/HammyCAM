@@ -21,19 +21,22 @@ namespace Muffin
         /// </summary>
         public float EyeExpandX, EyeExpandY, UpperLidPad, LowerLidPad, MouthExpand;
 
-        /// <summary>OpenSeeFace's 68 points (the classic layout).</summary>
+        /// <summary>OpenSeeFace's 66 face landmarks plus two pupils; its mouth differs from iBUG-68.</summary>
         public static readonly FaceLayout OpenSeeFace = new FaceLayout
         {
             Name = "OpenSeeFace",
             LeftEye = new[] { 36, 37, 38, 39, 40, 41 },
             RightEye = new[] { 42, 43, 44, 45, 46, 47 },
-            Mouth = new[] { 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59 },
+            // Outer lip corners are 58/62. Points 59..61 and 63..65 trace the INNER lips.
+            // Walking 48..59 directly cuts across the mouth and produces a missing triangular wedge.
+            Mouth = new[] { 58, 48, 49, 50, 51, 52, 62, 53, 54, 55, 56, 57 },
             OuterLeft = 36, InnerLeft = 39, InnerRight = 42, OuterRight = 45,
             LeftBrow = new[] { 17, 18, 19, 20, 21 },
             RightBrow = new[] { 22, 23, 24, 25, 26 },
-            MouthLeft = 48, MouthRight = 54, LipTop = 51, LipBottom = 57,
+            MouthLeft = 58, MouthRight = 62, LipTop = 50, LipBottom = 55,
             Nose = new[] { 30, 30, 31, 32, 33, 34, 35 },
-            EyeExpandX = 1.12f, EyeExpandY = 1.2f, UpperLidPad = 0.08f, LowerLidPad = 0.06f, MouthExpand = 1.08f,
+            // Tight feature cut-outs: avoid bringing a ring of skin and a line above the lips along.
+            EyeExpandX = 1.03f, EyeExpandY = 1.06f, UpperLidPad = 0.025f, LowerLidPad = 0.015f, MouthExpand = 1.01f,
         };
 
         /// <summary>

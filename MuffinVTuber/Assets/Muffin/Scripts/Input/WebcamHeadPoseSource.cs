@@ -131,6 +131,13 @@ namespace Muffin
         public float TrackerFps { get; private set; }
         /// <summary>The number of the camera frame Points were measured on (-1 unknown): see CameraFeed.FrameById.</summary>
         public int PointsFrameId { get; private set; } = -1;
+        double pointsReadTime;
+        int healthRows, healthFramesSent;
+        float healthEyeSpan;
+        Vector2 healthCentre;
+        int healthFaceId = -1;
+        bool healthPrimed;
+        float healthLastUpdate, healthWorstGap;
         /// <summary>The camera picture Points belong to (the live one if that frame is gone): cut-outs use this.</summary>
         public Texture PointsImage => (feed && !NoSync ? feed.FrameById(PointsFrameId) : null) ?? (feed ? feed.Texture : null);
         // `-muffin-nosync`: cut from the live picture as before (to compare in tests).
@@ -375,17 +382,39 @@ namespace Muffin
             {
                 packetsThisSecond++;
                 FaceCount = faces.Count;
+                bool requestedSwitch = switchPerson;
                 TrackedFace data = Choose();
                 OtherFaces.Clear();
                 foreach (var d in faces)
                     if (d != data) OtherFaces.Add(d.Points);
                 if (data != null)
                 {
+                    if (healthLastUpdate > 0f)
+                        healthWorstGap = Mathf.Max(healthWorstGap, Time.unscaledTime - healthLastUpdate);
+                    healthLastUpdate = Time.unscaledTime;
+                    float span = EyeWidth(data.Points);
+                    Vector2 centre = EyeCentre(data.Points);
+                    if (healthPrimed)
+                    {
+                        float shift = Vector2.Distance(centre, healthCentre) / Mathf.Max(1f, healthEyeSpan);
+                        float ratio = span / Mathf.Max(1f, healthEyeSpan);
+                        if (data.Id != healthFaceId || shift > 0.3f || ratio < 0.75f || ratio > 1.33f)
+                            UnityEngine.Debug.LogFormat(LogType.Log, LogOption.NoStacktrace, null,
+                                "[MappingJump] t={0:F3} id={1}->{2} faces={3} centreShift={4:F2}eyeWidths spanRatio={5:F2} ageMs={6:F0}",
+                                Time.unscaledTime, healthFaceId, data.Id, FaceCount, shift, ratio, (UnixNow() - data.Time) * 1000.0);
+                    }
+                    healthPrimed = true;
+                    healthEyeSpan = span;
+                    healthCentre = centre;
+                    healthFaceId = data.Id;
                     if (data.Id != FollowedId)
                     {
-                        // A different person: find their neutral pose.
+                        // Preserve calibration when the same person returns after a brief dropout.
+                        bool reacquired = FollowedId >= 0 && !requestedSwitch &&
+                            Time.unscaledTime - lastPacketAt < HoldWhenLost &&
+                            Vector2.Distance(EyeCentre(data.Points), followedCentre) < 0.75f * EyeWidth(data.Points);
                         FollowedId = data.Id;
-                        Recentre();
+                        if (!reacquired) Recentre();
                     }
                     followedCentre = EyeCentre(data.Points);
                     lastPacketAt = Time.unscaledTime;
@@ -394,12 +423,26 @@ namespace Muffin
                     ImageSize = data.Resolution;
                     Blendshapes = data.Scores;
                     PointsFrameId = MatchFrame(data.Time);
+                    pointsReadTime = data.Time;
                 }
             }
             HasFace = Time.unscaledTime - lastPacketAt < 0.5f;
             if (Time.unscaledTime - rateFrom >= 1f)
             {
                 TrackerFps = packetsThisSecond / (Time.unscaledTime - rateFrom);
+                // Temporary bounded telemetry for intermittent mapping failures. No camera images are saved.
+                if (healthRows++ < 600)
+                {
+                    int sent = feed ? feed.FramesSent : 0;
+                    bool retained = feed && feed.FrameById(PointsFrameId);
+                    float eyePixels = Points != null ? EyeWidth(Points) : 0f;
+                    double ageMs = pointsReadTime > 0 ? (UnixNow() - pointsReadTime) * 1000.0 : -1;
+                    UnityEngine.Debug.LogFormat(LogType.Log, LogOption.NoStacktrace, null, "{0}", $"[MappingHealth] t={Time.unscaledTime:F2} tracker={TrackerFps:F1}/s camera={(sent - healthFramesSent) / (Time.unscaledTime - rateFrom):F1}/s " +
+                        $"faces={FaceCount} id={FollowedId} hasFace={HasFace} calibrating={recalibrate} " +
+                        $"ageMs={ageMs:F0} sourceAgeMs={(feed ? feed.FrameAgeMs(PointsFrameId) : -1):F0} worstGapMs={healthWorstGap * 1000f:F0} frame={PointsFrameId} retained={retained} matchPct={SyncedShare * 100f:F0} eyeSpanPx={eyePixels:F1} renderMs={Time.unscaledDeltaTime * 1000f:F1}");
+                    healthFramesSent = sent;
+                }
+                healthWorstGap = 0f;
                 packetsThisSecond = 0;
                 rateFrom = Time.unscaledTime;
             }
@@ -453,8 +496,13 @@ namespace Muffin
                 current.Add((id, centre, width));
                 faces.Add(new TrackedFace { Id = id, Time = frame.Time, Resolution = size, Points = points, Scores = face.Scores, Matrix = face.Matrix });
             }
-            previousFaces.Clear();
-            previousFaces.AddRange(current);
+            // A single missed detection must not erase everyone's identity: that used to assign a new
+            // ID on return and trigger 15 frames of neutral-pose calibration (visible as a freeze/jump).
+            if (current.Count > 0 || Time.unscaledTime - lastPacketAt >= HoldWhenLost)
+            {
+                previousFaces.Clear();
+                previousFaces.AddRange(current);
+            }
             return true;
         }
 
@@ -790,8 +838,12 @@ namespace Muffin
                 // Windows oversleeps (~45 ms a frame, 22 a second); the pipe already waits for the next frame.
                 args = $"--raw-rgb 1 -W {feed.trackWidth} -H {feed.trackHeight} -F 0 " +
                        $"--ip 127.0.0.1 --port {receiver.listenPort} --model {model} --model-dir \"{models}\" " +
-                       $"--faces {maxFaces} --scan-every {(maxFaces > 1 ? 3 : 0)} " +
-                       $"--silent 1 --max-threads {trackerThreads} --discard-after 0 --no-3d-adapt 1 --max-feature-updates 900";
+                       // Keep tracking existing people every frame. Search for newcomers less often so
+                       // multi-person detection does not compete with landmark inference every third frame.
+                       $"--faces {maxFaces} --scan-every {(maxFaces > 1 ? 15 : 0)} " +
+                       // Real eye cut-outs use the lid landmarks, not the separately inferred pupils.
+                       // Skip the extra gaze network while retaining landmark-based blink/expression tracking.
+                       $"--gaze-tracking 0 --silent 1 --max-threads {trackerThreads} --discard-after 0 --no-3d-adapt 1 --max-feature-updates 900";
             }
             swapToBgr = !useMediaPipe; // OpenSeeFace's raw input is BGR
             try
@@ -833,9 +885,20 @@ namespace Muffin
 
         void WriteFrames(Stream stdin)
         {
+            int awaitingPackets = -1;
+            var sinceWrite = new Stopwatch();
             while (writerRunning)
             {
                 frameSignal.WaitOne(200);
+                // A pipe write can block while OpenSeeFace infers the previous frame. Selecting a frame
+                // before that wait makes it old by the time it is read. Wait for the previous result
+                // FIRST, then take the newest pending camera frame. The receiver runs independently of
+                // Unity's render loop. No-face frames send no UDP packet, so always allow a timed retry.
+                if (swapToBgr && awaitingPackets >= 0)
+                    while (writerRunning && Volatile.Read(ref receiver.receivedPackets) == awaitingPackets
+                           && sinceWrite.ElapsedMilliseconds < 100)
+                        Thread.Sleep(1);
+                if (!writerRunning) break;
                 lock (frameLock)
                 {
                     if (!hasPending) continue;
@@ -849,8 +912,10 @@ namespace Muffin
                     for (int p = 0; p + 2 < f.Length; p += 3) (f[p], f[p + 2]) = (f[p + 2], f[p]);
                 try
                 {
+                    awaitingPackets = Volatile.Read(ref receiver.receivedPackets);
                     stdin.Write(writeFrame, 0, writeFrame.Length);
                     stdin.Flush();
+                    sinceWrite.Restart();
                     double readAt = UnixNow();
                     lock (writtenLock) written[writtenCount++ % written.Length] = (writeId, readAt);
                 }
@@ -878,6 +943,7 @@ namespace Muffin
             }
             writer?.Join(500);
             writer = null;
+            lock (frameLock) hasPending = false;
             process.Dispose();
             process = null;
         }
