@@ -28,7 +28,7 @@ namespace Muffin
         bool? testFaceTracked;
         string pepperoni = "not run";
         string chatTest = "not run", chaosTest = "not run", hoseTest = "not run", remoteTest = "not run";
-        string flopReport = "not run", headTurnMess = "not run", flourTest = "not run";
+        string flopReport = "not run", headTurnMess = "not run", flourTest = "not run", gagTest = "not run";
         int rooms = -1;
         string vertical = "not run";
         int sprinkleCount = -1;
@@ -106,8 +106,16 @@ namespace Muffin
                             yield return FlourTest(outDir);
                             ran.Add("flour: " + flourTest);
                             break;
+                        case "gags":
+                            yield return GagTest(outDir, null);
+                            ran.Add("gags: " + gagTest);
+                            break;
+                        case string one when one.StartsWith("gag-"):
+                            yield return GagTest(outDir, one.Substring(4));
+                            ran.Add($"{one}: {gagTest}");
+                            break;
                         default:
-                            ran.Add($"{check.Trim()}: unknown check (known: flour)");
+                            ran.Add($"{check.Trim()}: unknown check (known: flour, gags, gag-<name>)");
                             break;
                     }
                 }
@@ -454,7 +462,7 @@ namespace Muffin
             for (int i = 0; i < library.avatars.Count; i++)
             {
                 BendRig avatar = library.avatars[i];
-                bool messy = avatar.GetComponent<SprinkleShedder>() || avatar.GetComponent<Toppings>() || avatar.GetComponent<FlourBag>() ||
+                bool messy = avatar.GetComponent<SprinkleShedder>() || avatar.GetComponent<Toppings>() || avatar.GetComponent<FlourBag>() || avatar.GetComponent<GagAvatar>() ||
                              (avatar.TryGetComponent(out MessMaker maker) && maker.kind != MessKind.Vacuum);
                 if (!messy) continue;
                 debris.Clean();
@@ -556,6 +564,56 @@ namespace Muffin
             Debug.Log("[Muffin] Flour: " + flourTest);
             if (DeskDebris.Instance) DeskDebris.Instance.Clean();
             hud.Visible = true;
+        }
+
+        /// <summary>
+        /// The gag avatars (Scripts/Avatars/Gags), each in turn from a clean desk: moving about, !shake, its own big
+        /// moment set off directly (TestMoment, as the face would), the face slam and !whack, a picture of each.
+        /// only: just the ones whose name contains it ("gag-pillow").
+        /// </summary>
+        IEnumerator GagTest(string outDir, string only)
+        {
+            var parts = new List<string>();
+            hud.Visible = false;
+            for (int i = 0; i < library.avatars.Count; i++)
+            {
+                BendRig rig = library.avatars[i];
+                if (!rig || !rig.TryGetComponent(out GagAvatar gag)) continue;
+                string name = library.NameOf(i);
+                string slug = name.Replace(' ', '-').Replace("ñ", "n").ToLowerInvariant();
+                if (only != null && !slug.Contains(only.ToLowerInvariant())) continue;
+                if (DeskDebris.Instance) DeskDebris.Instance.Clean();
+                library.Activate(i);
+                library.SetEmotion(Emotion.Neutral);
+                int before = errors;
+                Script(true);
+                yield return new WaitForSecondsRealtime(2.5f);
+                yield return Shot(outDir, $"23-{slug}-1-moving.png");
+                chaos.Fire(ChaosEvent.Shake);
+                yield return new WaitForSecondsRealtime(1.2f);
+                yield return Shot(outDir, $"23-{slug}-2-shake.png");
+                library.SetSource(null);
+                yield return new WaitForSecondsRealtime(1.5f);
+                gag.TestMoment();
+                yield return new WaitForSecondsRealtime(0.6f);
+                yield return Shot(outDir, $"23-{slug}-3-moment.png");
+                yield return new WaitForSecondsRealtime(0.5f);
+                yield return Shot(outDir, $"23-{slug}-3b-moment.png");
+                yield return new WaitForSecondsRealtime(1.5f);
+                chaos.Fire(ChaosEvent.Slam);
+                yield return new WaitForSecondsRealtime(1.3f);
+                yield return Shot(outDir, $"23-{slug}-4-slam.png");
+                yield return new WaitForSecondsRealtime(1.5f);
+                chaos.Fire(ChaosEvent.Whack);
+                yield return new WaitForSecondsRealtime(0.32f);
+                yield return Shot(outDir, $"23-{slug}-5-whack.png");
+                yield return new WaitForSecondsRealtime(1.2f);
+                int stains = Mess.Instance ? Mess.Instance.StainCount : -1, bits = DeskDebris.Instance ? DeskDebris.Instance.PieceCount + DeskDebris.Instance.SprinkleCount : -1;
+                parts.Add($"{name}: {gag.TestReport}; {stains} stains, {bits} bits{(errors > before ? $", {errors - before} error(s)" : "")}");
+            }
+            if (DeskDebris.Instance) DeskDebris.Instance.Clean();
+            hud.Visible = true;
+            gagTest = parts.Count == 0 ? "no gag avatars" : string.Join("; ", parts);
         }
 
         IEnumerator Sample(BendRig rig, List<float> into, float seconds, string outDir, string shot)

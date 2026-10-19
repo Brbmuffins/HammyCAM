@@ -179,6 +179,7 @@ namespace Muffin
                     break;
                 case "shake": if (chaos) chaos.Fire(ChaosEvent.Shake); break;
                 case "slam": if (chaos) chaos.Fire(ChaosEvent.Slam); break;
+                case "whack": if (chaos) chaos.Fire(ChaosEvent.Whack); break;
                 case "scrub": if (chaos) chaos.ScrubClean(); break;
                 case "clean": if (debris) debris.Clean(); break;
                 case "hoseAuto": VacuumHose.AutoClean = yes; break;

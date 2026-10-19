@@ -228,6 +228,7 @@ namespace Muffin
             {
                 if (GUILayout.Button($"Shake it: {chaos.ShakeName}")) chaos.Fire(ChaosEvent.Shake);
                 if (GUILayout.Button("Face slam (R)")) chaos.Fire(ChaosEvent.Slam);
+                if (GUILayout.Button("Whack it (a bat to the head)")) chaos.Fire(ChaosEvent.Whack);
             }
             Heading("The vacuum's hose");
             bool auto = GUILayout.Toggle(VacuumHose.AutoClean, VacuumHose.AutoClean

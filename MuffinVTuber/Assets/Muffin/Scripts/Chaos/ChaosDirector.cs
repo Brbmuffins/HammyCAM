@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Muffin
 {
     /// <summary>Everything that can be done to the set, by viewers (chat commands) or the streamer (panel, keys).</summary>
-    public enum ChaosEvent { Sprinklers, Fire, Slime, Pie, Fruit, WhippedCream, WaterSpill, Shake, Slam }
+    public enum ChaosEvent { Sprinklers, Fire, Slime, Pie, Fruit, WhippedCream, WaterSpill, Shake, Slam, Whack }
 
     /// <summary>Something an avatar can spill on cue (!shake): its pepperoni, sprinkles, garbage, juice…</summary>
     public interface IMessy
@@ -58,6 +58,7 @@ namespace Muffin
             new EventInfo { Event = ChaosEvent.WaterSpill, Label = "Water spill", Caption = "knocked over the water!", Commands = new[] { "!water", "!spill" }, Cooldown = 60f },
             new EventInfo { Event = ChaosEvent.Shake, Label = "Shake (avatar's own mess)", Caption = "shook things up!", Commands = new[] { "!shake" }, Cooldown = 20f },
             new EventInfo { Event = ChaosEvent.Slam, Label = "Face slam", Caption = "made it faceplant!", Commands = new[] { "!slam", "!faceplant" }, Cooldown = 30f },
+            new EventInfo { Event = ChaosEvent.Whack, Label = "Whack (a bat to the head)", Caption = "whacked it with a bat!", Commands = new[] { "!whack", "!bonk", "!hit" }, Cooldown = 8f },
         };
 
         [Header("Rules")]
@@ -206,6 +207,7 @@ namespace Muffin
                 ChaosEvent.WhippedCream => WhippedCream(),
                 ChaosEvent.WaterSpill => WaterSpill(),
                 ChaosEvent.Shake => Shake(),
+                ChaosEvent.Whack => WhackEvent(),
                 _ => SlamEvent(),
             };
             yield return routine;
@@ -224,6 +226,62 @@ namespace Muffin
         {
             if (debris) debris.Slam();
             yield return new WaitForSeconds(1f);
+        }
+
+        /// <summary>
+        /// !whack: a cartoon baseball bat swings in from one side and bonks the avatar on the head, then swings away.
+        /// The piñata counts the hits (GagAvatar.Whack); everything else just bonks and rocks.
+        /// </summary>
+        IEnumerator WhackEvent()
+        {
+            BendRig rig = library ? library.ActiveRig : null;
+            if (!rig) yield break;
+            float height = rig.TryGetComponent(out MeshAvatar avatar) && avatar.mesh ? avatar.mesh.bounds.size.y : 1.15f;
+            float faceUp = avatar ? avatar.faceFraction : 0.6f;
+            float side = Random.value < 0.5f ? -1f : 1f;
+            Material wood = mess ? mess.BlobMaterial(new Color(0.8f, 0.6f, 0.36f)) : pieTin;
+            Material grip = mess ? mess.BlobMaterial(new Color(0.15f, 0.12f, 0.12f)) : pieTin;
+            var pivot = new GameObject("Bat").transform;
+            // The bat: a long tapered barrel and a taped handle, lying along the pivot's local +X (out from the hands).
+            Make(PrimitiveType.Capsule, "Barrel", wood, pivot, new Vector3(0.52f, 0f, 0f), new Vector3(0.085f, 0.3f, 0.085f)).localRotation = Quaternion.Euler(0f, 0f, 90f);
+            Make(PrimitiveType.Cylinder, "Handle", wood, pivot, new Vector3(0.17f, 0f, 0f), new Vector3(0.035f, 0.17f, 0.035f)).localRotation = Quaternion.Euler(0f, 0f, 90f);
+            Make(PrimitiveType.Cylinder, "Grip", grip, pivot, new Vector3(0.05f, 0f, 0f), new Vector3(0.04f, 0.06f, 0.04f)).localRotation = Quaternion.Euler(0f, 0f, 90f);
+            float Head() => rig.transform.position.y + height * faceUp + 0.05f;
+            Vector3 Pivot() => new Vector3(rig.transform.position.x + side * 0.9f, Head() + 0.1f, rig.transform.position.z - 0.25f);
+            // Wind up (pointing up and away), swing through to the head, follow through, swing back out.
+            Quaternion Aim(float degrees) => Quaternion.Euler(0f, side > 0f ? 180f : 0f, 0f) * Quaternion.Euler(0f, 0f, degrees);
+            const float windUp = 95f, hit = -4f, through = -22f;
+            for (float t = 0f; t < 0.22f; t += Time.deltaTime)
+            {
+                pivot.SetPositionAndRotation(Pivot(), Aim(Mathf.Lerp(windUp + 25f, windUp, t / 0.22f)));
+                yield return null;
+            }
+            for (float t = 0f; t < 0.11f; t += Time.deltaTime)
+            {
+                float k = t / 0.11f;
+                pivot.SetPositionAndRotation(Pivot(), Aim(Mathf.Lerp(windUp, hit, k * k)));
+                yield return null;
+            }
+            Sfx.Play("pan_bonk", 0.55f, 0.15f);
+            Sfx.Play("slam_thud", 0.7f, 0.1f);
+            if (rig.TryGetComponent(out GagAvatar gag)) gag.Whack(1f);
+            else
+            {
+                rig.Bonk(0.3f);
+                rig.KickTip(new Vector3(-side * 2f, 0.3f, 0f));
+            }
+            for (float t = 0f; t < 0.12f; t += Time.deltaTime)
+            {
+                pivot.SetPositionAndRotation(Pivot(), Aim(Mathf.Lerp(hit, through, t / 0.12f)));
+                yield return null;
+            }
+            for (float t = 0f; t < 0.35f; t += Time.deltaTime)
+            {
+                float k = t / 0.35f;
+                pivot.SetPositionAndRotation(Pivot() + new Vector3(side * k * 1.2f, k * 0.3f, 0f), Aim(Mathf.Lerp(through, windUp + 40f, k)));
+                yield return null;
+            }
+            Destroy(pivot.gameObject);
         }
 
         /// <summary>What !shake spills on the current avatar (for the panel).</summary>

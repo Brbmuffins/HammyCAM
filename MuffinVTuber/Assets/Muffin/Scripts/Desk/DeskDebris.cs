@@ -251,9 +251,14 @@ namespace Muffin
             return best < float.MaxValue;
         }
 
+        /// <summary>K was pressed (everything goes) / the sponge wiped round (x, z): mess kept elsewhere (the pillow's feathers) goes too.</summary>
+        public static event System.Action Cleaned;
+        public static event System.Action<Vector3, float> AreaCleaned;
+
         /// <summary>The sponge passes over (x, z): sprinkles and bits there are wiped away (toppings go home).</summary>
         public void CleanArea(Vector3 centre, float radius)
         {
+            AreaCleaned?.Invoke(centre, radius);
             for (int i = sprinkles.Count - 1; i >= 0; i--)
                 if (new Vector2(sprinkles[i].Position.x - centre.x, sprinkles[i].Position.z - centre.z).magnitude < radius) sprinkles.RemoveAt(i);
             for (int i = pieces.Count - 1; i >= 0; i--)
@@ -280,6 +285,7 @@ namespace Muffin
         /// <summary>K: sweep the sugar off the desk, and put fallen toppings back where they belong.</summary>
         public void Clean()
         {
+            Cleaned?.Invoke();
             sprinkles.Clear();
             for (int i = pieces.Count - 1; i >= 0; i--)
                 if (pieces[i].Disposable)
@@ -317,6 +323,7 @@ namespace Muffin
             if (rig.TryGetComponent(out Toppings toppings)) toppings.PickUp(0.5f);
             if (rig.TryGetComponent(out MessMaker maker)) maker.OnSlam();
             if (rig.TryGetComponent(out FlourBag flour)) flour.OnSlam();
+            if (rig.TryGetComponent(out GagAvatar gag)) gag.OnSlam();
             yield return new WaitForSeconds(0.45f);
             // Let go: it springs back up and wobbles.
             for (float t = 0f; t < 0.15f; t += Time.deltaTime)

@@ -18,6 +18,15 @@ namespace Muffin
 
         bool extinguish, fireBurning;
 
+        /// <summary>A fire is burning on the desk (at FireSpot): the fire extinguisher avatar goes for it.</summary>
+        public bool FireBurning => fireBurning;
+        public Vector3 FireSpot { get; private set; }
+        /// <summary>Puts the fire out (in a hiss of steam), as the sprinklers do.</summary>
+        public void PutOutFire()
+        {
+            if (fireBurning) extinguish = true;
+        }
+
         // ---------- helpers ----------
 
         BendRig Rig => library ? library.ActiveRig : null;
@@ -196,6 +205,7 @@ namespace Muffin
             extinguish = false;
             Vector3 spot = DeskSpot(new Vector2(-0.62f, -0.12f), new Vector2(0.68f, -0.18f), new Vector2(0.5f, -0.62f), new Vector2(-0.78f, -0.58f), new Vector2(0.22f, -0.62f));
             Transform root = NewRoot("Fire", spot);
+            FireSpot = spot;
             const float life = 12f;
             if (mess) mess.DeskStain(spot, 0.17f, ScorchColour, 300f, life * 0.7f, false, default, false);
             Sfx.Play("fire_ignite");

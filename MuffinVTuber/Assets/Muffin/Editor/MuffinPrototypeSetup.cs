@@ -101,10 +101,15 @@ namespace Muffin.EditorTools
             // Generated object avatars: any GLB in Avatars/Generated that has a spec below.
             var makers = new System.Collections.Generic.List<Muffin.MessMaker>();
             var flourBags = new System.Collections.Generic.List<Muffin.FlourBag>();
+            // Code-built models (props-service/src/procedural) mark their glass with a material named "glass...": it
+            // becomes this see-through glass (the snow globe, the gumball machine, the fish bowl, the soda's neck).
+            var avatarGlass = Transparent(MakeMaterial("Avatar Glass", lit, new Color(0.86f, 0.94f, 1f, 0.2f), 0.95f));
             foreach (AvatarSpec spec in GeneratedAvatars)
             {
                 var (mesh, materials) = BakeAvatar($"{GeneratedDir}/{spec.Id}.glb", spec);
                 if (mesh == null) continue;
+                for (int m = 0; m < materials.Length; m++)
+                    if (materials[m] && materials[m].name.ToLowerInvariant().StartsWith("glass")) materials[m] = avatarGlass;
                 var go = new GameObject(spec.Name);
                 go.transform.SetParent(library.transform, false);
                 var objectRig = go.AddComponent<Muffin.BendRig>();
@@ -193,6 +198,11 @@ namespace Muffin.EditorTools
                     var shedder = go.AddComponent<Muffin.SprinkleShedder>();
                     shedder.topRadius = mesh.bounds.extents.x * 0.8f;
                     shedder.topHeight = mesh.bounds.size.y * 0.15f;
+                }
+                else if (spec.Extra is { } gag && Gags.ContainsKey(gag))
+                {
+                    // The code-built gag avatars (Scripts/Avatars/Gags): each one's behaviour, and where its parts are.
+                    Gags[gag](go);
                 }
                 else if (spec.Extra == "flour")
                 {
@@ -464,6 +474,97 @@ namespace Muffin.EditorTools
             // A paper sack of flour (props-service/src/flourbag.mjs, no AI credits; it faces the camera). It rocks and
             // squashes a little; shake it for flour, shake it hard for a whiteout (FlourBag). The label sits low, the face on the belly.
             new AvatarSpec { Id = "flour_bag", Name = "Flour bag", Yaw = 0f, Root = 0.04f, Head = 0.5f, Face = 0.6f, FaceSize = 0.8f, Extra = "flour", Roll = 12f, RollDamping = 0.35f, RollFrequency = 2.6f, Jiggle = 0.3f },
+            // The gag avatars, all built in code (props-service/src/procedural, no AI credits; they face the camera).
+            // Each has one big moment (Scripts/Avatars/Gags). All rigid and rocking; the soft ones squash a little.
+            new AvatarSpec { Id = "pillow", Name = "Feather pillow", Yaw = 0f, Root = 0.04f, Head = 0.4f, Face = 0.56f, FaceSize = 0.82f, Extra = "pillow", Roll = 12f, RollDamping = 0.3f, RollFrequency = 2.4f, Jiggle = 0.45f },
+            new AvatarSpec { Id = "volcano", Name = "Science-fair volcano", Yaw = 0f, Root = 0.05f, Head = 0.3f, Face = 0.353f, FaceSize = 0.86f, Extra = "volcano", Roll = 6f, RollDamping = 0.6f, RollFrequency = 2.6f, Jiggle = 0.1f },
+            new AvatarSpec { Id = "pinata", Name = "Piñata", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.442f, FaceSize = 0.56f, Extra = "pinata", Roll = 16f, RollDamping = 0.2f, RollFrequency = 1.7f, Jiggle = 0.15f },
+            new AvatarSpec { Id = "watermelon", Name = "Watermelon", Yaw = 0f, Root = 0.04f, Head = 0.32f, Face = 0.518f, FaceSize = 0.82f, Extra = "watermelon", Roll = 14f, RollDamping = 0.3f, RollFrequency = 2.2f, Jiggle = 0.15f },
+            new AvatarSpec { Id = "candle", Name = "Melting candle", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.547f, FaceSize = 0.8f, Extra = "candle", Roll = 6f, RollDamping = 0.5f, RollFrequency = 2.6f },
+            new AvatarSpec { Id = "toxic", Name = "Toxic waste", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.508f, FaceSize = 0.8f, Extra = "toxic", Roll = 6f, RollDamping = 0.55f, RollFrequency = 2.6f, Jiggle = 0.05f },
+            new AvatarSpec { Id = "soda2l", Name = "Soda bottle", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.505f, FaceSize = 0.82f, Extra = "soda2l", Roll = 10f, RollDamping = 0.35f, RollFrequency = 2.4f, Jiggle = 0.35f },
+            new AvatarSpec { Id = "pepper", Name = "Pepper shaker", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.455f, FaceSize = 0.8f, Extra = "pepper", Roll = 12f, RollDamping = 0.35f, RollFrequency = 2.4f, Jiggle = 0.1f },
+            new AvatarSpec { Id = "extinguisher", Name = "Fire extinguisher", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.5f, FaceSize = 0.74f, Extra = "extinguisher", Roll = 7f, RollDamping = 0.45f, RollFrequency = 2.4f },
+            new AvatarSpec { Id = "gumball", Name = "Gumball machine", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.62f, FaceSize = 0.78f, Extra = "gumball", Roll = 8f, RollDamping = 0.45f, RollFrequency = 2.4f },
+            new AvatarSpec { Id = "snowglobe", Name = "Snow globe", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.63f, FaceSize = 0.7f, Extra = "snowglobe", Roll = 8f, RollDamping = 0.45f, RollFrequency = 2.4f },
+            new AvatarSpec { Id = "fishbowl", Name = "Goldfish bowl", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.5f, FaceSize = 0.62f, Extra = "fishbowl", Roll = 9f, RollDamping = 0.4f, RollFrequency = 2.4f },
+        };
+
+        /// <summary>
+        /// The gag avatars' behaviours, by spec Extra, with where their parts are (rest, avatar space: the anchors
+        /// props-service/src/procedural/build.mjs prints for each model).
+        /// </summary>
+        static readonly System.Collections.Generic.Dictionary<string, System.Action<GameObject>> Gags = new System.Collections.Generic.Dictionary<string, System.Action<GameObject>>
+        {
+            ["pillow"] = go => go.AddComponent<Muffin.FeatherPillow>(),
+            ["volcano"] = go =>
+            {
+                var v = go.AddComponent<Muffin.ScienceVolcano>();
+                v.crater = new Vector3(0f, 1.092f, 0f);
+                v.craterRadius = 0.131f;
+            },
+            ["pinata"] = go =>
+            {
+                var p = go.AddComponent<Muffin.Pinata>();
+                p.topTip = new Vector3(0.003f, 1.087f, 0f);
+                p.centre = new Vector3(0.003f, 0.509f, 0f);
+            },
+            ["watermelon"] = go => go.AddComponent<Muffin.Watermelon>().mouthPoint = new Vector3(0f, 0.43f, -0.39f), // the face's mouth
+            ["candle"] = go =>
+            {
+                var c = go.AddComponent<Muffin.MeltingCandle>();
+                c.wickTip = new Vector3(-0.021f, 1.144f, -0.004f);
+                c.pool = new Vector3(0f, 1.045f, 0f);
+                c.rimRadius = 0.342f;
+            },
+            ["toxic"] = go =>
+            {
+                var t = go.AddComponent<Muffin.ToxicBarrel>();
+                t.lid = new Vector3(-0.005f, 1.124f, 0f);
+                t.bung = new Vector3(-0.196f, 1.147f, -0.194f);
+                t.lidRadius = 0.38f;
+            },
+            ["soda2l"] = go =>
+            {
+                var s = go.AddComponent<Muffin.SodaGeyser>(); // the cap is the model's "cap" material
+                s.neckTop = new Vector3(0f, 1.101f, 0f);
+                s.capTop = new Vector3(0f, 1.15f, 0f);
+            },
+            ["pepper"] = go => go.AddComponent<Muffin.PepperShaker>().holes = new Vector3(0f, 1.145f, 0f),
+            ["extinguisher"] = go =>
+            {
+                var e = go.AddComponent<Muffin.FireExtinguisher>(); // the horn hangs on its screen-left side, mouth down
+                e.nozzle = new Vector3(-0.355f, 0.404f, -0.084f);
+                e.nozzleBack = new Vector3(-0.339f, 0.499f, -0.084f);
+                e.valve = new Vector3(0f, 1.075f, 0f);
+            },
+            ["gumball"] = go =>
+            {
+                var g = go.AddComponent<Muffin.GumballMachine>();
+                g.globeCentre = new Vector3(0f, 0.715f, 0.001f);
+                g.globeRadius = 0.306f;
+                g.floorDepth = 0.235f;
+                g.chuteMouth = new Vector3(0f, 0.088f, -0.297f);
+                g.full = 65;
+            },
+            ["snowglobe"] = go =>
+            {
+                var s = go.AddComponent<Muffin.SnowGlobe>();
+                s.globeCentre = new Vector3(0f, 0.7f, 0f);
+                s.globeRadius = 0.446f;
+                s.groundDepth = 0.23f; // the snowy mound (higher at the back, behind the scene)
+            },
+            ["fishbowl"] = go =>
+            {
+                var f = go.AddComponent<Muffin.GoldfishBowl>();
+                f.bowlCentre = new Vector3(0f, 0.554f, 0f);
+                f.bowlRadius = 0.529f;
+                f.bowlHalfHeight = 0.609f;
+                f.openingY = 1.12f;
+                f.openingRadius = 0.3f;
+                f.waterY = 0.897f;
+                f.gravelY = 0.13f;
+            },
         };
 
         static void AddFace(GameObject go, Material ink, Material shine, Material mouth, Material blush, Material cutout)

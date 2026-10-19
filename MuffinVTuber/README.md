@@ -16,7 +16,7 @@ To regenerate the scene: menu **Muffin → Create Motion Prototype Scene**.
 
 | Control | Does |
 |---|---|
-| ↓ / ↑ | Next / previous avatar: sunflower, T-bone steak, potted cactus, soda can, pizza slice (floppy point, pepperoni), egg (rigid: rocks like a weeble; frying pans fall on it, it cracks and leaks), trash can (solid lid; garbage), juice cup (sloshes, drips down its front), vacuum (a long simulated hose whose nozzle follows your mouse over the desk and sucks up sprinkles, bits and puddles; click the hose or use the menu to switch that off; dust clouds), meatball sub and spaghetti (rigid bowl, the noodles sway side to side; meatballs roll with sauce trails, sauce flicks off and runs down the front), cherry cupcake (sprinkles keep falling), hot dog (sausage and bun top flop over; mustard, ketchup, relish), popcorn (a solid bucket that rocks, the heap stays put; kernels keep popping out and pile up on the desk; popping fits), jello (wobbles as one whole jelly, squashing and stretching all over, no bend in the middle; shivers on its own, flings jelly chunks and cream), taco (filling falls out as it moves, salsa drips), mouldy bread (spore clouds, stale crumbs), toaster (close your eyes hard and the toast pops out onto the desk), ketchup bottle (open your mouth and it squirts, squashing as it squeezes), coffee mug (steams, sloshes), flour bag (shake it and flour puffs out; keep going and the whole room hazes over, and a hard shake whites the picture out completely; it takes a while to settle). Popcorn, jello and those five were modelled with SPAR3D (free, local: `third-party/spar3d`), the rest with Tripo |
+| ↓ / ↑ | Next / previous avatar: sunflower, T-bone steak, potted cactus, soda can, pizza slice (floppy point, pepperoni), egg (rigid: rocks like a weeble; frying pans fall on it, it cracks and leaks), trash can (solid lid; garbage), juice cup (sloshes, drips down its front), vacuum (a long simulated hose whose nozzle follows your mouse over the desk and sucks up sprinkles, bits and puddles; click the hose or use the menu to switch that off; dust clouds), meatball sub and spaghetti (rigid bowl, the noodles sway side to side; meatballs roll with sauce trails, sauce flicks off and runs down the front), cherry cupcake (sprinkles keep falling), hot dog (sausage and bun top flop over; mustard, ketchup, relish), popcorn (a solid bucket that rocks, the heap stays put; kernels keep popping out and pile up on the desk; popping fits), jello (wobbles as one whole jelly, squashing and stretching all over, no bend in the middle; shivers on its own, flings jelly chunks and cream), taco (filling falls out as it moves, salsa drips), mouldy bread (spore clouds, stale crumbs), toaster (close your eyes hard and the toast pops out onto the desk), ketchup bottle (open your mouth and it squirts, squashing as it squeezes), coffee mug (steams, sloshes), the twelve gag avatars (feather pillow, volcano, piñata, watermelon, candle, toxic waste, soda bottle, pepper shaker, fire extinguisher, gumball machine, snow globe, goldfish bowl: see below), flour bag (shake it and flour puffs out; keep going and the whole room hazes over, and a hard shake whites the picture out completely; it takes a while to settle). Popcorn, jello and those five were modelled with SPAR3D (free, local: `third-party/spar3d`), the rest with Tripo |
 | F1 / F2 / F3 / F4 | Emotion: happy / sad / angry / surprised (press again for neutral). Kept small, like a stop-motion or South Park face: the eyes stay the same, the brows tilt and the mouth curves a little, and a sign says the rest (blush, a running tear, puffs of steam off the head, a sweat drop) |
 | V | Face: cartoon stickers ↔ your real eyes and mouth from the camera |
 | E | Real face, how much of you shows: just eyeballs and lips (default, cut along their outlines) → eyes and mouth (ovals) → eyes with brows |
@@ -79,6 +79,7 @@ while the panel is open; the streamer skips the cooldowns).
 | !water !spill | A pitcher tips over; water runs to the edge, carrying things along |
 | !shake | The avatar's own mess (pepperoni, sprinkles, frying pan + egg yolk, garbage, juice, meatballs, vacuum dust) |
 | !slam !faceplant | Face slam |
+| !whack !bonk !hit | A cartoon baseball bat swings in and bonks the avatar on the head (the piñata counts the hits) |
 
 `Mess` keeps what's left (splats, puddles, sauce trails, scorch, cream) and fades it slowly; K scrubs it all away. It stays
 alive: splats land with a wobble and spatter, puddles spread, the hands smear wet stains and squash blobs and cream
@@ -115,6 +116,34 @@ don't smear it). !shake and the face slam (R) throw a big whump of it. Every puf
 pooled quad on the shared `Muffin/Smoke` material (premultiplied alpha, so a transparent OBS capture whites out too).
 Tuning is on the **FlourBag** component: `hazePerSpeed`, `hazePerShake` (quicker whiteout), `clearFlat`/`clearShare` (how
 long it hangs), `veilFrom`, `maxPuffs`.
+
+### The gag avatars (built in code)
+
+Twelve avatars made entirely in code, no AI credits: the models by `props-service/src/procedural` (`node src/procedural/build.mjs all`,
+or one name), the behaviour by `Scripts/Avatars/Gags` (each is a `GagAvatar`: the motion meter, the face's mouth / pucker /
+shut eyes, and helpers for desk pieces, drops, streams, puffs, drips and things stuck on the camera glass). Each has one
+big moment; !shake is `Burst`, the face slam (R) `OnSlam`, !whack `Whack`.
+
+| Avatar | What it does |
+|---|---|
+| Feather pillow | Leaks the odd feather as it moves (a few when you talk); a hard shake pops a seam; !shake / the slam burst it in a snowstorm of hundreds of feathers that flutter down for ages and settle on the desk, where the typing hands puff them up (K sweeps them) |
+| Science-fair volcano | Talking builds pressure: rumbles, steam, the crater glows. Open wide once it's built up and it erupts: red foam fountains up, runs down the slopes in rivers and floods the desk |
+| Piñata | Hangs on a string; every whack (!whack's bat, !shake, the slam, a really hard shake of your own head) spins it and knocks out confetti and sweets; after seven it bursts in a rain of candy. Taped back up after 25 s |
+| Watermelon | Open your mouth and it spits seeds the way you're turned; some stick to the camera glass and slide down. Hold it open: machine-gun. The slam smashes it: chunks, juice, seeds, a splash on the lens |
+| Melting candle | A real flame that lights the desk and trails as it moves. Pucker and blow (an "ooh" held a moment) to blow it out in a curl of smoke; it relights itself. Open wide and it flares. Wax drips down and pools at its foot over the stream |
+| Toxic waste | Glows green and lights the set; bubbles of luminous ooze swell and pop out of the bung, ooze dribbles into glowing puddles; talking makes it bubble and glow harder |
+| Soda bottle | Shaking and talking build fizz (hiss, swelling, foam at the cap). Open wide (or !shake: mints drop in) and the cap blows off: a geyser shoots out of the frame and rains soda everywhere, splashes on the lens |
+| Pepper shaker | Shaking puffs pepper; the room fills with a peppery haze that tickles until it SNEEZES, blowing everything off the desk. Pull a sneeze face (mouth open, eyes shut) to make it sneeze now |
+| Fire extinguisher | Open your mouth and it blasts white powder the way you're looking, filling the room and dusting the desk. When a viewer starts a !fire it goes for it by itself and puts it out |
+| Gumball machine | Real gumballs tumble in the globe. Open your mouth: CLUNK, one rolls out of the chute across the desk. The slam cracks the globe and they all pour out; it refills slowly |
+| Snow globe | Hundreds of glitter flakes whirl up when it's shaken or turned and settle slowly. The slam cracks it: water and glitter leak across the desk; it reseals after a while |
+| Goldfish bowl | Water sloshes (hard turns slop it over the rim); a goldfish swims round blowing bubbles. A really hard shake (or !shake, the slam) flips the fish out: it flops about on the desk, then leaps back in |
+
+The models: `props-service/src/procedural/kit.mjs` (shapes, a texture painter with a block-letter font, the GLB writer;
+the front faces glTF -Z, colour factors are linear) and `preview.mjs` (a quick software render: front, three-quarter and
+side views with the app's face drawn on, `raw/procedural/<id>.png`; build.mjs also prints each model's anchors, its key
+points in app space, which the setup's `Gags` table hands to the behaviours). A material named "glass..." becomes the
+app's see-through glass. Self-test: `-muffin-only gags` (or `gag-pillow` and so on).
 
 ### Look-around physics, the mouth and floppy tips
 
@@ -249,7 +278,7 @@ be changed while playing.
 `Builds/Win64/MuffinMotionPrototype.exe -muffin-selftest <folder>` plays a scripted movement, saves screenshots at
 rest and mid-motion, writes `stats.json` (fps, frame-time percentiles, hitches, errors) and quits.
 Add `-muffin-only <checks>` (comma-separated) to run just the checks for what's new or changed instead of the whole
-run, writing `only.txt`: `flour` (the flour bag's haze under head turns and body lean, !shake, the slam, a transparent
+run, writing `only.txt`: `gags` (each gag avatar: moving, !shake, its own moment, the slam, !whack; `gag-<name>` for one), `flour` (the flour bag's haze under head turns and body lean, !shake, the slam, a transparent
 whiteout, how long the air takes to clear). Each new feature adds its own check there.
 Batch build: `Unity.exe -batchmode -projectPath MuffinVTuber -executeMethod Muffin.EditorTools.MuffinPrototypeSetup.BuildWindowsBatch`.
 
