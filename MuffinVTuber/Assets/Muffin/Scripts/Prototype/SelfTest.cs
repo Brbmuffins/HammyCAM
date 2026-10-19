@@ -425,7 +425,7 @@ namespace Muffin
             for (int i = 0; i < library.avatars.Count; i++)
             {
                 BendRig avatar = library.avatars[i];
-                bool messy = avatar.GetComponent<SprinkleShedder>() || avatar.GetComponent<Toppings>() ||
+                bool messy = avatar.GetComponent<SprinkleShedder>() || avatar.GetComponent<Toppings>() || avatar.GetComponent<FlourBag>() ||
                              (avatar.TryGetComponent(out MessMaker maker) && maker.kind != MessKind.Vacuum);
                 if (!messy) continue;
                 debris.Clean();

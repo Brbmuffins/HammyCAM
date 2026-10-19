@@ -16,7 +16,7 @@ To regenerate the scene: menu **Muffin → Create Motion Prototype Scene**.
 
 | Control | Does |
 |---|---|
-| ↓ / ↑ | Next / previous avatar: sunflower, T-bone steak, potted cactus, soda can, pizza slice (floppy point, pepperoni), egg (rigid: rocks like a weeble; frying pans fall on it, it cracks and leaks), trash can (solid lid; garbage), juice cup (sloshes, drips down its front), vacuum (a long simulated hose whose nozzle follows your mouse over the desk and sucks up sprinkles, bits and puddles; click the hose or use the menu to switch that off; dust clouds), meatball sub and spaghetti (rigid bowl, the noodles sway side to side; meatballs roll with sauce trails, sauce flicks off and runs down the front), cherry cupcake (sprinkles keep falling), hot dog (sausage and bun top flop over; mustard, ketchup, relish), popcorn (a solid bucket that rocks, the heap stays put; kernels keep popping out and pile up on the desk; popping fits), jello (wobbles as one whole jelly, squashing and stretching all over, no bend in the middle; shivers on its own, flings jelly chunks and cream), taco (filling falls out as it moves, salsa drips), mouldy bread (spore clouds, stale crumbs), toaster (close your eyes hard and the toast pops out onto the desk), ketchup bottle (open your mouth and it squirts, squashing as it squeezes), coffee mug (steams, sloshes). Popcorn, jello and those five were modelled with SPAR3D (free, local: `third-party/spar3d`), the rest with Tripo |
+| ↓ / ↑ | Next / previous avatar: sunflower, T-bone steak, potted cactus, soda can, pizza slice (floppy point, pepperoni), egg (rigid: rocks like a weeble; frying pans fall on it, it cracks and leaks), trash can (solid lid; garbage), juice cup (sloshes, drips down its front), vacuum (a long simulated hose whose nozzle follows your mouse over the desk and sucks up sprinkles, bits and puddles; click the hose or use the menu to switch that off; dust clouds), meatball sub and spaghetti (rigid bowl, the noodles sway side to side; meatballs roll with sauce trails, sauce flicks off and runs down the front), cherry cupcake (sprinkles keep falling), hot dog (sausage and bun top flop over; mustard, ketchup, relish), popcorn (a solid bucket that rocks, the heap stays put; kernels keep popping out and pile up on the desk; popping fits), jello (wobbles as one whole jelly, squashing and stretching all over, no bend in the middle; shivers on its own, flings jelly chunks and cream), taco (filling falls out as it moves, salsa drips), mouldy bread (spore clouds, stale crumbs), toaster (close your eyes hard and the toast pops out onto the desk), ketchup bottle (open your mouth and it squirts, squashing as it squeezes), coffee mug (steams, sloshes), flour bag (shake it and flour puffs out; keep going and the whole room hazes over, and a hard shake whites the picture out completely; it takes a while to settle). Popcorn, jello and those five were modelled with SPAR3D (free, local: `third-party/spar3d`), the rest with Tripo |
 | F1 / F2 / F3 / F4 | Emotion: happy / sad / angry / surprised (press again for neutral). Kept small, like a stop-motion or South Park face: the eyes stay the same, the brows tilt and the mouth curves a little, and a sign says the rest (blush, a running tear, puffs of steam off the head, a sweat drop) |
 | V | Face: cartoon stickers ↔ your real eyes and mouth from the camera |
 | E | Real face, how much of you shows: just eyeballs and lips (default, cut along their outlines) → eyes and mouth (ovals) → eyes with brows |
@@ -101,6 +101,18 @@ shove what's in their way and typing taps scatter it, so over a stream the sugar
   slides off every 25-70 s, and a hard shake can knock one loose; switching avatars puts them back.
 - **R** folds the avatar onto the desk (`BendRig.Slam`), shakes sugar loose and flies the pepperoni back on. **K**
   sweeps the desk.
+
+### The flour bag
+
+`Scripts/Avatars/FlourBag.cs`: a paper sack of flour (`Avatars/Generated/flour_bag.glb`, built by `props-service/src/flourbag.mjs`,
+no AI credits: `node src/flourbag.mjs` rebuilds it). One number, `Haze` (0 clear, 1 whiteout), rises with how fast the
+sack's top moves or turns and much more with how hard it is shaken (`MotionMeter`), and the air clears slowly by itself
+(thick air hangs about longer than thin). What you see follows from it: puffs off the sack, big soft puffs across the
+whole picture (in front of and behind the avatar), and above about half haze a veil in front of the camera that goes from
+milky to solid white. Flour also dusts the desk. !shake and the face slam (R) throw a big whump of it. Every puff is a
+pooled quad on the shared `Muffin/Smoke` material (premultiplied alpha, so a transparent OBS capture whites out too).
+Tuning is on the **FlourBag** component: `hazePerSpeed`, `hazePerShake` (quicker whiteout), `clearFlat`/`clearShare` (how
+long it hangs), `veilFrom`, `maxPuffs`.
 
 ### Look-around physics, the mouth and floppy tips
 

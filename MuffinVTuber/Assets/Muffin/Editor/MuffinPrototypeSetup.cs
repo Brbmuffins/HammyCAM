@@ -100,6 +100,7 @@ namespace Muffin.EditorTools
 
             // Generated object avatars: any GLB in Avatars/Generated that has a spec below.
             var makers = new System.Collections.Generic.List<Muffin.MessMaker>();
+            var flourBags = new System.Collections.Generic.List<Muffin.FlourBag>();
             foreach (AvatarSpec spec in GeneratedAvatars)
             {
                 var (mesh, materials) = BakeAvatar($"{GeneratedDir}/{spec.Id}.glb", spec);
@@ -193,6 +194,16 @@ namespace Muffin.EditorTools
                     shedder.topRadius = mesh.bounds.extents.x * 0.8f;
                     shedder.topHeight = mesh.bounds.size.y * 0.15f;
                 }
+                else if (spec.Extra == "flour")
+                {
+                    // Flour puffs out of the crimped top; the haze it makes is drawn with the shared smoke material (set below).
+                    var flour = go.AddComponent<Muffin.FlourBag>();
+                    flourBags.Add(flour);
+                    float headY = mesh.bounds.min.y + mesh.bounds.size.y * Mathf.Min(spec.Head, spec.Face - 0.02f);
+                    flour.topLift = Mathf.Max(0f, mesh.bounds.max.y - headY - 0.02f);
+                    flour.topRadius = mesh.bounds.extents.x * 0.6f;
+                    flour.topHeight = mesh.bounds.size.y * 0.1f;
+                }
             }
 
             var deskObject = new GameObject("Desk Scene");
@@ -248,6 +259,7 @@ namespace Muffin.EditorTools
             chaos.smoke = MakeMaterial("Smoke", smokeShader, new Color(0.35f, 0.35f, 0.38f, 0.55f), 0f);
             chaos.smoke.SetColor("_Color", new Color(0.35f, 0.35f, 0.38f, 0.55f));
             foreach (Muffin.MessMaker maker in makers) maker.smoke = chaos.smoke; // the vacuum's dust clouds
+            foreach (Muffin.FlourBag flour in flourBags) flour.smoke = chaos.smoke; // the flour haze
             // Sound effects (props-service batches/sfx-01.json → Assets/Muffin/Sounds).
             var bank = chaosObject.AddComponent<Muffin.SoundBank>();
             var sounds = new System.Collections.Generic.List<AudioClip>();
@@ -449,6 +461,9 @@ namespace Muffin.EditorTools
             new AvatarSpec { Id = "toilet", Name = "Toilet", Yaw = 0f, Root = 0.05f, Head = 0.55f, Face = 0.68f, FaceSize = 0.75f, Extra = "toilet", Roll = 7f, RollDamping = 0.5f, BowlHeight = 0.42f },
             new AvatarSpec { Id = "coffee_mug", Name = "Coffee mug", Yaw = 0f, Root = 0.05f, Head = 0.32f, Face = 0.42f, FaceSize = 0.7f, Extra = "coffee", Roll = 8f, RollDamping = 0.5f },
             new AvatarSpec { Id = "jello_mold", Name = "Jello", Yaw = 0f, Root = 0.04f, Head = 0.4f, Face = 0.42f, FaceSize = 0.85f, Extra = "jello", Roll = 9f, RollDamping = 0.3f, RollFrequency = 2.8f, Jiggle = 0.5f }, // calmer: the user found it too jiggly
+            // A paper sack of flour (props-service/src/flourbag.mjs, no AI credits; it faces the camera). It rocks and
+            // squashes a little; shake it for flour, shake it hard for a whiteout (FlourBag). The label sits low, the face on the belly.
+            new AvatarSpec { Id = "flour_bag", Name = "Flour bag", Yaw = 0f, Root = 0.04f, Head = 0.5f, Face = 0.6f, FaceSize = 0.8f, Extra = "flour", Roll = 12f, RollDamping = 0.35f, RollFrequency = 2.6f, Jiggle = 0.3f },
         };
 
         static void AddFace(GameObject go, Material ink, Material shine, Material mouth, Material blush, Material cutout)

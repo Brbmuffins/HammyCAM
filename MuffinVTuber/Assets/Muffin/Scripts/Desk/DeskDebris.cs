@@ -316,6 +316,7 @@ namespace Muffin
             if (rig.TryGetComponent(out SprinkleShedder shedder)) shedder.Burst(90);
             if (rig.TryGetComponent(out Toppings toppings)) toppings.PickUp(0.5f);
             if (rig.TryGetComponent(out MessMaker maker)) maker.OnSlam();
+            if (rig.TryGetComponent(out FlourBag flour)) flour.OnSlam();
             yield return new WaitForSeconds(0.45f);
             // Let go: it springs back up and wobbles.
             for (float t = 0f; t < 0.15f; t += Time.deltaTime)
