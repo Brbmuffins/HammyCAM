@@ -28,7 +28,13 @@ namespace Muffin
 
         void Awake()
         {
-            DigitalFace.Style = (FaceStyle)PlayerPrefs.GetInt("muffin.facestyle", (int)FaceStyle.Cartoon);
+            // Apply the real-face default once to existing installations too; later choices stay remembered.
+            if (PlayerPrefs.GetInt("muffin.realFaceDefault", 0) == 0)
+            {
+                PlayerPrefs.SetInt("muffin.facestyle", (int)FaceStyle.Real);
+                PlayerPrefs.SetInt("muffin.realFaceDefault", 1);
+            }
+            DigitalFace.Style = (FaceStyle)PlayerPrefs.GetInt("muffin.facestyle", (int)FaceStyle.Real);
             // Saved sizes (older saves kept a preset number instead).
             DigitalFace.EyeLevel = PlayerPrefs.GetInt("muffin.eyezoom", 0);
             DigitalFace.MouthLevel = PlayerPrefs.GetInt("muffin.mouthzoom", 0);

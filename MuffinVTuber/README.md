@@ -205,6 +205,9 @@ Studio use a portrait scene and capture this window (green screen or transparent
 
 ### Avatars and faces
 
+- Real eyes and mouth are the default (also applied once to existing installations; later face-mode choices
+  are remembered). Real-mouth movement is shown without the extra cartoon mouth stretch or mouth-driven
+  head squash/stretch. Manual eye/mouth sizing and dramatic zoom still work.
 - **Generated avatars** (Gemini concept → Tripo model, `props-service/batches/demo-avatars-01/02/03.json`) live in
   `Assets/Muffin/Avatars/Generated/*.glb` (imported by glTFast 6.20.0). The scene generator bakes each one once:
   merges its meshes, turns it to face the camera (Tripo P1 models face glTF +X, so −90°), scales it to 1.15 m and

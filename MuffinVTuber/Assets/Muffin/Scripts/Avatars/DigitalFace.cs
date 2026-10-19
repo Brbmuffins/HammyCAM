@@ -43,7 +43,7 @@ namespace Muffin
         [Range(0.03f, 0.25f)] public float realMouthWidth = 0.12f;
 
         /// <summary>Shared by every avatar, so switching avatars keeps the style.</summary>
-        public static FaceStyle Style = FaceStyle.Cartoon;
+        public static FaceStyle Style = FaceStyle.Real;
         /// <summary>How much of your face the real-face windows show (E).</summary>
         public enum RealCrop { Features, Eyes, EyesAndBrows }
         /// <summary>Default: cut along the eye openings and the lips, so only eyeballs and lips show.</summary>
@@ -138,7 +138,6 @@ namespace Muffin
         Mesh posedMesh;
         readonly List<Vector3> posedCorners = new List<Vector3>();
         Vector3[] faceCorners;
-        float nextSurface;
 
         // Layout in face units (1 = the sunflower's 26 cm face); the whole face is scaled per avatar.
         const float EyeX = 0.046f, EyeY = 0.024f, EyeRx = 0.018f, EyeRy = 0.025f;
@@ -152,7 +151,6 @@ namespace Muffin
         Transform[] steam; // angry: puffs of steam off the head
         Cutout realLeftEye, realRightEye, realMouth; // left/right as seen on screen
         float nextBlink, blinkUntil;
-        float lastOpen;
         bool showingReal;
         float inViewFor, outOfViewFor;
 
@@ -326,8 +324,6 @@ namespace Muffin
             if (realMouth != null)
             {
                 realMouth.Track(image, mouthWindow, size, mirror, features ? 1.25f : 1f, features ? 1.2f : 1f, mouthAspect);
-                // Exaggerate the real mouth too: it stretches taller as it opens.
-                realMouth.Stretch(lastOpen);
             }
             return true;
         }
@@ -617,9 +613,8 @@ namespace Muffin
             float mouthIn = Mathf.Clamp01((pose.MouthOpen - 0.06f) / 0.94f);
             float boosted = 1f - (1f - mouthIn) * (1f - mouthIn);
             float open = Mathf.Clamp(openSpring.Update(boosted, dt) + surprised * 0.3f, 0f, 1.25f);
-            lastOpen = open;
-            // The whole head stretches with the mouth (the face and real cut-outs ride along): cartoon talking.
-            float talk = open * talkBounce;
+            // Cartoon talking can stretch the head; real expressions must not deform the avatar.
+            float talk = Style == FaceStyle.Cartoon ? open * talkBounce : 0f;
             rig.HeadScale = new Vector3(1f - talk * 0.05f, 1f + talk * 0.1f, 1f - talk * 0.05f);
             float wide = Mathf.Clamp(wideSpring.Update(pose.MouthWide, dt) * 1.4f - surprised * 0.5f, -1f, 1f);
             float squint = Mathf.Clamp01(Mathf.Max(0f, trackedSmile - 0.55f) * 2f); // only your own big smile closes the eyes into arcs
@@ -727,16 +722,15 @@ namespace Muffin
         }
 
         /// <summary>
-        /// The surface map from the avatar as it's posed right now (30 times a second): it bends and turns under the
+        /// The surface map from the avatar as it's posed this render frame: it bends and turns under the
         /// face, and a pepperoni slice moves with it, so a map made at rest would let them poke through.
         /// </summary>
         void RefreshSurface()
         {
-            if (Time.time < nextSurface) return;
-            nextSurface = Time.time + 1f / 30f;
             if (!skin && !TryGetComponent(out skin)) return;
             if (!posedMesh) posedMesh = new Mesh();
-            skin.BakeMesh(posedMesh, true);
+            // localToWorldMatrix below already applies the renderer's scale.
+            skin.BakeMesh(posedMesh, false);
             posedMesh.GetVertices(posedCorners);
             if (faceCorners == null || faceCorners.Length != posedCorners.Count) faceCorners = new Vector3[posedCorners.Count];
             Matrix4x4 toFace = FaceAnchor.worldToLocalMatrix * skin.transform.localToWorldMatrix;
@@ -777,7 +771,7 @@ namespace Muffin
         /// </summary>
         sealed class Cutout
         {
-            const int Columns = 12, Rows = 8;
+            const int Columns = 24, Rows = 16;
             static readonly int MainTexId = Shader.PropertyToID("_MainTex");
             static readonly int CenterId = Shader.PropertyToID("_Center");
             static readonly int SizeId = Shader.PropertyToID("_Size");
@@ -880,10 +874,6 @@ namespace Muffin
             bool lastMirror;
             Vector3 baseScale = Vector3.one;
 
-            /// <summary>Stretch the window taller (and a little wider) by `amount` (0..~1.25).</summary>
-            public void Stretch(float amount) =>
-                transform.localScale = new Vector3(baseScale.x * (1f + 0.12f * amount), baseScale.y * (1f + 0.8f * amount), 1f);
-
             /// <summary>Where this window currently samples the camera image (for the F9 diagnostics).</summary>
             public bool Describe(out Vector2 centreUV, out Vector2 sizePx, out Vector2 imageSize, out float angleRad, out bool mirrored)
             {
@@ -905,8 +895,12 @@ namespace Muffin
                 for (int i = 0; i < flat.Length; i++)
                 {
                     Vector3 p = toFace.MultiplyPoint3x4(flat[i]);
-                    bool a = Nearest(surface, p - across, p + across, 5, out float za), b = Nearest(surface, p - up, p + up, 5, out float zb);
-                    if (a || b) p.z += (a && b ? Mathf.Min(za, zb) : a ? za : zb) - gap;
+                    // Clear the full surrounding cells, including diagonal frosting ridges between vertices.
+                    float nearest = float.PositiveInfinity;
+                    for (int y = -1; y <= 1; y++)
+                        if (Nearest(surface, p - across + up * y, p + across + up * y, 5, out float z))
+                            nearest = Mathf.Min(nearest, z);
+                    if (!float.IsPositiveInfinity(nearest)) p.z += nearest - gap;
                     shaped[i] = fromFace.MultiplyPoint3x4(p);
                 }
                 mesh.vertices = shaped;

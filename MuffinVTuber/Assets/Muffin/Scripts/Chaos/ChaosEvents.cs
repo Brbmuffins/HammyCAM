@@ -417,7 +417,7 @@ namespace Muffin
 
         /// <summary>
         /// A drip running down the front of the avatar from (up 0..1 of its height, across -1..1): it creeps down in
-        /// fits and starts, leaving a thin streak, and drops off onto the desk at the bottom.
+        /// fits and starts, then drops off onto the desk without leaving stretched streak meshes.
         /// </summary>
         public void DripDown(float up, float across, Color colour, float size, float speed = 0.07f)
         {
@@ -429,9 +429,7 @@ namespace Muffin
             BendRig rig = Rig;
             if (!rig || !AvatarFront(up, across, out _, out Transform bone, out Vector3 local)) yield break;
             Transform drip = mess.Blob(bone, local, new Vector3(size, size * 1.4f, size * 0.6f), colour, 60f, 0f, false);
-            float streakAt = up, pause = 0f, seed = Random.value * 10f;
-            Vector3 streakFrom = local;
-            Transform streakBone = bone;
+            float pause = 0f, seed = Random.value * 10f;
             while (drip && rig == Rig && up > 0.03f)
             {
                 float dt = Time.deltaTime;
@@ -445,18 +443,6 @@ namespace Muffin
                 if (drip.parent != bone) drip.SetParent(bone, false);
                 drip.localPosition = local;
                 drip.localScale = new Vector3(size, size * (1.4f + 0.4f * Mathf.Sin(Time.time * 6f + seed)), size * 0.6f);
-                if (streakAt - up > 0.035f)
-                {
-                    // A thin streak from where the last one ended down to here, so the trail is unbroken.
-                    if (streakBone == bone)
-                    {
-                        float length = (local - streakFrom).magnitude;
-                        mess.Blob(bone, (streakFrom + local) * 0.5f, new Vector3(size * 0.5f, length * 1.25f + size * 0.3f, size * 0.3f), colour, 25f, 0.05f, false);
-                    }
-                    streakAt = up;
-                    streakFrom = local;
-                    streakBone = bone;
-                }
                 yield return null;
             }
             if (!drip) yield break;
