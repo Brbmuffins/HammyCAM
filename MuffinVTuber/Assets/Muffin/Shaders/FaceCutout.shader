@@ -58,10 +58,11 @@ Shader "Muffin/FaceCutout"
                 float _Brightness;
                 float _Contrast;
                 float _Saturation;
+                // Each eye and mouth has its own outline, including when SRP batching is enabled.
+                float4 _Poly[16];
             CBUFFER_END
             // The feature's outline: up to 32 points (two per entry), in window units with x times _Aspect,
-            // so distances are in window heights. Set from script, so it lives outside the material buffer.
-            float4 _Poly[16];
+            // so distances are in window heights. Set from script in the per-material buffer above.
 
             float2 PolyPoint(int k)
             {
@@ -110,7 +111,7 @@ Shader "Muffin/FaceCutout"
                     d = PolyDistance(float2(q.x * _Aspect, q.y));
                     aa = max(fwidth(d), 1e-4);               // one pixel: sharp edges stay smooth, not jagged
                     float edge = max(_Feather * 0.25, aa);
-                    alpha = smoothstep(edge, -edge, d);
+                    alpha = 1 - smoothstep(-edge, edge, d);
                     band = _Outline * 0.5;
                 }
                 else
@@ -121,6 +122,12 @@ Shader "Muffin/FaceCutout"
                     alpha = 1 - smoothstep(1 - max(_Feather * 2, aa), 1, r);
                     band = _Outline;
                 }
+                // Keep a soft, rounded boundary even if a noisy contour reaches the quad's edge.
+                // Otherwise its rectangular mesh can become visible during a wide smile or blink.
+                float2 border = abs(q) - 0.38;
+                float borderDistance = length(max(border, 0)) + min(max(border.x, border.y), 0) - 0.12;
+                float borderAA = max(fwidth(borderDistance), 1e-4);
+                alpha *= 1 - smoothstep(-borderAA * 2, 0, borderDistance);
                 float2 px = q * _Size.xy;                    // pixels, v up
                 float s = sin(_Angle), c = cos(_Angle);
                 px = float2(px.x * c - px.y * s, px.x * s + px.y * c);
