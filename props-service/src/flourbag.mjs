@@ -51,7 +51,9 @@ for (let j = 0; j <= ROWS; j++) {
     const x = a * sgnPow(Math.cos(th), 2 / SUPER);
     const z = b * sgnPow(Math.sin(th), 2 / SUPER);
     positions.push(x, y, z);
-    uvs.push(x / (2 * A) + 0.5, 1 - y / H); // printed straight on from the front
+    // Printed straight on from the front. u runs against x: glTFast flips X on import, and with u along +x the
+    // label read backwards in the app.
+    uvs.push(0.5 - x / (2 * A), 1 - y / H);
   }
 }
 // Caps: a centre vertex on the floor and one in the top seam.

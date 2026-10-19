@@ -36,6 +36,7 @@ namespace Muffin
             public bool Smearable; // wet: the hands drag streaks out of it
             public bool Blob;      // a lump: lying on the desk, the hands squish it flat
             public bool Flingable; // stuck on the avatar: flies off when it's shaken
+            public bool Dry;       // powder: settles in softly, no wet wobble
             public int Smears;
             public float LastSmear, Shake;
             public Vector3 LastPosition, LastVelocity;
@@ -53,10 +54,11 @@ namespace Muffin
         readonly List<Droplet> drops = new List<Droplet>();
         readonly Dictionary<Color, Material> stainMaterials = new Dictionary<Color, Material>();
         readonly Dictionary<(Color, Texture2D), Material> splatMaterials = new Dictionary<(Color, Texture2D), Material>();
+        readonly Dictionary<(Color, Texture2D), Material> dustMaterials = new Dictionary<(Color, Texture2D), Material>();
         readonly Dictionary<Color, Material> blobMaterials = new Dictionary<Color, Material>();
         readonly Dictionary<Color, List<Matrix4x4>> dropBatches = new Dictionary<Color, List<Matrix4x4>>();
         Mesh flat, sphere;
-        Texture2D[] splats, puddles;
+        Texture2D[] splats, puddles, dusts;
         Transform root;
         int layer;
         float lastSmear, nextDripSound, nextSquelch;
@@ -79,6 +81,8 @@ namespace Muffin
             for (int i = 0; i < splats.Length; i++) splats[i] = MakeSplat(11 + i * 7, false);
             puddles = new Texture2D[3];
             for (int i = 0; i < puddles.Length; i++) puddles[i] = MakeSplat(101 + i * 13, true);
+            dusts = new Texture2D[4];
+            for (int i = 0; i < dusts.Length; i++) dusts[i] = MakeDust(201 + i * 17);
             Lumps = new Mesh[4];
             for (int i = 0; i < Lumps.Length; i++) Lumps[i] = Lumpy(i * 31 + 5, 0.14f + i * 0.03f);
             Swirl = PipedSwirl();
@@ -115,6 +119,18 @@ namespace Muffin
             return m;
         }
 
+        /// <summary>The same see-through material with no shine at all: dry powder, not a wet stain.</summary>
+        Material DustMaterial(Color c, Texture2D shape)
+        {
+            if (dustMaterials.TryGetValue((c, shape), out Material m)) return m;
+            m = new Material(stainMaterial) { enableInstancing = true };
+            m.SetColor("_BaseColor", c);
+            m.SetTexture("_BaseMap", shape);
+            m.SetFloat("_Smoothness", 0f);
+            dustMaterials[(c, shape)] = m;
+            return m;
+        }
+
         static Material Tinted(Dictionary<Color, Material> cache, Material template, Color c)
         {
             if (cache.TryGetValue(c, out Material m)) return m;
@@ -131,7 +147,16 @@ namespace Muffin
         /// stretches it the way it was moving; smearable stains get dragged about by the hands.
         /// </summary>
         public Transform DeskStain(Vector3 at, float radius, Color colour, float life = 120f, float growTime = 0.3f, bool puddle = false,
-            Vector2 flow = default, bool smearable = true)
+            Vector2 flow = default, bool smearable = true) => PlaceOnDesk(at, radius, colour, life, growTime, puddle, flow, smearable, false);
+
+        /// <summary>
+        /// A dusting of dry powder (flour) on the desk, radius metres across: soft-edged, grainy and matte, with
+        /// specks round it. It settles in without a wobble and the hands don't smear it.
+        /// </summary>
+        public Transform DeskDust(Vector3 at, float radius, Color colour, float life = 120f, float growTime = 0.8f) =>
+            PlaceOnDesk(at, radius, colour, life, growTime, false, default, false, true);
+
+        Transform PlaceOnDesk(Vector3 at, float radius, Color colour, float life, float growTime, bool puddle, Vector2 flow, bool smearable, bool dust)
         {
             if (float.IsNegativeInfinity(DeskScene.SurfaceHeight(at.x, at.z))) return null; // off the desk
             float speed = flow.magnitude;
@@ -153,11 +178,13 @@ namespace Muffin
             layer = (layer + 1) % 200;
             var position = new Vector3(at.x, ground + 0.0015f + layer * 0.00004f, at.z);
             float yaw = speed > 0.05f ? Mathf.Atan2(flow.x, flow.y) * Mathf.Rad2Deg : Random.Range(0f, 360f);
-            Texture2D shape = puddle && speed < 1f ? puddles[Random.Range(0, puddles.Length)] : splats[Random.Range(0, splats.Length)];
-            var t = Make(flat, SplatMaterial(colour, shape), position, Quaternion.Euler(0f, yaw, 0f));
+            Texture2D shape = dust ? dusts[Random.Range(0, dusts.Length)]
+                : puddle && speed < 1f ? puddles[Random.Range(0, puddles.Length)] : splats[Random.Range(0, splats.Length)];
+            var t = Make(flat, dust ? DustMaterial(colour, shape) : SplatMaterial(colour, shape), position, Quaternion.Euler(0f, yaw, 0f));
             Stain s = Add(t, scale, colour, life, growTime);
             s.Puddle = puddle;
             s.Smearable = smearable;
+            s.Dry = dust;
             return t;
         }
 
@@ -399,7 +426,7 @@ namespace Muffin
                 float fade = Mathf.Clamp01(left / Mathf.Min(4f, s.Life * 0.25f));
                 if (growing || spreading || fade < 1f)
                 {
-                    float k = growing ? Overshoot(age / s.GrowTime) : 1f;
+                    float k = !growing ? 1f : s.Dry ? Mathf.SmoothStep(0.3f, 1f, age / s.GrowTime) : Overshoot(age / s.GrowTime);
                     Vector3 scale = s.FullScale * (k * fade);
                     if (s.Puddle)
                     {
@@ -547,6 +574,62 @@ namespace Muffin
                 pixels[y * n + x] = new Color32(255, 255, 255, (byte)(alpha * 255f));
             }
             var texture = new Texture2D(n, n, TextureFormat.RGBA32, true) { name = puddle ? "Puddle" : "Splat", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Trilinear };
+            texture.SetPixels32(pixels);
+            texture.Apply(true, true);
+            return texture;
+        }
+
+        /// <summary>
+        /// A dusting of powder as a white texture with alpha: no hard edge and no spatters, just a soft patch with
+        /// a lumpy outline that thins out unevenly (thicker in drifts), grainy all through, with a scatter of
+        /// specks and little clumps round it. The grain also greys the white a touch so it reads as dry.
+        /// </summary>
+        static Texture2D MakeDust(int seed)
+        {
+            const int n = 256;
+            var random = new System.Random(seed);
+            float R() => (float)random.NextDouble();
+            const int waves = 5;
+            var amplitude = new float[waves];
+            var frequency = new float[waves];
+            var phase = new float[waves];
+            for (int k = 0; k < waves; k++)
+            {
+                frequency[k] = 2 + k * 2 + random.Next(0, 2);
+                amplitude[k] = 0.14f / (1f + k * 0.5f) * (0.5f + R());
+                phase[k] = R() * 6.2832f;
+            }
+            var specks = new List<Vector3>(); // x, y (from the middle), radius
+            for (int k = 0; k < 40; k++)
+            {
+                float a = R() * 6.2832f, d = Mathf.Lerp(SplatRadius * 0.7f, 0.46f, Mathf.Sqrt(R()));
+                specks.Add(new Vector3(Mathf.Cos(a) * d, Mathf.Sin(a) * d, Mathf.Lerp(0.003f, 0.012f, R() * R())));
+            }
+            Vector2 drift = new Vector2(R() * 50f, R() * 50f);
+
+            var pixels = new Color32[n * n];
+            for (int y = 0; y < n; y++)
+            for (int x = 0; x < n; x++)
+            {
+                var p = new Vector2((x + 0.5f) / n - 0.5f, (y + 0.5f) / n - 0.5f);
+                float r = p.magnitude, a = Mathf.Atan2(p.y, p.x);
+                float edge = SplatRadius;
+                for (int k = 0; k < waves; k++) edge += amplitude[k] * SplatRadius * Mathf.Sin(frequency[k] * a + phase[k]);
+                // Thick in the middle, thinning out softly over most of the way to the edge.
+                float body = 1f - Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(edge * 0.25f, edge * 1.1f, r));
+                // Drifts: thicker and thinner in patches.
+                float patch = Mathf.PerlinNoise(drift.x + p.x * 9f, drift.y + p.y * 9f);
+                float grain = R();
+                float alpha = body * Mathf.Lerp(0.35f, 1f, patch) * Mathf.Lerp(0.55f, 1f, grain);
+                foreach (Vector3 s in specks)
+                {
+                    float d = (p - new Vector2(s.x, s.y)).magnitude - s.z;
+                    if (d < 0.004f) alpha = Mathf.Max(alpha, Mathf.Clamp01(0.5f - d * n * 0.5f) * 0.85f);
+                }
+                byte shade = (byte)Mathf.Lerp(222f, 255f, grain);
+                pixels[y * n + x] = new Color32(shade, shade, shade, (byte)(Mathf.Clamp01(alpha) * 255f));
+            }
+            var texture = new Texture2D(n, n, TextureFormat.RGBA32, true) { name = "Dust", wrapMode = TextureWrapMode.Clamp, filterMode = FilterMode.Trilinear };
             texture.SetPixels32(pixels);
             texture.Apply(true, true);
             return texture;

@@ -109,7 +109,9 @@ no AI credits: `node src/flourbag.mjs` rebuilds it). One number, `Haze` (0 clear
 sack's top moves or turns and much more with how hard it is shaken (`MotionMeter`), and the air clears slowly by itself
 (thick air hangs about longer than thin). What you see follows from it: puffs off the sack, big soft puffs across the
 whole picture (in front of and behind the avatar), and above about half haze a veil in front of the camera that goes from
-milky to solid white. Flour also dusts the desk. !shake and the face slam (R) throw a big whump of it. Every puff is a
+milky to solid white, and the air clears in about 10-12 s after a big cloud. Flour also dusts the desk as dry powder
+(`Mess.DeskDust`: soft-edged, grainy and matte, with specks round it; nothing like the wet splats, and the hands
+don't smear it). !shake and the face slam (R) throw a big whump of it. Every puff is a
 pooled quad on the shared `Muffin/Smoke` material (premultiplied alpha, so a transparent OBS capture whites out too).
 Tuning is on the **FlourBag** component: `hazePerSpeed`, `hazePerShake` (quicker whiteout), `clearFlat`/`clearShare` (how
 long it hangs), `veilFrom`, `maxPuffs`.
@@ -243,6 +245,9 @@ be changed while playing.
 
 `Builds/Win64/MuffinMotionPrototype.exe -muffin-selftest <folder>` plays a scripted movement, saves screenshots at
 rest and mid-motion, writes `stats.json` (fps, frame-time percentiles, hitches, errors) and quits.
+Add `-muffin-only <checks>` (comma-separated) to run just the checks for what's new or changed instead of the whole
+run, writing `only.txt`: `flour` (the flour bag's haze under head turns and body lean, !shake, the slam, a transparent
+whiteout, how long the air takes to clear). Each new feature adds its own check there.
 Batch build: `Unity.exe -batchmode -projectPath MuffinVTuber -executeMethod Muffin.EditorTools.MuffinPrototypeSetup.BuildWindowsBatch`.
 
 ## Next

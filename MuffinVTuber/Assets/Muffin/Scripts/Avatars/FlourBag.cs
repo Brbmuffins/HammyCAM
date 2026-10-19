@@ -36,14 +36,14 @@ namespace Muffin
         [Tooltip("Haze gained a second for each m/s² of shake above the threshold. Raise it for a quicker whiteout.")]
         public float hazePerShake = 0.004f;
         [Tooltip("The air clears this much a second whatever the haze, and this share of the haze on top: thick air hangs about, thin air goes.")]
-        public float clearFlat = 0.05f, clearShare = 0.12f;
+        public float clearFlat = 0.035f, clearShare = 0.1f; // from the slam's cloud to clear air in about 10-12 s
         [Tooltip("The haze above which the veil in front of the camera starts to show; it is opaque at 1.")]
-        [Range(0.2f, 0.95f)] public float veilFrom = 0.55f;
+        [Range(0.2f, 0.95f)] public float veilFrom = 0.45f;
         [Tooltip("The most quads alive at once (sack puffs plus room haze).")]
-        public int maxPuffs = 150;
+        public int maxPuffs = 190;
 
         static readonly Color Flour = new Color(0.96f, 0.95f, 0.92f, 1f);
-        static readonly Color FlourDust = new Color(0.97f, 0.96f, 0.93f, 0.5f);
+        static readonly Color FlourDust = new Color(0.97f, 0.96f, 0.93f, 0.6f);
 
         sealed class Puff
         {
@@ -207,7 +207,7 @@ namespace Muffin
             }
 
             // The room's haze: as many big soft puffs across the picture as the haze calls for.
-            int target = Mathf.RoundToInt(Mathf.SmoothStep(0f, 1f, Haze) * maxPuffs * 0.55f);
+            int target = Mathf.RoundToInt(Mathf.SmoothStep(0f, 1f, Haze) * maxPuffs * 0.65f);
             for (int guard = 0; roomLive < target && guard < 4; guard++) RoomPuff(cam);
 
             UpdatePuffs(cam, dt);
@@ -233,7 +233,7 @@ namespace Muffin
                 p.t.rotation = Quaternion.LookRotation(p.t.position - cam.transform.position);
                 // Fades in fast, thins out slowly. The room's haze also thins as the air clears.
                 float envelope = Mathf.SmoothStep(0f, 1f, k * 6f) * (1f - Mathf.SmoothStep(0.45f, 1f, k));
-                float strength = p.room ? Mathf.Lerp(0.35f, 1f, Haze) : 1f;
+                float strength = p.room ? Mathf.Lerp(0.55f, 1f, Haze) : 1f;
                 Color c = Flour;
                 c.a = p.alpha * envelope * strength;
                 block.Clear();
@@ -284,9 +284,9 @@ namespace Muffin
             p.room = false;
             p.t.position = TopPoint + outward * topRadius * Random.Range(0.5f, 1f) + Vector3.down * Random.Range(0f, topHeight * 3f);
             p.vel = meter.Velocity * 0.3f + outward * Random.Range(0.15f, 0.6f) * (big ? 2f : 1f) + Vector3.up * Random.Range(0.1f, 0.5f);
-            p.size = Random.Range(0.16f, 0.3f) * (1f + Haze * 0.6f) * (big ? 1.5f : 1f);
+            p.size = Random.Range(0.18f, 0.34f) * (1f + Haze * 0.6f) * (big ? 1.8f : 1f);
             p.life = Random.Range(1.8f, 3.2f);
-            p.alpha = Random.Range(0.4f, 0.6f);
+            p.alpha = Random.Range(0.6f, 0.85f);
             p.seed = Random.Range(0f, 50f);
             p.drag = 1.1f;
             p.fall = 0.12f;
@@ -306,19 +306,19 @@ namespace Muffin
             p.vel = Random.insideUnitSphere * 0.06f + Vector3.up * 0.02f;
             p.size = height * Random.Range(0.3f, 0.65f);
             p.life = Random.Range(3f, 5.5f);
-            p.alpha = Mathf.Lerp(0.22f, 0.55f, Haze);
+            p.alpha = Mathf.Lerp(0.35f, 0.8f, Haze);
             p.seed = Random.Range(0f, 50f);
             p.drag = 0.4f;
             p.fall = 0f;
             p.t.localScale = Vector3.one * p.size * 0.5f;
         }
 
-        /// <summary>A white dusting where flour has settled on the desk (the hands smear it about).</summary>
+        /// <summary>A dry white dusting where flour has settled on the desk.</summary>
         void Dust(float radius)
         {
             if (!Mess.Instance) return;
             Vector3 at = transform.position + new Vector3(Random.Range(-0.55f, 0.55f), 0f, Random.Range(-0.7f, -0.15f));
-            Mess.Instance.DeskStain(at, radius, FlourDust, 70f, 1f);
+            Mess.Instance.DeskDust(at, radius, FlourDust, 70f, 1f);
         }
 
         // ---- The chaos set ----------------------------------------------------------------------------------
@@ -327,7 +327,7 @@ namespace Muffin
         public void Burst()
         {
             Sfx.Play("spore_puff", 0.9f, 0.1f);
-            Haze = Mathf.Min(1f, Haze + 0.55f);
+            Haze = Mathf.Min(1f, Haze + 0.7f);
             for (int i = 0; i < 30; i++) SackPuff(true);
             for (int i = 0; i < 5; i++) Dust(Random.Range(0.07f, 0.13f));
         }
@@ -336,7 +336,7 @@ namespace Muffin
         public void OnSlam()
         {
             Sfx.Play("spore_puff", 1f, 0.08f);
-            Haze = Mathf.Max(Haze, 0.7f);
+            Haze = Mathf.Max(Haze, 0.9f);
             for (int i = 0; i < 40; i++) SackPuff(true);
             for (int i = 0; i < 7; i++) Dust(Random.Range(0.08f, 0.15f));
         }

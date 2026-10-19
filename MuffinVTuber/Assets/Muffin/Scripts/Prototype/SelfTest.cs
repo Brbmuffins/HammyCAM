@@ -28,7 +28,7 @@ namespace Muffin
         bool? testFaceTracked;
         string pepperoni = "not run";
         string chatTest = "not run", chaosTest = "not run", hoseTest = "not run", remoteTest = "not run";
-        string flopReport = "not run", headTurnMess = "not run";
+        string flopReport = "not run", headTurnMess = "not run", flourTest = "not run";
         int rooms = -1;
         string vertical = "not run";
         int sprinkleCount = -1;
@@ -88,6 +88,34 @@ namespace Muffin
                 errors++;
                 firstError ??= message;
             };
+            // `-muffin-only <checks>` (comma-separated): just those checks, not the whole run, for what's new or
+            // changed (everything else has been checked over and over). Each new feature adds its check here.
+            string only = Arg("-muffin-only");
+            if (only != null)
+            {
+                if (desk) desk.Show(true);
+                if (DeskInput.Instance) DeskInput.Instance.simulate = true;
+                DigitalFace.Style = FaceStyle.Cartoon;
+                yield return new WaitForSecondsRealtime(1f);
+                var ran = new List<string>();
+                foreach (string check in only.ToLowerInvariant().Split(','))
+                {
+                    switch (check.Trim())
+                    {
+                        case "flour":
+                            yield return FlourTest(outDir);
+                            ran.Add("flour: " + flourTest);
+                            break;
+                        default:
+                            ran.Add($"{check.Trim()}: unknown check (known: flour)");
+                            break;
+                    }
+                }
+                ran.Add($"errors: {errors}{(firstError != null ? " (first: " + firstError + ")" : "")}");
+                File.WriteAllText(Path.Combine(outDir, "only.txt"), string.Join("\n", ran) + "\n");
+                Application.Quit();
+                yield break;
+            }
 
             scripted.startDelay = 1.5f;
             scripted.enabled = true;
@@ -370,6 +398,7 @@ namespace Muffin
             }
             // The chaos set: chat commands and cooldowns, every event, each avatar's own mess, the scrub.
             if (chaos) yield return ChaosTest(outDir);
+            yield return FlourTest(outDir);
             yield return RemoteTest();
 
             // Feel: lag and shake through the real avatar, old settings against new (feel.txt).
@@ -439,6 +468,94 @@ namespace Muffin
             headTurnMess = string.Join("; ", parts);
             debris.Clean();
             scripted.headTurnsOnly = false;
+        }
+
+        /// <summary>
+        /// The flour bag: how thick the air gets under ordinary head turns and body lean (it should stay mostly
+        /// clear), then !shake and the face slam (a whiteout), whether a transparent capture whites out too, and
+        /// how long the air takes to clear at rest.
+        /// </summary>
+        IEnumerator FlourTest(string outDir)
+        {
+            int index = library.avatars.FindIndex(r => r && r.GetComponent<FlourBag>());
+            if (index < 0 || !chaos)
+            {
+                flourTest = index < 0 ? "no flour bag" : "no chaos director";
+                yield break;
+            }
+            FlourBag flour = library.avatars[index].GetComponent<FlourBag>();
+            if (DeskDebris.Instance) DeskDebris.Instance.Clean();
+            library.Activate(index);
+            library.SetEmotion(Emotion.Neutral);
+            hud.Visible = false;
+
+            float Now() => Time.realtimeSinceStartup;
+            IEnumerator Watch(bool headTurns, float seconds, string shot, List<float> into)
+            {
+                Script(headTurns);
+                float from = Now();
+                bool taken = false;
+                while (Now() - from < seconds)
+                {
+                    into.Add(flour.Haze);
+                    if (!taken && Now() - from > seconds * 0.6f)
+                    {
+                        taken = true;
+                        yield return Shot(outDir, shot);
+                    }
+                    yield return null;
+                }
+            }
+            var turns = new List<float>();
+            var lean = new List<float>();
+            yield return Watch(true, 10f, "22-flour-head-turns.png", turns);
+            yield return Watch(false, 10f, "22-flour-body-lean.png", lean);
+
+            // !shake, then the face slam on top: a whiteout.
+            library.SetSource(null);
+            chaos.Fire(ChaosEvent.Shake);
+            yield return new WaitForSecondsRealtime(0.7f);
+            float afterShake = flour.Haze;
+            yield return Shot(outDir, "22-flour-shake.png");
+            chaos.Fire(ChaosEvent.Slam);
+            yield return new WaitForSecondsRealtime(1.3f);
+            float afterSlam = flour.Haze;
+            yield return Shot(outDir, "22-flour-slam.png");
+
+            // A transparent capture whites out too: the corner is opaque white while the air is thick.
+            BackgroundMode before = hud.Background;
+            hud.SetBackground(BackgroundMode.Transparent);
+            yield return null;
+            yield return new WaitForEndOfFrame();
+            Texture2D frame = ScreenCapture.CaptureScreenshotAsTexture();
+            Color corner = frame.GetPixel(4, frame.height - 5);
+            File.WriteAllBytes(Path.Combine(outDir, "22-flour-transparent.png"), frame.EncodeToPNG());
+            Destroy(frame);
+            hud.SetBackground(before);
+
+            // At rest the air clears by itself.
+            float clearFrom = Now();
+            bool halfShot = false;
+            while (flour.Haze > 0.05f && Now() - clearFrom < 60f)
+            {
+                if (!halfShot && flour.Haze < 0.5f)
+                {
+                    halfShot = true;
+                    yield return Shot(outDir, "22-flour-clearing.png");
+                }
+                yield return null;
+            }
+            float clearSeconds = Now() - clearFrom;
+            yield return new WaitForSecondsRealtime(2f);
+            yield return Shot(outDir, "22-flour-cleared.png");
+
+            string Spread(List<float> a) => a.Count == 0 ? "-" : $"typical {a.Average():0.00}, most {a.Max():0.00}";
+            flourTest = $"haze under head turns: {Spread(turns)}; body lean: {Spread(lean)}; after !shake {afterShake:0.00}, " +
+                        $"after slam {afterSlam:0.00}; transparent corner {corner.r:0.00}/{corner.a:0.00} (white/alpha); " +
+                        $"cleared in {clearSeconds:0.0} s; {(Mess.Instance ? Mess.Instance.StainCount : -1)} stains";
+            Debug.Log("[Muffin] Flour: " + flourTest);
+            if (DeskDebris.Instance) DeskDebris.Instance.Clean();
+            hud.Visible = true;
         }
 
         IEnumerator Sample(BendRig rig, List<float> into, float seconds, string outDir, string shot)
@@ -837,6 +954,7 @@ namespace Muffin
                    $"  \"sounds\": {(SoundBank.Instance ? SoundBank.Instance.Count : -1)},\n" +
                    $"  \"pizzaFlop\": \"{flopReport}\",\n" +
                    $"  \"headTurnMess8s\": \"{headTurnMess}\",\n" +
+                   $"  \"flour\": \"{flourTest}\",\n" +
                    $"  \"messFlungOffAvatar\": {(Mess.Instance ? Mess.Instance.Flung : -1)},\n" +
                    $"  \"messSmearedByHands\": {(Mess.Instance ? Mess.Instance.Smeared : -1)},\n" +
                    $"  \"chat\": \"{chatTest}\",\n" +
