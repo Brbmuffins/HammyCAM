@@ -210,6 +210,12 @@ namespace Muffin
         /// Attach the face to `anchor` (the rig's head bone) at `centre` in the anchor's space. `scale` sizes
         /// it for the avatar; `withMouth` false for avatars that have their own, like a duck's beak.
         /// </summary>
+        /// <summary>
+        /// For a face on a floppy tip (the rubber chicken's head): how much it keeps facing the way the avatar faces
+        /// instead of turning all the way with the tip (0 = turns with it). Flat stickers turned side-on read as slabs.
+        /// </summary>
+        [System.NonSerialized] public float TipSteady;
+
         public void Build(BendRig source, Transform anchor, Vector3 centre, float scale = 1f, bool withMouth = true)
         {
             rig = source;
@@ -555,6 +561,17 @@ namespace Muffin
         {
             if (rig == null) return;
             float dt = Mathf.Max(Time.deltaTime, 1e-4f);
+            if (TipSteady > 0f && FaceAnchor && FaceAnchor.parent)
+            {
+                // It slides round the head toward the front as well as turning less (else, turned side-on, the head
+                // carries it off to the side, where it sticks out like a slab).
+                Transform bone = FaceAnchor.parent;
+                Vector3 home = anchorHome + new Vector3(Fit.X, Fit.Y, 0f) * anchorScale;
+                Quaternion steady = Quaternion.Slerp(bone.rotation, rig.transform.rotation, TipSteady);
+                Vector3 middle = bone.TransformPoint(new Vector3(0f, home.y, 0f));
+                FaceAnchor.position = middle + steady * Vector3.Scale(new Vector3(home.x, 0f, home.z), bone.lossyScale);
+                FaceAnchor.rotation = steady;
+            }
             HeadPose pose = rig.Current;
 
             // Feature size (Z) and the dramatic zoom (hold X): eyes and mouth spring to their new size with a

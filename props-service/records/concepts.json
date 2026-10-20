@@ -358,5 +358,50 @@
     "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a plain cartoon toilet object (not a character) standing upright, seen straight from the front and symmetrical: a chunky glossy white porcelain toilet with a tall rounded water tank at the back and a big round open bowl in front with a white seat but no lid at all, clear blue water filling the bowl; the front of the tank is a wide plain smooth surface with nothing on it (no handle on the front, no logo, no text); absolutely no arms, no hands, no legs, no feet, no face; flat base, standing directly on nothing (no floor, no tiles, no plate, no platform).",
     "hash": "sha256:6b5c3613efff582611cd1425d287e8bce97ed0d176757484fb22ded2e8c0f20a",
     "generatedAt": "2026-10-18T18:55:15.830Z"
+  },
+  "hamster": {
+    "batch": "demo-avatars-10",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a chubby round cartoon hamster sitting upright like a plush toy, seen straight from the front and symmetrical: a plump pear-shaped body in soft golden-orange fur with a big creamy white belly patch, round fluffy cheek pouches, two small rounded ears with pink insides on top of the head, tiny pink paws held together in front of the belly, little pink feet sticking out at the bottom; the face area is completely blank smooth fur (absolutely no eyes, no mouth, no nose, no whiskers: the app adds a cartoon face); flat round bottom, sitting directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:1ea6b4b0b38b32ab4cc93ebb7284bae97307871f75645c1897d64984b9048e09",
+    "generatedAt": "2026-10-20T00:40:08.245Z"
+  },
+  "rubber_chicken": {
+    "batch": "demo-avatars-10",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a classic yellow rubber chicken squeaky toy standing upright, seen straight from the front and symmetrical: a plump plucked-looking rubbery yellow body, a long thin bendy neck sticking straight up with a small head on top that has a floppy red comb and a wide open orange beak (the head has no eyes), two scrawny orange chicken legs with big feet planted flat; the front of the plump body is a wide plain smooth yellow surface with nothing on it (no eyes, no face); standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:b9c12e8eabccd08cfb811fc4aace01077d26b71bce6739ba9c021aed73f5c0cb",
+    "generatedAt": "2026-10-20T00:40:15.482Z"
+  },
+  "banana": {
+    "batch": "demo-avatars-10",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a single big ripe yellow banana standing straight upright on its end like a tall column, seen straight from the front and symmetrical: chunky and slightly curved, bright yellow peel with faint ridges along its length, a few small brown speckles, a short brown stalk at the top and a small dark tip at the bottom; the front of the banana is a wide plain smooth yellow surface with nothing on it (no label, no sticker, no face); flat bottom, standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:b14ff10e83a69733f35899ef90ff858a9c2bdc72e9b72d31539233a1d6c8e51b",
+    "generatedAt": "2026-10-20T00:40:23.901Z"
+  },
+  "avocado_half": {
+    "batch": "demo-avatars-10",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: half of a ripe avocado standing upright on its rounded bottom with the cut side facing straight toward the viewer, seen straight from the front and symmetrical: a chunky pear-shaped half with bumpy dark green skin round the edge, smooth creamy pale green flesh turning yellow toward the middle, and a big round glossy brown pit sitting in the lower half of the flesh; the upper half of the flesh is a wide plain smooth surface with nothing on it; standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:d05cb591e0af38a4ca0dd997a8ac76a5234527ed41ca7b6a191bbbe62a3ba9bc",
+    "generatedAt": "2026-10-20T00:40:32.358Z"
+  },
+  "burger": {
+    "batch": "demo-avatars-10",
+    "slot": "object",
+    "mood": null,
+    "model": "gemini-3.1-flash-image",
+    "prompt": "3D modeling reference image of a goofy object VTuber avatar. Single object standing upright on its own base, FRONT VIEW facing the camera straight on, roughly symmetrical, taller than it is wide, the whole object visible and centered. Plain flat light grey background (#c8c8c8), even neutral studio lighting, no shadows, no glow, no text, no other objects. NO face: no eyes, no mouth, no facial features at all, leave the upper front surface plain. No arms or legs unless stated. Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours. Object: a big chunky cheeseburger standing upright, seen straight from the front and symmetrical: a tall domed golden sesame bun on top, then wavy green lettuce, a slice of red tomato, a thick juicy brown beef patty with melted yellow cheese drooping over its edges, and a flat golden bottom bun; the front of the tall top bun is a wide plain smooth surface for a face (sesame seeds only on its top); flat bottom, standing directly on nothing (no plate, no stand, no platform, no base).",
+    "hash": "sha256:0bd863cf630bf745c7337c2165666d2ce0cb383588e0b99b20c20e9d9174abe7",
+    "generatedAt": "2026-10-20T00:40:40.697Z"
   }
 }

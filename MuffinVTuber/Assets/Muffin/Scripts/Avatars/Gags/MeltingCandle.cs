@@ -32,6 +32,12 @@ namespace Muffin
         public bool Lit => lit;
         public override void TestMoment() => BlowOut();
         public override string TestReport => lit ? "lit" : "blown out";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "light", Label = "The flame lights up the desk" });
+            into.Add(new AvatarFeature { Key = "wax", Label = "Wax drips down and pools at its foot" });
+        }
+
         public override string MessName => "hot wax";
 
         protected override void Begin()
@@ -100,10 +106,10 @@ namespace Muffin
             if (glow)
             {
                 glow.transform.position = at + Vector3.up * 0.06f + Vector3.back * 0.05f;
-                glow.intensity = 1.6f * size * (0.75f + 0.5f * Mathf.PerlinNoise(t * 12f, 0.2f));
+                glow.intensity = !On("light") ? 0f : 1.6f * size * (0.75f + 0.5f * Mathf.PerlinNoise(t * 12f, 0.2f));
             }
 
-            if (!lit) return;
+            if (!lit || !On("wax")) return;
             // Wax: drips run down the side now and then (more when it flares), and the puddle at its foot grows.
             if (Time.time >= nextDrip)
             {

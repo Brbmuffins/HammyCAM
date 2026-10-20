@@ -92,12 +92,16 @@ namespace Muffin
         {
             if (!library) return;
             Heading("Avatar (↓ / ↑)");
+            // The avatars of the packs that are switched on, three to a row.
+            var shown = new System.Collections.Generic.List<int>();
+            for (int i = 0; i < library.avatars.Count; i++) if (library.Allowed(i)) shown.Add(i);
             int columns = 3;
-            for (int i = 0; i < library.avatars.Count; i += columns)
+            for (int i = 0; i < shown.Count; i += columns)
             {
                 GUILayout.BeginHorizontal();
-                for (int j = i; j < Mathf.Min(i + columns, library.avatars.Count); j++)
+                for (int k = i; k < Mathf.Min(i + columns, shown.Count); k++)
                 {
+                    int j = shown[k];
                     bool active = j == library.ActiveIndex;
                     if (GUILayout.Toggle(active, library.NameOf(j), GUI.skin.button) && !active) library.Activate(j);
                 }
@@ -108,6 +112,103 @@ namespace Muffin
             foreach (Emotion e in new[] { Emotion.Neutral, Emotion.Happy, Emotion.Sad, Emotion.Angry, Emotion.Surprised })
                 if (GUILayout.Toggle(library.Emotion == e, e.ToString(), GUI.skin.button) && library.Emotion != e) library.SetEmotion(e);
             GUILayout.EndHorizontal();
+            ThisAvatar();
+            Packs();
+        }
+
+        string relayUrlField, relayTokenField;
+
+        /// <summary>
+        /// The streamer's own relay on their VPS (docs/vps-relay.md): TikTok LIVE comments and gifts come in as chat
+        /// commands, and the relay's phone dashboard works the app from anywhere. Address and token typed in here.
+        /// </summary>
+        void RelaySection()
+        {
+            RelayClient relay = RelayClient.Instance;
+            if (!relay) return;
+            Heading("TikTok and the phone dashboard (your relay)");
+            relayUrlField ??= RelayClient.Url;
+            relayTokenField ??= RelayClient.Token;
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Address", GUILayout.Width(60f));
+            relayUrlField = GUILayout.TextField(relayUrlField, GUILayout.MinWidth(200f));
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            GUILayout.Label("Token", GUILayout.Width(60f));
+            relayTokenField = GUILayout.PasswordField(relayTokenField, '•', GUILayout.MinWidth(200f));
+            GUILayout.EndHorizontal();
+            GUILayout.BeginHorizontal();
+            if (GUILayout.Button(relay.Connected ? "Reconnect" : "Connect"))
+            {
+                GUIUtility.keyboardControl = 0;
+                RelayClient.Url = relayUrlField;
+                RelayClient.Token = relayTokenField;
+                RelayClient.On = true;
+                relay.Connect();
+            }
+            if (GUILayout.Button("Disconnect"))
+            {
+                RelayClient.On = false;
+                relay.Disconnect();
+            }
+            GUILayout.EndHorizontal();
+            GUILayout.Label($"Relay: {relay.Status}{(relay.TikTok.Length > 0 ? $" · TikTok: {relay.TikTok}" : "")}", small);
+        }
+
+        /// <summary>The active avatar's own page: everything it does, each switchable, and how much mess it makes.</summary>
+        void ThisAvatar()
+        {
+            BendRig rig = library.ActiveRig;
+            if (!rig) return;
+            var features = AvatarSettings.FeaturesOf(rig);
+            Heading($"{library.ActiveName}: what it does");
+            if (features.Count == 0)
+            {
+                GUILayout.Label("Nothing to set on this one.", small);
+                return;
+            }
+            string id = AvatarSettings.IdOf(rig);
+            foreach (AvatarFeature f in features)
+            {
+                if (f.Slider)
+                {
+                    float value = AvatarSettings.Value(id, f.Key, f.DefaultValue);
+                    GUILayout.BeginHorizontal();
+                    GUILayout.Label($"{f.Label}: {value * 100f:0}%", GUILayout.Width(300f));
+                    float picked = GUILayout.HorizontalSlider(value, 0f, 1f);
+                    GUILayout.EndHorizontal();
+                    if (Mathf.Abs(picked - value) > 0.005f) AvatarSettings.SetValue(id, f.Key, Mathf.Round(picked * 20f) / 20f);
+                }
+                else
+                {
+                    bool on = AvatarSettings.On(id, f.Key, f.Default);
+                    bool picked = GUILayout.Toggle(on, f.Label);
+                    if (picked != on) AvatarSettings.Set(id, f.Key, picked);
+                }
+            }
+            if (features.Exists(f => f.Key == AvatarSettings.Face) && !AvatarSettings.FaceMess)
+                GUILayout.Label("(Face triggers are off for every avatar: Desk & mess tab.)", small);
+            if (GUILayout.Button("Back to how it came")) AvatarSettings.Reset(id, features);
+        }
+
+        /// <summary>The packs the avatars come in: switch one off and its avatars drop out of ↓/↑ and the list.</summary>
+        void Packs()
+        {
+            Heading("Avatar packs");
+            int on = 0;
+            foreach (AvatarPacks.Pack p in AvatarPacks.All) if (AvatarPacks.Enabled(p.Id)) on++;
+            foreach (AvatarPacks.Pack p in AvatarPacks.All)
+            {
+                int count = 0;
+                foreach (BendRig rig in library.avatars) if (rig && AvatarPacks.PackOf(rig) == p.Id) count++;
+                if (count == 0) continue;
+                bool enabled = AvatarPacks.Enabled(p.Id);
+                bool picked = GUILayout.Toggle(enabled, $"{p.Name} ({count}): {p.About}");
+                if (picked == enabled) continue;
+                if (!picked && on <= 1) continue; // keep at least one pack
+                AvatarPacks.SetEnabled(p.Id, picked);
+                library.LeaveDisabledPack();
+            }
         }
 
         void FaceTab()
@@ -224,6 +325,9 @@ namespace Muffin
                 if (shown != desk.Shown) desk.Show(shown);
             }
             Heading("The avatar's own mess");
+            bool faceMess = GUILayout.Toggle(AvatarSettings.FaceMess, "Your face sets off avatars' mess (mouth, pucker, blinks)");
+            if (faceMess != AvatarSettings.FaceMess) AvatarSettings.FaceMess = faceMess;
+            GUILayout.Label("Off: talk to chat as much as you like; moving, !shake, the slam and !whack still make the mess. Each avatar's own settings are on the Avatar tab.", small);
             if (chaos)
             {
                 if (GUILayout.Button($"Shake it: {chaos.ShakeName}")) chaos.Fire(ChaosEvent.Shake);
@@ -276,6 +380,7 @@ namespace Muffin
             if (GUILayout.Button("Disconnect", GUILayout.Width(90f))) chaos.Chat.Disconnect();
             GUILayout.EndHorizontal();
             GUILayout.Label(chaos.Chat.Status + (chaos.LastViewerEvent.Length > 0 ? $" · last: {chaos.LastViewerEvent}" : ""), small);
+            RelaySection();
             GUILayout.BeginHorizontal();
             GUILayout.Label($"Per viewer: {chaos.perViewer:0} s", GUILayout.Width(130f));
             float viewer = GUILayout.HorizontalSlider(chaos.perViewer, 0f, 300f);

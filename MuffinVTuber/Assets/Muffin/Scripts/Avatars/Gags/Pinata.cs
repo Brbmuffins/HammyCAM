@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Muffin
@@ -37,6 +38,12 @@ namespace Muffin
             Hit(1f, 1f);
         }
         public override string TestReport => broken ? "burst" : $"damage {damage:0.00}";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "string", Label = "Hangs on a string" });
+            into.Add(new AvatarFeature { Key = "selfhit", Label = "A really hard shake of your head counts as a hit" });
+        }
+
         public override string MessName => "candy and confetti";
 
         protected override void Begin()
@@ -57,14 +64,15 @@ namespace Muffin
 
         protected override void Tick(float dt)
         {
-            if (stringLine)
+            if (stringLine) stringLine.enabled = On("string");
+            if (stringLine && stringLine.enabled)
             {
                 Vector3 from = Pos(tip);
                 stringLine.SetPosition(0, from);
                 stringLine.SetPosition(1, new Vector3(transform.position.x, from.y + 3f, transform.position.z));
             }
             // A really hard shake of your own head is a hit too (you can bash it open yourself).
-            if (!broken && meter.Shake > 55f && Time.time >= nextSelfHit)
+            if (!broken && On("selfhit") && meter.Shake > 55f && Time.time >= nextSelfHit)
             {
                 nextSelfHit = Time.time + 1.2f;
                 Hit(0.4f, Random.value < 0.5f ? -1f : 1f);

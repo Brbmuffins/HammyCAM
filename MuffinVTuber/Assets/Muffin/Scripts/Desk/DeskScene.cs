@@ -152,7 +152,7 @@ namespace Muffin
             Vector3 r = rightSpring.Update(rightTarget, dt);
             leftHand.localPosition = l + Vector3.up * (idle - Tap(leftTap) * 0.06f);
             rightHand.localPosition = r + Vector3.up * (-idle - Tap(rightTap) * 0.06f - rightSquish * 0.012f);
-            rightHand.localScale = new Vector3(1f, 1f - rightSquish * 0.25f, 1f);
+            rightHand.localScale = new Vector3(1f, 1f - rightSquish * 0.25f, 1f) * handScale;
         }
 
         /// <summary>Quick down-and-up: 0 → 1 → 0 as the tap timer runs 1 → 0.</summary>
@@ -244,7 +244,49 @@ namespace Muffin
             hand.SetParent(root, false);
             Blob("Palm", Vector3.zero, new Vector3(0.13f, 0.065f, 0.15f), hands, hand);
             Blob("Thumb", new Vector3(0.066f * thumbSide, -0.006f, 0.02f), new Vector3(0.05f, 0.042f, 0.072f), hands, hand);
+            // Little finger nubs along the front, shown only for paws (an animal avatar typing with its own paws).
+            for (int i = 0; i < 4; i++)
+            {
+                Transform nub = Blob("Finger", new Vector3((i - 1.5f) * 0.028f, -0.008f, 0.07f), new Vector3(0.026f, 0.024f, 0.034f), hands, hand);
+                nub.gameObject.SetActive(false);
+            }
             return hand;
+        }
+
+        /// <summary>How the floating hands look: the white mittens, or an avatar's own paws (tinted, smaller, with finger nubs).</summary>
+        public struct HandStyle
+        {
+            public Color Tint;
+            public float Scale;
+            public bool Fingers;
+        }
+
+        MaterialPropertyBlock handBlock;
+        float handScale = 1f;
+
+        /// <summary>The active avatar types with its own hands (a hamster's pink paws); null puts the mittens back.</summary>
+        public void SetHands(HandStyle? style)
+        {
+
+            handBlock ??= new MaterialPropertyBlock();
+            handScale = style?.Scale ?? 1f;
+            foreach (Transform hand in new[] { leftHand, rightHand })
+            {
+                if (!hand) continue;
+                hand.localScale = Vector3.one * handScale;
+                foreach (Transform part in hand)
+                {
+                    if (part.name == "Finger") part.gameObject.SetActive(style?.Fingers ?? false);
+                    if (!part.TryGetComponent(out Renderer r)) continue;
+                    if (style.HasValue)
+                    {
+                        handBlock.Clear();
+                        handBlock.SetColor("_BaseColor", style.Value.Tint);
+                        r.SetPropertyBlock(handBlock);
+                    }
+                    else r.SetPropertyBlock(null);
+                }
+            }
         }
 
         Transform Box(string name, Vector3 position, Vector3 size, Material material) =>

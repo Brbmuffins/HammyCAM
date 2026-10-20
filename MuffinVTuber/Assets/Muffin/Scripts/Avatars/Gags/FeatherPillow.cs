@@ -36,6 +36,12 @@ namespace Muffin
 
         public override void TestMoment() => FromCorner(45, 1.4f);
         public override string TestReport => $"{feathers.Count} feathers";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "leak", Label = "Feathers leak out as it moves" });
+            into.Add(new AvatarFeature { Key = "seam", Label = "A hard shake pops a seam" });
+        }
+
         public override string MessName => "a storm of feathers";
         public int FeatherCount => feathers.Count;
 
@@ -87,7 +93,7 @@ namespace Muffin
         {
             float speed = meter.Speed, over = Mathf.Max(0f, meter.Shake - 8f);
             // A feather now and then from the corners as it moves, more when shaken.
-            owed += (0.05f + speed * 0.5f + over * 0.04f) * dt;
+            if (On("leak")) owed += (0.05f + speed * 0.5f + over * 0.04f) * Amount * dt;
             for (int guard = 0; owed >= 1f && guard < 6; guard++)
             {
                 owed -= 1f;
@@ -95,7 +101,7 @@ namespace Muffin
             }
             if (mouthJustOpened) FromCorner(Random.Range(1, 4), 0.7f); // talking puffs a few out
             // A hard shake pops a seam.
-            if (meter.Shake > 45f && Time.time >= nextSeam)
+            if (On("seam") && meter.Shake > 45f && Time.time >= nextSeam)
             {
                 nextSeam = Time.time + 4f;
                 Sfx.Play("pop", 0.7f, 0.15f);
@@ -119,6 +125,7 @@ namespace Muffin
         /// <summary>The seam gives: feathers blast out of the whole pillow, up and out of the frame, in a cloud of fluff.</summary>
         void Explode(int count, float force)
         {
+            count = Scaled(count);
             Sfx.Play("pop", 1f, 0.1f);
             Sfx.Play("spore_puff", 0.8f, 0.1f);
             rig.Bonk(0.3f * force);

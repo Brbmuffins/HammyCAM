@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Muffin
@@ -13,9 +14,13 @@ namespace Muffin
     /// What this keeps for every gag: the motion meter, the face's state (mouth just opened, held open, a pucker,
     /// eyes shut), and helpers for throwing things onto the desk, drops and streams of liquid, soft puffs, drips
     /// down the front and things that stick to the camera glass.
+    ///
+    /// Everything it does is the streamer's to control (its page in the menu, AvatarSettings): whether the face sets it
+    /// off at all (for talking to chat without a mess every sentence), how much mess it makes, and each avatar's own
+    /// extras (DescribeMore; read them with On).
     /// </summary>
     [RequireComponent(typeof(BendRig))]
-    public abstract class GagAvatar : MonoBehaviour, IMessy
+    public abstract class GagAvatar : MonoBehaviour, IMessy, IAvatarFeatures
     {
         protected BendRig rig;
         protected readonly MotionMeter meter = new MotionMeter();
@@ -29,6 +34,14 @@ namespace Muffin
         bool mouthWasOpen;
         float nextBitSound;
         bool started;
+
+        // Its settings, re-read only when something changed in the menu.
+        string settingsId;
+        int seenVersion = -1;
+        readonly Dictionary<string, bool> toggles = new Dictionary<string, bool>();
+        Dictionary<string, bool> defaults;
+        float amount = 1f;
+        bool faceOn = true;
 
         public abstract string MessName { get; }
         /// <summary>!shake: a good dose of this avatar's mess, now.</summary>
@@ -46,6 +59,65 @@ namespace Muffin
         public virtual void TestMoment() => Burst();
         /// <summary>Self-test: a few words on its state (how many feathers, gumballs left...).</summary>
         public virtual string TestReport => "";
+
+        // ---- Settings ------------------------------------------------------------------------------------
+
+        /// <summary>Does it react to the face at all (mouth, pucker, blinks)? Most do; the menu then offers the switch.</summary>
+        protected virtual bool UsesFace => true;
+
+        /// <summary>Its own extras for the menu: what else it does that can be switched off.</summary>
+        protected virtual void DescribeMore(List<AvatarFeature> into) { }
+
+        public void Describe(List<AvatarFeature> into)
+        {
+            if (UsesFace) into.Add(new AvatarFeature { Key = AvatarSettings.Face, Label = "Your face sets off its mess (mouth, pucker, blinks)" });
+            into.Add(new AvatarFeature { Key = AvatarSettings.Amount, Label = "How much of its mess it makes", Slider = true });
+            DescribeMore(into);
+        }
+
+        string SettingsId => settingsId ??= AvatarSettings.IdOf(this);
+
+        void Refresh()
+        {
+            if (seenVersion == AvatarSettings.Version) return;
+            seenVersion = AvatarSettings.Version;
+            toggles.Clear();
+            amount = Mathf.Clamp01(AvatarSettings.Value(SettingsId, AvatarSettings.Amount, 1f));
+            faceOn = AvatarSettings.FaceMess && AvatarSettings.On(SettingsId, AvatarSettings.Face, true);
+        }
+
+        /// <summary>One of its switches (DescribeMore), as the streamer left it.</summary>
+        protected bool On(string key)
+        {
+            Refresh();
+            if (toggles.TryGetValue(key, out bool on)) return on;
+            if (defaults == null)
+            {
+                defaults = new Dictionary<string, bool>();
+                var list = new List<AvatarFeature>();
+                DescribeMore(list);
+                foreach (AvatarFeature f in list) defaults[f.Key] = f.Default;
+            }
+            on = AvatarSettings.On(SettingsId, key, !defaults.TryGetValue(key, out bool d) || d);
+            toggles[key] = on;
+            return on;
+        }
+
+        /// <summary>How much of its mess it makes, 0..1 (the menu's slider).</summary>
+        protected float Amount
+        {
+            get
+            {
+                Refresh();
+                return amount;
+            }
+        }
+
+        /// <summary>Whether this bit of mess happens, at the mess amount (all of it at 1, none at 0).</summary>
+        protected bool Keep() => Amount >= 0.999f || Random.value < Amount;
+
+        /// <summary>A count scaled by the mess amount (at least one if any were asked for and the amount isn't zero).</summary>
+        protected int Scaled(int count) => count <= 0 || Amount <= 0.001f ? 0 : Mathf.Max(1, Mathf.RoundToInt(count * Amount));
 
         /// <summary>How open the mouth must be to count as open.</summary>
         protected virtual float MouthThreshold => 0.42f;
@@ -66,7 +138,11 @@ namespace Muffin
             mouthOpenFor = puckerFor = eyesShutFor = 0f;
         }
 
-        protected virtual void OnDisable() => puffs?.Clear();
+        protected virtual void OnDisable()
+        {
+            puffs?.Clear();
+            ShowAllParts();
+        }
 
         protected virtual void OnDestroy() => puffs?.Dispose();
 
@@ -89,7 +165,15 @@ namespace Muffin
             float dt = Mathf.Max(Time.deltaTime, 1e-4f);
             meter.Update(rig.HeadBone, MeterRadius, dt);
 
+            Refresh();
             HeadPose pose = rig.Current;
+            // Face triggers switched off: it behaves as if you kept a straight face (the face itself still moves).
+            if (!faceOn)
+            {
+                pose.MouthOpen = 0f;
+                pose.MouthWide = 0f;
+                pose.BlinkLeft = pose.BlinkRight = 0f;
+            }
             mouth = pose.MouthOpen;
             bool open = mouth > MouthThreshold;
             mouthJustOpened = open && !mouthWasOpen;
@@ -163,19 +247,24 @@ namespace Muffin
         /// <summary>Hands a piece to the desk (it falls, lands, gets pushed about and swept up by K).</summary>
         protected void ToDesk(Transform piece, Vector3 velocity, float radius, float halfThickness, bool ball = false, Color? trail = null, bool upright = false)
         {
+            if (!Keep())
+            {
+                Destroy(piece.gameObject);
+                return;
+            }
             if (DeskDebris.Instance) DeskDebris.Instance.AddPiece(piece, velocity, radius, halfThickness, disposable: true, ball: ball, trail: trail, upright: upright);
             else Destroy(piece.gameObject, 5f);
         }
 
         protected void Drop(Vector3 at, Vector3 velocity, Color colour, float size, float puddle)
         {
-            if (Mess.Instance) Mess.Instance.Drop(at, velocity, colour, size, puddle);
+            if (Mess.Instance && Keep()) Mess.Instance.Drop(at, velocity, colour, size, puddle);
         }
 
         /// <summary>A drip runs down the avatar's front from `up` (share of its height), `across` (-1..1) from its middle.</summary>
         protected void RunDown(float up, float across, Color colour, float size, float speed = 0.09f)
         {
-            if (IsActive) Chaos.DripDown(up, Mathf.Clamp(across, -0.75f, 0.75f), colour, size, speed);
+            if (IsActive && Keep()) Chaos.DripDown(up, Mathf.Clamp(across, -0.75f, 0.75f), colour, size, speed);
         }
 
         /// <summary>
@@ -188,7 +277,7 @@ namespace Muffin
             float owed = 0f, seed = Random.value * 10f;
             for (float t = 0f; t < seconds && Mess.Instance; t += Time.deltaTime)
             {
-                owed += perSecond * Time.deltaTime;
+                owed += perSecond * Amount * Time.deltaTime;
                 float pace = Mathf.Lerp(speed.y, speed.x, t / seconds);
                 Vector3 wobble = new Vector3(Mathf.PerlinNoise(seed, t * 3f) - 0.5f, 0f, Mathf.PerlinNoise(seed + 3f, t * 3f) - 0.5f) * 0.2f;
                 Vector3 direction = (aim() + wobble).normalized;
@@ -234,6 +323,56 @@ namespace Muffin
         protected void Run(IEnumerator routine)
         {
             if (isActiveAndEnabled) StartCoroutine(routine);
+        }
+
+        // ---- Parts of the model ---------------------------------------------------------------------------
+
+        SkinnedMeshRenderer skinCache;
+        Material[] originalMaterials;
+        static Material invisible;
+
+        /// <summary>
+        /// Hides (or brings back) the parts of the model drawn with a material whose name contains part (the
+        /// snowman's "carrot", the avocado's "pit"): it flies off as a thrown copy and comes back later.
+        /// </summary>
+        protected void HidePart(string part, bool hidden)
+        {
+            if (!skinCache && !TryGetComponent(out skinCache)) skinCache = GetComponentInChildren<SkinnedMeshRenderer>();
+            if (!skinCache) return;
+            originalMaterials ??= skinCache.sharedMaterials;
+            if (!invisible && Mess.Instance && Mess.Instance.stainMaterial)
+            {
+                invisible = new Material(Mess.Instance.stainMaterial) { name = "Hidden part" };
+                invisible.SetColor("_BaseColor", new Color(1f, 1f, 1f, 0f));
+            }
+            Material[] mats = skinCache.sharedMaterials;
+            for (int i = 0; i < mats.Length && i < originalMaterials.Length; i++)
+                if (originalMaterials[i] && originalMaterials[i].name.ToLowerInvariant().Contains(part))
+                    mats[i] = hidden && invisible ? invisible : originalMaterials[i];
+            skinCache.sharedMaterials = mats;
+        }
+
+        /// <summary>Brings back everything HidePart hid (switching avatars puts it back together).</summary>
+        protected void ShowAllParts()
+        {
+            if (skinCache && originalMaterials != null) skinCache.sharedMaterials = originalMaterials;
+        }
+
+        /// <summary>A material that shines in any light (unlit; URP's Unlit ships with the face stickers).</summary>
+        protected static Material Glow(Color colour, string label = "Glow")
+        {
+            Shader unlit = Shader.Find("Universal Render Pipeline/Unlit");
+            if (!unlit) return null;
+            var m = new Material(unlit) { name = label, enableInstancing = true };
+            m.SetColor("_BaseColor", colour);
+            return m;
+        }
+
+        /// <summary>Wipes the desk round a point: stains shrink away, bits and sprinkles go.</summary>
+        protected static void WipeDesk(Vector3 centre, float radius)
+        {
+            if (Mess.Instance) Mess.Instance.CleanArea(centre, radius);
+            if (DeskDebris.Instance) DeskDebris.Instance.CleanArea(centre, radius);
         }
 
         /// <summary>Turns a camera-facing quad to the camera, upright (flames) or fully (puffs).</summary>

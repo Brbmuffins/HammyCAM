@@ -40,6 +40,11 @@ namespace Muffin
         public int Inside => balls.Count;
         public override void TestMoment() => Run(Rattle(3));
         public override string TestReport => $"{balls.Count} gumballs inside";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "refill", Label = "Fills itself back up" });
+        }
+
         public override string MessName => "gumballs";
 
         protected override void Begin()
@@ -66,7 +71,7 @@ namespace Muffin
             Simulate(dt);
             if (mouthJustOpened && Time.time >= nextOut) Dispense();
             // It fills itself back up, a ball at a time, dropping in from the top.
-            if (balls.Count < full * 0.45f && Time.time >= nextRefill)
+            if (On("refill") && balls.Count < full * 0.45f && Time.time >= nextRefill)
             {
                 nextRefill = Time.time + 1.6f;
                 AddBall(new Vector3(Random.Range(-0.3f, 0.3f), 0.75f, Random.Range(-0.3f, 0.3f)) * globeRadius);

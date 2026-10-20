@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Muffin
@@ -27,6 +28,12 @@ namespace Muffin
         public float Haze => haze != null ? haze.Amount : 0f;
         public override void TestMoment() => blastFor = 2f;
         public override string TestReport => $"haze {Haze:0.00}{(Blasting ? ", blasting" : "")}";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "firefighter", Label = "Goes for viewers' fires by itself and puts them out" });
+            into.Add(new AvatarFeature { Key = "haze", Label = "The room fills with powder" });
+        }
+
         public override string MessName => "a cloud of extinguisher powder";
         protected override float MouthThreshold => 0.35f;
 
@@ -44,7 +51,7 @@ namespace Muffin
         protected override void Tick(float dt)
         {
             // A fire on the desk: a moment's alarm, then it goes for it by itself.
-            bool fire = Chaos && Chaos.FireBurning;
+            bool fire = Chaos && Chaos.FireBurning && On("firefighter");
             if (fire && autoAt < 0f) autoAt = Time.time + 1.2f;
             if (!fire) autoAt = -1f;
             autoBlast = fire && Time.time >= autoAt;
@@ -95,7 +102,7 @@ namespace Muffin
                 Vector3 aim = burstFor > 0f ? (Random.onUnitSphere + Vector3.up * 0.6f).normalized : (Aim() + Random.insideUnitSphere * 0.18f).normalized;
                 puffs?.Emit(from + aim * 0.03f, aim * Random.Range(3f, 4.4f), Powder, Random.Range(0.09f, 0.15f), Random.Range(1.1f, 1.8f), 6f, 2.2f, 0.08f);
             }
-            if (haze != null) haze.Amount = Mathf.Min(1f, haze.Amount + (burstFor > 0f ? 0.3f : 0.11f) * dt);
+            if (haze != null && On("haze")) haze.Amount = Mathf.Min(1f, haze.Amount + (burstFor > 0f ? 0.3f : 0.11f) * Amount * dt);
             // Recoil: it rocks back away from where it's spraying.
             Vector3 a = burstFor > 0f ? Vector3.zero : Aim();
             rig.KickTip(new Vector3(-a.x, 0f, -a.z) * 3.5f * dt);

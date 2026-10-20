@@ -98,7 +98,8 @@ async function models(batch, props) {
     console.log(`\n== ${p.id}`);
     try {
       const rig = isAvatar(p) ? { rig: batch.rig ?? AVATAR_RIG } : {};
-      const r = await generate({ id: p.id, input: conceptPath(p.id), generation: batch.generation, ...rig });
+      // A prop may override the batch's settings (say, detailed texture for one furry avatar).
+      const r = await generate({ id: p.id, input: conceptPath(p.id), generation: { ...batch.generation, ...p.generation }, ...rig });
       console.log(`  ok, ${r.credits} credits for ${p.id} in total`);
     } catch (err) {
       console.log(`  FAILED: ${redact(err.message)}`);

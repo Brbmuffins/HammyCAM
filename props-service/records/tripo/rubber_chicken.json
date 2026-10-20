@@ -1,0 +1,48 @@
+{
+  "id": "rubber_chicken",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "standard"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-20T00:45:05.990Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_71743499-3ac5-47e1-95a6-5705e0b94d59",
+      "hash": "sha256:b9c12e8eabccd08cfb811fc4aace01077d26b71bce6739ba9c021aed73f5c0cb",
+      "status": "success",
+      "input": "raw/concepts/rubber_chicken.png"
+    },
+    "generate": {
+      "taskId": "9b63ca35-0c42-4dcc-aa8a-2564ea48e5d4",
+      "status": "success",
+      "request": {
+        "input": "file_71743499-3ac5-47e1-95a6-5705e0b94d59",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "standard"
+      },
+      "createdAt": "2026-10-20T00:45:07.305Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-20T00:45:05.990Z"
+      },
+      "credits": 50,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261020/9b63ca35-0c42-4dcc-aa8a-2564ea48e5d4/tripo_pbr_model_9b63ca35-0c42-4dcc-aa8a-2564ea48e5d4.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261020/9b63ca35-0c42-4dcc-aa8a-2564ea48e5d4/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-20T00:46:03.847Z",
+      "fileHash": "sha256:c4043cbf8cf7f3a2703d9a3d20a2a6057b0469c9227b6a05126a3726c0c27468"
+    }
+  },
+  "totalCredits": 50
+}

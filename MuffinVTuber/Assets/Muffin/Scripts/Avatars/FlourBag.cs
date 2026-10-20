@@ -19,8 +19,29 @@ namespace Muffin
     /// bounded number of draws. Premultiplied alpha, so a transparent OBS capture whites out properly too.
     /// </summary>
     [RequireComponent(typeof(BendRig))]
-    public sealed class FlourBag : MonoBehaviour, IMessy
+    public sealed class FlourBag : MonoBehaviour, IMessy, IAvatarFeatures
     {
+        // ---- The streamer's settings for it (its page in the menu) ----
+        int seenVersion = -1;
+        float amount = 1f;
+        bool whiteout = true;
+        string settingsId;
+
+        public void Describe(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = AvatarSettings.Amount, Label = "How much flour it throws about", Slider = true });
+            into.Add(new AvatarFeature { Key = "whiteout", Label = "A hard shake whites out the whole picture" });
+        }
+
+        void RefreshSettings()
+        {
+            if (seenVersion == AvatarSettings.Version) return;
+            seenVersion = AvatarSettings.Version;
+            settingsId ??= AvatarSettings.IdOf(this);
+            amount = Mathf.Clamp01(AvatarSettings.Value(settingsId, AvatarSettings.Amount, 1f));
+            whiteout = AvatarSettings.On(settingsId, "whiteout", true);
+        }
+
         [Tooltip("Smoke shader material (Muffin/Smoke) the puffs and the veil are drawn with.")]
         public Material smoke;
         [Tooltip("The top's radius and height (metres): where the flour comes off.")]
@@ -177,7 +198,9 @@ namespace Muffin
             float speed = meter.Speed, over = Mathf.Max(0f, meter.Shake - shakeThreshold);
 
             // The haze: what shaking puts in, less what settles.
-            Haze = Mathf.Clamp01(Haze + (speed * hazePerSpeed + over * hazePerShake - (clearFlat + Haze * clearShare)) * dt);
+            RefreshSettings();
+            Haze = Mathf.Clamp01(Haze + ((speed * hazePerSpeed + over * hazePerShake) * amount - (clearFlat + Haze * clearShare)) * dt);
+            if (!whiteout) Haze = Mathf.Min(Haze, veilFrom - 0.02f);
 
             // Flour off the sack itself.
             bagOwed += (0.35f + speed * 7f + over * 0.9f) * dt;

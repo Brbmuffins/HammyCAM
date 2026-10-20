@@ -40,8 +40,32 @@ namespace Muffin
     /// - Toilet: talking sloshes water up out of the bowl; it slops as it moves and flushes now and then.
     /// </summary>
     [RequireComponent(typeof(BendRig))]
-    public sealed class MessMaker : MonoBehaviour, IMessy
+    public sealed class MessMaker : MonoBehaviour, IMessy, IAvatarFeatures
     {
+        // ---- The streamer's settings for it (its page in the menu) ----
+        int seenVersion = -1;
+        float amount = 1f;
+        bool faceOn = true;
+        string settingsId;
+
+        /// <summary>The ketchup, the toilet and the toaster go off when you open your mouth or shut your eyes.</summary>
+        bool UsesFace => kind is MessKind.Ketchup or MessKind.Toilet or MessKind.Toaster;
+
+        public void Describe(List<AvatarFeature> into)
+        {
+            if (UsesFace) into.Add(new AvatarFeature { Key = AvatarSettings.Face, Label = kind == MessKind.Toaster ? "Shutting your eyes hard pops the toast" : "Your mouth sets off its mess" });
+            into.Add(new AvatarFeature { Key = AvatarSettings.Amount, Label = "How much of its mess it makes", Slider = true });
+        }
+
+        void RefreshSettings()
+        {
+            if (seenVersion == AvatarSettings.Version) return;
+            seenVersion = AvatarSettings.Version;
+            settingsId ??= AvatarSettings.IdOf(this);
+            amount = Mathf.Clamp01(AvatarSettings.Value(settingsId, AvatarSettings.Amount, 1f));
+            faceOn = AvatarSettings.FaceMess && AvatarSettings.On(settingsId, AvatarSettings.Face, true);
+        }
+
         public MessKind kind;
         [Tooltip("Lit material, tinted per item (garbage, meatballs, shell, the pan).")]
         public Material lit;
@@ -144,6 +168,7 @@ namespace Muffin
             float dt = Mathf.Max(Time.deltaTime, 1e-4f);
             meter.Update(top, topRadius, dt);
             float speed = meter.Speed, over = Mathf.Max(0f, meter.Shake - shakeThreshold);
+            RefreshSettings();
 
             switch (kind)
             {
@@ -182,15 +207,15 @@ namespace Muffin
                     break;
                 case MessKind.Toaster:
                     owed += (speed * 1.5f + over * 0.2f) * dt;          // crumbs
-                    LongBlinkPopsToast(dt);
+                    if (faceOn) LongBlinkPopsToast(dt);
                     break;
                 case MessKind.Ketchup:
                     owed += (speed * 1.5f + over * 0.2f) * dt;          // gobs flicked off the nozzle
-                    MouthSquirts(dt);
+                    if (faceOn) MouthSquirts(dt);
                     break;
                 case MessKind.Toilet:
                     owed += (speed * 1.3f + over * 0.25f) * dt;         // waves slop over the rim as it moves
-                    MouthSloshes(dt);
+                    if (faceOn) MouthSloshes(dt);
                     break;
                 case MessKind.Coffee:
                     owed += (speed * 1.6f + Mathf.Max(0f, meter.Shake - 4f) * 0.4f) * dt; // slops over the rim
@@ -206,11 +231,12 @@ namespace Muffin
             for (int guard = 0; owed >= 1f && guard < 10; guard++)
             {
                 owed -= 1f;
-                Spill(1);
+                if (Random.value < amount) Spill(1);
             }
             for (int guard = 0; extraOwed >= 1f && guard < 5; guard++)
             {
                 extraOwed -= 1f;
+                if (Random.value >= amount) continue;
                 if (kind == MessKind.Meatballs) SauceFlick();
                 else if (kind == MessKind.Jello) CreamFlick();
                 else if (kind == MessKind.Taco) Splash(Salsa, 0.012f, 0.03f);
@@ -353,6 +379,8 @@ namespace Muffin
 
         void Spill(int count)
         {
+            RefreshSettings();
+            if (count > 1) count = amount <= 0.001f ? 0 : Mathf.Max(1, Mathf.RoundToInt(count * amount));
             for (int i = 0; i < count; i++)
             {
                 switch (kind)

@@ -1,0 +1,24 @@
+{
+  "id": "demo-avatars-10",
+  "about": "Second gag brainstorm, 2026-10-19. The user: only spend credits on the ones that need the detail. Tripo only for the two detailed organic ones, Hammy the hamster (detailed texture, for the fur) and the rubber chicken (standard). The banana, avocado half and burger were drawn here too but are built in code instead (props-service/src/procedural: free, and their gags need separate parts), as are the birthday cake, washing machine, bubble tea, lava lamp, pickle jar, snowman, sponge and water balloon. Same concept rules as demo-avatars-01..09: no brands or text, faceless (the app adds the face), no Tripo rig.",
+  "style": "Fun, charming cartoon style like a polished stylized 3D game asset: smooth chunky shapes, bold readable silhouette, appealing saturated colours.",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "standard"
+  },
+  "props": [
+    {
+      "id": "hamster",
+      "slot": "object",
+      "subject": "a chubby round cartoon hamster sitting upright like a plush toy, seen straight from the front and symmetrical: a plump pear-shaped body in soft golden-orange fur with a big creamy white belly patch, round fluffy cheek pouches, two small rounded ears with pink insides on top of the head, tiny pink paws held together in front of the belly, little pink feet sticking out at the bottom; the face area is completely blank smooth fur (absolutely no eyes, no mouth, no nose, no whiskers: the app adds a cartoon face); flat round bottom, sitting directly on nothing (no plate, no stand, no platform, no base)",
+      "generation": {
+        "texture_quality": "detailed"
+      }
+    },
+    {
+      "id": "rubber_chicken",
+      "slot": "object",
+      "subject": "a classic yellow rubber chicken squeaky toy standing upright, seen straight from the front and symmetrical: a plump plucked-looking rubbery yellow body, a long thin bendy neck sticking straight up with a small head on top that has a floppy red comb and a wide open orange beak (the head has no eyes), two scrawny orange chicken legs with big feet planted flat; the front of the plump body is a wide plain smooth yellow surface with nothing on it (no eyes, no face); standing directly on nothing (no plate, no stand, no platform, no base)"
+    }
+  ]
+}

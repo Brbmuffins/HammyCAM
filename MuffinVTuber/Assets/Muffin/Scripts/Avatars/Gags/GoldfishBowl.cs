@@ -35,6 +35,15 @@ namespace Muffin
         public bool FishOut => fishOut;
         public override void TestMoment() => Run(FlipOut());
         public override string TestReport => fishOut ? "fish out" : "fish in";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "flip", Label = "A really hard shake flips the fish out" });
+            into.Add(new AvatarFeature { Key = "slop", Label = "Water slops over the rim" });
+            into.Add(new AvatarFeature { Key = "bubbles", Label = "The fish blows bubbles" });
+        }
+
+        protected override bool UsesFace => false;
+
         public override string MessName => "fish-bowl water (and a fish)";
 
         protected override void Begin()
@@ -130,7 +139,7 @@ namespace Muffin
             }
             // Over the rim: the high side's wave slops out and splashes on the desk.
             float rise = slope.magnitude * openingRadius;
-            if (rise > openingY - waterY && Time.time >= nextSpill && Mess.Instance)
+            if (On("slop") && rise > openingY - waterY && Time.time >= nextSpill && Mess.Instance)
             {
                 nextSpill = Time.time + 0.05f;
                 Vector3 dirLocal = new Vector3(slope.x, 0f, slope.y).normalized;
@@ -185,7 +194,7 @@ namespace Muffin
             fish.localRotation = Quaternion.LookRotation(ahead);
             if (tail) tail.localRotation = Quaternion.Euler(0f, Mathf.Sin(Time.time * 9f) * 28f, 0f);
             // Bubbles from its mouth, up to the surface.
-            if (Time.time >= nextBubble)
+            if (On("bubbles") && Time.time >= nextBubble)
             {
                 nextBubble = Time.time + Random.Range(0.5f, 1.4f);
                 Material bubble = Chaos ? Chaos.bubble : null;
@@ -283,7 +292,7 @@ namespace Muffin
         {
             Slosh(dt);
             Swim(dt);
-            if (!fishOut && meter.Shake > 60f && Time.time >= nextFlip) Run(FlipOut());
+            if (!fishOut && On("flip") && meter.Shake > 60f && Time.time >= nextFlip) Run(FlipOut());
         }
 
         public override void Burst()

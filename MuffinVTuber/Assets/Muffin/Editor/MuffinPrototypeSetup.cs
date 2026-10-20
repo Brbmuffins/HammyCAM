@@ -133,6 +133,12 @@ namespace Muffin.EditorTools
                 AddFace(go, faceInk, faceShine, faceMouth, faceBlush, faceCutout);
                 var avatar = go.AddComponent<Muffin.MeshAvatar>();
                 avatar.displayName = spec.Name;
+                avatar.id = spec.Id;
+                avatar.pack = PackOf.TryGetValue(spec.Id, out string pack) ? pack : "starter";
+                avatar.altFaceFraction = spec.AltFace;
+                avatar.altFaceSize = spec.AltFaceSize;
+                avatar.altFaceHasMouth = spec.AltFaceMouth;
+                avatar.altFaceLabel = spec.AltFaceLabel;
                 avatar.mesh = mesh;
                 avatar.materials = materials;
                 avatar.rootFraction = spec.Root;
@@ -362,6 +368,10 @@ namespace Muffin.EditorTools
             remote.debris = debris;
             remote.chaos = chaos;
             remote.panel = panel;
+            // The streamer's own relay on their VPS (docs/vps-relay.md): TikTok in, and its phone dashboard.
+            var relay = hudObject.AddComponent<Muffin.RelayClient>();
+            relay.chaos = chaos;
+            relay.remote = remote;
 
             EditorSceneManager.SaveScene(scene, ScenePath);
             EditorBuildSettings.scenes = new[] { new EditorBuildSettingsScene(ScenePath, true) };
@@ -430,6 +440,14 @@ namespace Muffin.EditorTools
             public float FlopDamping = 0.16f;
             /// <summary>How hard starting or stopping a turn flings the floppy top.</summary>
             public float TurnWhip = 1.6f;
+            /// <summary>Triangles further behind the body than this (metres, from its middle; 0 = keep all) go: a stray tail.</summary>
+            public float CutBehind;
+            /// <summary>Drop separate long thin pieces (a stray spike of a tail) and nothing else, so the body stays whole.</summary>
+            public bool DropThin;
+            /// <summary>A second place for the face the streamer can pick on the avatar's page (-1 = none), its size, and the switch's words.</summary>
+            public float AltFace = -1f, AltFaceSize = 0.8f;
+            public bool AltFaceMouth = true;
+            public string AltFaceLabel;
         }
 
         static readonly AvatarSpec[] GeneratedAvatars =
@@ -487,7 +505,40 @@ namespace Muffin.EditorTools
             new AvatarSpec { Id = "extinguisher", Name = "Fire extinguisher", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.5f, FaceSize = 0.74f, Extra = "extinguisher", Roll = 7f, RollDamping = 0.45f, RollFrequency = 2.4f },
             new AvatarSpec { Id = "gumball", Name = "Gumball machine", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.62f, FaceSize = 0.78f, Extra = "gumball", Roll = 8f, RollDamping = 0.45f, RollFrequency = 2.4f },
             new AvatarSpec { Id = "snowglobe", Name = "Snow globe", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.63f, FaceSize = 0.7f, Extra = "snowglobe", Roll = 8f, RollDamping = 0.45f, RollFrequency = 2.4f },
+            // Second batch. Tripo (the only detailed, organic ones): Hammy and the rubber chicken (they face glTF +X, so -90).
+            new AvatarSpec { Id = "hamster", Name = "Hammy the hamster", Root = 0.04f, Head = 0.3f, Face = 0.7f, FaceSize = 0.6f, Extra = "hamster", Roll = 10f, RollDamping = 0.3f, RollFrequency = 2.4f, Jiggle = 0.35f, DropThin = true },
+            // The chicken's long neck flops; its face goes on its head (just eyes: the beak is its mouth), or on its belly.
+            new AvatarSpec { Id = "rubber_chicken", Name = "Rubber chicken", Root = 0.22f, Head = 0.4f, Tip = 0.56f, Face = 0.88f, FaceSize = 1.15f, Mouth = false, Extra = "chicken", MaxBend = 18f,
+                FlopMax = 75f, FlopGravity = 0.5f, FlopFrequency = 2.3f, FlopDamping = 0.12f, TurnWhip = 2.2f, AltFace = 0.39f, AltFaceSize = 0.85f, AltFaceLabel = "Face on its belly instead of its head" },
+            // Code-built.
+            new AvatarSpec { Id = "boba", Name = "Bubble tea", Yaw = 0f, Root = 0.04f, Head = 0.25f, Face = 0.365f, FaceSize = 0.8f, Extra = "boba", Roll = 9f, RollDamping = 0.4f, RollFrequency = 2.4f, Jiggle = 0.15f },
+            new AvatarSpec { Id = "lavalamp", Name = "Lava lamp", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.604f, FaceSize = 0.9f, Extra = "lavalamp", Roll = 7f, RollDamping = 0.45f, RollFrequency = 2.4f },
+            new AvatarSpec { Id = "pickles", Name = "Pickle jar", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.619f, FaceSize = 0.74f, Extra = "pickles", Roll = 8f, RollDamping = 0.45f, RollFrequency = 2.4f },
+            new AvatarSpec { Id = "balloon", Name = "Water balloon", Yaw = 0f, Root = 0.03f, Head = 0.25f, Face = 0.424f, FaceSize = 0.8f, Extra = "balloon", Roll = 14f, RollDamping = 0.22f, RollFrequency = 2f, Jiggle = 0.9f },
+            new AvatarSpec { Id = "banana", Name = "Banana", Yaw = 0f, Root = 0.04f, Head = 0.28f, Face = 0.319f, FaceSize = 0.74f, Extra = "banana", Roll = 11f, RollDamping = 0.35f, RollFrequency = 2.4f, Jiggle = 0.2f },
+            new AvatarSpec { Id = "avocado", Name = "Avocado", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.666f, FaceSize = 0.78f, Extra = "avocado", Roll = 10f, RollDamping = 0.4f, RollFrequency = 2.4f, Jiggle = 0.15f },
+            new AvatarSpec { Id = "burger", Name = "Burger", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.711f, FaceSize = 0.53f, Extra = "burger", Roll = 8f, RollDamping = 0.4f, RollFrequency = 2.4f, Jiggle = 0.3f },
+            new AvatarSpec { Id = "cake", Name = "Birthday cake", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.565f, FaceSize = 0.72f, Extra = "cake", Roll = 7f, RollDamping = 0.45f, RollFrequency = 2.4f, Jiggle = 0.25f },
+            new AvatarSpec { Id = "washer", Name = "Washing machine", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.679f, FaceSize = 0.64f, Extra = "washer", Roll = 6f, RollDamping = 0.5f, RollFrequency = 2.6f },
+            new AvatarSpec { Id = "snowman", Name = "Snowman", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.661f, FaceSize = 0.86f, Extra = "snowman", Roll = 9f, RollDamping = 0.4f, RollFrequency = 2.4f, Jiggle = 0.1f },
+            new AvatarSpec { Id = "sponge", Name = "Kitchen sponge", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.48f, FaceSize = 0.84f, Extra = "sponge", Roll = 10f, RollDamping = 0.3f, RollFrequency = 2.4f, Jiggle = 0.7f },
             new AvatarSpec { Id = "fishbowl", Name = "Goldfish bowl", Yaw = 0f, Root = 0.04f, Head = 0.3f, Face = 0.5f, FaceSize = 0.62f, Extra = "fishbowl", Roll = 9f, RollDamping = 0.4f, RollFrequency = 2.4f },
+        };
+
+        /// <summary>Which pack each avatar comes in (AvatarPacks; anything not listed is in the starter pack, as is the sunflower).</summary>
+        static readonly System.Collections.Generic.Dictionary<string, string> PackOf = new System.Collections.Generic.Dictionary<string, string>
+        {
+            ["tbone_steak"] = "starter", ["potted_cactus"] = "starter", ["soda_can"] = "starter", ["pizza_slice"] = "starter", ["big_egg"] = "starter",
+            ["hot_dog"] = "snacks", ["meatball_sub"] = "snacks", ["spaghetti_bowl"] = "snacks", ["taco"] = "snacks", ["popcorn_bucket"] = "snacks",
+            ["cherry_cupcake"] = "snacks", ["jello_mold"] = "snacks", ["ketchup_bottle"] = "snacks", ["watermelon"] = "snacks", ["banana"] = "snacks",
+            ["avocado"] = "snacks", ["burger"] = "snacks",
+            ["trash_can"] = "house", ["juice_cup"] = "house", ["retro_vacuum"] = "house", ["toaster"] = "house", ["coffee_mug"] = "house",
+            ["toilet"] = "house", ["moldy_bread"] = "house", ["flour_bag"] = "house", ["pepper"] = "house", ["sponge"] = "house",
+            ["washer"] = "house", ["pickles"] = "house",
+            ["pinata"] = "party", ["cake"] = "party", ["soda2l"] = "party", ["gumball"] = "party", ["balloon"] = "party", ["boba"] = "party",
+            ["volcano"] = "lab", ["toxic"] = "lab", ["lavalamp"] = "lab", ["extinguisher"] = "lab",
+            ["pillow"] = "cozy", ["candle"] = "cozy", ["snowglobe"] = "cozy", ["fishbowl"] = "cozy", ["snowman"] = "cozy",
+            ["hamster"] = "critters", ["rubber_chicken"] = "critters",
         };
 
         /// <summary>
@@ -554,6 +605,47 @@ namespace Muffin.EditorTools
                 s.globeRadius = 0.446f;
                 s.groundDepth = 0.23f; // the snowy mound (higher at the back, behind the scene)
             },
+            ["cake"] = go =>
+            {
+                var c = go.AddComponent<Muffin.BirthdayCake>();
+                c.wicks = new[]
+                {
+                    new Vector3(-0.21f, 1.145f, 0.051f), new Vector3(-0.114f, 1.148f, -0.155f), new Vector3(0.003f, 1.149f, 0.146f),
+                    new Vector3(0.102f, 1.148f, -0.158f), new Vector3(0.222f, 1.146f, 0.048f),
+                };
+                c.top = new Vector3(0f, 0.975f, 0f);
+            },
+            ["washer"] = go =>
+            {
+                var w = go.AddComponent<Muffin.WashingMachine>();
+                w.porthole = new Vector3(0.01f, 0.357f, -0.377f);
+                w.portholeRadius = 0.163f;
+                w.drumDepth = 0.16f;
+            },
+            ["snowman"] = go =>
+            {
+                var s = go.AddComponent<Muffin.Snowman>();
+                s.carrot = new Vector3(-0.072f, 0.697f, -0.397f);
+                s.hat = new Vector3(-0.055f, 1.044f, 0.072f);
+                s.head = new Vector3(-0.008f, 0.756f, 0.044f);
+                s.buttons = new[] { new Vector3(-0.002f, 0.457f, -0.24f), new Vector3(-0.019f, 0.331f, -0.306f), new Vector3(0.003f, 0.204f, -0.312f) };
+                s.hatSize = 0.244f;
+            },
+            ["sponge"] = go =>
+            {
+                var s = go.AddComponent<Muffin.KitchenSponge>();
+                s.top = new Vector3(0.015f, 1.124f, 0.017f);
+                s.front = new Vector3(0.015f, 0.592f, -0.166f);
+            },
+            ["hamster"] = go => go.AddComponent<Muffin.Hamster>(),
+            ["chicken"] = go => go.AddComponent<Muffin.RubberChicken>().beak = new Vector3(0f, 1.0f, -0.33f),
+            ["boba"] = go => go.AddComponent<Muffin.BubbleTea>(),
+            ["lavalamp"] = go => go.AddComponent<Muffin.LavaLamp>(),
+            ["pickles"] = go => go.AddComponent<Muffin.PickleJar>(),
+            ["balloon"] = go => go.AddComponent<Muffin.WaterBalloon>(),
+            ["banana"] = go => go.AddComponent<Muffin.Banana>(),
+            ["avocado"] = go => go.AddComponent<Muffin.Avocado>(),
+            ["burger"] = go => go.AddComponent<Muffin.Burger>(),
             ["fishbowl"] = go =>
             {
                 var f = go.AddComponent<Muffin.GoldfishBowl>();
@@ -618,6 +710,8 @@ namespace Muffin.EditorTools
                         tangents[i] = new Vector4(t.x, t.y, t.z, tangents[i].w);
                     }
                 }
+                if (spec.CutBehind > 0f) CutOffBehind(mesh, v, spec);
+                if (spec.DropThin) DropThinPieces(mesh, v);
                 Bounds b = GeometryUtility.CalculateBounds(v, Matrix4x4.identity);
                 float scale = spec.Height / Mathf.Max(1e-4f, b.size.y);
                 var offset = new Vector3(-b.center.x, -b.min.y, -b.center.z);
@@ -652,6 +746,65 @@ namespace Muffin.EditorTools
             {
                 Object.DestroyImmediate(instance);
             }
+        }
+
+        /// <summary>
+        /// A stray part sticking far out behind the body (Tripo gave the hamster a long thin spike of a tail) is cut off
+        /// before anything is measured: triangles reaching further back (+Z) than CutBehind metres behind the body's
+        /// middle go, and their leftover points are moved onto the body so they don't stretch its bounds.
+        /// </summary>
+        static void CutOffBehind(Mesh mesh, Vector3[] v, AvatarSpec spec)
+        {
+            Bounds raw = GeometryUtility.CalculateBounds(v, Matrix4x4.identity);
+            float toMetres = spec.Height / Mathf.Max(1e-4f, raw.size.y);
+            var zs = new float[v.Length];
+            for (int i = 0; i < v.Length; i++) zs[i] = v[i].z;
+            System.Array.Sort(zs);
+            float limit = zs[zs.Length / 2] + spec.CutBehind / toMetres;
+            var used = new bool[v.Length];
+            for (int s = 0; s < mesh.subMeshCount; s++)
+            {
+                int[] tri = mesh.GetTriangles(s);
+                var kept = new System.Collections.Generic.List<int>(tri.Length);
+                for (int i = 0; i + 2 < tri.Length; i += 3)
+                    if (v[tri[i]].z <= limit && v[tri[i + 1]].z <= limit && v[tri[i + 2]].z <= limit)
+                    {
+                        kept.AddRange(new[] { tri[i], tri[i + 1], tri[i + 2] });
+                        used[tri[i]] = used[tri[i + 1]] = used[tri[i + 2]] = true;
+                    }
+                mesh.SetTriangles(kept, s);
+            }
+            int anchor = System.Array.IndexOf(used, true);
+            for (int i = 0; i < v.Length; i++) if (!used[i] && anchor >= 0) v[i] = v[anchor];
+        }
+
+        /// <summary>
+        /// Drop the model's separate long thin pieces (the hamster's tail was a 1 m spike of its own): their
+        /// triangles go and their points move onto the body so they don't stretch its bounds. Unlike CutOffBehind,
+        /// nothing else is touched (the plane cut took the hamster's back and bottom with it).
+        /// </summary>
+        static void DropThinPieces(Mesh mesh, Vector3[] v)
+        {
+            int[] piece = MeshPieces.Find(mesh, v, out int count);
+            bool[] thin = MeshPieces.Thin(v, piece, count);
+            var used = new bool[v.Length];
+            int dropped = 0;
+            for (int s = 0; s < mesh.subMeshCount; s++)
+            {
+                int[] tri = mesh.GetTriangles(s);
+                var kept = new System.Collections.Generic.List<int>(tri.Length);
+                for (int i = 0; i + 2 < tri.Length; i += 3)
+                    if (thin[piece[tri[i]]]) dropped++;
+                    else
+                    {
+                        kept.AddRange(new[] { tri[i], tri[i + 1], tri[i + 2] });
+                        used[tri[i]] = used[tri[i + 1]] = used[tri[i + 2]] = true;
+                    }
+                mesh.SetTriangles(kept, s);
+            }
+            int anchor = System.Array.IndexOf(used, true);
+            for (int i = 0; i < v.Length; i++) if (!used[i] && anchor >= 0) v[i] = v[anchor];
+            Debug.Log($"[Muffin] {mesh.name}: dropped {dropped} triangles of thin pieces ({count} pieces)");
         }
 
         /// <summary>Turn a URP Lit/Unlit material see-through (alpha blended; alpha kept for OBS transparency).</summary>

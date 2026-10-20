@@ -137,6 +137,63 @@ namespace Muffin
     }
 
     /// <summary>
+    /// A small candle flame (the fire shader's tongues, camera-facing, flickering) at a point, that can be blown out
+    /// and relit, and leans away from the way it's moving. Size 1 is a birthday-candle flame.
+    /// </summary>
+    public sealed class SmallFlame
+    {
+        readonly Transform t;
+        readonly MeshRenderer r;
+        readonly MaterialPropertyBlock block = new MaterialPropertyBlock();
+        readonly float seed = Random.Range(0f, 50f), baseSize;
+        float size, target = 1f;
+        Vector3 lean, last;
+
+        public bool Lit => target > 0f;
+
+        public SmallFlame(Material flame, Transform parent, float baseSize = 1f)
+        {
+            this.baseSize = baseSize;
+            var go = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            Object.Destroy(go.GetComponent<Collider>());
+            go.name = "Flame";
+            r = go.GetComponent<MeshRenderer>();
+            r.sharedMaterial = flame;
+            r.shadowCastingMode = ShadowCastingMode.Off;
+            t = go.transform;
+            t.SetParent(parent, false);
+        }
+
+        public void Set(bool lit) => target = lit ? 1f : 0f;
+
+        /// <summary>Puts the flame at the wick (world) and animates it; flare scales it up for a moment.</summary>
+        public void Update(Vector3 wick, float dt, float flare = 1f)
+        {
+            size = Mathf.MoveTowards(size, target * flare, dt * (target * flare > size ? 3f : 7f));
+            Vector3 v = (wick - last) / Mathf.Max(dt, 1e-4f);
+            last = wick;
+            lean = Vector3.Lerp(lean, Vector3.ClampMagnitude(-new Vector3(v.x, 0f, v.z) * 0.04f, 0.04f), 1f - Mathf.Exp(-dt * 6f));
+            float s = size * baseSize * (0.85f + 0.3f * Mathf.PerlinNoise(Time.time * 6f + seed, seed));
+            t.gameObject.SetActive(s > 0.01f);
+            if (s <= 0.01f) return;
+            float w = 0.045f * s, h = 0.1f * s;
+            t.localScale = new Vector3(w, h, 1f);
+            t.position = wick + Vector3.up * h * 0.45f + lean * s;
+            Camera cam = Camera.main;
+            if (cam)
+            {
+                Vector3 to = t.position - cam.transform.position;
+                to.y = 0f;
+                if (to.sqrMagnitude > 1e-6f) t.rotation = Quaternion.LookRotation(to) * Quaternion.Euler(0f, 0f, Mathf.Clamp(-lean.x * 600f, -30f, 30f));
+            }
+            block.Clear();
+            block.SetFloat("_Seed", seed);
+            block.SetFloat("_Intensity", Mathf.Clamp01(size * 1.1f));
+            r.SetPropertyBlock(block);
+        }
+    }
+
+    /// <summary>
     /// The air in the room filling up (pepper, extinguisher powder): Amount 0 clear .. 1 a total whiteout. Big soft
     /// puffs fill the picture as Amount rises, and above veilFrom a veil in front of the camera goes opaque, like
     /// the flour bag's haze. The air clears by itself (clearFlat a second, plus clearShare of what's there).
@@ -239,10 +296,26 @@ namespace Muffin
     /// <summary>
     /// Something stuck on the camera glass, in front of the lens: a seed that slides slowly down, or a splash that
     /// pops on and runs down in a drip (the sneeze's drip shader, in any colour). It goes by itself after a while.
+    /// Kept rare on purpose (the user found lots of it distracting): at most MaxOnGlass at once, and callers put
+    /// them toward the edges of the picture (EdgeSpot), never over the avatar's face.
     /// </summary>
     public sealed class GlassItem : MonoBehaviour
     {
         const float Distance = 0.5f;
+        public const int MaxOnGlass = 3;
+        static int onGlass;
+
+        /// <summary>The glass already has as much on it as it should.</summary>
+        public static bool Full => onGlass >= MaxOnGlass;
+
+        /// <summary>A spot near the picture's edges (left or right third, upper half), clear of the avatar in the middle.</summary>
+        public static Vector2 EdgeSpot(float side = 0f)
+        {
+            float s = side != 0f ? Mathf.Sign(side) : (Random.value < 0.5f ? -1f : 1f);
+            return new Vector2(0.5f + s * Random.Range(0.3f, 0.43f), Random.Range(0.55f, 0.85f));
+        }
+
+        void OnDestroy() => onGlass--;
         float born, life, slide;
         bool drip;
         Color colour;
@@ -255,7 +328,8 @@ namespace Muffin
         public static GlassItem Stick(Mesh mesh, Material material, Vector2 viewport, float size, float slide, float life, float tilt = 0f)
         {
             Camera cam = Camera.main;
-            if (!cam || !material) return null;
+            if (!cam || !material || Full) return null;
+            onGlass++;
             var go = new GameObject("On the glass");
             go.transform.SetParent(cam.transform, false);
             float halfH = Distance * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad), halfW = halfH * cam.aspect;
@@ -281,7 +355,8 @@ namespace Muffin
         {
             Camera cam = Camera.main;
             Material slime = ChaosDirector.Instance ? ChaosDirector.Instance.slime : null;
-            if (!cam || !slime) return null;
+            if (!cam || !slime || Full) return null;
+            onGlass++;
             float halfH = Distance * Mathf.Tan(cam.fieldOfView * 0.5f * Mathf.Deg2Rad), halfW = halfH * cam.aspect;
             float top = (viewport.y * 2f - 1f) * halfH;
             float w = width * halfH * 2f;

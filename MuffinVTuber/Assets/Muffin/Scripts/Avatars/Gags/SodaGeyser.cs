@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Muffin
@@ -32,6 +33,12 @@ namespace Muffin
             Run(Blow(1f));
         }
         public override string TestReport => capOff ? "cap off" : $"fizz {fizz:0.00}";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "hiss", Label = "Hisses and leaks foam while it fizzes" });
+            into.Add(new AvatarFeature { Key = "lens", Label = "A splash of the rain lands on the camera glass" });
+        }
+
         public override string MessName => "a soda geyser";
 
         protected override void Begin()
@@ -61,7 +68,7 @@ namespace Muffin
             float over = Mathf.Max(0f, meter.Shake - 6f);
             fizz = Mathf.Clamp01(fizz + (over * 0.006f + meter.Speed * 0.012f + (mouth > 0.3f ? 0.02f : 0f) - 0.012f) * dt);
             // It hisses and swells, and foam leaks round the cap, the more it's fizzing.
-            if (fizz > 0.35f)
+            if (fizz > 0.35f && On("hiss"))
             {
                 hiss ??= Sfx.Loop("steam_hiss", 0f);
                 hiss?.SetVolume((fizz - 0.35f) * 0.6f);
@@ -164,9 +171,9 @@ namespace Muffin
                 }
                 if (Time.time >= nextGlass)
                 {
-                    // It's raining soda: now and then a splash lands on the lens.
-                    nextGlass = Time.time + Random.Range(0.3f, 0.7f);
-                    GlassItem.Splash(Soda, new Vector2(Random.Range(0.12f, 0.88f), Random.Range(0.45f, 0.92f)), Random.Range(0.06f, 0.1f), Random.Range(7f, 10f));
+                    // One drop of the rain on the lens, off to the side (more than that is distracting).
+                    nextGlass = float.MaxValue;
+                    if (On("lens") && Random.value < 0.6f) GlassItem.Splash(Soda, GlassItem.EdgeSpot(), Random.Range(0.05f, 0.07f), Random.Range(4f, 6f));
                 }
                 rig.Bonk(0.03f);
                 yield return null;

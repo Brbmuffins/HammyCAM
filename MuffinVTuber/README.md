@@ -16,7 +16,7 @@ To regenerate the scene: menu **Muffin → Create Motion Prototype Scene**.
 
 | Control | Does |
 |---|---|
-| ↓ / ↑ | Next / previous avatar: sunflower, T-bone steak, potted cactus, soda can, pizza slice (floppy point, pepperoni), egg (rigid: rocks like a weeble; frying pans fall on it, it cracks and leaks), trash can (solid lid; garbage), juice cup (sloshes, drips down its front), vacuum (a long simulated hose whose nozzle follows your mouse over the desk and sucks up sprinkles, bits and puddles; click the hose or use the menu to switch that off; dust clouds), meatball sub and spaghetti (rigid bowl, the noodles sway side to side; meatballs roll with sauce trails, sauce flicks off and runs down the front), cherry cupcake (sprinkles keep falling), hot dog (sausage and bun top flop over; mustard, ketchup, relish), popcorn (a solid bucket that rocks, the heap stays put; kernels keep popping out and pile up on the desk; popping fits), jello (wobbles as one whole jelly, squashing and stretching all over, no bend in the middle; shivers on its own, flings jelly chunks and cream), taco (filling falls out as it moves, salsa drips), mouldy bread (spore clouds, stale crumbs), toaster (close your eyes hard and the toast pops out onto the desk), ketchup bottle (open your mouth and it squirts, squashing as it squeezes), coffee mug (steams, sloshes), the twelve gag avatars (feather pillow, volcano, piñata, watermelon, candle, toxic waste, soda bottle, pepper shaker, fire extinguisher, gumball machine, snow globe, goldfish bowl: see below), flour bag (shake it and flour puffs out; keep going and the whole room hazes over, and a hard shake whites the picture out completely; it takes a while to settle). Popcorn, jello and those five were modelled with SPAR3D (free, local: `third-party/spar3d`), the rest with Tripo |
+| ↓ / ↑ | Next / previous avatar: sunflower, T-bone steak, potted cactus, soda can, pizza slice (floppy point, pepperoni), egg (rigid: rocks like a weeble; frying pans fall on it, it cracks and leaks), trash can (solid lid; garbage), juice cup (sloshes, drips down its front), vacuum (a long simulated hose whose nozzle follows your mouse over the desk and sucks up sprinkles, bits and puddles; click the hose or use the menu to switch that off; dust clouds), meatball sub and spaghetti (rigid bowl, the noodles sway side to side; meatballs roll with sauce trails, sauce flicks off and runs down the front), cherry cupcake (sprinkles keep falling), hot dog (sausage and bun top flop over; mustard, ketchup, relish), popcorn (a solid bucket that rocks, the heap stays put; kernels keep popping out and pile up on the desk; popping fits), jello (wobbles as one whole jelly, squashing and stretching all over, no bend in the middle; shivers on its own, flings jelly chunks and cream), taco (filling falls out as it moves, salsa drips), mouldy bread (spore clouds, stale crumbs), toaster (close your eyes hard and the toast pops out onto the desk), ketchup bottle (open your mouth and it squirts, squashing as it squeezes), coffee mug (steams, sloshes), the gag avatars (feather pillow, volcano, piñata, watermelon, candle, toxic waste, soda bottle, pepper shaker, fire extinguisher, gumball machine, snow globe, goldfish bowl, Hammy the hamster, rubber chicken, birthday cake, washing machine, bubble tea, lava lamp, pickle jar, water balloon, banana, avocado, burger, snowman, kitchen sponge: see below), flour bag (shake it and flour puffs out; keep going and the whole room hazes over, and a hard shake whites the picture out completely; it takes a while to settle). Popcorn, jello and those five were modelled with SPAR3D (free, local: `third-party/spar3d`), the rest with Tripo |
 | F1 / F2 / F3 / F4 | Emotion: happy / sad / angry / surprised (press again for neutral). Kept small, like a stop-motion or South Park face: the eyes stay the same, the brows tilt and the mouth curves a little, and a sign says the rest (blush, a running tear, puffs of steam off the head, a sweat drop) |
 | V | Face: cartoon stickers ↔ your real eyes and mouth from the camera |
 | E | Real face, how much of you shows: just eyeballs and lips (default, cut along their outlines) → eyes and mouth (ovals) → eyes with brows |
@@ -119,7 +119,7 @@ long it hangs), `veilFrom`, `maxPuffs`.
 
 ### The gag avatars (built in code)
 
-Twelve avatars made entirely in code, no AI credits: the models by `props-service/src/procedural` (`node src/procedural/build.mjs all`,
+Avatars made entirely in code, no AI credits (two Tripo ones, marked, use the same behaviour kit): the models by `props-service/src/procedural` (`node src/procedural/build.mjs all`,
 or one name), the behaviour by `Scripts/Avatars/Gags` (each is a `GagAvatar`: the motion meter, the face's mouth / pucker /
 shut eyes, and helpers for desk pieces, drops, streams, puffs, drips and things stuck on the camera glass). Each has one
 big moment; !shake is `Burst`, the face slam (R) `OnSlam`, !whack `Whack`.
@@ -138,12 +138,46 @@ big moment; !shake is `Burst`, the face slam (R) `OnSlam`, !whack `Whack`.
 | Gumball machine | Real gumballs tumble in the globe. Open your mouth: CLUNK, one rolls out of the chute across the desk. The slam cracks the globe and they all pour out; it refills slowly |
 | Snow globe | Hundreds of glitter flakes whirl up when it's shaken or turned and settle slowly. The slam cracks it: water and glitter leak across the desk; it reseals after a while |
 | Goldfish bowl | Water sloshes (hard turns slop it over the rim); a goldfish swims round blowing bubbles. A really hard shake (or !shake, the slam) flips the fish out: it flops about on the desk, then leaps back in |
+| Hammy the hamster | (Tripo.) Its own arms are stretchy cartoon arms (`BendRig.AddStretchArm`, the model's separate arm pieces): when you type they stretch down to the keyboard and its paws tap the keys, the right one goes to the mouse, and they spring back to its belly when you stop (the floating mittens step aside). Talking stuffs its cheeks; open wide and it sprays the seeds. Its stray spike of a tail is dropped as a piece at bake (`DropThin`), the body stays whole |
+| Rubber chicken | (Tripo.) A floppy neck that whips about; open wide and it SCREAMS (synthesized, no sound file), squashing; a hard shake lays an egg that cracks on the desk. Face on its head (eyes only, the beak is the mouth) or its belly |
+| Birthday cake | Five little flames; pucker and blow them all out, then confetti; they relight one by one. The slam plants it face-first in frosting |
+| Washing machine | Clothes tumble behind the porthole; talking spins it up until it rattles; overload it and suds pour out of the door in foamy heaps, socks flung out |
+| Bubble tea | Tapioca pearls roll about the bottom (pressed against the glass); open your mouth and it slurps: pearls shoot out of the straw across the desk |
+| Lava lamp | Glowing wax blobs drift up and down; talking heats it (they race and swell); overheated, the cap pops and goo erupts |
+| Pickle jar | Pickles bob in the brine; a hard shake pops the lid and a pickle leaps out and wriggles on the desk |
+| Water balloon | Wobbly; hold your mouth open and it inflates until it POPS, a splash that washes the desk clean; a new one blows itself up |
+| Banana | Four thick peel strips (built in code, yellow outside, cream inside) wrap the fruit up to the stalk so it looks whole; open your mouth and they peel down and droop like a peeled banana; !shake drops a banana skin |
+| Avocado | Open wide and the pit pops out and rolls off; it rolls back and plops home; guac everywhere on the slam |
+| Burger | Sauce drips and bits fall as it moves; open your mouth and ketchup and mustard squirt out of the sides |
+| Snowman | Melts slowly into a puddle, cold breath when you talk; a hard shake knocks its hat off; the slam knocks off the carrot, buttons and hat (they come back) |
+| Kitchen sponge | Open your mouth and it squeezes out soapy water and bubbles; the slam scrubs the desk clean under it |
 
 The models: `props-service/src/procedural/kit.mjs` (shapes, a texture painter with a block-letter font, the GLB writer;
 the front faces glTF -Z, colour factors are linear) and `preview.mjs` (a quick software render: front, three-quarter and
 side views with the app's face drawn on, `raw/procedural/<id>.png`; build.mjs also prints each model's anchors, its key
 points in app space, which the setup's `Gags` table hands to the behaviours). A material named "glass..." becomes the
 app's see-through glass. Self-test: `-muffin-only gags` (or `gag-pillow` and so on).
+
+### Every avatar is controllable (and packs)
+
+Each avatar has its own page in the menu (M → Avatar, under the list): everything it does, each a switch, plus how much
+of its mess it makes, remembered per avatar (`AvatarSettings`, by its model id; "Back to how it came" resets it). The
+most useful switch is "your face sets off its mess": switch it off to keep the avatar but talk to chat without a mess
+every sentence (moving, !shake, the slam and !whack still work). There's also a master switch for every avatar at once
+(Desk & mess tab, and `faceMess` on the phone remote). The gag avatars describe their own extras (`DescribeMore`); the
+older mess makers and the flour bag have the face switch and the amount.
+
+The avatars come in packs (`AvatarPacks`: Starter, Snack attack, Around the house, Party pack, Mad science, Cozy corner,
+Critters; the setup's `PackOf` table says which is which). A pack can be switched off on the Avatar tab: its avatars
+drop out of ↓/↑ and the list. One day a pack is an add-on a streamer buys.
+
+### TikTok and the phone dashboard (your relay)
+
+`Scripts/Chaos/RelayClient.cs` connects out to the streamer's own relay on their VPS (wss, with the relay's token; menu →
+Chaos → "TikTok and the phone dashboard"). TikTok LIVE comments and mapped gifts, likes and follows arrive as chat commands
+(same cooldowns and rules as Twitch chat), and the relay's phone dashboard sends the same remote actions as the home-Wi-Fi
+phone remote and gets the app's state back. The server side is specified in `docs/vps-relay.md` (hand it to the Claude on
+the VPS).
 
 ### Look-around physics, the mouth and floppy tips
 

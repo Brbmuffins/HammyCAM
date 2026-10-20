@@ -9,9 +9,13 @@ namespace Muffin
     /// the digital face on its front surface at faceFraction of its height.
     /// </summary>
     [RequireComponent(typeof(BendRig), typeof(DigitalFace))]
-    public sealed class MeshAvatar : MonoBehaviour
+    public sealed class MeshAvatar : MonoBehaviour, IAvatarFeatures
     {
         public string displayName = "Avatar";
+        [Tooltip("Its model's id: its settings are kept under it (AvatarSettings).")]
+        public string id;
+        [Tooltip("The pack it comes in (AvatarPacks): packs can be switched off in the menu.")]
+        public string pack;
         [Tooltip("Baked mesh: facing -Z, base on y = 0, centred on x/z.")]
         public Mesh mesh;
         public Material[] materials;
@@ -34,20 +38,40 @@ namespace Muffin
         [Tooltip("Moves the face sideways (metres), e.g. back onto a mug's body when its handle makes it look off-centre.")]
         public float faceShiftX;
 
+        [Tooltip("A second place for the face the streamer can pick on its page (-1 = none): fraction, size, and the switch's words.")]
+        public float altFaceFraction = -1f, altFaceSize = 0.8f;
+        public bool altFaceHasMouth = true;
+        public string altFaceLabel;
+
+        public void Describe(System.Collections.Generic.List<AvatarFeature> into)
+        {
+            if (altFaceFraction >= 0f)
+                into.Add(new AvatarFeature { Key = "altface", Label = (altFaceLabel ?? "Face in its other place") + " (after a restart)", Default = false });
+        }
+
         void Awake()
         {
             var rig = GetComponent<BendRig>();
             Bounds b = mesh.bounds;
-            float head = Mathf.Min(headFraction, faceFraction - 0.02f); // the face must ride the rigid head
+            if (altFaceFraction >= 0f && AvatarSettings.On(AvatarSettings.IdOf(this), "altface", false))
+            {
+                faceFraction = altFaceFraction;
+                faceSize = altFaceSize;
+                faceHasMouth = altFaceHasMouth;
+            }
+            // The face rides the rigid head, or a floppy tip when it sits up there (a rubber chicken's head on its neck).
+            bool onTip = tipFraction < 0.99f && faceFraction >= tipFraction;
+            float head = onTip ? Mathf.Min(headFraction, tipFraction - 0.02f) : Mathf.Min(headFraction, faceFraction - 0.02f);
             rig.BuildFromFractions(mesh, materials, rootFraction, head, tipFraction);
 
             float faceY = b.min.y + b.size.y * faceFraction;
-            float headY = b.min.y + b.size.y * head;
+            Transform anchor = rig.BoneAt(faceY, out Vector3 rest);
             FrontAt(mesh, faceY, b.size.y * 0.035f, faceShiftX, out float frontZ, out float width);
             // The sticker layout is drawn for a 26 cm-wide face; fit it to ~80% of the avatar's width there.
             float scale = faceSize * width * 0.8f / 0.26f;
             var face = GetComponent<DigitalFace>();
-            face.Build(rig, rig.HeadBone, new Vector3(faceShiftX, faceY - headY, frontZ - faceGap), scale, faceHasMouth);
+            face.Build(rig, anchor, new Vector3(faceShiftX, faceY - rest.y, frontZ - faceGap), scale, faceHasMouth);
+            face.TipSteady = onTip ? 0.6f : 0f;
             // The front around the face, so the face parts follow its curves and bumps (a gap in front of them).
             face.Surface = FrontSurface.Build(mesh, new Vector3(faceShiftX, faceY, frontZ - faceGap), scale, new Rect(-0.4f, -0.32f, 0.8f, 0.58f), 0.008f);
         }

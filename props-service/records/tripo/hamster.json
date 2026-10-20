@@ -1,0 +1,48 @@
+{
+  "id": "hamster",
+  "generation": {
+    "face_limit": 8000,
+    "texture_quality": "detailed"
+  },
+  "license": {
+    "plan": "paid",
+    "tier": null,
+    "declaredAt": "2026-10-14",
+    "stampedAt": "2026-10-20T00:43:40.643Z"
+  },
+  "steps": {
+    "upload": {
+      "fileToken": "file_7633c6b1-2647-4791-ad39-0f236d65a959",
+      "hash": "sha256:1ea6b4b0b38b32ab4cc93ebb7284bae97307871f75645c1897d64984b9048e09",
+      "status": "success",
+      "input": "raw/concepts/hamster.png"
+    },
+    "generate": {
+      "taskId": "fbb61f51-9369-4fee-b5ae-f3ff919ab7b1",
+      "status": "success",
+      "request": {
+        "input": "file_7633c6b1-2647-4791-ad39-0f236d65a959",
+        "texture": true,
+        "pbr": true,
+        "model": "P1-20260311",
+        "face_limit": 8000,
+        "texture_quality": "detailed"
+      },
+      "createdAt": "2026-10-20T00:43:42.400Z",
+      "license": {
+        "plan": "paid",
+        "tier": null,
+        "declaredAt": "2026-10-14",
+        "stampedAt": "2026-10-20T00:43:40.643Z"
+      },
+      "credits": 60,
+      "output": {
+        "model_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261020/fbb61f51-9369-4fee-b5ae-f3ff919ab7b1/tripo_pbr_model_fbb61f51-9369-4fee-b5ae-f3ff919ab7b1.glb",
+        "rendered_image_url": "https://tripo-data.rg1.data.tripo3d.com/tcli_34416aed3700421ea1985bcf25670226/20261020/fbb61f51-9369-4fee-b5ae-f3ff919ab7b1/legacy_mesh.webp"
+      },
+      "finishedAt": "2026-10-20T00:45:03.985Z",
+      "fileHash": "sha256:3ad7a2fc5763d3e755b43130d1b8fc9b78b3df1e216bea8802d9e4b33b7e734d"
+    }
+  },
+  "totalCredits": 60
+}

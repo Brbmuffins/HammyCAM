@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Muffin
@@ -13,17 +14,23 @@ namespace Muffin
     {
         [Tooltip("Where the seeds come out (rest, avatar space): the face's mouth; zero = worked out from the face.")]
         public Vector3 mouthPoint;
-        [Tooltip("Share of seeds that hit the camera glass.")]
-        [Range(0f, 1f)] public float toGlass = 0.35f;
+        [Tooltip("Share of seeds that hit the camera glass (kept rare: lots on the lens is distracting), and the least time between two.")]
+        [Range(0f, 1f)] public float toGlass = 0.08f;
+        public float glassEvery = 8f;
 
         static readonly Color Seed = new Color(0.12f, 0.08f, 0.06f), Juice = new Color(0.98f, 0.32f, 0.42f, 0.8f),
             Flesh = new Color(0.95f, 0.22f, 0.3f), Rind = new Color(0.25f, 0.5f, 0.2f), Pale = new Color(0.88f, 0.96f, 0.75f);
 
         Anchor mouthAnchor;
-        float rapidOwed;
+        float rapidOwed, nextGlass;
         Material seedMaterial;
 
         public override void TestMoment() => Spit(3);
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "lens", Label = "Now and then a seed hits the camera glass" });
+        }
+
         public override string MessName => "watermelon seeds and juice";
 
         protected override void Begin()
@@ -66,7 +73,11 @@ namespace Muffin
             for (int i = 0; i < count; i++)
             {
                 Vector3 aim = Aim();
-                if (Random.value < toGlass) Run(ToGlass(aim));
+                if (On("lens") && Random.value < toGlass && Time.time >= nextGlass && !GlassItem.Full)
+                {
+                    nextGlass = Time.time + glassEvery;
+                    Run(ToGlass(aim));
+                }
                 else SeedToDesk(Pos(mouthAnchor), aim * Random.Range(1.6f, 2.6f) + meter.Velocity * 0.5f);
             }
         }
@@ -86,11 +97,11 @@ namespace Muffin
         IEnumerator ToGlass(Vector3 aim)
         {
             yield return new WaitForSeconds(Random.Range(0.08f, 0.16f));
-            Vector2 at = new Vector2(Mathf.Clamp01(0.5f + aim.x * 0.42f + Random.Range(-0.12f, 0.12f)), Mathf.Clamp(0.45f + aim.y * 0.45f + Random.Range(-0.12f, 0.12f), 0.15f, 0.9f));
+            Vector2 at = GlassItem.EdgeSpot(aim.x);
             if (Mess.Instance && seedMaterial)
             {
                 GlassItem.Stick(Mess.Instance.Lumps[Random.Range(0, Mess.Instance.Lumps.Length)], seedMaterial, at, Random.Range(0.022f, 0.03f),
-                    Random.Range(0.01f, 0.03f), Random.Range(7f, 12f), Random.Range(-40f, 40f));
+                    Random.Range(0.01f, 0.03f), Random.Range(4f, 6f), Random.Range(-40f, 40f));
             }
             Sfx.Play("splat", 0.3f, 0.3f);
         }
@@ -129,8 +140,7 @@ namespace Muffin
                 for (int i = 0; i < 3; i++)
                     Mess.Instance.DeskStain(front + new Vector3(Random.Range(-0.2f, 0.2f), 0f, Random.Range(-0.1f, 0.1f)), Random.Range(0.08f, 0.14f), Juice, 160f, 0.3f, true);
             for (int i = 0; i < 24; i++) SeedToDesk(front + Vector3.up * 0.15f, Outward() * Random.Range(0.4f, 1.4f) + Vector3.up * Random.Range(0.5f, 1.5f));
-            for (int i = 0; i < 4; i++) Run(ToGlass(new Vector3(Random.Range(-0.9f, 0.9f), Random.Range(0.1f, 0.6f), -1f)));
-            GlassItem.Splash(Juice, new Vector2(Random.Range(0.25f, 0.75f), Random.Range(0.55f, 0.8f)), 0.11f, 9f);
+            if (On("lens")) Run(ToGlass(new Vector3(Random.Range(-0.9f, 0.9f), Random.Range(0.1f, 0.6f), -1f))); // one seed on the lens, at the edge
             for (int i = 0; i < 3; i++) RunDown(Random.Range(0.6f, 0.75f), Random.Range(-0.6f, 0.6f), Juice, 0.026f);
         }
     }

@@ -296,6 +296,168 @@ namespace Muffin
         // Switching back to this avatar: the floppy tip starts at rest instead of where it was left.
         void OnEnable() => flopPrimed = false;
 
+        /// <summary>
+        /// An extra bone for part of the mesh, say an animal's arm, so its own paws can move (a hamster typing along
+        /// with you). Vertices within radius of centre (mesh space) follow it, fading out over the outer half; it hangs
+        /// off the bone that carries pivot and turns about pivot. Only what lies in front of frontOf (z, mesh space) goes
+        /// with it, so an arm held close against a belly takes the arm and not the belly. Call after Build; turn it
+        /// with its localRotation.
+        /// </summary>
+        public Transform AddLimb(string name, Vector3 pivot, Vector3 centre, float radius, float frontOf = float.PositiveInfinity)
+        {
+            if (!built || !TryGetComponent(out SkinnedMeshRenderer smr) || !smr.sharedMesh) return null;
+            Mesh mesh = smr.sharedMesh;
+            Transform parent = BoneAt(pivot.y, out Vector3 rest);
+            var bone = new GameObject(name).transform;
+            bone.SetParent(parent, false);
+            bone.localPosition = pivot - rest;
+            bone.localRotation = Quaternion.identity;
+
+            var bones = new List<Transform>(smr.bones);
+            int index = bones.Count;
+            bones.Add(bone);
+            // Every bone rests unturned in the avatar's own space, so its bind pose is just "move back from pivot".
+            var bindposes = new List<Matrix4x4>(mesh.bindposes) { Matrix4x4.Translate(-pivot) };
+            Vector3[] v = mesh.vertices;
+            BoneWeight[] w = mesh.boneWeights;
+            for (int i = 0; i < v.Length; i++)
+            {
+                float d = (v[i] - centre).magnitude;
+                if (d >= radius) continue;
+                float k = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(radius, radius * 0.5f, d));
+                if (!float.IsPositiveInfinity(frontOf)) k *= Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(frontOf + 0.015f, frontOf - 0.01f, v[i].z));
+                if (k <= 0.001f) continue;
+                BoneWeight bw = w[i];
+                bw.weight0 *= 1f - k;
+                bw.weight1 *= 1f - k;
+                bw.boneIndex2 = index;
+                bw.weight2 = k;
+                bw.weight3 = 0f;
+                w[i] = bw;
+            }
+            mesh.bindposes = bindposes.ToArray();
+            mesh.boneWeights = w;
+            smr.bones = bones.ToArray();
+            return bone;
+        }
+
+        /// <summary>
+        /// A stretchy cartoon arm made of the model's own arm piece (the separate mesh nearest <paramref name="paw"/>;
+        /// AI models usually build arms that way, so nothing of the belly it rests on comes along). The arm turns
+        /// from <paramref name="shoulder"/> toward wherever the paw is sent and stretches to reach it, the paw carried
+        /// on the end; the end in the shoulder stays with the body. Points are the rest pose, avatar space. Returns
+        /// null if the rig isn't built or there's no separate piece there.
+        /// </summary>
+        public StretchArm AddStretchArm(string name, Vector3 shoulder, Vector3 paw)
+        {
+            if (!built || !TryGetComponent(out SkinnedMeshRenderer smr) || !smr.sharedMesh) return null;
+            Mesh mesh = smr.sharedMesh;
+            Vector3[] v = mesh.vertices;
+            int[] piece = MeshPieces.Find(mesh, v, out int count);
+            int nearest = 0;
+            for (int i = 1; i < v.Length; i++)
+                if ((v[i] - paw).sqrMagnitude < (v[nearest] - paw).sqrMagnitude) nearest = i;
+            int arm = piece[nearest];
+            int size = 0;
+            for (int i = 0; i < v.Length; i++) if (piece[i] == arm) size++;
+            if (count < 2 || size > v.Length / 3) return null; // the body itself: no separate arm to move
+
+            Vector3 axis = paw - shoulder;
+            Quaternion along = Quaternion.LookRotation(axis.normalized, Vector3.up);
+            Transform armParent = BoneAt(shoulder.y, out Vector3 armRest), pawParent = BoneAt(paw.y, out Vector3 pawRest);
+            var upper = new GameObject(name).transform;
+            upper.SetParent(armParent, false);
+            upper.localPosition = shoulder - armRest;
+            upper.localRotation = along;
+            var hand = new GameObject(name + " paw").transform;
+            hand.SetParent(pawParent, false);
+            hand.localPosition = paw - pawRest;
+            hand.localRotation = Quaternion.identity;
+
+            var bones = new List<Transform>(smr.bones);
+            int upperIndex = bones.Count, handIndex = bones.Count + 1;
+            bones.Add(upper);
+            bones.Add(hand);
+            var bindposes = new List<Matrix4x4>(mesh.bindposes)
+            {
+                Matrix4x4.TRS(shoulder, along, Vector3.one).inverse,
+                Matrix4x4.Translate(-paw),
+            };
+            BoneWeight[] w = mesh.boneWeights;
+            float length2 = Mathf.Max(axis.sqrMagnitude, 1e-6f);
+            for (int i = 0; i < v.Length; i++)
+            {
+                if (piece[i] != arm) continue;
+                float t = Vector3.Dot(v[i] - shoulder, axis) / length2;
+                // The end in the shoulder stays with the body; past the wrist it's all paw.
+                float k = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.05f, 0.35f, t));
+                float pawShare = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0.7f, 0.9f, t));
+                if (k <= 0.001f) continue;
+                BoneWeight bw = w[i];
+                bw.weight0 *= 1f - k;
+                bw.weight1 *= 1f - k;
+                bw.boneIndex2 = upperIndex;
+                bw.weight2 = k * (1f - pawShare);
+                bw.boneIndex3 = handIndex;
+                bw.weight3 = k * pawShare;
+                w[i] = bw;
+            }
+            mesh.bindposes = bindposes.ToArray();
+            mesh.boneWeights = w;
+            smr.bones = bones.ToArray();
+            smr.quality = SkinQuality.Bone4;
+            return new StretchArm(upper, hand, shoulder - armRest, paw - pawRest, along, axis.normalized);
+        }
+
+        /// <summary>One stretchy arm (see AddStretchArm): send its paw somewhere each frame with Reach.</summary>
+        public sealed class StretchArm
+        {
+            readonly Transform upper, hand;
+            readonly Vector3 shoulderLocal, pawLocal, axis;
+            readonly Quaternion along;
+            /// <summary>How much the paw turns with the arm (0 keeps its rest angle, 1 turns as much as the arm).</summary>
+            public float PawTurn = 0.35f;
+            /// <summary>The longest it will stretch, times its rest length.</summary>
+            public float MaxStretch = 3.2f;
+
+            internal StretchArm(Transform upper, Transform hand, Vector3 shoulderLocal, Vector3 pawLocal, Quaternion along, Vector3 axis)
+            {
+                this.upper = upper;
+                this.hand = hand;
+                this.shoulderLocal = shoulderLocal;
+                this.pawLocal = pawLocal;
+                this.along = along;
+                this.axis = axis;
+            }
+
+            /// <summary>Where the paw is at rest (world), as the body is posed now.</summary>
+            public Vector3 RestPaw => hand && hand.parent ? hand.parent.TransformPoint(pawLocal) : Vector3.zero;
+
+            /// <summary>
+            /// The paw goes <paramref name="amount"/> of the way from its rest place to <paramref name="target"/>
+            /// (world; past 1 overshoots), the arm stretching to reach. Call every frame (0 = at rest).
+            /// </summary>
+            public void Reach(Vector3 target, float amount, Vector3 nudge = default)
+            {
+                if (!upper || !hand) return;
+                Transform armParent = upper.parent, pawParent = hand.parent;
+                Vector3 shoulder = armParent.TransformPoint(shoulderLocal), rest = pawParent.TransformPoint(pawLocal);
+                Vector3 goal = Vector3.LerpUnclamped(rest, target, amount) + nudge;
+                Vector3 restAxis = armParent.TransformDirection(axis);
+                float restLength = Mathf.Max((rest - shoulder).magnitude, 1e-4f);
+                Vector3 to = goal - shoulder;
+                float length = Mathf.Min(to.magnitude, restLength * MaxStretch);
+                if (to.sqrMagnitude < 1e-8f) to = restAxis;
+                goal = shoulder + to.normalized * length;
+                Quaternion turn = Quaternion.FromToRotation(restAxis, to.normalized);
+                upper.localPosition = shoulderLocal;
+                upper.rotation = turn * armParent.rotation * along;
+                upper.localScale = new Vector3(1f, 1f, length / restLength);
+                hand.position = goal;
+                hand.rotation = Quaternion.Slerp(Quaternion.identity, turn, PawTurn) * pawParent.rotation;
+            }
+        }
+
         Transform MakeBone(string name, Vector3 localPosition)
         {
             var t = new GameObject(name).transform;

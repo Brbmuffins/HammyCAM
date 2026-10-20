@@ -27,6 +27,12 @@ namespace Muffin
 
         public override void TestMoment() => Run(SlopOver(1f));
         public override string TestReport => $"{bubbles.Count} bubbles";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "light", Label = "It lights the set green" });
+            into.Add(new AvatarFeature { Key = "drips", Label = "Ooze dribbles down its sides by itself" });
+        }
+
         public override string MessName => "glowing toxic ooze";
 
         protected override void Begin()
@@ -66,12 +72,12 @@ namespace Muffin
             if (glow)
             {
                 glow.transform.position = Pos(lidAnchor) + Vector3.up * 0.12f + Vector3.back * 0.1f;
-                glow.intensity = (0.9f + 0.35f * Mathf.Sin(t * 2.4f) + 1.6f * talk + 4f * flash) * (0.9f + 0.2f * Mathf.PerlinNoise(t * 6f, 0.1f));
+                glow.intensity = !On("light") ? 0f : (0.9f + 0.35f * Mathf.Sin(t * 2.4f) + 1.6f * talk + 4f * flash) * (0.9f + 0.2f * Mathf.PerlinNoise(t * 6f, 0.1f));
             }
             if (deskGlow)
             {
                 deskGlow.transform.position = transform.position + new Vector3(0f, 0.08f, body.min.z - 0.2f);
-                deskGlow.intensity = 0.7f + 0.25f * Mathf.Sin(t * 1.7f + 1f) + 2f * flash;
+                deskGlow.intensity = !On("light") ? 0f : 0.7f + 0.25f * Mathf.Sin(t * 1.7f + 1f) + 2f * flash;
             }
 
             // Bubbles swell out of the bung and pop.
@@ -108,7 +114,7 @@ namespace Muffin
             }
 
             // Ooze dribbles down the sides now and then (and slops over when it moves hard).
-            if (Time.time >= nextDrip || meter.Shake > 40f && Time.time >= nextDrip - 3f)
+            if (On("drips") && (Time.time >= nextDrip || meter.Shake > 40f && Time.time >= nextDrip - 3f))
             {
                 nextDrip = Time.time + Random.Range(6f, 12f);
                 RunDown(Random.Range(0.88f, 0.94f), Random.Range(-0.7f, 0.7f), Ooze, Random.Range(0.024f, 0.032f), Random.Range(0.05f, 0.08f));

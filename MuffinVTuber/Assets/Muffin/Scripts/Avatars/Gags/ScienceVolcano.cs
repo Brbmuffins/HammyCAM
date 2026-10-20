@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Muffin
@@ -29,6 +30,12 @@ namespace Muffin
         public float Pressure => pressure;
         public override void TestMoment() => Run(Erupt(1f));
         public override string TestReport => $"pressure {pressure:0.00}";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "selfbuild", Label = "Pressure builds up by itself (and it erupts on its own)" });
+            into.Add(new AvatarFeature { Key = "glow", Label = "The crater glows and lights the desk" });
+        }
+
         public override string MessName => "a foaming eruption";
 
         protected override void Begin()
@@ -49,7 +56,7 @@ namespace Muffin
         protected override void Tick(float dt)
         {
             bool talking = mouth > 0.25f;
-            if (!erupting) pressure = Mathf.Clamp01(pressure + (buildIdle + (talking ? buildTalking * Mathf.Clamp01(mouth * 1.6f) : 0f) + Mathf.Max(0f, meter.Shake - 10f) * 0.001f) * dt);
+            if (!erupting) pressure = Mathf.Clamp01(pressure + ((On("selfbuild") ? buildIdle : 0f) + (talking ? buildTalking * Mathf.Clamp01(mouth * 1.6f) : 0f) + Mathf.Max(0f, meter.Shake - 10f) * 0.001f) * dt);
 
             // Steam, more the higher the pressure; rumbles that get closer together.
             steamOwed += (0.6f + pressure * 7f) * dt;
@@ -66,7 +73,7 @@ namespace Muffin
                 rig.KickTip(new Vector3(Random.Range(-0.4f, 0.4f), 0f, 0f) * pressure);
                 if (pressure > 0.7f) Sfx.Play("slam_thud", 0.25f + pressure * 0.2f, 0.25f);
             }
-            if (glow) glow.intensity = Mathf.Lerp(glow.intensity, (erupting ? 3.2f : pressure * pressure * 2.2f) * (0.8f + 0.4f * Mathf.PerlinNoise(Time.time * 7f, 0.3f)), 1f - Mathf.Exp(-dt * 8f));
+            if (glow) glow.intensity = !On("glow") ? 0f : Mathf.Lerp(glow.intensity, (erupting ? 3.2f : pressure * pressure * 2.2f) * (0.8f + 0.4f * Mathf.PerlinNoise(Time.time * 7f, 0.3f)), 1f - Mathf.Exp(-dt * 8f));
 
             if (!erupting && (pressure >= 1f || (mouthJustOpened && mouth > 0.55f && pressure > 0.35f)))
                 Run(Erupt(Mathf.Lerp(0.7f, 1.2f, pressure)));

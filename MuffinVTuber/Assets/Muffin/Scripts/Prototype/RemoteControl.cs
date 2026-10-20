@@ -154,7 +154,8 @@ namespace Muffin
 
         // ---------- what the phone can do (main thread) ----------
 
-        void Apply(string action, string value)
+        /// <summary>Does what a remote button asks (this page, or the VPS relay's phone dashboard). Main thread only.</summary>
+        public void Apply(string action, string value)
         {
             bool yes = value == "1" || value == "true";
             float number = float.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out float parsed) ? parsed : 0f;
@@ -194,12 +195,13 @@ namespace Muffin
                 case "menu": if (panel) panel.Open = yes; break;
                 case "readout": if (hud) hud.Visible = yes; break;
                 case "desk": if (desk) desk.Show(yes); break;
+                case "faceMess": AvatarSettings.FaceMess = yes; break;
             }
             nextState = 0f; // the phone sees the result on its next look
         }
 
         /// <summary>A snapshot of everything the page shows, as JSON.</summary>
-        string BuildState()
+        public string BuildState()
         {
             var s = new StringBuilder(2048);
             s.Append("{\"app\":\"HammyCAM\"");
@@ -236,7 +238,7 @@ namespace Muffin
             s.Append(",\"vertical\":").Append(Bool(DeskScene.Compact));
             s.Append(",\"sound\":").Append(Bool(Sound.On)).Append(",\"volume\":").Append(Num(SoundBank.Volume));
             s.Append(",\"hoseAuto\":").Append(Bool(VacuumHose.AutoClean)).Append(",\"hoseMouse\":").Append(Bool(VacuumHose.FollowMouse));
-            s.Append(",\"menu\":").Append(Bool(panel && panel.Open));
+            s.Append(",\"menu\":").Append(Bool(panel && panel.Open)).Append(",\"faceMess\":").Append(Bool(AvatarSettings.FaceMess));
             if (desk) s.Append(",\"desk\":").Append(Bool(desk.Shown));
             if (debris) s.Append(",\"sprinkles\":").Append(debris.SprinkleCount).Append(",\"bits\":").Append(debris.PieceCount);
             if (Mess.Instance) s.Append(",\"stains\":").Append(Mess.Instance.StainCount);

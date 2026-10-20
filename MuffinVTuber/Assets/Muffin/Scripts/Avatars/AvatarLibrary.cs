@@ -47,14 +47,16 @@ namespace Muffin
             DigitalFace.Crop = (DigitalFace.RealCrop)Mathf.Clamp(PlayerPrefs.GetInt("muffin.realcrop", 0), 0, DigitalFace.CropNames.Length - 1);
             int start = Mathf.Clamp(PlayerPrefs.GetInt("muffin.avatar", 0), 0, Mathf.Max(0, avatars.Count - 1));
             for (int i = 0; i < avatars.Count; i++) avatars[i].gameObject.SetActive(false);
+            if (!Allowed(start)) start = Step(start, 1);
             Activate(start);
         }
 
         void Update()
         {
             // Down arrow: next avatar, Up arrow: previous; both wrap around.
-            if (avatars.Count > 1 && Keys.Pressed(MuffinKey.Down)) Activate((ActiveIndex + 1) % avatars.Count);
-            if (avatars.Count > 1 && Keys.Pressed(MuffinKey.Up)) Activate((ActiveIndex - 1 + avatars.Count) % avatars.Count);
+            // (Avatars in a pack that's switched off are skipped.)
+            if (avatars.Count > 1 && Keys.Pressed(MuffinKey.Down)) Activate(Step(ActiveIndex, 1));
+            if (avatars.Count > 1 && Keys.Pressed(MuffinKey.Up)) Activate(Step(ActiveIndex, -1));
             if (Keys.Pressed(MuffinKey.F1)) ToggleEmotion(Emotion.Happy);
             if (Keys.Pressed(MuffinKey.F2)) ToggleEmotion(Emotion.Sad);
             if (Keys.Pressed(MuffinKey.F3)) ToggleEmotion(Emotion.Angry);
@@ -98,6 +100,26 @@ namespace Muffin
             rig.gameObject.SetActive(true);
             if (rig.TryGetComponent(out DigitalFace face)) face.SetEmotion(Emotion);
             PlayerPrefs.SetInt("muffin.avatar", index);
+        }
+
+        /// <summary>Avatar i is in a pack that's switched on.</summary>
+        public bool Allowed(int i) => i >= 0 && i < avatars.Count && avatars[i] && AvatarPacks.Enabled(AvatarPacks.PackOf(avatars[i]));
+
+        /// <summary>The next allowed avatar after index from, going direction (1 or -1), wrapping round; from itself if none.</summary>
+        public int Step(int from, int direction)
+        {
+            for (int k = 1; k <= avatars.Count; k++)
+            {
+                int i = ((from + direction * k) % avatars.Count + avatars.Count) % avatars.Count;
+                if (Allowed(i)) return i;
+            }
+            return from;
+        }
+
+        /// <summary>After a pack was switched off: if the active avatar is in it, move on to one that isn't.</summary>
+        public void LeaveDisabledPack()
+        {
+            if (!Allowed(ActiveIndex)) Activate(Step(ActiveIndex, 1));
         }
 
         /// <summary>The display name of avatar i (for the control panel).</summary>

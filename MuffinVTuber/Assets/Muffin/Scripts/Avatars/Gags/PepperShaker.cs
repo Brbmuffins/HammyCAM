@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Muffin
@@ -33,6 +34,12 @@ namespace Muffin
             Run(Sneeze(0.15f));
         }
         public override string TestReport => $"haze {Haze:0.00}, tickle {tickle:0.00}";
+        protected override void DescribeMore(List<AvatarFeature> into)
+        {
+            into.Add(new AvatarFeature { Key = "haze", Label = "The room fills with pepper" });
+            into.Add(new AvatarFeature { Key = "selfsneeze", Label = "Sneezes by itself when the pepper tickles" });
+        }
+
         public override string MessName => "a cloud of pepper and a sneeze";
 
         protected override void Begin()
@@ -58,13 +65,14 @@ namespace Muffin
             }
             if (haze != null)
             {
-                haze.Amount = Mathf.Clamp01(haze.Amount + over * 0.0018f * dt);
+                if (On("haze")) haze.Amount = Mathf.Clamp01(haze.Amount + over * 0.0018f * Amount * dt);
+                else haze.Amount = 0f;
                 haze.Update(Camera.main, dt);
             }
             if (sneezing) return;
             tickle = Mathf.Clamp01(tickle + ((haze != null ? haze.Amount : 0f) * 0.45f + over * 0.0015f - 0.03f) * dt);
             bool sneezeFace = mouth > 0.45f && eyesShutFor > 0.2f;
-            if (tickle >= 1f || sneezeFace) Run(Sneeze(sneezeFace ? 0.2f : 1f));
+            if ((tickle >= 1f && On("selfsneeze")) || sneezeFace) Run(Sneeze(sneezeFace ? 0.2f : 1f));
         }
 
         void Shake(int puffCount)
@@ -116,9 +124,9 @@ namespace Muffin
                         blast, Random.Range(0.18f, 0.32f), Random.Range(1.2f, 2.2f), 4f, 1.4f);
             }
             if (Mess.Instance && speck)
-                for (int i = 0; i < 9; i++)
-                    GlassItem.Stick(Mess.Instance.Lumps[i % Mess.Instance.Lumps.Length], speck, new Vector2(Random.Range(0.2f, 0.8f), Random.Range(0.3f, 0.75f)),
-                        Random.Range(0.006f, 0.012f), 0f, Random.Range(6f, 10f), Random.Range(0f, 180f));
+                for (int i = 0; i < 2; i++)
+                    GlassItem.Stick(Mess.Instance.Lumps[i % Mess.Instance.Lumps.Length], speck, GlassItem.EdgeSpot(i == 0 ? -1f : 1f),
+                        Random.Range(0.006f, 0.01f), 0f, Random.Range(3f, 5f), Random.Range(0f, 180f));
             if (haze != null) haze.Amount = Mathf.Min(1f, haze.Amount + 0.3f);
             // Everything on the desk is blown away from it: off to the sides and toward the front edge.
             if (DeskDebris.Instance)

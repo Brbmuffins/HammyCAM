@@ -14,14 +14,67 @@ import { readGlb, decodePng, encodePng, clamp } from './kit.mjs';
 const HEIGHT = 1.15;
 const BG = [26, 18, 41];
 
+/**
+ * An accessor's values as plain numbers: floats, or integers (normalised to -1..1 / 0..1 when the accessor says so,
+ * as gltf-transform's quantised meshes do), interleaved or not. Indices come back as integers.
+ */
 function accessorData(gltf, bin, index) {
   const acc = gltf.accessors[index];
   const bv = gltf.bufferViews[acc.bufferView];
   const comps = { SCALAR: 1, VEC2: 2, VEC3: 3, VEC4: 4 }[acc.type];
-  const start = (bv.byteOffset ?? 0) + (acc.byteOffset ?? 0);
-  const Type = { 5126: Float32Array, 5125: Uint32Array, 5123: Uint16Array, 5121: Uint8Array }[acc.componentType];
-  const bytes = bin.subarray(start, start + acc.count * comps * Type.BYTES_PER_ELEMENT);
-  return new Type(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength));
+  const info = {
+    5126: [4, (d, o) => d.getFloat32(o, true), 1],
+    5125: [4, (d, o) => d.getUint32(o, true), 4294967295],
+    5123: [2, (d, o) => d.getUint16(o, true), 65535],
+    5122: [2, (d, o) => d.getInt16(o, true), 32767],
+    5121: [1, (d, o) => d.getUint8(o), 255],
+    5120: [1, (d, o) => d.getInt8(o), 127],
+  }[acc.componentType];
+  const [size, read, max] = info;
+  const stride = bv.byteStride ?? size * comps;
+  const view = new DataView(bin.buffer, bin.byteOffset + (bv.byteOffset ?? 0) + (acc.byteOffset ?? 0));
+  const out = acc.componentType === 5126 || acc.normalized ? new Float32Array(acc.count * comps) : new Uint32Array(acc.count * comps);
+  for (let i = 0; i < acc.count; i++)
+    for (let c = 0; c < comps; c++) {
+      let v = read(view, i * stride + c * size);
+      if (acc.normalized && acc.componentType !== 5126) v = Math.max(-1, v / max);
+      out[i * comps + c] = v;
+    }
+  return out;
+}
+
+/** 4x4 column-major helpers for node transforms. */
+const mat4 = {
+  identity: () => [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1],
+  mul(a, b) {
+    const r = new Array(16).fill(0);
+    for (let c = 0; c < 4; c++) for (let rI = 0; rI < 4; rI++) for (let k = 0; k < 4; k++) r[c * 4 + rI] += a[k * 4 + rI] * b[c * 4 + k];
+    return r;
+  },
+  trs(t = [0, 0, 0], q = [0, 0, 0, 1], s = [1, 1, 1]) {
+    const [x, y, z, w] = q;
+    return [
+      (1 - 2 * (y * y + z * z)) * s[0], 2 * (x * y + z * w) * s[0], 2 * (x * z - y * w) * s[0], 0,
+      2 * (x * y - z * w) * s[1], (1 - 2 * (x * x + z * z)) * s[1], 2 * (y * z + x * w) * s[1], 0,
+      2 * (x * z + y * w) * s[2], 2 * (y * z - x * w) * s[2], (1 - 2 * (x * x + y * y)) * s[2], 0,
+      t[0], t[1], t[2], 1,
+    ];
+  },
+};
+
+/** Every mesh in the scene with the world matrix of the node that holds it. */
+function meshNodes(gltf) {
+  const out = [];
+  const walk = (i, parent) => {
+    const n = gltf.nodes[i];
+    const local = n.matrix ? n.matrix : mat4.trs(n.translation, n.rotation, n.scale);
+    const world = mat4.mul(parent, local);
+    if (n.mesh !== undefined) out.push({ mesh: gltf.meshes[n.mesh], world });
+    for (const c of n.children ?? []) walk(c, world);
+  };
+  const roots = gltf.scenes?.[gltf.scene ?? 0]?.nodes ?? gltf.nodes.map((_, i) => i);
+  for (const r of roots) walk(r, mat4.identity());
+  return out;
 }
 
 export function loadModel(buf) {
@@ -31,14 +84,32 @@ export function loadModel(buf) {
     return decodePng(Buffer.from(bin.subarray(bv.byteOffset ?? 0, (bv.byteOffset ?? 0) + bv.byteLength)));
   });
   const prims = [];
-  for (const mesh of gltf.meshes)
+  for (const { mesh, world } of meshNodes(gltf))
     for (const p of mesh.primitives) {
       const mat = gltf.materials?.[p.material] ?? {};
       const pbr = mat.pbrMetallicRoughness ?? {};
       const texIndex = pbr.baseColorTexture?.index;
+      // Into world space with the node's transform (quantised meshes keep their scale and offset there).
+      const pos = accessorData(gltf, bin, p.attributes.POSITION);
+      for (let i = 0; i < pos.length; i += 3) {
+        const [x, y, z] = [pos[i], pos[i + 1], pos[i + 2]];
+        pos[i] = world[0] * x + world[4] * y + world[8] * z + world[12];
+        pos[i + 1] = world[1] * x + world[5] * y + world[9] * z + world[13];
+        pos[i + 2] = world[2] * x + world[6] * y + world[10] * z + world[14];
+      }
+      let nor = p.attributes.NORMAL !== undefined ? accessorData(gltf, bin, p.attributes.NORMAL) : null;
+      if (nor)
+        for (let i = 0; i < nor.length; i += 3) {
+          const [x, y, z] = [nor[i], nor[i + 1], nor[i + 2]];
+          const n = [world[0] * x + world[4] * y + world[8] * z, world[1] * x + world[5] * y + world[9] * z, world[2] * x + world[6] * y + world[10] * z];
+          const l = Math.hypot(...n) || 1;
+          nor[i] = n[0] / l;
+          nor[i + 1] = n[1] / l;
+          nor[i + 2] = n[2] / l;
+        }
       prims.push({
-        pos: accessorData(gltf, bin, p.attributes.POSITION),
-        nor: p.attributes.NORMAL !== undefined ? accessorData(gltf, bin, p.attributes.NORMAL) : null,
+        pos,
+        nor,
         uv: p.attributes.TEXCOORD_0 !== undefined ? accessorData(gltf, bin, p.attributes.TEXCOORD_0) : null,
         idx: accessorData(gltf, bin, p.indices),
         color: pbr.baseColorFactor ?? [1, 1, 1, 1],

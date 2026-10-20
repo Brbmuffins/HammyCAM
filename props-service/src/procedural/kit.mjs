@@ -604,13 +604,43 @@ function chunk(type, data) {
   out.writeUInt32BE(crc32(out.subarray(4, 8 + data.length)), 8 + data.length);
   return out;
 }
-/** RGBA pixels → PNG bytes. */
+/**
+ * RGBA pixels → PNG bytes. Each row gets the PNG filter (none, sub, up, average, Paeth) that leaves the smallest
+ * numbers (the usual heuristic), which shrinks smooth gradients and noise a lot before deflate.
+ */
 export function encodePng(width, height, px) {
-  const stride = width * 4 + 1;
+  const rowBytes = width * 4, stride = rowBytes + 1;
   const raw = Buffer.alloc(stride * height);
+  const candidates = Array.from({ length: 5 }, () => Buffer.alloc(rowBytes));
   for (let y = 0; y < height; y++) {
-    raw[y * stride] = 0;
-    Buffer.from(px.buffer, px.byteOffset + y * width * 4, width * 4).copy(raw, y * stride + 1);
+    const row = Buffer.from(px.buffer, px.byteOffset + y * rowBytes, rowBytes);
+    const prev = y > 0 ? Buffer.from(px.buffer, px.byteOffset + (y - 1) * rowBytes, rowBytes) : null;
+    let best = 0, bestScore = Infinity;
+    for (let f = 0; f < 5; f++) {
+      const out = candidates[f];
+      let score = 0;
+      for (let x = 0; x < rowBytes; x++) {
+        const a = x >= 4 ? row[x - 4] : 0, b = prev ? prev[x] : 0, c = prev && x >= 4 ? prev[x - 4] : 0;
+        let p;
+        if (f === 0) p = row[x];
+        else if (f === 1) p = row[x] - a;
+        else if (f === 2) p = row[x] - b;
+        else if (f === 3) p = row[x] - ((a + b) >> 1);
+        else {
+          const pa = Math.abs(b - c), pb = Math.abs(a - c), pc = Math.abs(a + b - 2 * c);
+          p = row[x] - (pa <= pb && pa <= pc ? a : pb <= pc ? b : c);
+        }
+        out[x] = p & 255;
+        score += out[x] < 128 ? out[x] : 256 - out[x];
+        if (score >= bestScore) break;
+      }
+      if (score < bestScore) {
+        bestScore = score;
+        best = f;
+      }
+    }
+    raw[y * stride] = best;
+    candidates[best].copy(raw, y * stride + 1);
   }
   const head = Buffer.alloc(13);
   head.writeUInt32BE(width, 0);
