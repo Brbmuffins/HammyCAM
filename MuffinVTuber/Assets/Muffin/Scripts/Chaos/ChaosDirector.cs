@@ -77,6 +77,35 @@ namespace Muffin
 
         readonly Dictionary<string, float> viewerLast = new Dictionary<string, float>();
         float lastAny = -9999f;
+        sealed class GiftBatch
+        {
+            public string User, Command;
+            public int Remaining;
+        }
+        readonly Queue<GiftBatch> gifts = new Queue<GiftBatch>();
+
+        /// <summary>Paid gifts never use chat cooldowns or the simultaneous-event cap. Count is newly received gifts, not a cumulative streak total.</summary>
+        public void HandleGift(string user, string command, int count = 1)
+        {
+            if (count < 1 || (command != "!tomato" && command != "!pie" && command != "!clean" && command != "!fire")) return;
+            gifts.Enqueue(new GiftBatch { User = user, Command = command, Remaining = count });
+        }
+
+        void RunNextGift()
+        {
+            // Keep every gift while paused; spread starts across frames without dropping or capping purchases.
+            if (!chaosOn || gifts.Count == 0) return;
+            GiftBatch gift = gifts.Peek();
+            switch (gift.Command)
+            {
+                case "!tomato": StartCoroutine(Tomato()); break;
+                case "!pie": Fire(ChaosEvent.Pie, gift.User); break;
+                case "!fire": Fire(ChaosEvent.Fire, gift.User); break;
+                case "!clean": if (debris) debris.Clean(); break;
+            }
+            LastViewerEvent = $"{gift.User}: gift {gift.Command}";
+            if (--gift.Remaining == 0) gifts.Dequeue();
+        }
         string caption;
         float captionUntil;
         GUIStyle captionStyle, captionShadow;
@@ -153,6 +182,7 @@ namespace Muffin
                 Save();
             }
             while (Chat.TryNext(out string user, out string text)) HandleChat(user, text);
+            RunNextGift();
         }
 
         /// <summary>

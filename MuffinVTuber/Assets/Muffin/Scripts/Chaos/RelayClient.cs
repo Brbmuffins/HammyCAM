@@ -10,7 +10,7 @@ namespace Muffin
 {
     /// <summary>
     /// The link to the streamer's own relay on their VPS (docs/vps-relay.md): it brings TikTok LIVE in (comments and
-    /// mapped gifts, likes and follows become chat commands, under the same cooldowns and rules as Twitch chat) and
+    /// gifts use a dedicated paid-event path; likes and follows use the same cooldowns as Twitch chat) and
     /// carries the relay's phone dashboard: its buttons arrive as remote actions (the same ones the home-Wi-Fi phone
     /// remote uses) and the app's state goes back so the dashboard can show it. The app connects OUT to the relay
     /// (wss, with the relay's token), so nothing needs opening on the streamer's network. Set up in the menu
@@ -54,6 +54,7 @@ namespace Muffin
             public string type, platform, user, text, command, reason, action, value, room;
             public bool connected, live;
             public int viewers;
+            public int count = 1;
         }
 
         [Serializable]
@@ -227,7 +228,14 @@ namespace Muffin
                     if (chaos && !string.IsNullOrEmpty(m.text)) chaos.HandleChat(Who(m), m.text);
                     break;
                 case "command":
-                    if (chaos && !string.IsNullOrEmpty(m.command)) chaos.HandleChat(Who(m), m.command);
+                    if (chaos && !string.IsNullOrEmpty(m.command))
+                    {
+                        if ((m.reason ?? "").StartsWith("gift:", StringComparison.OrdinalIgnoreCase)) chaos.HandleGift(Who(m), m.command, m.count);
+                        else chaos.HandleChat(Who(m), m.command);
+                    }
+                    break;
+                case "gift":
+                    if (chaos) chaos.HandleGift(Who(m), m.command, m.count);
                     break;
                 case "remote":
                     if (remote && !string.IsNullOrEmpty(m.action)) remote.Apply(m.action, m.value ?? "");

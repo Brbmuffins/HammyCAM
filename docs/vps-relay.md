@@ -45,12 +45,12 @@ A Node 20+ service, `hammycam-relay`, in its own folder (or repo) on the VPS.
    in the config, never in code or git.
 2. **Events.**
    - Comment → a `chat` message (below), text as typed.
-   - Gift → look its name up in `giftMap`; if mapped, send a `command`. Gifts that "streak" (combo repeats) fire
-     **once per streak**, when it ends, not once per repeat. Unmapped gifts are ignored (but listed on the
+   - Gift → look its name up in `giftMap`; if mapped, send a `gift`. Gifts that "streak" (combo repeats) fire
+     **once per individual gift**, including every repeat in a streak. Send a `gift` message with `command` and `count` (new gifts only). Track streak count deltas and deduplicate replayed events; never double-count the final notification. Unmapped gifts are ignored (but listed on the
      dashboard so they can be mapped).
    - Likes → every `likeEvery` likes in total (room-wide), send `likeCommand` (optional).
    - Follow / share → `followCommand` / `shareCommand` (optional, may be empty).
-   - Light pre-filter only: drop a viewer's events if they send more than ~5 a second (spam). The real rules are the
+   - Light pre-filter only: filter excessive comments only; never drop paid gifts. The real rules are the
      app's job.
 3. **App connection.** A WebSocket server behind TLS at `wss://<domain>/app`. Up to 3 app connections at once (the
    streamer might run two PCs). Ping each connection every 20 s; drop ones that don't answer within 10 s.
@@ -90,6 +90,21 @@ phone connection).
 
 ## The protocol (JSON, one object per WebSocket text message)
 
+### Paid gift rules (supersede chat limits above)
+
+- Rose (requested 1-coin gift): `!tomato`, exactly one tomato per Rose.
+- Ice Lolly (10 coins): `!pie`, one pie to the face per gift.
+- Friendship Necklace (10 coins): `!clean`, clean the desk.
+- Doughnut (requested 30-coin gift): `!fire`.
+
+Map specific gift identities, not every gift with the same price. Confirm the chosen gifts against the live room's catalog.
+The app accepts `{ "type": "gift", "user": "Viewer", "command": "!tomato", "count": 10 }` for ten newly received Roses.
+No paid gift is rejected for chat cooldowns, viewer limits, disabled chat effects, or simultaneous-event limits.
+The app starts one purchased effect per frame and retains pending gifts while the chaos master switch is off.
+The pending queue is in memory for the running app session; durable delivery across restarts requires relay persistence and acknowledgments.
+Legacy `command` messages with a `reason` starting `gift:` also use this paid path and may include `count`.
+The relay must implement this revised delivery protocol before live gifts can be verified.
+
 App → relay:
 
 ```json
@@ -108,7 +123,7 @@ Relay → app:
 { "type": "welcome", "relay": "hammycam-relay", "version": "1" }
 { "type": "status", "platform": "tiktok", "connected": true, "live": true, "room": "@name", "viewers": 123 }
 { "type": "chat", "platform": "tiktok", "user": "Display Name", "userId": "1234", "text": "!pie lol", "ts": 1760900000000 }
-{ "type": "command", "platform": "tiktok", "user": "Display Name", "userId": "1234", "command": "!pie", "reason": "gift: Rose", "ts": 1760900000000 }
+{ "type": "command", "platform": "tiktok", "user": "Display Name", "userId": "1234", "command": "!tomato", "reason": "gift: Rose", "ts": 1760900000000 }
 { "type": "remote", "action": "chaos", "value": "Pie" }
 { "type": "ping" }
 ```
@@ -136,7 +151,7 @@ Relay → app:
   "dashboardPassword": "<a long passphrase>",
   "signApiKey": "",
   "port": 8787,
-  "giftMap": { "Rose": "!pie", "Finger Heart": "!cream", "TikTok": "!whack", "Doughnut": "!fruit", "Galaxy": "!fire" },
+  "giftMap": { "Rose": "!tomato", "Ice Lolly": "!pie", "Friendship Necklace": "!clean", "Doughnut": "!fire" },
   "likeEvery": 500,
   "likeCommand": "!shake",
   "followCommand": "!whack",
